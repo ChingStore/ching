@@ -5,6 +5,7 @@ import './App.css';
 import web3 from 'web3'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
+import MenuAppBar from './components/menu-app-bar'
 import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
 import Add from './components/add'
@@ -20,14 +21,14 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route exact path="/" component={Inventory} />
-            <Route exact path="/sales-report" component={SalesReport} />
+            <MenuAppBar/>
+            {/* <Route exact path="/" component={Inventory} /> */}
+            {/* <Route exact path="/sales-report" component={SalesReport} />
             <Route exact path="/add" component={Add} />
-            <Route exact path="/edit" component={Add} />
+            <Route exact path="/edit" component={Add} /> */}
           </div>
         </Router>
       </div>
-
     );
   }
 }
