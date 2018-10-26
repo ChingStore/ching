@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import web3 from 'web3'
+
 class App extends Component {
+
+  componentWillMount() {
+    console.log(web3);
+  }
+
   render() {
     return (
       <div className="App">
