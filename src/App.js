@@ -3,6 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 import web3 from 'web3'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+
+import Inventory from './components/inventory'
+import SalesReport from './components/sales-report'
+import Add from './components/add'
 
 class App extends Component {
 
@@ -13,21 +18,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <div>
+            <Route exact path="/" component={Inventory} />
+            <Route exact path="/sales-report" component={SalesReport} />
+            <Route exact path="/add" component={Add} />
+            <Route exact path="/edit" component={Add} />
+          </div>
+        </Router>
       </div>
+
     );
   }
 }
