@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import ROUTE from '../../constants/route'
 import itemAction from "../../redux/actions/item"
@@ -37,6 +40,11 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
+  fileSelectedHandler = event => {
+    console.log(event.target.files[0]);
+    this.setState({ picture: event.target.value})
+  };
+
   handleSave = () => {
 
     if (this.state.name === '' || this.state.quantity === '' || this.state.price === ''){
@@ -45,8 +53,10 @@ class OutlinedInputAdornments extends React.Component {
     } else {
       this.props.dispatch(itemAction.add({
         name: this.state.name,
+        picture: this.state.picture,
         count: this.state.quantity,
-        price: this.state.price
+        price: this.state.price,
+        photo: this.state.photo
       }))
     }
   };
@@ -69,14 +79,14 @@ class OutlinedInputAdornments extends React.Component {
         />
         <TextField
           id="outlined-adornment-picture"
-
+          type="file"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Picture (optional)"
           value={this.state.picture}
-          onChange={this.handleChange('picture')}
+          onChange={this.fileSelectedHandler}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Picture</InputAdornment>,
+            startAdornment: <InputAdornment position="start"><Icon><ShoppingCartIcon /></Icon></InputAdornment>,
           }}
         />
         <TextField
