@@ -88,10 +88,14 @@ const styles = theme => ({
 });
 
 class MenuAppBar extends React.Component {
+  constructor(props){
+    super(props);
 
-  state = {
-    open: false,
-  };
+    this.state = {
+      open: false,
+      idMessage: "MenuAppBar"
+    };
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -104,6 +108,7 @@ class MenuAppBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
+    console.log(this);
 
     return (
       <div className={classes.root}>
@@ -116,7 +121,7 @@ class MenuAppBar extends React.Component {
                />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              {this.props.location}
+              {this.state.idMessage}
             </Typography>
           </Toolbar>
         </AppBar>
