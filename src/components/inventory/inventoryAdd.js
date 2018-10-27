@@ -15,18 +15,17 @@ import plus from './plus.svg'
 
 const styles = {
   card: {
-    width: 200,
-    heigt: 200
+    width: "50%",
+    heigt: "50%"
   },
   media: {
-    height: 140,
-    width: 140
+    height: 200,
+    width: 200
   },
 };
 
 function MediaCard(props) {
   const { classes } = props;
-  // if (1 === 0){
     return (
       <Card className={classes.card}>
         <CardActionArea component={NavLink} to={ROUTE.PATH.ADD}>
@@ -36,12 +35,8 @@ function MediaCard(props) {
             title="Add Item"
           />
         </CardActionArea>
-
       </Card>
     );
-  // } else {
-
-  // }
 }
 
 MediaCard.propTypes = {
