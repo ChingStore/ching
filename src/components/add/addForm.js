@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,6 +11,13 @@ import { connect } from 'react-redux'
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
+import MenuItem from '@material-ui/core/MenuItem';
+// import Camera from './camera';
+import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
+
+
 
 import ROUTE from '../../constants/route'
 import itemAction from "../../redux/actions/item"
@@ -28,6 +35,21 @@ const styles = theme => ({
   },
 });
 
+const photos = [
+  {
+    value: './cupcakes',
+    label: 'Cupcakes',
+  },
+  {
+    value: './Shovels',
+    label: 'Shovels',
+  },
+  {
+    value: './lizards',
+    label: 'Lizards',
+  },
+];
+
 class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
@@ -40,10 +62,10 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  fileSelectedHandler = event => {
-    console.log(event.target.files[0]);
-    this.setState({ picture: event.target.value})
-  };
+  onTakePhoto (dataUri) {
+    this.setState({picture: dataUri});
+    console.log('takePhoto');
+  }
 
   handleSave = () => {
 
@@ -53,10 +75,9 @@ class OutlinedInputAdornments extends React.Component {
     } else {
       this.props.dispatch(itemAction.add({
         name: this.state.name,
-        picture: this.state.picture,
         count: this.state.quantity,
         price: this.state.price,
-        photo: this.state.photo
+        photo: this.state.picture
       }))
     }
   };
@@ -77,18 +98,25 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">Item</InputAdornment>,
           }}
         />
+        <Camera
+          onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
+        />
         <TextField
           id="outlined-adornment-picture"
-          type="file"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Picture (optional)"
           value={this.state.picture}
-          onChange={this.fileSelectedHandler}
           InputProps={{
-            startAdornment: <InputAdornment position="start"><Icon><ShoppingCartIcon /></Icon></InputAdornment>,
+            startAdornment: <InputAdornment position="start"><Icon><AddPhotoAlternate /></Icon></InputAdornment>,
           }}
-        />
+        >
+        {photos.map(option => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+        </TextField>
         <TextField
           id="outlined-adornment-price"
           className={classNames(classes.margin, classes.textField)}

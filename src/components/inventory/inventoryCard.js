@@ -13,6 +13,7 @@ import Badge from './inventoryBadge'
 import image from './contemplativeLizard.jpg'
 import plus from './plus.svg'
 
+
 const styles = {
   root:{
 
@@ -42,8 +43,14 @@ const styles = {
 
 };
 
+
 function MediaCard(props) {
   const { classes } = props;
+
+  // componentWillMount () {
+  //   image = props.photo;
+  // }
+
   return (
     <Card className={classes.card}>
       <Badge badgeContent={props.count}/>
@@ -51,6 +58,7 @@ function MediaCard(props) {
         <CardMedia
           className={classes.media}
           image={props.photo || image}
+          alt={props.photo}
         />
         <CardContent className={classes.content}>
           <Typography gutterBottom variant="h5" component="h2" color="inherit">
