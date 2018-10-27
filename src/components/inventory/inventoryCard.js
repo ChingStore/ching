@@ -15,27 +15,28 @@ import plus from './plus.svg'
 
 const styles = {
   root:{
-    // height: "-webkit-fill-available"
-    // height: "100%"
-    // color: "green"
+
   },
   card: {
-    backgroundColor: "transparent",
     width: "50%",
-    height: "50%"
+    height: 250
   },
   media: {
     position: "fixed",
     zIndex: -1,
-    height: 200,
+    height: 250,
     width: 200
   },
   content: {
-
+    zIndex: 0,
+    position: "relative",
+    top: 123,
+    color: "white"
   },
   button: {
-    
-  }
+    zIndex: 1
+  },
+
 };
 
 function MediaCard(props) {
@@ -49,10 +50,10 @@ function MediaCard(props) {
           image={props.photo || image}
         />
         <CardContent className={classes.content}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" color="inherit">
             {props.name}
           </Typography>
-          <Typography component="p">
+          <Typography component="p" color="inherit">
             {props.name} cost {props.price} DAI
           </Typography>
         </CardContent>
