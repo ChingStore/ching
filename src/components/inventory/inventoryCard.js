@@ -28,6 +28,7 @@ function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
+      <Badge />
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -42,15 +43,6 @@ function MediaCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-        <Badge />
-      </CardActions>
     </Card>
   );
 }
