@@ -10,13 +10,16 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
-    width: '96%',
+    width: '100%',
+    maxWidth: '400',
     marginTop: theme.spacing.unit * 1,
     overflowX: 'auto',
+    padding: 'none'
   },
   table: {
     minWidth: 0,
-    maxWidth: '96%'
+    maxWidth: '100%',
+    padding: 'none'
   },
 });
 
@@ -31,8 +34,8 @@ const rows = [
   createData('Cupcakes', 12, 24.0),
   createData('Shovels', 3, 39.97),
   createData('Special Favors', 1, 100),
-  createData('Taxation is theft', 1, 3.141592653589),
-  createData('#FreeRoss', 1000000, 867530.9),
+  createData('Taxation is theft', 1, 3.14),
+  createData('#FreeRoss', 100, 530.9),
 ];
 
 function SimpleTable(props) {
@@ -44,8 +47,8 @@ function SimpleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell>Item</TableCell>
-            <TableCell numeric>Units Sold</TableCell>
-            <TableCell numeric>Gross Sales</TableCell>
+            <TableCell >Units Sold</TableCell>
+            <TableCell >Gross Sales</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,8 +58,8 @@ function SimpleTable(props) {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell numeric>{row.units}</TableCell>
-                <TableCell numeric>{row.sales}</TableCell>
+                <TableCell >{row.units}</TableCell>
+                <TableCell >{row.sales}</TableCell>
               </TableRow>
             );
           })}
