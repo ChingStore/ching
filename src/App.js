@@ -12,6 +12,12 @@ import Payment from './components/payment'
 
 import ROUTE from './constants/route'
 
+const styles = theme => ({
+  clearingStyle: {
+    width: 0,
+  },
+})
+
 class App extends Component {
 
   componentWillMount() {
@@ -21,15 +27,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HashRouter basename={process.env.PUBLIC_URL}>
-          <div>
-            <MenuAppBar/>
-            <Switch>
-              <Route exact path={ROUTE.PATH.INVENTORY} component={Inventory}/>
-              <Route exact path={ROUTE.PATH.SALES_REPORT} component={SalesReport} />
-              <Route exact path={ROUTE.PATH.ADD} component={Add} />
-              <Route exact path={ROUTE.PATH.EDIT} component={Add} />
-              <Route path="/payment/:address/:amount/" component={Payment} />
+        <HashRouter basename={process.env.PUBLIC_URL} id={110}>
+          <div id={"a"}>
+            <MenuAppBar id={98}/>
+            <Switch id={109}>
+              <Route exact path={ROUTE.PATH.INVENTORY} component={Inventory} id={105}/>
+              <Route exact path={ROUTE.PATH.SALES_REPORT} component={SalesReport} id={106}/>
+              <Route exact path={ROUTE.PATH.ADD} component={Add} id={107}/>
+              <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121}/>
+              <Route path="/payment/:address/:amount/" component={Payment} id={108}/>
             </Switch>
           </div>
         </HashRouter>
@@ -38,4 +44,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
