@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,7 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -102,7 +102,7 @@ class MenuAppBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
-    console.log(this);
+    console.log(this.props.location);
 
     return (
       <div className={classes.root}>
@@ -119,11 +119,13 @@ class MenuAppBar extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
+        <SwipeableDrawer
           className={classes.drawer}
           variant="persistent"
           anchor="left"
           open={open}
+          onClose={this.handleDrawerClose}
+          onOpen={this.handleDrawerOpen}
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -134,14 +136,14 @@ class MenuAppBar extends React.Component {
               </IconButton>
           </div>
           <List>
-            <ListItem button component='a' href='/'>
-              <ListItemText primary="Inventory" />
+            <ListItem button component={NavLink} to={ROUTE.PATH.INVENTORY} onClick={this.handleDrawerClose}>
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.INVENTORY]} />
             </ListItem>
-            <ListItem button component='a' href='/sales-report'>
-              <ListItemText primary="Sales Report" />
+            <ListItem button component={NavLink} to={ROUTE.PATH.SALES_REPORT} onClick={this.handleDrawerClose}>
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]} />
             </ListItem>
           </List>
-        </Drawer>
+        </SwipeableDrawer>
       </div>
     );
   }

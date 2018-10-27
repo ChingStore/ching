@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import web3 from 'web3'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, HashRouter } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 
 import MenuAppBar from './components/menu-app-bar'
@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <HashRouter>
           <div>
             <MenuAppBar/>
             <Switch>
@@ -29,7 +29,7 @@ class App extends Component {
               <Route exact path={ROUTE.PATH.EDIT} component={Add} />
             </Switch>
           </div>
-        </Router>
+        </HashRouter>
       </div>
     );
   }
