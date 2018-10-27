@@ -1,7 +1,7 @@
 {
   "main.css": "/daipos/static/css/main.6d467d14.chunk.css",
-  "main.js": "/daipos/static/js/main.2257b078.chunk.js",
-  "main.js.map": "/daipos/static/js/main.2257b078.chunk.js.map",
+  "main.js": "/daipos/static/js/main.edc703f8.chunk.js",
+  "main.js.map": "/daipos/static/js/main.edc703f8.chunk.js.map",
   "static/js/1.88d94f4f.chunk.js": "/daipos/static/js/1.88d94f4f.chunk.js",
   "static/js/1.88d94f4f.chunk.js.map": "/daipos/static/js/1.88d94f4f.chunk.js.map",
   "runtime~main.js": "/daipos/static/js/runtime~main.73b68379.js",
@@ -10,6 +10,6 @@
   "static/media/plus.svg": "/daipos/static/media/plus.8d8108b2.svg",
   "static/media/contemplativeLizard.jpg": "/daipos/static/media/contemplativeLizard.34dfeed2.jpg",
   "index.html": "/daipos/index.html",
-  "precache-manifest.f2d40f28807856b8831013853b8492ca.js": "/daipos/precache-manifest.f2d40f28807856b8831013853b8492ca.js",
+  "precache-manifest.aac255220f4aea47d26c79a8e727b54f.js": "/daipos/precache-manifest.aac255220f4aea47d26c79a8e727b54f.js",
   "service-worker.js": "/daipos/service-worker.js"
 }

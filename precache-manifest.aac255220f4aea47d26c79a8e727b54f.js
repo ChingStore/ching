@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/daipos/static/js/runtime~main.73b68379.js"
   },
   {
-    "revision": "2257b0789301987fb7b9",
-    "url": "/daipos/static/js/main.2257b078.chunk.js"
+    "revision": "edc703f8509893740591",
+    "url": "/daipos/static/js/main.edc703f8.chunk.js"
   },
   {
     "revision": "88d94f4f3aac1263b7da",
     "url": "/daipos/static/js/1.88d94f4f.chunk.js"
   },
   {
-    "revision": "2257b0789301987fb7b9",
+    "revision": "edc703f8509893740591",
     "url": "/daipos/static/css/main.6d467d14.chunk.css"
   },
   {
-    "revision": "ce97820c13d7b2c9b272a5208190a2fa",
+    "revision": "afe5cf75f0b878d68f62566a4b93ef86",
     "url": "/daipos/index.html"
   }
 ];
