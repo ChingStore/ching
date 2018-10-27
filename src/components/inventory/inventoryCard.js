@@ -14,43 +14,53 @@ import image from './contemplativeLizard.jpg'
 import plus from './plus.svg'
 
 const styles = {
+  root:{
+
+  },
   card: {
     width: "50%",
-    height: "50%"
+    height: 250,
+    maxWidth: 250
   },
   media: {
-    height: 200,
-    width: 200
+    position: "fixed",
+    zIndex: -1,
+    height: 250,
+    width: 250,
+    maxWidth: 250
   },
+  content: {
+    zIndex: 0,
+    position: "relative",
+    top: 123,
+    color: "white",
+    fontWeight: "bold"
+  },
+  button: {
+    zIndex: 1
+  },
+
 };
 
 function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <Badge />
+      <CardActionArea className={classes.button}>
         <CardMedia
           className={classes.media}
           image={props.photo || image}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent className={classes.content}>
+          <Typography gutterBottom variant="h5" component="h2" color="inherit">
             {props.name}
           </Typography>
-          <Typography component="p">
+          <Typography component="p" color="inherit">
             {props.name} cost {props.price} DAI
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-        <Badge />
-      </CardActions>
     </Card>
   );
 }

@@ -15,12 +15,14 @@ import plus from './plus.svg'
 
 const styles = {
   card: {
+    backgroundColor: "transparent",
     width: "50%",
-    heigt: "50%"
+    height: 250,
+    maxWidth: 250
   },
   media: {
-    height: 200,
-    width: 200
+    height: 250,
+
   },
 };
 
