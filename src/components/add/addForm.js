@@ -27,7 +27,7 @@ class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
     picture: '',
-    quanitity: 0,
+    quantity: '',
     price: ''
   };
 
@@ -49,13 +49,15 @@ class OutlinedInputAdornments extends React.Component {
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Item Name"
+          value={this.state.name}
+          onChange={this.handleChange('name')}
           InputProps={{
             startAdornment: <InputAdornment position="start">Item Name</InputAdornment>,
           }}
         />
         <TextField
           id="outlined-adornment-picture"
-          select
+
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Picture"
@@ -64,8 +66,7 @@ class OutlinedInputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start">Picture</InputAdornment>,
           }}
-        >
-        </TextField>
+        />
         <TextField
           id="outlined-adornment-price"
           className={classNames(classes.margin, classes.textField)}
@@ -84,13 +85,11 @@ class OutlinedInputAdornments extends React.Component {
           label="Quantity"
           value={this.state.quantity}
           onChange={this.handleChange('quantity')}
-          helperText="Quantity"
           InputProps={{
-
+            startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <div>save button goes here</div>
-        <Button size="small" color="primary">
+        <Button size="large" color="primary">
           Save
         </Button>
       </div>
