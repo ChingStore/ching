@@ -1,9 +1,13 @@
 import React from 'react'
+import Form from './addForm.js'
 
-export default class SalesReport extends React.PureComponent {
+export default class Add extends React.PureComponent {
   render() {
     return (
-      <div>I'm the add scene!</div>
+      <div>
+        <div>I{"'"}m the add scene!</div>
+        <Form />
+      </div>
     )
   }
 }
