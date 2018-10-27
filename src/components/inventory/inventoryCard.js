@@ -19,13 +19,15 @@ const styles = {
   },
   card: {
     width: "50%",
-    height: 250
+    height: 250,
+    maxWidth: 250
   },
   media: {
     position: "fixed",
     zIndex: -1,
     height: 250,
-    width: 200
+    width: 250,
+    maxWidth: 250
   },
   content: {
     zIndex: 0,

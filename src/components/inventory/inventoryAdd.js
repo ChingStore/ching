@@ -17,7 +17,8 @@ const styles = {
   card: {
     backgroundColor: "transparent",
     width: "50%",
-    height: 250
+    height: 250,
+    maxWidth: 250
   },
   media: {
     height: 250,
