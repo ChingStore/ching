@@ -8,6 +8,10 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Button from '@material-ui/core/Button';
+import { withRouter, NavLink } from 'react-router-dom';
+
+import ROUTE from '../../constants/route'
 
 const styles = theme => ({
   root: {
@@ -26,7 +30,7 @@ class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
     picture: '',
-    quanitity: 0,
+    quantity: '',
     price: ''
   };
 
@@ -34,9 +38,16 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  // handleClickShowPassword = () => {
-  //   this.setState(state => ({ showPassword: !state.showPassword }));
-  // };
+  handleSave = () => event => {
+
+    if (this.state.name === '' || this.state.quantity === '' || this.state.Price === ''){
+      alert("No changes saved.");
+      console.log("Leaving!");
+    } else {
+      alert("Details saved for " + this.state.name + ".");
+      console.log("Save and Leave!");
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -48,23 +59,24 @@ class OutlinedInputAdornments extends React.Component {
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Item Name"
+          value={this.state.name}
+          onChange={this.handleChange('name')}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Item Name</InputAdornment>,
+            startAdornment: <InputAdornment position="start">Item</InputAdornment>,
           }}
         />
         <TextField
           id="outlined-adornment-picture"
-          select
+
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
-          label="Picture"
+          label="Picture (optional)"
           value={this.state.picture}
           onChange={this.handleChange('picture')}
           InputProps={{
             startAdornment: <InputAdornment position="start">Picture</InputAdornment>,
           }}
-        >
-        </TextField>
+        />
         <TextField
           id="outlined-adornment-price"
           className={classNames(classes.margin, classes.textField)}
@@ -83,12 +95,13 @@ class OutlinedInputAdornments extends React.Component {
           label="Quantity"
           value={this.state.quantity}
           onChange={this.handleChange('quantity')}
-          helperText="Quantity"
           InputProps={{
-
+            startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <div>save button goes here</div>
+        <Button size="large" color="primary" onClick={this.handleSave(this.state)} component={NavLink} to={ROUTE.PATH.INVENTORY}>
+          Save
+        </Button>
       </div>
     );
   }
