@@ -46,7 +46,7 @@ function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      <Badge />
+      <Badge badgeContent={props.count}/>
       <CardActionArea className={classes.button}>
         <CardMedia
           className={classes.media}
