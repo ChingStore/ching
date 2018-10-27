@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,21 +10,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { withRouter } from 'react-router-dom'
+import ROUTE from '../../constants/route'
 
 const drawerWidth = 200;
 
@@ -93,7 +86,6 @@ class MenuAppBar extends React.Component {
 
     this.state = {
       open: false,
-      idMessage: "MenuAppBar"
     };
   }
 
@@ -104,6 +96,8 @@ class MenuAppBar extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
   render() {
     const { classes } = this.props;
@@ -121,7 +115,7 @@ class MenuAppBar extends React.Component {
                />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              {this.state.idMessage}
+              {this.getTitle()}
             </Typography>
           </Toolbar>
         </AppBar>
