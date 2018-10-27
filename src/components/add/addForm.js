@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -34,8 +35,8 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  // handleClickShowPassword = () => {
-  //   this.setState(state => ({ showPassword: !state.showPassword }));
+  // handleSave = () => {
+  //   this.setState(state => ());
   // };
 
   render() {
@@ -89,6 +90,9 @@ class OutlinedInputAdornments extends React.Component {
           }}
         />
         <div>save button goes here</div>
+        <Button size="small" color="primary">
+          Save
+        </Button>
       </div>
     );
   }
