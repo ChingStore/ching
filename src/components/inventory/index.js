@@ -10,7 +10,7 @@ class InventoryScene extends React.PureComponent {
   render() {
     console.log('items:', this.props.items)
     return (
-      <div style={{flex:1, flexDirection: 'row'}}>
+      <div style={{display: 'flex', flexWrap: "wrap", flex:1, flexDirection: 'row'}}>
         {_.map(this.props.items, (item, id) =>
           <Card key={id} {...item}/>
         )}
