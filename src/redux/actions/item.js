@@ -2,18 +2,18 @@ import ACTIONS from "../actionTypes";
 
 let nextItemId = 0;
 
-const addItem = ({ name, photo, soldCount, remainingCount, price }) => ({
+const add = ({ name, photo, soldCount, count, price }) => ({
   type: ACTIONS.ADD_ITEM,
   payload: {
     id: ++nextItemId,
     name,
     photo,
     soldCount,
-    remainingCount,
+    count,
     price,
   }
 });
 
 export default {
-  addItem
+  add
 }

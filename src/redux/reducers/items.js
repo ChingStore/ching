@@ -1,8 +1,6 @@
 import ACTIONS from "../actionTypes";
 
-const initialState = {
-  items: {}
-};
+const initialState = {};
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -10,10 +8,7 @@ export default function(state = initialState, action) {
       const { id, ...itemFields } = action.payload;
       return {
         ...state,
-        items: {
-          ...state.items,
-          [id]: itemFields
-        }
+        [id]: itemFields
       };
     }
     default:

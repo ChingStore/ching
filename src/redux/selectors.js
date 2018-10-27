@@ -5,5 +5,6 @@ const getItemById = (store, id) =>
   getItemsState(store) ? { ...getItemsState(store)[id] } : {};
 
 export default {
+  getItemsState,
   getItemById
 }

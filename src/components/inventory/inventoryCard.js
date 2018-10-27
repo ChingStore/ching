@@ -16,7 +16,7 @@ import plus from './plus.svg'
 const styles = {
   card: {
     width: 200,
-    heigt: 200
+    height: 200
   },
   media: {
     height: 140,
@@ -26,38 +26,33 @@ const styles = {
 
 function MediaCard(props) {
   const { classes } = props;
-  // if (1 === 0){
-    return (
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={image}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Lizard
-            </Typography>
-            <Typography component="p">
-              Lizards cost 15 DAI
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-          <Badge />
-        </CardActions>
-      </Card>
-    );
-  // } else {
-  
-  // }
+  return (
+    <Card className={classes.card}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={props.photo || image}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.name}
+          </Typography>
+          <Typography component="p">
+            {props.name} cost {props.price} DAI
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+        <Badge />
+      </CardActions>
+    </Card>
+  );
 }
 
 MediaCard.propTypes = {

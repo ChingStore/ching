@@ -2,16 +2,15 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
-import { withRouter, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 
 import ROUTE from '../../constants/route'
+import itemAction from "../../redux/actions/item"
 
 const styles = theme => ({
   root: {
@@ -38,14 +37,17 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  handleSave = () => event => {
+  handleSave = () => {
 
-    if (this.state.name === '' || this.state.quantity === '' || this.state.Price === ''){
+    if (this.state.name === '' || this.state.quantity === '' || this.state.price === ''){
       alert("No changes saved.");
       console.log("Leaving!");
     } else {
-      alert("Details saved for " + this.state.name + ".");
-      console.log("Save and Leave!");
+      this.props.dispatch(itemAction.add({
+        name: this.state.name,
+        count: this.state.quantity,
+        price: this.state.price
+      }))
     }
   };
 
@@ -99,7 +101,7 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <Button size="large" color="primary" onClick={this.handleSave(this.state)} component={NavLink} to={ROUTE.PATH.INVENTORY}>
+        <Button size="large" color="primary" onClick={this.handleSave} component={NavLink} to={ROUTE.PATH.INVENTORY}>
           Save
         </Button>
       </div>
@@ -111,4 +113,13 @@ OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedInputAdornments);
+const mapStateToProps = (state) => {}
+const mapDispatchToProps = (dispatch) => {
+
+}
+
+
+export default compose(
+  withStyles(styles),
+  connect()
+)(OutlinedInputAdornments)
