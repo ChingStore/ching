@@ -14,14 +14,28 @@ import image from './contemplativeLizard.jpg'
 import plus from './plus.svg'
 
 const styles = {
+  root:{
+    // height: "-webkit-fill-available"
+    // height: "100%"
+    // color: "green"
+  },
   card: {
+    backgroundColor: "transparent",
     width: "50%",
     height: "50%"
   },
   media: {
+    position: "fixed",
+    zIndex: -1,
     height: 200,
     width: 200
   },
+  content: {
+
+  },
+  button: {
+    
+  }
 };
 
 function MediaCard(props) {
@@ -29,12 +43,12 @@ function MediaCard(props) {
   return (
     <Card className={classes.card}>
       <Badge />
-      <CardActionArea>
+      <CardActionArea className={classes.button}>
         <CardMedia
           className={classes.media}
           image={props.photo || image}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}
           </Typography>
