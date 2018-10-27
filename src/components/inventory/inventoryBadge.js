@@ -22,14 +22,14 @@ function CustomizedBadge(props) {
 
   return (
 
-      <Badge badgeContent={4} color="primary" classes={{ badge: classes.badge }}>
+      <Badge badgeContent={props.badgeContent} color="primary" classes={{ badge: classes.badge }}>
       </Badge>
 
   );
 }
 
-CustomizedBadge.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// CustomizedBadge.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(CustomizedBadge);
