@@ -9,6 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
+import { withRouter, NavLink } from 'react-router-dom';
+
+import ROUTE from '../../constants/route'
 
 const styles = theme => ({
   root: {
@@ -35,9 +38,16 @@ class OutlinedInputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  // handleSave = () => {
-  //   this.setState(state => ());
-  // };
+  handleSave = () => event => {
+
+    if (this.state.name === '' || this.state.quantity === '' || this.state.Price === ''){
+      alert("No changes saved.");
+      console.log("Leaving!");
+    } else {
+      alert("Details saved for " + this.state.name + ".");
+      console.log("Save and Leave!");
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -52,7 +62,7 @@ class OutlinedInputAdornments extends React.Component {
           value={this.state.name}
           onChange={this.handleChange('name')}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Item Name</InputAdornment>,
+            startAdornment: <InputAdornment position="start">Item</InputAdornment>,
           }}
         />
         <TextField
@@ -60,7 +70,7 @@ class OutlinedInputAdornments extends React.Component {
 
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
-          label="Picture"
+          label="Picture (optional)"
           value={this.state.picture}
           onChange={this.handleChange('picture')}
           InputProps={{
@@ -89,7 +99,7 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <Button size="large" color="primary">
+        <Button size="large" color="primary" onClick={this.handleSave(this.state)} component={NavLink} to={ROUTE.PATH.INVENTORY}>
           Save
         </Button>
       </div>
