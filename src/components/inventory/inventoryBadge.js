@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const styles = theme => ({
   badge: {
     zIndex: 2,
-    top: 15,
+    top: -10,
     right: -30,
     // The border color match the background color.
     border: `2px solid ${

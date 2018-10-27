@@ -33,7 +33,8 @@ const styles = {
     zIndex: 0,
     position: "relative",
     top: 123,
-    color: "white"
+    color: "white",
+    fontWeight: "bold"
   },
   button: {
     zIndex: 1
