@@ -8,9 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { withRouter, NavLink } from 'react-router-dom';
 
-import Badge from './inventoryBadge'
-import image from './contemplativeLizard.jpg'
+import ROUTE from '../../constants/route'
 import plus from './plus.svg'
 
 const styles = {
@@ -29,34 +29,18 @@ function MediaCard(props) {
   // if (1 === 0){
     return (
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea component={NavLink} to={ROUTE.PATH.ADD}>
           <CardMedia
             className={classes.media}
-            image={image}
-            title="Contemplative Reptile"
+            image={plus}
+            title="Add Item"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Lizard
-            </Typography>
-            <Typography component="p">
-              Lizards cost 15 DAI
-            </Typography>
-          </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-          <Badge />
-        </CardActions>
+
       </Card>
     );
   // } else {
-  
+
   // }
 }
 
