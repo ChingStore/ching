@@ -21,14 +21,16 @@ const styles = {
   card: {
     width: "50%",
     height: 250,
-    maxWidth: 250
+    maxWidth: 250,
+    backgroundColor: "transparent"
   },
   media: {
-    position: "fixed",
+    position: "absolute",
     zIndex: -1,
     height: 250,
     width: 250,
-    maxWidth: 250
+    maxWidth: 250,
+    top: "-20%"
   },
   content: {
     zIndex: 0,
