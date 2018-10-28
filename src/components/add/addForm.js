@@ -67,6 +67,12 @@ class OutlinedInputAdornments extends React.Component {
     console.log('takePhoto');
   }
 
+  onCameraError (error) {
+  console.error('onCameraError', error);
+
+}
+
+
   handleSave = () => {
 
     if (this.state.name === '' || this.state.quantity === '' || this.state.price === ''){
@@ -100,7 +106,11 @@ class OutlinedInputAdornments extends React.Component {
         />
         <Camera
           onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
+          onCameraError = { (error) => { this.onCameraError(error); } }
+          idealFacingMode = {FACING_MODES.ENVIRONMENT}
         />
+
+
         <TextField
           id="outlined-adornment-picture"
           className={classNames(classes.margin, classes.textField)}
@@ -110,13 +120,8 @@ class OutlinedInputAdornments extends React.Component {
           InputProps={{
             startAdornment: <InputAdornment position="start"><Icon><AddPhotoAlternate /></Icon></InputAdornment>,
           }}
-        >
-        {photos.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-        </TextField>
+        />
+
         <TextField
           id="outlined-adornment-price"
           className={classNames(classes.margin, classes.textField)}
