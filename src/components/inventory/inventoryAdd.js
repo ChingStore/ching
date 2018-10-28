@@ -15,7 +15,7 @@ import plus from './plus.svg'
 
 const styles = {
   card: {
-    backgroundColor: "transparent",
+    backgroundColor: "cornsilk",
     width: "50%",
     height: 250,
     maxWidth: 250
