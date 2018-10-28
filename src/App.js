@@ -11,16 +11,14 @@ import Payment from './components/payment'
 
 import ROUTE from './constants/route'
 
-const styles = theme => ({
-  clearingStyle: {
-    width: 0,
-  },
-})
+const styles = {
+  backgroundColor: 'cornflowerblue'
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App" style={styles}>
         <HashRouter basename={process.env.PUBLIC_URL} id={110}>
           <div id={"a"}>
             <MenuAppBar id={98}/>

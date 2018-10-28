@@ -32,7 +32,15 @@ const styles = theme => ({
   },
   textField: {
     flexBasis: 200,
+    backgroundColor: 'cornsilk'
   },
+  button: {
+    backgroundColor: "seashell",
+    borderBottom: "solid 3px black",
+    borderLeft: "solid 3px darkgrey",
+    borderRight: "solid 3px darkgrey",
+    borderTop: "solid 3px lightgrey",
+  }
 });
 
 const photos = [
@@ -144,7 +152,7 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <Button size="large" color="primary" onClick={this.handleSave} component={NavLink} to={ROUTE.PATH.INVENTORY}>
+        <Button size="large" className={classNames(classes.button)} onClick={this.handleSave} component={NavLink} to={ROUTE.PATH.INVENTORY}>
           Save
         </Button>
       </div>
