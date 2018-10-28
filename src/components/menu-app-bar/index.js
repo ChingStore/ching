@@ -47,7 +47,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawer: {
-    width: drawerWidth,
+    // width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
@@ -81,6 +81,9 @@ const styles = theme => ({
   },
   balance: {
     left: 100
+  },
+  widthClear: {
+    width: 0
   }
 });
 
@@ -119,9 +122,9 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+        <AppBar id={3} position="static">
+          <Toolbar id={201}>
+            <IconButton id={202} className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon
                onClick={this.handleDrawerOpen}
                className={classNames(classes.menuButton, open && classes.hide)}
@@ -136,6 +139,7 @@ class MenuAppBar extends React.Component {
           </Toolbar>
         </AppBar>
         <SwipeableDrawer
+          id={204}
           className={classes.drawer}
           variant="persistent"
           anchor="left"
@@ -146,12 +150,12 @@ class MenuAppBar extends React.Component {
             paper: classes.drawerPaper,
           }}
         >
-          <div className={classes.drawerHeader}>
+          <div id={45} className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
                 <ChevronLeftIcon />
               </IconButton>
           </div>
-          <List>
+          <List id={205}>
             <ListItem button component={NavLink} to={ROUTE.PATH.INVENTORY} onClick={this.handleDrawerClose}>
               <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.INVENTORY]} />
             </ListItem>
