@@ -28,7 +28,7 @@ const styles = {
     height: 250,
     width: 250,
     maxWidth: 250,
-    top: "-20%"
+    top: 0
   },
   content: {
     zIndex: 0,
