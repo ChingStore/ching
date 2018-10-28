@@ -106,13 +106,13 @@ class MenuAppBar extends React.Component {
 
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
-  updateBalance = () => {
-    // web3Util.getBalance().then(balance => this.setState({ balance }))
-    web3Util.getBalance().then(balance => this.setState({ balance: balance.toString() }))
+  updateBalance = async () => {
+    const balance = await web3Util.getBalance()
+    this.setState({ balance: balance.toString() })
   }
 
   componentDidMount() {
-    setInterval(this.updateBalance, 1000)
+    setInterval(this.updateBalance, 2000)
   }
 
   render() {

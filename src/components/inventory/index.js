@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
-import Maker from '@makerdao/dai';
 
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
+import web3Util from '../../utils/web3'
 
-const SERVER_URL = 'http://278b610e.ngrok.io'
+const SERVER_URL = 'http://57d7f139.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
@@ -19,18 +19,11 @@ class InventoryScene extends React.PureComponent {
     this.loadAddress()
   }
 
-  getAddressFromWeb3 = async () => {
-    const maker = Maker.create("browser");
-    await maker.authenticate();
-    const dai = maker.service('token').getToken("DAI");
-    console.log(dai.toString())
-    const account = await dai._web3.eth.getAccounts();
-    return account;
-  }
+
 
   loadAddress = async () => {
 
-    const accounts = await this.getAddressFromWeb3()
+    const accounts = await web3Util.getAddress()
 
     console.log({ accounts })
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, Link, HashRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 
 import MenuAppBar from './components/menu-app-bar'
@@ -10,12 +10,6 @@ import Add from './components/add'
 import Payment from './components/payment'
 
 import ROUTE from './constants/route'
-
-const styles = theme => ({
-  clearingStyle: {
-    width: 0,
-  },
-})
 
 class App extends Component {
   render() {
