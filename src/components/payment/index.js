@@ -1,5 +1,4 @@
 import React from 'react'
-import dai from '@makerdao/dai'
 
 import web3Util from '../../utils/web3'
 
@@ -13,7 +12,7 @@ export default class Add extends React.PureComponent {
   render() {
     return (
       <div>
-        <div>I{"'"}m the payment scene!</div>
+        <div>Loading...</div>
         <pre>
         </pre>
       </div>

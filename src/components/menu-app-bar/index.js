@@ -17,6 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import ROUTE from '../../constants/route'
+import web3Util from '../../utils/web3'
 
 const drawerWidth = 200;
 
@@ -78,6 +79,9 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  balance: {
+    left: 100
+  }
 });
 
 class MenuAppBar extends React.Component {
@@ -99,6 +103,15 @@ class MenuAppBar extends React.Component {
 
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
+  updateBalance = () => {
+    // web3Util.getBalance().then(balance => this.setState({ balance }))
+    web3Util.getBalance().then(balance => this.setState({ balance: balance.toString() }))
+  }
+
+  componentDidMount() {
+    setInterval(this.updateBalance, 1000)
+  }
+
   render() {
     const { classes } = this.props;
     const { open } = this.state;
@@ -116,6 +129,9 @@ class MenuAppBar extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               {this.getTitle()}
+            </Typography>
+            <Typography variant="h6" color="inherit" className={classes.balance}>
+              {this.state.balance || ''}
             </Typography>
           </Toolbar>
         </AppBar>

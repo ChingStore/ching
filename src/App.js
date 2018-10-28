@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import web3 from 'web3'
 import { Route, Link, HashRouter } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 
@@ -13,11 +12,6 @@ import Payment from './components/payment'
 import ROUTE from './constants/route'
 
 class App extends Component {
-
-  componentWillMount() {
-    console.log(web3);
-  }
-
   render() {
     return (
       <div className="App">

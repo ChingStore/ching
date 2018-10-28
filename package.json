@@ -10,6 +10,7 @@
     "ajv": "^6.5.4",
     "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",
+    "qrious": "^4.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-html5-camera-photo": "^1.2.9",
