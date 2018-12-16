@@ -17,7 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import ROUTE from '../../constants/route'
-import web3Util from '../../utils/web3'
+import web3Instance from '../../utils/web3'
 
 const drawerWidth = 200;
 
@@ -107,8 +107,8 @@ class MenuAppBar extends React.Component {
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
   updateBalance = () => {
-    // web3Util.getBalance().then(balance => this.setState({ balance }))
-    web3Util.getBalance().then(balance => this.setState({ balance: balance.toString() }))
+    // web3Instance.getBalance().then(balance => this.setState({ balance }))
+    web3Instance.getBalance().then(balance => this.setState({ balance: balance.toString() }))
   }
 
   componentDidMount() {
@@ -118,7 +118,7 @@ class MenuAppBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
-    console.log(this.props.location);
+    // console.log(this.props.location);
 
     return (
       <div className={classes.root}>

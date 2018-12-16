@@ -8,40 +8,19 @@ import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
 
-const SERVER_URL = 'http://278b610e.ngrok.io'
+import web3Instance from '../../utils/web3'
+
+const SERVER_URL = 'https://1f002b6d.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
 
   state = {}
 
-  componentWillMount = () => {
-    this.loadAddress()
-  }
-
-  getAddressFromWeb3 = async () => {
-    const maker = Maker.create("browser");
-    await maker.authenticate();
-    const dai = maker.service('token').getToken("DAI");
-    console.log(dai.toString())
-    const account = await dai._web3.eth.getAccounts();
-    return account;
-  }
-
-  loadAddress = async () => {
-
-    const accounts = await this.getAddressFromWeb3()
-
-    console.log({ accounts })
-
-    this.setState({
-      address: accounts[0]
-    })
-  }
-
-  handleItemClick = (item) => {
-    console.log({ item })
-    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${this.state.address}/${item.price}`
+  handleItemClick = async (item) => {
+    // console.log({ item })
+    let address = await web3Instance.getWalletAddressFromWeb3();
+    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${item.price}`
     this.setState({
       qrUrl: url
     })
@@ -54,7 +33,7 @@ class InventoryScene extends React.PureComponent {
   }
 
   render() {
-    console.log('items:', this.props.items)
+    // console.log('items:', this.props.items)
     return (
       <div style={{display: 'flex', flexWrap: "wrap", flex:1, flexDirection: 'row'}}>
         {_.map(this.props.items, (item, id) =>
