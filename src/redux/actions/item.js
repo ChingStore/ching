@@ -1,4 +1,4 @@
-import ACTIONS from "../actionTypes";
+import ACTIONS from '../actionTypes';
 
 let nextItemId = 0;
 
@@ -10,10 +10,10 @@ const add = ({ name, photo, soldCount, count, price }) => ({
     photo,
     soldCount,
     count,
-    price,
+    price
   }
 });
 
 export default {
   add
-}
+};
