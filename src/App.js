@@ -22,8 +22,8 @@ class App extends Component {
     return (
       <div className="App" style={styles}>
         <HashRouter basename={process.env.PUBLIC_URL} id={110}>
-          <div id={"a"}>
-            <MenuAppBar id={98}/>
+          <div id={'a'}>
+            <MenuAppBar id={98} />
             <Switch id={109}>
               <Route exact path={ROUTE.PATH.INVENTORY} component={Inventory} id={105}/>
               <Route exact path={ROUTE.PATH.SALES_REPORT} component={SalesReport} id={106}/>
@@ -40,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
