@@ -10,6 +10,8 @@ import Add from './components/add'
 import Payment from './components/payment'
 
 import ROUTE from './constants/route'
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 
 const styles = {
   backgroundColor: 'cornflowerblue'
@@ -28,6 +30,8 @@ class App extends Component {
               <Route exact path={ROUTE.PATH.ADD} component={Add} id={107}/>
               <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121}/>
               <Route path="/payment/:address/:amount/" component={Payment} id={108}/>
+              <Route exact path={ROUTE.PATH.SIGNIN} component={SignIn} id={111}/>
+              <Route exact path={ROUTE.PATH.SIGNUP} component={SignUp} id={112}/>
             </Switch>
           </div>
         </HashRouter>
