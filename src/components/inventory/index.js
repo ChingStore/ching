@@ -1,17 +1,17 @@
-import _ from 'lodash'
-import React from 'react'
-import { connect } from 'react-redux'
+import _ from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
 import Maker from '@makerdao/dai';
 
-import Card from './inventoryCard.js'
-import Add from './inventoryAdd.js'
-import QRDialog from './qrDialog'
-import selectors from '../../redux/selectors'
+import Card from './inventoryCard.js';
+import Add from './inventoryAdd.js';
+import QRDialog from './qrDialog';
+import selectors from '../../redux/selectors';
 
-import web3Instance from '../../utils/web3'
+import web3Instance from '../../singletons/web3/web3';
 
-const SERVER_URL = 'https://14767e6d.ngrok.io'
-const STATUS_UL = 'https://get.status.im/browse/'
+const SERVER_URL = 'https://14767e6d.ngrok.io';
+const STATUS_UL = 'https://get.status.im/browse/';
 
 class InventoryScene extends React.PureComponent {
   state = {};
