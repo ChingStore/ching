@@ -3,6 +3,7 @@ import ReduxLogger from 'redux-logger';
 
 import rootReducer from './reducers';
 import localStorageUtil from '../utils/localStorage';
+import thunk from 'redux-thunk';
 
 const persistedState = localStorageUtil.loadState();
 
@@ -10,7 +11,7 @@ const store = createStore(
   rootReducer,
   persistedState,
   compose(
-    applyMiddleware(ReduxLogger),
+    applyMiddleware(thunk, ReduxLogger),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
