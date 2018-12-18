@@ -1,12 +1,24 @@
-import React from 'react'
-import Table from './salesTable'
+import React from 'react';
+import Table from './salesTable';
+import { connect } from 'react-redux';
+import selectors from '../../redux/selectors';
 
-export default class SalesReport extends React.PureComponent {
+class SalesReport extends React.PureComponent {
   render() {
+    const { items } = this.props;
+    console.log(this.props);
     return (
       <div>
-        <Table />
+        <Table items={items} />
       </div>
-    )
+    );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    items: state.items
+  };
+};
+
+export default connect(mapStateToProps)(SalesReport);

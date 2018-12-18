@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import Maker from '@makerdao/dai';
-
 import Card from './inventoryCard.js';
 import Add from './inventoryAdd.js';
 import QRDialog from './qrDialog';
@@ -43,8 +41,10 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  items: selectors.getItemsState(state)
-});
+const mapStateToProps = state => {
+  return {
+    items: selectors.getItemsState(state)
+  };
+};
 
 export default connect(mapStateToProps)(InventoryScene);
