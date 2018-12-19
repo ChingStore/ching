@@ -8,6 +8,7 @@ import Add from './inventoryAdd.js';
 import QRDialog from './qrDialog';
 import selectors from '../../redux/selectors';
 
+import sellItem from '../../redux/actions/item';
 import web3Instance from '../../singletons/web3/web3';
 
 const SERVER_URL = 'https://14767e6d.ngrok.io';
@@ -15,6 +16,11 @@ const STATUS_UL = 'https://get.status.im/browse/';
 
 class InventoryScene extends React.PureComponent {
   state = {};
+
+  componentDidMount() {
+    console.log(this.props.items['1']);
+    this.props.sellItem('1', this.props.items['1']);
+  }
 
   handleItemClick = async item => {
     let address = await web3Instance.getWalletAddress();
@@ -43,8 +49,19 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  items: selectors.getItemsState(state)
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    sellItem: (id, item) => dispatch(sellItem(id, item))
+  };
+};
 
-export default connect(mapStateToProps)(InventoryScene);
+const mapStateToProps = state => {
+  return {
+    items: selectors.getItemsState(state)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InventoryScene);

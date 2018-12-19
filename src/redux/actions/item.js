@@ -1,5 +1,4 @@
 import ACTIONS from '../actionTypes';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 let nextItemId = 0;
 
@@ -15,15 +14,16 @@ const add = ({ name, photo, soldCount, count, price }) => ({
   }
 });
 
-const sell_item = item => {
-  return (dispatch, getState) => {
+const sellItem = (id, item) => {
+  return dispatch => {
     // async transaction calls here
     item.soldCount += 1;
     item.count -= 1;
-    dispatch({ type: ACTIONS.SELL_ITEM, item });
+    dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, item } });
   };
 };
 
 export default {
-  add
+  add,
+  sellItem
 };
