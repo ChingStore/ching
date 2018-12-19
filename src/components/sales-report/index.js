@@ -1,5 +1,5 @@
-import React from 'react'
-import Table from './salesTable'
+import React from 'react';
+import Table from './salesTable';
 
 export default class SalesReport extends React.PureComponent {
   render() {
@@ -7,6 +7,6 @@ export default class SalesReport extends React.PureComponent {
       <div>
         <Table />
       </div>
-    )
+    );
   }
 }

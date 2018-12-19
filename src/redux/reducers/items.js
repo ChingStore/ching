@@ -12,8 +12,11 @@ export default function(state = initialState, action) {
       };
     }
     case ACTIONS.SELL_ITEM: {
-      const { id, ...itemFields } = action.payload;
-      return Object.assign({}, state, { id: itemFields });
+      const id = action.payload.id;
+      const changedItem = action.payload.item;
+      const newState = state;
+      newState[id] = changedItem;
+      return Object.assign({}, newState);
     }
     default:
       return state;
