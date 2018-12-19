@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './salesTable';
+import SalesTable from './SalesTable';
 import { connect } from 'react-redux';
 import selectors from '../../redux/selectors';
 
@@ -9,7 +9,7 @@ class SalesReport extends React.PureComponent {
     console.log(this.props);
     return (
       <div>
-        <Table items={items} />
+        <SalesTable items={items} />
       </div>
     );
   }

@@ -25,7 +25,7 @@ const styles = theme => ({
   }
 });
 
-class salesTable extends Component {
+class SalesTable extends Component {
   render() {
     const { classes } = this.props;
     const { items } = this.props;
@@ -60,4 +60,4 @@ class salesTable extends Component {
   }
 }
 
-export default withStyles(styles)(salesTable);
+export default withStyles(styles)(SalesTable);
