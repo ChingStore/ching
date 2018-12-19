@@ -17,15 +17,6 @@ const STATUS_UL = 'https://get.status.im/browse/';
 class InventoryScene extends React.PureComponent {
   state = {};
 
-  componentDidMount() {
-    console.log(this.props.items['1']);
-    try {
-      this.props.sellItem('1', this.props.items['1']);
-    } catch (e) {
-      console.log('no items');
-    }
-  }
-
   handleItemClick = async item => {
     let address = await web3Instance.getWalletAddress();
     const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${item.price}`;
