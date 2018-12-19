@@ -61,7 +61,7 @@ class OutlinedInputAdornments extends React.Component {
     name: '',
     picture: '',
     quantity: '',
-    soldCound: 0,
+    soldCount: 0,
     price: ''
   };
 
@@ -88,7 +88,8 @@ class OutlinedInputAdornments extends React.Component {
           name: this.state.name,
           count: this.state.quantity,
           price: this.state.price,
-          photo: this.state.picture
+          photo: this.state.picture,
+          soldCount: this.state.soldCount
         })
       );
     }

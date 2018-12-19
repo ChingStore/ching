@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,8 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux';
-import selectors from '../../redux/selectors';
 
 import { Component } from 'react';
 
@@ -50,7 +47,7 @@ class salesTable extends Component {
                     <TableCell component="th" scope="row">
                       {item.name}
                     </TableCell>
-                    <TableCell>{item.count}</TableCell>
+                    <TableCell>{item.soldCount}</TableCell>
                     <TableCell>{Math.round(item.soldCount * item.price * 100) / 100}</TableCell>
                   </TableRow>
                 );
@@ -63,11 +60,4 @@ class salesTable extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    items: selectors.getItemsState(state),
-    classes: PropTypes.object.isRequired
-  };
-};
-
-export default connect(mapStateToProps)(salesTable);
+export default withStyles(styles)(salesTable);

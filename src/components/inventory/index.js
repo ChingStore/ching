@@ -19,7 +19,11 @@ class InventoryScene extends React.PureComponent {
 
   componentDidMount() {
     console.log(this.props.items['1']);
-    this.props.sellItem('1', this.props.items['1']);
+    try {
+      this.props.sellItem('1', this.props.items['1']);
+    } catch (e) {
+      console.log('no items');
+    }
   }
 
   handleItemClick = async item => {
