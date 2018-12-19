@@ -14,7 +14,7 @@ const add = ({ name, photo, soldCount, count, price }) => ({
   }
 });
 
-const sellItem = (id, item) => {
+const sell = (id, item) => {
   return dispatch => {
     // async transaction calls here
     item.soldCount += 1;
@@ -25,5 +25,5 @@ const sellItem = (id, item) => {
 
 export default {
   add,
-  sellItem
+  sell
 };
