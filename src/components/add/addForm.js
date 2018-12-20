@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import * as Redux from 'redux';
+import * as ReactRedux from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -6,8 +8,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -79,20 +79,20 @@ class OutlinedInputAdornments extends React.Component {
   }
 
   handleSave = () => {
-    if (this.state.name === '' || this.state.quantity === '' || this.state.price === '') {
+    if (!this.state.name || !this.state.quantity || !this.state.price) {
       alert('No changes saved.');
       console.log('Leaving!');
-    } else {
-      this.props.dispatch(
-        itemAction.add({
-          name: this.state.name,
-          count: this.state.quantity,
-          price: this.state.price,
-          photo: this.state.picture,
-          soldCount: this.state.soldCount
-        })
-      );
+      return;
     }
+    this.props.dispatch(
+      itemAction.add({
+        name: this.state.name,
+        count: this.state.quantity,
+        price: this.state.price,
+        photo: this.state.picture,
+        soldCount: this.state.soldCount
+      })
+    );
   };
 
   render() {
@@ -175,7 +175,7 @@ OutlinedInputAdornments.propTypes = {
 const mapStateToProps = state => {};
 const mapDispatchToProps = dispatch => {};
 
-export default compose(
+export default Redux.compose(
   withStyles(styles),
-  connect()
+  ReactRedux.connect()
 )(OutlinedInputAdornments);
