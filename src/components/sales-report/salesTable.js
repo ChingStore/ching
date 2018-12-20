@@ -1,14 +1,14 @@
-import _ from 'lodash';
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import _ from 'lodash'
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
 
-import { Component } from 'react';
+import { Component } from 'react'
 
 const styles = theme => ({
   root: {
@@ -16,19 +16,19 @@ const styles = theme => ({
     maxWidth: '400',
     marginTop: theme.spacing.unit * 1,
     overflowX: 'auto',
-    padding: 'none'
+    padding: 'none',
   },
   table: {
     minWidth: 0,
     maxWidth: '100%',
-    padding: 'none'
-  }
-});
+    padding: 'none',
+  },
+})
 
 class SalesTable extends Component {
   render() {
-    const { classes } = this.props;
-    const { items } = this.props;
+    const { classes } = this.props
+    const { items } = this.props
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
@@ -48,16 +48,18 @@ class SalesTable extends Component {
                       {item.name}
                     </TableCell>
                     <TableCell>{item.soldCount}</TableCell>
-                    <TableCell>{Math.round(item.soldCount * item.price * 100) / 100}</TableCell>
+                    <TableCell>
+                      {Math.round(item.soldCount * item.price * 100) / 100}
+                    </TableCell>
                   </TableRow>
-                );
+                )
               }
             })}
           </TableBody>
         </Table>
       </Paper>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(SalesTable);
+export default withStyles(styles)(SalesTable)

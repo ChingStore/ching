@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
-import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import ButtonBase from '@material-ui/core/ButtonBase'
+import Typography from '@material-ui/core/Typography'
+import Dialog from '@material-ui/core/Dialog'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import Slide from '@material-ui/core/Slide'
 
-import qrUtil from '../../utils/qr';
+import qrUtil from '../../utils/qr'
 
 const styles = theme => ({
   appBar: {
@@ -25,7 +25,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     minWidth: 300,
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   image: {
     position: 'relative',
@@ -80,7 +80,8 @@ const styles = theme => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme.spacing.unit + 6}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme
+      .spacing.unit + 6}px`,
   },
   imageMarked: {
     height: 3,
@@ -91,41 +92,40 @@ const styles = theme => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
-});
+})
 
 function Transition(props) {
-  return <Slide direction="up" {...props} />;
+  return <Slide direction="up" {...props} />
 }
-
 
 class QRDialog extends React.Component {
   state = {
     open: false,
-    url: null
-  };
+    url: null,
+  }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleClose = () => {
     this.setState({ open: false })
     this.props.onClose()
-  };
+  }
 
   getImage = () => {
     const base64 = qrUtil.generate(this.state.url)
     return `url(${base64})`
   }
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     if (this.props.url && !prevProps.url) {
       this.setState({ open: true, url: this.props.url })
     }
   }
 
   render = () => {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <Dialog
@@ -136,7 +136,11 @@ class QRDialog extends React.Component {
       >
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+            <IconButton
+              color="inherit"
+              onClick={this.handleClose}
+              aria-label="Close"
+            >
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.flex}>
@@ -151,7 +155,7 @@ class QRDialog extends React.Component {
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             style={{
-              flex: 1
+              flex: 1,
             }}
           >
             <span
@@ -160,7 +164,7 @@ class QRDialog extends React.Component {
                 flex: 1,
                 backgroundImage: this.getImage(),
                 backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat'
+                backgroundRepeat: 'no-repeat',
               }}
             />
           </ButtonBase>
@@ -172,6 +176,6 @@ class QRDialog extends React.Component {
 
 QRDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(QRDialog);
+export default withStyles(styles)(QRDialog)

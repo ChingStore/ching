@@ -1,24 +1,24 @@
-import ACTIONS from '../actionTypes';
+import ACTIONS from '../actionTypes'
 
-const initialState = {};
+const initialState = {}
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.ADD_ITEM: {
-      const { id, ...itemFields } = action.payload;
+      const { id, ...itemFields } = action.payload
       return {
         ...state,
-        [id]: itemFields
-      };
+        [id]: itemFields,
+      }
     }
     case ACTIONS.SELL_ITEM: {
-      const id = action.payload.id;
-      const changedItem = action.payload.item;
-      const newState = state;
-      newState[id] = changedItem;
-      return Object.assign({}, newState);
+      const id = action.payload.id
+      const changedItem = action.payload.item
+      const newState = state
+      newState[id] = changedItem
+      return Object.assign({}, newState)
     }
     default:
-      return state;
+      return state
   }
 }
