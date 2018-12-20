@@ -1,5 +1,5 @@
 import React from 'react';
-import SalesTable from './SalesTable';
+import SalesTable from './salesTable';
 import { connect } from 'react-redux';
 import selectors from '../../redux/selectors';
 
