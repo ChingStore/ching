@@ -8,6 +8,7 @@ import Add from './inventoryAdd.js';
 import QRDialog from './qrDialog';
 import selectors from '../../redux/selectors';
 
+import itemActions from '../../redux/actions/item';
 import web3Instance from '../../singletons/web3/web3';
 
 const SERVER_URL = 'https://14767e6d.ngrok.io';
@@ -43,8 +44,19 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  items: selectors.getItemsState(state)
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    sellItem: (id, item) => dispatch(itemActions.sell(id, item))
+  };
+};
 
-export default connect(mapStateToProps)(InventoryScene);
+const mapStateToProps = state => {
+  return {
+    items: selectors.getItemsState(state)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InventoryScene);
