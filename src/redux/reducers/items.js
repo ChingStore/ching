@@ -12,10 +12,10 @@ export default function(state = initialState, action) {
       };
     }
     case ACTIONS.SELL_ITEM: {
-      const id = action.payload.id;
-      const changedItem = action.payload.item;
-      const newState = state;
-      newState[id] = changedItem;
+      const { id, quantity } = action.payload;
+      const newState = Object.assign({}, state);
+      newState[id].soldCount += quantity;
+      newState[id].count -= quantity;
       return Object.assign({}, newState);
     }
     default:

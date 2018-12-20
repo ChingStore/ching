@@ -46,7 +46,7 @@ class InventoryScene extends React.PureComponent {
 
 const mapDispatchToProps = dispatch => {
   return {
-    sellItem: (id, item) => dispatch(itemActions.sell(id, item))
+    sellItem: (id, quantity) => dispatch(itemActions.sell(id, quantity))
   };
 };
 
