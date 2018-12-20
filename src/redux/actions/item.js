@@ -1,6 +1,6 @@
-import ACTIONS from '../actionTypes';
+import ACTIONS from '../actionTypes'
 
-let nextItemId = 0;
+let nextItemId = 0
 
 const add = ({ name, photo, soldCount, count, price }) => ({
   type: ACTIONS.ADD_ITEM,
@@ -10,20 +10,21 @@ const add = ({ name, photo, soldCount, count, price }) => ({
     photo,
     soldCount,
     count,
-    price
-  }
-});
+    price,
+  },
+})
 
 const sell = (id, item) => {
   return dispatch => {
     // async transaction calls here
-    item.soldCount += 1;
-    item.count -= 1;
-    dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, item } });
-  };
-};
+    item.soldCount += 1
+    item.count -= 1
+
+    dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, item } })
+  }
+}
 
 export default {
   add,
-  sell
-};
+  sell,
+}
