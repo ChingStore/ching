@@ -27,7 +27,11 @@
 - [ ] Prototype API endpoints: 10 hrs
 - [ ] Document API and architecture: 10 hrs
 - [ ] Test and reiterate on API endpoints: 10 hours
-- [ ] Setup default security configuration: 4 hrs### User/Vendor login via OAuth2: 10 hours:
+- [ ] Setup default security configuration: 4 hrs
+
+
+### User/Vendor login via OAuth2: 10 hours:
+
 - [ ] Add OAuth 2.0 protocols and register with authentication providers: 10hrs;
 
 
