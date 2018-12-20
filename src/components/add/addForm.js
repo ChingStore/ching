@@ -82,17 +82,17 @@ class OutlinedInputAdornments extends React.Component {
     if (!this.state.name || !this.state.quantity || !this.state.price) {
       alert('No changes saved.');
       console.log('Leaving!');
-    } else {
-      this.props.dispatch(
-        itemAction.add({
-          name: this.state.name,
-          count: this.state.quantity,
-          price: this.state.price,
-          photo: this.state.picture,
-          soldCount: this.state.soldCount
-        })
-      );
+      return;
     }
+    this.props.dispatch(
+      itemAction.add({
+        name: this.state.name,
+        count: this.state.quantity,
+        price: this.state.price,
+        photo: this.state.picture,
+        soldCount: this.state.soldCount
+      })
+    );
   };
 
   render() {
