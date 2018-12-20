@@ -89,4 +89,4 @@
 - [ ] Setup bug monitoring interface or service (e.g., Rollbar, Bugsnag): 10 hrs
 - [ ] Setup horizontal scaling/load balancing: 10 hrs
 
-[Back to Top](proposal.md#daipos-scope)
+[Back to Top](Scope.md#daipos-scope)
