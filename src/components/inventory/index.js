@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
-import Maker from '@makerdao/dai'
 
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'

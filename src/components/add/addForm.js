@@ -8,13 +8,10 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
-import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
-import MenuItem from '@material-ui/core/MenuItem'
 // import Camera from './camera';
-import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo'
+import Camera, { FACING_MODES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
 
 import ROUTE from '../../constants/route'
@@ -40,21 +37,6 @@ const styles = theme => ({
     borderTop: 'solid 3px lightgrey',
   },
 })
-
-const photos = [
-  {
-    value: './cupcakes',
-    label: 'Cupcakes',
-  },
-  {
-    value: './Shovels',
-    label: 'Shovels',
-  },
-  {
-    value: './lizards',
-    label: 'Lizards',
-  },
-]
 
 class OutlinedInputAdornments extends React.Component {
   state = {
@@ -179,9 +161,6 @@ class OutlinedInputAdornments extends React.Component {
 OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 }
-
-const mapStateToProps = state => {}
-const mapDispatchToProps = dispatch => {}
 
 export default Redux.compose(
   withStyles(styles),
