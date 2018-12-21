@@ -18,7 +18,8 @@ jobs:
     - name: 'unit tests'
       script: yarn test
     - stage: Deploy
+      name: surge
       script:
         - yarn build
-        - chmod ugo+x ./scripts/deploy.sh
-        - ./scripts/deploy.sh
+        - chmod ugo+x ./scripts/travis-deploy.sh
+        - ./scripts/travis-deploy.sh
