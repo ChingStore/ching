@@ -17,6 +17,7 @@ const store = Redux.createStore(
       ReduxThunk.withExtraArgument({ getFirebase, getFirestore }),
       ReduxLogger
     )
+    Redux.applyMiddleware(ReduxThunk, ReduxLogger)
   )
 )
 
