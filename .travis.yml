@@ -12,11 +12,13 @@ node_js:
   - 8.10.0
 jobs:
   include:
-    - stage: Tests
+    - stage: Test
       name: 'lint'
       script: yarn lint
-    - name: 'unit test'
+    - name: 'unit tests'
       script: yarn test
-# notifications:
-#   slack:
-#     secure: QXgRXNv666u3DAD8Bn8egZ7RTl0hZKRFitD8EIJUDH2XZyBwuIS8ndzzJv7OB//aFt421WrmISLY00btJGnwGfxDn+HcBvzPDwRt3zWRsyyuKWhu1s1hyxBqS6QIM271r6vd669BAWl0zhiYVLpTorIadHRf1bRIIiVLFDfECdU=
+    - stage: Deploy
+      script:
+        - yarn build
+        - chmod ugo+x ./scripts/deploy.sh
+        - ./scripts/deploy.sh
