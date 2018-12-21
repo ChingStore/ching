@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
 
 var config = {
   apiKey: 'AIzaSyAUBUzRsIYz7MGFCWIlIoMzjl_9IMa4bho',
@@ -8,9 +8,9 @@ var config = {
   databaseURL: 'https://daipos.firebaseio.com',
   projectId: 'daipos',
   storageBucket: 'daipos.appspot.com',
-  messagingSenderId: '949375951452'
-};
-firebase.initializeApp(config);
-firebase.firestore().settings({ timestampsInSnapshots: true });
+  messagingSenderId: '949375951452',
+}
+firebase.initializeApp(config)
+firebase.firestore().settings({ timestampsInSnapshots: true })
 
-export default firebase;
+export default firebase
