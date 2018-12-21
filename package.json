@@ -23,6 +23,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "redux-firebase": "^0.3.3",
+    "redux-firestore": "^0.6.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "web3": "0.20.6"
