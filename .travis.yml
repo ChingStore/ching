@@ -10,14 +10,6 @@ cache:
 language: node_js
 node_js:
   - 8.10.0
-matrix:
-  include:
-    - env:
-      script:
-        - yarn lint
-    - env:
-      script:
-        - yarn test
 jobs:
   include:
     - stage: Tests
