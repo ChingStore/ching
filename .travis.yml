@@ -13,9 +13,9 @@ node_js:
 jobs:
   include:
     - stage: Tests
-      name: "lint"
+      name: 'lint'
       script: yarn lint
-      name: "unit test"
+    - name: 'unit test'
       script: yarn test
 # notifications:
 #   slack:
