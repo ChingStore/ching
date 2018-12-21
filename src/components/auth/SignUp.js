@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class SignUp extends Component {
   state = {
@@ -6,17 +6,17 @@ class SignUp extends Component {
     password: '',
     firstName: '',
     lastName: '',
-    shopName: ''
-  };
+    shopName: '',
+  }
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
+      [e.target.id]: e.target.value,
+    })
+  }
   handleSubmit = e => {
-    e.preventDefault(); //  prevent reload of the page
-    console.log(this.state);
-  };
+    e.preventDefault() //  prevent reload of the page
+    console.log(this.state)
+  }
   render() {
     return (
       <div className="container">
@@ -32,7 +32,11 @@ class SignUp extends Component {
           </div>
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
-            <input type="firstName" id="firstName" onChange={this.handleChange} />
+            <input
+              type="firstName"
+              id="firstName"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
             <label htmlFor="lastName">Last Name</label>
@@ -47,8 +51,8 @@ class SignUp extends Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default SignUp;
+export default SignUp

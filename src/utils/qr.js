@@ -8,12 +8,12 @@ function generate(url) {
     level: 'H',
     padding: 25,
     size: 5000,
-    value: url
-  });
+    value: url,
+  })
 
   return qr.toDataURL('image/jpeg')
 }
 
 export default {
-  generate
+  generate,
 }

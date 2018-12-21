@@ -1,53 +1,48 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import ButtonBase from '@material-ui/core/ButtonBase'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Typography from '@material-ui/core/Typography'
 
 import Badge from './inventoryBadge'
 import image from './contemplativeLizard.jpg'
 
-
 const styles = {
-  root:{
-
-  },
+  root: {},
   card: {
-    width: "50%",
+    width: '50%',
     height: 250,
     maxWidth: 250,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent',
   },
   media: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: -1,
     height: 250,
     width: 250,
     maxWidth: 250,
-    top: 0
+    top: 0,
   },
   content: {
     zIndex: 0,
-    position: "relative",
+    position: 'relative',
     top: 123,
-    color: "white",
-    fontWeight: "bold"
+    color: 'white',
+    fontWeight: 'bold',
   },
   button: {
     zIndex: 1,
-    width: "100%",
-    height: "100%"
+    width: '100%',
+    height: '100%',
   },
-
-};
-
+}
 
 function MediaCard(props) {
-  const { classes } = props;
+  const { classes } = props
 
   // componentWillMount () {
   //   image = props.photo;
@@ -56,7 +51,7 @@ function MediaCard(props) {
   return (
     <Card className={classes.card}>
       <ButtonBase onClick={props.onClick} style={{ flex: 1 }}>
-        <Badge badgeContent={props.count}/>
+        <Badge badgeContent={props.count} />
         <CardActionArea className={classes.button}>
           <CardMedia
             className={classes.media}
@@ -64,7 +59,12 @@ function MediaCard(props) {
             alt={props.photo}
           />
           <CardContent className={classes.content}>
-            <Typography gutterBottom variant="h5" component="h2" color="inherit">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              color="inherit"
+            >
               {props.name}
             </Typography>
             <Typography component="p" color="inherit">
@@ -74,11 +74,11 @@ function MediaCard(props) {
         </CardActionArea>
       </ButtonBase>
     </Card>
-  );
+  )
 }
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(MediaCard);
+export default withStyles(styles)(MediaCard)

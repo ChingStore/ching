@@ -18,5 +18,5 @@ const PATH_TITLE = {
 
 export default {
   PATH,
-  PATH_TITLE
-};
+  PATH_TITLE,
+}
