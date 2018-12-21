@@ -2,17 +2,19 @@ import ACTIONS from '../actionTypes'
 
 let nextItemId = 0
 
-const add = ({ name, photo, soldCount, count, price }) => ({
-  type: ACTIONS.ADD_ITEM,
-  payload: {
-    id: ++nextItemId,
-    name,
-    photo,
-    soldCount,
-    count,
-    price,
-  },
-})
+const add = ({ name, photo, soldCount, count, price }) => {
+  return dispatch => ({
+    type: ACTIONS.ADD_ITEM,
+    payload: {
+      id: ++nextItemId,
+      name,
+      photo,
+      soldCount,
+      count,
+      price,
+    },
+  })
+}
 
 const sell = (id, quantity) => {
   return dispatch => {
