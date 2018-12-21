@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Route, Link, HashRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 
 import MenuAppBar from './components/menu-app-bar'
@@ -9,6 +9,7 @@ import SalesReport from './components/sales-report'
 import Add from './components/add'
 import Payment from './components/payment'
 
+import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
@@ -21,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={styles}>
-        <HashRouter basename={process.env.PUBLIC_URL} id={110}>
+        <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
           <div id={'a'}>
             <MenuAppBar id={98} />
             <Switch id={109}>
