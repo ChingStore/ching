@@ -10,13 +10,14 @@ cache:
 language: node_js
 node_js:
   - 8.10.0
-script:
-  - npm test
-  - npm run build
-# matrix:
-#   include:
-#     - env: PUMPUP_PROJECT=api
-#     - env: PUMPUP_PROJECT=api
+matrix:
+  include:
+    - env:
+      script:
+        - yarn lint
+    - env:
+      script:
+        - yarn test
 # notifications:
 #   slack:
 #     secure: QXgRXNv666u3DAD8Bn8egZ7RTl0hZKRFitD8EIJUDH2XZyBwuIS8ndzzJv7OB//aFt421WrmISLY00btJGnwGfxDn+HcBvzPDwRt3zWRsyyuKWhu1s1hyxBqS6QIM271r6vd669BAWl0zhiYVLpTorIadHRf1bRIIiVLFDfECdU=
