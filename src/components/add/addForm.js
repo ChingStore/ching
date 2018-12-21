@@ -16,6 +16,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 // import Camera from './camera';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
+import itemActions from '../../redux/actions/item'
+import selectors from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
 import itemAction from '../../redux/actions/item'
@@ -84,15 +86,13 @@ class OutlinedInputAdornments extends React.Component {
       console.log('Leaving!')
       return
     }
-    this.props.dispatch(
-      itemAction.add({
-        name: this.state.name,
-        count: this.state.quantity,
-        price: this.state.price,
-        photo: this.state.picture,
-        soldCount: this.state.soldCount,
-      })
-    )
+    this.props.addItem({
+      name: this.state.name,
+      count: this.state.quantity,
+      price: this.state.price,
+      photo: this.state.picture,
+      soldCount: this.state.soldCount,
+    })
   }
 
   render() {
@@ -180,10 +180,16 @@ OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = state => {}
-const mapDispatchToProps = dispatch => {}
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem: item => dispatch(itemActions.add(item)),
+  }
+}
 
 export default Redux.compose(
   withStyles(styles),
-  ReactRedux.connect()
+  ReactRedux.connect(
+    null,
+    mapDispatchToProps
+  )
 )(OutlinedInputAdornments)

@@ -4,8 +4,9 @@ import rootReducer from './reducers'
 import localStorageUtil from '../utils/localStorage'
 import { default as ReduxThunk } from 'redux-thunk'
 import * as ReduxDevtoolsExtension from 'redux-devtools-extension'
-import { getFirebase } from 'react-redux-firebase'
-import { getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import fbConfig from '../config/firebase'
 
 const persistedState = localStorageUtil.loadState()
 
@@ -16,7 +17,9 @@ const store = Redux.createStore(
     Redux.applyMiddleware(
       ReduxThunk.withExtraArgument({ getFirebase, getFirestore }),
       ReduxLogger
-    )
+    ),
+    reduxFirestore(fbConfig),
+    reactReduxFirebase(fbConfig)
   )
 )
 
