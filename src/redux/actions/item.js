@@ -14,6 +14,8 @@ const add = ({ name, photo, soldCount, count, price }) => ({
   },
 })
 
+// test
+
 const sell = (id, quantity) => {
   return dispatch => {
     // async transaction calls here
