@@ -2,7 +2,6 @@
   "name": "daipos",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://rpavlovs.github.io/daipos",
   "dependencies": {
     "@makerdao/dai": "^0.9.6",
     "@material-ui/core": "^3.3.1",
