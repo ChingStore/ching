@@ -27,8 +27,7 @@ const styles = theme => ({
 
 class SalesTable extends Component {
   render() {
-    const { classes } = this.props
-    const { items } = this.props
+    const { classes, items } = this.props
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>

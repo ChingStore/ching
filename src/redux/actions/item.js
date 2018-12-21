@@ -14,13 +14,10 @@ const add = ({ name, photo, soldCount, count, price }) => ({
   },
 })
 
-const sell = (id, item) => {
+const sell = (id, quantity) => {
   return dispatch => {
     // async transaction calls here
-    item.soldCount += 1
-    item.count -= 1
-
-    dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, item } })
+    dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, quantity } })
   }
 }
 
