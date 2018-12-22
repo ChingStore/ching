@@ -1,0 +1,25 @@
+sudo: false
+branches:
+  only:
+    - master
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
+  - export PATH="$HOME/.yarn/bin:$PATH"
+cache:
+  yarn: true
+language: node_js
+node_js:
+  - 8.10.0
+jobs:
+  include:
+    - stage: Test
+      name: 'lint'
+      script: yarn lint
+    - name: 'unit tests'
+      script: yarn test
+    - stage: Deploy
+      name: surge
+      script:
+        - yarn build
+        - chmod ugo+x ./scripts/travis-deploy.sh
+        - ./scripts/travis-deploy.sh

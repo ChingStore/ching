@@ -1,6 +1,7 @@
 import React from 'react'
-import SalesTable from './SalesTable'
 import { connect } from 'react-redux'
+
+import SalesTable from './sales-table'
 import selectors from '../../redux/selectors'
 
 class SalesReport extends React.PureComponent {
