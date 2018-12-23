@@ -1,9 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import React from 'react'
+import Badge from '@material-ui/core/Badge'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   badge: {
@@ -12,24 +9,27 @@ const styles = theme => ({
     right: -35,
     // The border color match the background color.
     border: `2px solid ${
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      theme.palette.type === 'light'
+        ? theme.palette.grey[200]
+        : theme.palette.grey[900]
     }`,
   },
-});
+})
 
 function CustomizedBadge(props) {
-  const { classes } = props;
+  const { classes } = props
 
   return (
-
-      <Badge badgeContent={props.badgeContent} color="primary" classes={{ badge: classes.badge }}>
-      </Badge>
-
-  );
+    <Badge
+      badgeContent={props.badgeContent}
+      color="primary"
+      classes={{ badge: classes.badge }}
+    />
+  )
 }
 
 // CustomizedBadge.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withStyles(styles)(CustomizedBadge);
+export default withStyles(styles)(CustomizedBadge)

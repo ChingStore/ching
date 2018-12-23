@@ -1,26 +1,21 @@
-import React, {Component} from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { NavLink } from 'react-router-dom';
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import * as React from 'react'
+import * as Redux from 'redux'
+import * as ReactRedux from 'react-redux'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { NavLink } from 'react-router-dom'
+import Icon from '@material-ui/core/Icon'
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
-import MenuItem from '@material-ui/core/MenuItem';
 // import Camera from './camera';
-import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
-
-
+import Camera, { FACING_MODES } from 'react-html5-camera-photo'
+import 'react-html5-camera-photo/build/css/index.css'
 
 import ROUTE from '../../constants/route'
-import itemAction from "../../redux/actions/item"
+import itemAction from '../../redux/actions/item'
 
 const styles = theme => ({
   root: {
@@ -32,72 +27,58 @@ const styles = theme => ({
   },
   textField: {
     flexBasis: 200,
-    backgroundColor: 'cornsilk'
+    backgroundColor: 'cornsilk',
   },
   button: {
-    backgroundColor: "seashell",
-    borderBottom: "solid 3px black",
-    borderLeft: "solid 3px darkgrey",
-    borderRight: "solid 3px darkgrey",
-    borderTop: "solid 3px lightgrey",
-  }
-});
-
-const photos = [
-  {
-    value: './cupcakes',
-    label: 'Cupcakes',
+    backgroundColor: 'seashell',
+    borderBottom: 'solid 3px black',
+    borderLeft: 'solid 3px darkgrey',
+    borderRight: 'solid 3px darkgrey',
+    borderTop: 'solid 3px lightgrey',
   },
-  {
-    value: './Shovels',
-    label: 'Shovels',
-  },
-  {
-    value: './lizards',
-    label: 'Lizards',
-  },
-];
+})
 
 class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
     picture: '',
     quantity: '',
-    price: ''
-  };
-
-  handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
-  };
-
-  onTakePhoto (dataUri) {
-    this.setState({picture: dataUri});
-    console.log('takePhoto');
+    soldCount: 0,
+    price: '',
   }
 
-  onCameraError (error) {
-  console.error('onCameraError', error);
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value })
+  }
 
-}
+  onTakePhoto(dataUri) {
+    this.setState({ picture: dataUri })
+    console.log('takePhoto')
+  }
 
+  onCameraError(error) {
+    console.error('onCameraError', error)
+  }
 
   handleSave = () => {
-
-    if (this.state.name === '' || this.state.quantity === '' || this.state.price === ''){
-      alert("No changes saved.");
-      console.log("Leaving!");
-    } else {
-      this.props.dispatch(itemAction.add({
+    if (!this.state.name || !this.state.quantity || !this.state.price) {
+      alert('No changes saved.')
+      console.log('Leaving!')
+      return
+    }
+    this.props.dispatch(
+      itemAction.add({
         name: this.state.name,
         count: this.state.quantity,
         price: this.state.price,
-        photo: this.state.picture
-      }))
-    }
-  };
+        photo: this.state.picture,
+        soldCount: this.state.soldCount,
+      })
+    )
+  }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <div className={classes.root}>
@@ -109,15 +90,20 @@ class OutlinedInputAdornments extends React.Component {
           value={this.state.name}
           onChange={this.handleChange('name')}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Item</InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">Item</InputAdornment>
+            ),
           }}
         />
         <Camera
-          onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
-          onCameraError = { (error) => { this.onCameraError(error); } }
-          idealFacingMode = {FACING_MODES.ENVIRONMENT}
+          onTakePhoto={dataUri => {
+            this.onTakePhoto(dataUri)
+          }}
+          onCameraError={error => {
+            this.onCameraError(error)
+          }}
+          idealFacingMode={FACING_MODES.ENVIRONMENT}
         />
-
 
         <TextField
           id="outlined-adornment-picture"
@@ -126,7 +112,13 @@ class OutlinedInputAdornments extends React.Component {
           label="Picture (optional)"
           value={this.state.picture}
           InputProps={{
-            startAdornment: <InputAdornment position="start"><Icon><AddPhotoAlternate /></Icon></InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon>
+                  <AddPhotoAlternate />
+                </Icon>
+              </InputAdornment>
+            ),
           }}
         />
 
@@ -152,25 +144,25 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">#</InputAdornment>,
           }}
         />
-        <Button size="large" className={classNames(classes.button)} onClick={this.handleSave} component={NavLink} to={ROUTE.PATH.INVENTORY}>
+        <Button
+          size="large"
+          className={classNames(classes.button)}
+          onClick={this.handleSave}
+          component={NavLink}
+          to={ROUTE.PATH.INVENTORY}
+        >
           Save
         </Button>
       </div>
-    );
+    )
   }
 }
 
 OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => {}
-const mapDispatchToProps = (dispatch) => {
-
 }
 
-
-export default compose(
+export default Redux.compose(
   withStyles(styles),
-  connect()
+  ReactRedux.connect()
 )(OutlinedInputAdornments)
