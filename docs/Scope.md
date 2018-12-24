@@ -12,7 +12,7 @@
   - [ ] Login: 4 hrs
 - [ ] Refactor inventory: 8 hrs
 - [ ] Refactor sales report: 8 hrs
-- [ ] Create 3rd party wallet linking view: 8 hrs
+- [ ] Ask for and link 3rd party wallet first thing after registration: 8 hrs
 - [ ] Create login view: 4 hrs
 - [ ] Refactor add/modify item functionality: 8hrs
 - [ ] Nodemailer password recovery page: 8hrs
