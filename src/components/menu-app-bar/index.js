@@ -145,6 +145,13 @@ class MenuAppBar extends React.Component {
               {this.state.balance || ""}
             </Typography>
           </Toolbar>
+          <Typography
+            variant="h6"
+            color="inherit"
+            className={classes.authenticated}
+          >
+            {this.state.authenticated || "this account is not authenticated"}
+          </Typography>
         </AppBar>
         <SwipeableDrawer
           id={204}
