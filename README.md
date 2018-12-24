@@ -72,7 +72,7 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 - [x] Sign In button is in menu
 - [x] Sign In button redirects vendor to Sign In page
-- [ ] Unregistered vendors are alerted to Sign Up at the Sign In page
+- [x] Unregistered vendors have the option to Sign Up at the Sign In page
 - [ ] Unregistered vendors are advised to Sign Up if their account has more
       than 0 Dai
 - [ ] Sign In submit sends credentials to Firebase
