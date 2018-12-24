@@ -71,7 +71,7 @@ the top of "Inventory", "Sales Report", and "Sign In"
 ## Sub-Features
 
 - [x] Sign In button is in menu
-- [ ] Sign In button redirects vendor to Sign In page
+- [x] Sign In button redirects vendor to Sign In page
 - [ ] Unregistered vendors are alerted to Sign Up at the Sign In page
 - [ ] Unregistered vendors are advised to Sign Up if their account has more
       than 0 Dai
