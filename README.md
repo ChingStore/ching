@@ -19,8 +19,9 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 - Mistakes
   - Sign In and Sign Up components were already built
-  -
+  - TBD
 - ## Challenges
+  - Having trouble passing authentication status through store to header
 - ## Metrics
 - ## Learnings
 
