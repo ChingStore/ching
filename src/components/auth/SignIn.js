@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import SignUpButton from "./SignUpButtonLink.js";
 
 class SignIn extends Component {
   state = {
-    email: '',
-    password: '',
-  }
+    email: "",
+    password: ""
+  };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value,
-    })
-  }
+      [e.target.id]: e.target.value
+    });
+  };
   handleSubmit = e => {
-    e.preventDefault() //  prevent reload of the page
-    console.log(this.state)
-  }
+    e.preventDefault(); //  prevent reload of the page
+    console.log(this.state);
+  };
+
   render() {
     return (
       <div className="container">
@@ -30,10 +32,14 @@ class SignIn extends Component {
           <div className="input-field">
             <button className="btn">Login</button>
           </div>
+          <div>
+            Don't have an account?
+            <SignUpButton />
+          </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default SignIn
+export default SignIn;
