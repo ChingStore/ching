@@ -1,5 +1,5 @@
-import React from 'react'
-import Form from './addForm.js'
+import React from "react";
+import Form from "./addForm.js";
 
 export default class Add extends React.PureComponent {
   render() {
@@ -8,6 +8,6 @@ export default class Add extends React.PureComponent {
         <div>I{"'"}m the add scene!</div>
         <Form />
       </div>
-    )
+    );
   }
 }
