@@ -76,6 +76,7 @@ the top of "Inventory", "Sales Report", and "Sign In"
 - [ ] Unregistered vendors are advised to Sign Up if their account has more
       than 0 Dai
 - [ ] Sign In submit sends credentials to Firebase
+- [ ] Authentication status is stored in state
 - [ ] Successful response from Firebase alerts vendor of sign in success
 - [ ] Vendor is routed to "Inventory"
 - [ ] "Signed in as <username>" is displayed in the header
