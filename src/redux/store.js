@@ -8,6 +8,7 @@ import * as ReduxDevtoolsExtension from 'redux-devtools-extension'
 const persistedState = localStorageUtil.loadState()
 
 const store = Redux.createStore(
+
   rootReducer,
   persistedState,
   ReduxDevtoolsExtension.composeWithDevTools(
