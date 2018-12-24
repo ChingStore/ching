@@ -1,12 +1,12 @@
 import ACTIONS from "../actionTypes";
 
-const signIn = (username, password) => {
+const signIn = (email, password) => {
   return dispatch => {
     // async transaction calls here
     dispatch({
       type: ACTIONS.SIGN_IN,
       payload: {
-        username,
+        email,
         password
       }
     });
