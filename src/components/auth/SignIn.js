@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import SignUpButton from "./SignUpButtonLink.js";
-import authenticationAction from "../../redux/actions/authentication";
-import * as Redux from "redux";
-import * as ReactRedux from "react-redux";
-import classNames from "classnames";
-import PropTypes from "prop-types";
+// import authenticationAction from "../../redux/actions/authentication";
+// import * as Redux from "redux";
+// import * as ReactRedux from "react-redux";
+// import classNames from "classnames";
+// import PropTypes from "prop-types";
 
 class SignIn extends Component {
   state = {
