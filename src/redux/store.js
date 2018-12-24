@@ -1,17 +1,18 @@
-import { applyMiddleware, createStore, compose } from 'redux'
+import * as Redux from 'redux'
 import ReduxLogger from 'redux-logger'
-
 import rootReducer from './reducers'
 import localStorageUtil from '../utils/localStorage'
+import { default as ReduxThunk } from 'redux-thunk'
+import * as ReduxDevtoolsExtension from 'redux-devtools-extension'
 
 const persistedState = localStorageUtil.loadState()
 
-const store = createStore(
+const store = Redux.createStore(
+
   rootReducer,
   persistedState,
-  compose(
-    applyMiddleware(ReduxLogger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ReduxDevtoolsExtension.composeWithDevTools(
+    Redux.applyMiddleware(ReduxThunk, ReduxLogger)
   )
 )
 

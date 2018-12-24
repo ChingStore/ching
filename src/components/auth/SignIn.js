@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
-  };
+    password: '',
+  }
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
+      [e.target.id]: e.target.value,
+    })
+  }
   handleSubmit = e => {
-    e.preventDefault(); //  prevent reload of the page
-    console.log(this.state);
-  };
+    e.preventDefault() //  prevent reload of the page
+    console.log(this.state)
+  }
   render() {
     return (
       <div className="container">
@@ -32,8 +32,8 @@ class SignIn extends Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default SignIn;
+export default SignIn
