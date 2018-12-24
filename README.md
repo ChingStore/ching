@@ -1,11 +1,11 @@
-# Login View
+# Sign In View
 
 ## Description
 
-This will present a "Login" page to the vendor allowing them to enter their
-username and password. A link to "login" will be present in the menu for the
-present time. Upon successful login, "Logged in as <username>" will render at
-the top of "Inventory", "Sales Report", and "Login"
+This will present a "Sign In" page to the vendor allowing them to enter their
+username and password. A link to "Sign In" will be present in the menu for the
+present time. Upon successful sign in, "Signed in as <username>" will render at
+the top of "Inventory", "Sales Report", and "Sign In"
 
 **Start Date : 23/12/2018**
 
@@ -18,17 +18,11 @@ the top of "Inventory", "Sales Report", and "Login"
 **Post-Mortem TBD**
 
 - Mistakes
-  - This should be updated as you implement the feature
-  - Add anything that you missed in your original architecture
-- Challenges
-  - This should be updated as you implement the feature
-  - Add anything that was more challenging than expected, and may have contributed to misjudgement of time
-- Metrics
-  - List the metrics changes that arose after the feature was shipped
-  - Don't forget to compare them with your expectations
-- Learnings
-  - Jot down what you learned in architecting and building this feature
-  - How will you improve in future feature architectures and implementations?
+  - Sign In and Sign Up components were already built
+  -
+- ## Challenges
+- ## Metrics
+- ## Learnings
 
 ## Goals
 
@@ -68,23 +62,23 @@ the top of "Inventory", "Sales Report", and "Login"
 
 1. This is the "when?" and "where?" of this feature
 
-- Vendor is prompted to log in
+- Vendor is prompted to sign in
 - Vendor enters data into the displayed fields
-- Login success is displayed
+- Sign in success is displayed
 - Vendor is redirected to the "Inventory" view
-- Vendor sees "Logged in as <username>" in the header
+- Vendor sees "Signed in as <username>" in the header
 
 ## Sub-Features
 
-- [ ] Login button is in menu
-- [ ] Login redirects vendor to Login page
-- [ ] Unregistered vendors are alerted to register at the login page
-- [ ] Unregistered vendors are advised to register if their account has more
+- [ ] Sign In button is in menu
+- [ ] Sign In button redirects vendor to Sign In page
+- [ ] Unregistered vendors are alerted to Sign Up at the Sign In page
+- [ ] Unregistered vendors are advised to Sign Up if their account has more
       than 0 Dai
-- [ ] Login submit sends credentials to Firebase
-- [ ] Successful response from Firebase alerts vendor of login success
+- [ ] Sign In submit sends credentials to Firebase
+- [ ] Successful response from Firebase alerts vendor of sign in success
 - [ ] Vendor is routed to "Inventory"
-- [ ] "Logged in as <username>" is displayed in the header
+- [ ] "Signed in as <username>" is displayed in the header
 - [ ] Once your architecture is merged, these must be moved to stories in Pivotal Tracker
 - [ ] Eg. `<ConversationsContainer>`: A container that will act as the root for the new `<Stack>`, left of `<NotificationsContainer>`
 
