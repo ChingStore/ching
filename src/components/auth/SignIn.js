@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SignUpButton from "./SignUpButtonLink.js";
+import React, { Component } from 'react'
+import SignUpButton from './SignUpButtonLink.js'
 // import authenticationAction from "../../redux/actions/authentication";
 // import * as Redux from "redux";
 // import * as ReactRedux from "react-redux";
@@ -8,20 +8,20 @@ import SignUpButton from "./SignUpButtonLink.js";
 
 class SignIn extends Component {
   state = {
-    email: "",
-    password: ""
-  };
+    email: '',
+    password: '',
+  }
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
+      [e.target.id]: e.target.value,
+    })
+  }
   handleSubmit = e => {
-    e.preventDefault(); //  prevent reload of the page
+    e.preventDefault() //  prevent reload of the page
     // @dev experimenting to pass login data to store
     // this.props.dispatch(authenticationAction.signIn());
-    console.log(this.state);
-  };
+    console.log(this.state)
+  }
 
   render() {
     return (
@@ -40,13 +40,13 @@ class SignIn extends Component {
             <button className="btn">Login</button>
           </div>
           <div>
-            Don't have an account?
+            {`Don't have an account?`}
             <SignUpButton />
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default SignIn;
+export default SignIn
