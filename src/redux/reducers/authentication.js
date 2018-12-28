@@ -3,7 +3,7 @@ import ACTIONS from '../actionTypes'
 const initialState = {}
 
 export const signIn = (state = initialState, action) =>
-  action.type === ACTIONS.SIGN_IN ? console.log('REDUCER - SIGN_IN') : state
+  action.type === ACTIONS.SIGN_IN ? action.payload : state
 
 export const signUp = (state = initialState, action) =>
   action.type === ACTIONS.SIGN_UP ? console.log('REDUCER - SIGN_UP') : state
