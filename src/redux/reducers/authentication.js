@@ -1,8 +1,8 @@
 import ACTIONS from '../actionTypes'
 
-const initialState = { authenticated: 'false' }
+// const initialState = { authenticated: 'false' }
 
-export default function(state = initialState, action) {
+export default function(action) {
   console.log('AUTHENTICATION.JS!')
   switch (action.type) {
     case ACTIONS.SIGN_IN:
@@ -12,6 +12,6 @@ export default function(state = initialState, action) {
       return console.log('SIGN_UP')
 
     default:
-      return initialState
+      return console.log('TODO: change state.authenticated')
   }
 }

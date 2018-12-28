@@ -1,4 +1,4 @@
-import ACTIONS from "../actionTypes";
+import ACTIONS from '../actionTypes'
 
 const signIn = (email, password) => {
   return dispatch => {
@@ -7,11 +7,11 @@ const signIn = (email, password) => {
       type: ACTIONS.SIGN_IN,
       payload: {
         email,
-        password
-      }
-    });
-  };
-};
+        password,
+      },
+    })
+  }
+}
 
 const signUp = (email, password, firstName, lastName, shopName) => {
   return dispatch => {
@@ -23,13 +23,13 @@ const signUp = (email, password, firstName, lastName, shopName) => {
         password,
         firstName,
         lastName,
-        shopName
-      }
-    });
-  };
-};
+        shopName,
+      },
+    })
+  }
+}
 
 export default {
   signIn,
-  signUp
-};
+  signUp,
+}
