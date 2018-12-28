@@ -39,3 +39,5 @@ export const signOut = () => {
     })
   }
 }
+
+export default { signIn, signUp, signOut }

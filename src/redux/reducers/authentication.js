@@ -10,3 +10,17 @@ export const signUp = (state = initialState, action) =>
 
 export const signOut = (state = initialState, action) =>
   action.type === ACTIONS.SIGN_OUT ? action.payload : state
+
+export const authenticated = (state = false, action) => {
+  console.log('authenticated reducer fired')
+  switch (action.type) {
+    case ACTIONS.SIGN_IN:
+      return true
+
+    case ACTIONS.SIGN_OUT:
+      return false
+
+    default:
+      return state
+  }
+}

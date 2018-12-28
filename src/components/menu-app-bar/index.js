@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
 import { withRouter, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -18,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
+import authenticationActions from '../../redux/actions/authentication'
 
 const drawerWidth = 200
 
@@ -102,6 +104,10 @@ class MenuAppBar extends React.Component {
 
   handleDrawerClose = () => {
     this.setState({ open: false })
+  }
+  handleSignOut = () => {
+    this.setState({ open: false })
+    authenticationActions.signOut()
   }
 
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
@@ -206,7 +212,7 @@ class MenuAppBar extends React.Component {
               button
               component={NavLink}
               to={ROUTE.PATH.INVENTORY}
-              onClick={this.handleDrawerClose}
+              onClick={this.handleSignOut}
             >
               <ListItemText primary={`Sign Out`} />
             </ListItem>
