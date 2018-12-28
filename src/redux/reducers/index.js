@@ -3,6 +3,5 @@ import items from './items'
 import { firestoreReducer } from 'redux-firestore'
 
 export default combineReducers({
-  items: items,
   firestore: firestoreReducer,
 })
