@@ -7,7 +7,7 @@ import SignUpButton from '../SignUpButtonLink.js'
 // import classNames from "classnames";
 // import PropTypes from "prop-types";
 
-let _email, _password
+// let _email, _password
 
 // const SignIn = ({
 //   email = '',

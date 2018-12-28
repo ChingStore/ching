@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
 import { withRouter, NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
