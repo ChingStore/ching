@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
 import SignUpButton from '../SignUpButtonLink.js'
 // import authenticationAction from "../../redux/actions/authentication";
 // import * as Redux from "redux";
@@ -6,25 +7,44 @@ import SignUpButton from '../SignUpButtonLink.js'
 // import classNames from "classnames";
 // import PropTypes from "prop-types";
 
+let _email, _password
+
+// const SignIn = ({
+//   email = '',
+//   password = '',
+//   onChange = f => f,
+//   signIn = f => f,
+//   router,
+// }) => {
+
 class SignIn extends Component {
-  state = {
-    email: '',
-    password: '',
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+    }
   }
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value,
     })
   }
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log('Not sent to store:', this.state)
-  }
 
+  submit = e => {
+    e.preventDefault()
+    this.props.signIn({
+      email: this.state.email,
+      password: this.state.password,
+    })
+    console.log('Should have been sent to store: <this.state>')
+  }
   render() {
+    // refactor ^^^
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
+        <form onSubmit={this.submit} className="white">
           <h5 className="text">Sign In</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
@@ -44,7 +64,16 @@ class SignIn extends Component {
         </form>
       </div>
     )
+    // refactor VVV
   }
+}
+
+SignIn.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
+  onChange: PropTypes.func,
+  signIn: PropTypes.func,
+  router: PropTypes.object,
 }
 
 export default SignIn
