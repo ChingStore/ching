@@ -10,7 +10,7 @@ import Payment from './components/payment'
 
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
-import SignIn from './components/auth/SignIn'
+import SignIn from './components/auth/containers/SignIn'
 import SignUp from './components/auth/SignUp'
 
 const styles = {

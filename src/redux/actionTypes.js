@@ -3,5 +3,5 @@ export default {
   SELL_ITEM: 'SELL_ITEM',
   SIGN_IN: 'SIGN_IN',
   SIGN_UP: 'SIGN_UP',
-  AUTHETICATED: 'AUTHENTICATED',
+  SIGN_OUT: 'SIGN_OUT',
 }

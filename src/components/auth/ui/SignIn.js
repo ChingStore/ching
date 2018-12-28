@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import SignUpButton from './SignUpButtonLink.js'
+import React, { PropTypes, Component } from 'react'
+import SignUpButton from '../SignUpButtonLink.js'
 // import authenticationAction from "../../redux/actions/authentication";
 // import * as Redux from "redux";
 // import * as ReactRedux from "react-redux";
@@ -17,10 +17,8 @@ class SignIn extends Component {
     })
   }
   handleSubmit = e => {
-    e.preventDefault() //  prevent reload of the page
-    // @dev experimenting to pass login data to store
-    // this.props.dispatch(authenticationAction.signIn());
-    console.log(this.state)
+    e.preventDefault()
+    console.log('Not sent to store:', this.state)
   }
 
   render() {

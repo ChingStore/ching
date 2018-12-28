@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "name": "apples",
+      "photo": "http://www.pics.com/apples.jpg",
+      "soldCount": 0,
+      "count": 1,
+      "price": 1
+    }
+  ],
+  "authenticated": true,
+  "email": "test@test.com"
+}

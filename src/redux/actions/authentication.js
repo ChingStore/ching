@@ -1,6 +1,6 @@
 import ACTIONS from '../actionTypes'
 
-const signIn = (email, password) => {
+export const signIn = (email, password) => {
   return dispatch => {
     // async transaction calls here
     dispatch({
@@ -13,7 +13,7 @@ const signIn = (email, password) => {
   }
 }
 
-const signUp = (email, password, firstName, lastName, shopName) => {
+export const signUp = (email, password, firstName, lastName, shopName) => {
   return dispatch => {
     // async transaction calls here
     dispatch({
@@ -29,7 +29,10 @@ const signUp = (email, password, firstName, lastName, shopName) => {
   }
 }
 
-export default {
-  signIn,
-  signUp,
+export const signOut = () => {
+  return dispatch => {
+    dispatch({
+      type: ACTIONS.SIGN_OUT,
+    })
+  }
 }
