@@ -12,8 +12,8 @@ const PATH_TITLE = {
   [PATH.SALES_REPORT]: 'Sales Report',
   [PATH.ADD]: 'Add',
   [PATH.EDIT]: 'Edit',
-  [PATH.SIGNIN]: 'Sign in',
-  [PATH.SIGNUP]: 'Sign up',
+  [PATH.SIGNIN]: 'Sign In',
+  [PATH.SIGNUP]: 'Sign Up',
 }
 
 export default {
