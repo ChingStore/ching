@@ -17,7 +17,7 @@ class SalesReport extends React.PureComponent {
 
 const mapStateToProps = state => {
   return {
-    items: selectors.getItemsState(state),
+    items: state.firestore.data.items,
   }
 }
 

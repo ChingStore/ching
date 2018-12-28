@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 import Maker from '@makerdao/dai'
 
 import Card from './inventoryCard.js'
@@ -62,11 +64,14 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    items: selectors.getItemsState(state),
+    items: state.firestore.data.items,
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([{ collection: 'items' }])
 )(InventoryScene)
