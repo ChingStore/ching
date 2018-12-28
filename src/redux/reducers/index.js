@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux'
-import { firestoreReducer } from 'redux-firestore'
+import * as Redux from 'redux'
+import * as ReduxFirestore from 'redux-firestore'
 
-export default combineReducers({
-  firestore: firestoreReducer,
+export default Redux.combineReducers({
+  firestore: ReduxFirestore.firestoreReducer,
 })
