@@ -6,7 +6,7 @@ import { default as ReduxThunk } from 'redux-thunk'
 import * as ReduxDevtoolsExtension from 'redux-devtools-extension'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
-import fbConfig from '../config/firebase'
+import firebaseConfig from '../config/firebase'
 
 const persistedState = localStorageUtil.loadState()
 
@@ -18,8 +18,8 @@ const store = Redux.createStore(
       ReduxThunk.withExtraArgument({ getFirebase, getFirestore }),
       ReduxLogger
     ),
-    reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig)
+    reduxFirestore(firebaseConfig),
+    reactReduxFirebase(firebaseConfig)
   )
 )
 

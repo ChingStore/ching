@@ -6,7 +6,7 @@ const add = ({ name, photo, soldCount, count, price }) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore()
     firestore
-      .collections('items')
+      .collection('items')
       .add({
         name,
         photo,
@@ -26,6 +26,12 @@ const add = ({ name, photo, soldCount, count, price }) => {
             count,
             price,
           },
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: ACTIONS.ERROR,
+          err,
         })
       })
   }

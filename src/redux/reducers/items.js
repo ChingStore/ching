@@ -18,6 +18,10 @@ export default function(state = initialState, action) {
       newState[id].count -= quantity
       return Object.assign({}, newState)
     }
+    case ACTIONS.ERROR: {
+      console.log(action.err)
+      return state
+    }
     default:
       return state
   }
