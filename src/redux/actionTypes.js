@@ -1,4 +1,5 @@
 export default {
-  ADD_ITEM: 'ADD_ITEM',
+  ADD_ITEM_SUCCESS: 'ADD_ITEM_SUCCESS',
   SELL_ITEM: 'SELL_ITEM',
+  ERROR: 'ERROR',
 }

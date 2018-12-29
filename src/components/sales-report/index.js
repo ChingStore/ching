@@ -1,8 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-import SalesTable from './sales-table'
+import * as ReactRedux from 'react-redux'
+import * as Redux from 'redux'
+import * as ReactReduxFirebase from 'react-redux-firebase'
 import selectors from '../../redux/selectors'
+import SalesTable from './sales-table'
 
 class SalesReport extends React.PureComponent {
   render() {
@@ -22,4 +23,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(SalesReport)
+export default Redux.compose(
+  ReactRedux.connect(mapStateToProps),
+  ReactReduxFirebase.firestoreConnect(['items'])
+)(SalesReport)
