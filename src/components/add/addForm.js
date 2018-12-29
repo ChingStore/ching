@@ -88,9 +88,9 @@ class OutlinedInputAdornments extends React.Component {
     }
     this.props.addItem({
       name: this.state.name,
-      count: this.state.quantity,
+      quantity: this.state.quantity,
       price: this.state.price,
-      photo: this.state.picture,
+      picture: this.state.picture,
       soldCount: this.state.soldCount,
     })
   }

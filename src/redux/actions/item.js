@@ -1,15 +1,15 @@
 import ACTIONS from '../actionTypes'
 
-const add = ({ name, photo, soldCount, count, price }) => {
+const add = ({ name, picture, soldCount, quantity, price }) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore()
     firestore
       .collection('items')
       .add({
         name,
-        photo,
+        picture,
         soldCount,
-        count,
+        quantity,
         price,
         createdAt: new Date(),
       })
