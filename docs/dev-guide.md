@@ -3,6 +3,7 @@
 ## Environment Setup
 
 - [VSCode Prettier plugin](https://github.com/prettier/prettier-vscode)
+- [VSCode ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 ## GitHub
 

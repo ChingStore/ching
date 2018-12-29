@@ -1,10 +1,18 @@
 import Maker from '@makerdao/dai'
 
+const { DAI } = Maker
+
 class Web3 {
   /**
    * Stores the initialization promise.
    */
   _initialized = null
+
+  /**
+   * Maker DAI.js object.
+   * @see https://makerdao.com/documentation/
+   */
+  _maker = null
 
   constructor() {
     this._initialized = this._initialize()
@@ -12,9 +20,9 @@ class Web3 {
   }
 
   async _initialize() {
-    this.maker = Maker.create('browser')
-    await this.maker.authenticate()
-    this.dai = this.maker.service('token').getToken('DAI')
+    this._maker = Maker.create('browser')
+    await this._maker.authenticate()
+    this.dai = this._maker.service('token').getToken(DAI)
     this.accounts = await this.dai._web3.eth.getAccounts()
   }
 
@@ -44,6 +52,4 @@ class Web3 {
   }
 }
 
-const web3Instance = new Web3()
-
-export default web3Instance
+export default new Web3()
