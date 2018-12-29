@@ -1,8 +1,9 @@
 import React from 'react'
-import SalesTable from './salesTable'
 import * as ReactRedux from 'react-redux'
 import * as Redux from 'redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
+import selectors from '../../redux/selectors'
+import SalesTable from './salesTable'
 
 class SalesReport extends React.PureComponent {
   render() {
@@ -18,7 +19,7 @@ class SalesReport extends React.PureComponent {
 
 const mapStateToProps = state => {
   return {
-    items: state.firestore.data.items,
+    items: selectors.getItemsState(state),
   }
 }
 

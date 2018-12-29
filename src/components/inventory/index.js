@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    items: state.firestore.data.items,
+    items: selectors.getItemsState(state),
   }
 }
 
