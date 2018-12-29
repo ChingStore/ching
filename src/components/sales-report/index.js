@@ -25,5 +25,5 @@ const mapStateToProps = state => {
 
 export default Redux.compose(
   ReactRedux.connect(mapStateToProps),
-  ReactReduxFirebase.firestoreConnect([{ collection: 'items' }])
+  ReactReduxFirebase.firestoreConnect(['items'])
 )(SalesReport)

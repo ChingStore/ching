@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
-import * as ReactReduxDirebase from 'react-redux-firebase'
+import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
@@ -71,5 +71,5 @@ export default Redux.compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  ReactReduxDirebase.firestoreConnect([{ collection: 'items' }])
+  ReactReduxFirebase.firestoreConnect(['items'])
 )(InventoryScene)
