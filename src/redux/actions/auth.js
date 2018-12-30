@@ -1,6 +1,6 @@
 import ACTIONS from '../actionTypes'
 
-export const signIn = credentials => {
+const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
     firebase
@@ -14,3 +14,17 @@ export const signIn = credentials => {
       })
   }
 }
+
+const signOut = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase()
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: ACTIONS.SIGNOUT_SUCCESS })
+      })
+  }
+}
+
+export { signIn, signOut }
