@@ -1,9 +1,9 @@
 import React from 'react'
+import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
 import { withRouter, NavLink } from 'react-router-dom'
-
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -18,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
+import { signOut } from '../../redux/actions/auth'
 
 const drawerWidth = 200
 
@@ -104,6 +105,11 @@ class MenuAppBar extends React.Component {
     this.setState({ open: false })
   }
 
+  signOutAndHandleDrawerClose = () => {
+    this.handleDrawerClose()
+    this.props.signOut()
+  }
+
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
   updateBalance = async () => {
@@ -182,6 +188,30 @@ class MenuAppBar extends React.Component {
                 primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]}
               />
             </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={ROUTE.PATH.SIGNIN}
+              onClick={this.handleDrawerClose}
+            >
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNIN]} />
+            </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={ROUTE.PATH.SIGNUP}
+              onClick={this.handleDrawerClose}
+            >
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNUP]} />
+            </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={ROUTE.PATH.INVENTORY}
+              onClick={this.signOutAndHandleDrawerClose}
+            >
+              <ListItemText primary="Sign Out" />
+            </ListItem>
           </List>
         </SwipeableDrawer>
       </div>
@@ -193,7 +223,17 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut()),
+  }
+}
+
 export default compose(
   withStyles(styles, { withTheme: true }),
-  withRouter
+  withRouter,
+  ReactRedux.connect(
+    null,
+    mapDispatchToProps
+  )
 )(MenuAppBar)
