@@ -19,6 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
 import { signOut } from '../../redux/actions/auth'
+import SignedInLinks from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
 
 const drawerWidth = 200
 
@@ -124,6 +126,15 @@ class MenuAppBar extends React.Component {
   render() {
     const { classes } = this.props
     const { open } = this.state
+    const { auth } = this.props
+
+    const authLinks = auth.uid ? (
+      <SignedInLinks
+        signOutAndHandleDrawerClose={this.signOutAndHandleDrawerClose}
+      />
+    ) : (
+      <SignedOutLinks handleDrawerClose={this.handleDrawerClose} />
+    )
 
     return (
       <div className={classes.root}>
@@ -188,30 +199,7 @@ class MenuAppBar extends React.Component {
                 primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]}
               />
             </ListItem>
-            <ListItem
-              button
-              component={NavLink}
-              to={ROUTE.PATH.SIGNIN}
-              onClick={this.handleDrawerClose}
-            >
-              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNIN]} />
-            </ListItem>
-            <ListItem
-              button
-              component={NavLink}
-              to={ROUTE.PATH.SIGNUP}
-              onClick={this.handleDrawerClose}
-            >
-              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNUP]} />
-            </ListItem>
-            <ListItem
-              button
-              component={NavLink}
-              to={ROUTE.PATH.INVENTORY}
-              onClick={this.signOutAndHandleDrawerClose}
-            >
-              <ListItemText primary="Sign Out" />
-            </ListItem>
+            {authLinks}
           </List>
         </SwipeableDrawer>
       </div>
@@ -221,6 +209,12 @@ class MenuAppBar extends React.Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -233,7 +227,7 @@ export default compose(
   withStyles(styles, { withTheme: true }),
   withRouter,
   ReactRedux.connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )
 )(MenuAppBar)
