@@ -45,18 +45,18 @@ function MediaCard(props) {
   const { classes } = props
 
   // componentWillMount () {
-  //   image = props.photo;
+  //   image = props.picture;
   // }
 
   return (
     <Card className={classes.card}>
       <ButtonBase onClick={props.onClick} style={{ flex: 1 }}>
-        <Badge badgeContent={props.count} />
+        <Badge badgeContent={props.quantity} />
         <CardActionArea className={classes.button}>
           <CardMedia
             className={classes.media}
-            image={props.photo || image}
-            alt={props.photo}
+            image={props.picture || image}
+            alt={props.picture}
           />
           <CardContent className={classes.content}>
             <Typography

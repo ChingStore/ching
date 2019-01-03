@@ -1,21 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { NavLink } from "react-router-dom";
-import ROUTE from "../../constants/route";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import { NavLink } from 'react-router-dom'
+import ROUTE from '../../constants/route'
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
   },
   input: {
-    display: "none"
-  }
-});
+    display: 'none',
+  },
+})
 
 function OutlinedButtons(props) {
-  const { classes } = props;
+  const { classes } = props
   return (
     <div>
       <Button
@@ -27,11 +27,11 @@ function OutlinedButtons(props) {
         {ROUTE.PATH_TITLE[ROUTE.PATH.SIGNUP]}
       </Button>
     </div>
-  );
+  )
 }
 
 OutlinedButtons.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+  classes: PropTypes.object.isRequired,
+}
 
-export default withStyles(styles)(OutlinedButtons);
+export default withStyles(styles)(OutlinedButtons)

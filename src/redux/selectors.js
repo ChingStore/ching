@@ -1,9 +1,5 @@
-const getItemsState = store => store.items
-
-const getItemById = (store, id) =>
-  getItemsState(store) ? { ...getItemsState(store)[id] } : {}
+const getItemsState = store => store.firestore.data.items
 
 export default {
   getItemsState,
-  getItemById,
 }

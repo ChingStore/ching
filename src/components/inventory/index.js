@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
-import { connect } from 'react-redux'
-
+import * as ReactRedux from 'react-redux'
+import * as ReactReduxFirebase from 'react-redux-firebase'
+import * as Redux from 'redux'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
@@ -65,7 +66,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default Redux.compose(
+  ReactRedux.connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  ReactReduxFirebase.firestoreConnect(['items'])
 )(InventoryScene)

@@ -1,7 +1,8 @@
 export default {
-  ADD_ITEM: 'ADD_ITEM',
+  ADD_ITEM_SUCCESS: 'ADD_ITEM_SUCCESS',
   SELL_ITEM: 'SELL_ITEM',
   SIGN_IN: 'SIGN_IN',
   SIGN_UP: 'SIGN_UP',
   SIGN_OUT: 'SIGN_OUT',
+  ERROR: 'ERROR',
 }

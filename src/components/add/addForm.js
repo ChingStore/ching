@@ -8,11 +8,14 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
+import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 // import Camera from './camera';
 import Camera, { FACING_MODES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
+import itemActions from '../../redux/actions/item'
+import selectors from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
 import itemAction from '../../redux/actions/item'
@@ -66,15 +69,13 @@ class OutlinedInputAdornments extends React.Component {
       console.log('Leaving!')
       return
     }
-    this.props.dispatch(
-      itemAction.add({
-        name: this.state.name,
-        count: this.state.quantity,
-        price: this.state.price,
-        photo: this.state.picture,
-        soldCount: this.state.soldCount,
-      })
-    )
+    this.props.addItem({
+      name: this.state.name,
+      quantity: this.state.quantity,
+      price: this.state.price,
+      picture: this.state.picture,
+      soldCount: this.state.soldCount,
+    })
   }
 
   render() {
@@ -165,7 +166,16 @@ OutlinedInputAdornments.propTypes = {
   dispatch: PropTypes.func,
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem: item => dispatch(itemActions.add(item)),
+  }
+}
+
 export default Redux.compose(
   withStyles(styles),
-  ReactRedux.connect()
+  ReactRedux.connect(
+    null,
+    mapDispatchToProps
+  )
 )(OutlinedInputAdornments)
