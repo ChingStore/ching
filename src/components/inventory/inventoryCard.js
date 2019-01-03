@@ -85,6 +85,8 @@ MediaCard.propTypes = {
   photo: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
+  quantity: PropTypes.number,
+  picture: PropTypes.string,
 }
 
 export default withStyles(styles)(MediaCard)

@@ -161,6 +161,7 @@ OutlinedInputAdornments.propTypes = {
   // @dev this is required because 69:16  warning  'dispatch' is missing in props
   // validation  react/prop-types
   dispatch: PropTypes.func,
+  addItem: PropTypes.obj,
 }
 
 const mapDispatchToProps = dispatch => {
