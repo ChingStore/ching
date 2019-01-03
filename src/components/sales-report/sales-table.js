@@ -61,4 +61,9 @@ class SalesTable extends Component {
   }
 }
 
+SalesTable.propTypes = {
+  classes: PropTypes.obj,
+  items: PropTypes.obj,
+}
+
 export default withStyles(styles)(SalesTable)
