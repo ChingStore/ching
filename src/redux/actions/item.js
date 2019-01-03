@@ -1,18 +1,31 @@
 import ACTIONS from '../actionTypes'
 
-let nextItemId = 0
-
-const add = ({ name, photo, soldCount, count, price }) => ({
-  type: ACTIONS.ADD_ITEM,
-  payload: {
-    id: ++nextItemId,
-    name,
-    photo,
-    soldCount,
-    count,
-    price,
-  },
-})
+const add = ({ name, picture, soldCount, quantity, price }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore()
+    firestore
+      .collection('items')
+      .add({
+        name,
+        picture,
+        soldCount,
+        quantity,
+        price,
+        createdAt: new Date(),
+      })
+      .then(() => {
+        dispatch({
+          type: ACTIONS.ADD_ITEM_SUCCESS,
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: ACTIONS.ERROR,
+          err,
+        })
+      })
+  }
+}
 
 const sell = (id, quantity) => {
   return dispatch => {

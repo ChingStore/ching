@@ -1,4 +1,6 @@
-import { combineReducers } from 'redux'
-import items from './items'
+import * as Redux from 'redux'
+import * as ReduxFirestore from 'redux-firestore'
 
-export default combineReducers({ items })
+export default Redux.combineReducers({
+  firestore: ReduxFirestore.firestoreReducer,
+})
