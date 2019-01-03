@@ -1,4 +1,4 @@
-import SignIn from '../ui/SignIn'
+import SignInUI from '../ui/SignIn'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { signIn } from '../../../redux/actions/authentication'
@@ -20,6 +20,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn)
+)(SignInUI)
 
 export default withRouter(Container)
