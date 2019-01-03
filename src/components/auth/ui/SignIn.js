@@ -1,21 +1,6 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import SignUpButton from '../SignUpButtonLink.js'
-// import authenticationAction from "../../redux/actions/authentication";
-// import * as Redux from "redux";
-// import * as ReactRedux from "react-redux";
-// import classNames from "classnames";
-// import PropTypes from "prop-types";
-
-// let _email, _password
-
-// const SignIn = ({
-//   email = '',
-//   password = '',
-//   onChange = f => f,
-//   signIn = f => f,
-//   router,
-// }) => {
 
 class SignIn extends Component {
   constructor(props) {
