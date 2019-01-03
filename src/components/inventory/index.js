@@ -7,6 +7,7 @@ import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
+import PropTypes from 'prop-types'
 
 import itemActions from '../../redux/actions/item'
 import web3Instance from '../../singletons/web3/web3'
