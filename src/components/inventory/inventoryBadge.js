@@ -1,6 +1,7 @@
 import React from 'react'
 import Badge from '@material-ui/core/Badge'
 import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   badge: {
@@ -28,8 +29,9 @@ function CustomizedBadge(props) {
   )
 }
 
-// CustomizedBadge.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
+CustomizedBadge.propTypes = {
+  classes: PropTypes.object.isRequired,
+  badgeContent: PropTypes.object,
+}
 
 export default withStyles(styles)(CustomizedBadge)
