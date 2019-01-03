@@ -77,8 +77,14 @@ function MediaCard(props) {
   )
 }
 
+// @dev some of these proptypes may be incorrect
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  count: PropTypes.number,
+  photo: PropTypes.string,
+  name: PropTypes.string,
+  price: PropTypes.number,
 }
 
 export default withStyles(styles)(MediaCard)
