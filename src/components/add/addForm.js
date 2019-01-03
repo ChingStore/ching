@@ -158,16 +158,11 @@ class OutlinedInputAdornments extends React.Component {
   }
 }
 
-const { array } = PropTypes
-
-// @dev this is required because 69:16  warning  'dispatch' is missing in props
-// validation  react/prop-types
-OutlinedInputAdornments.propTypes = {
-  dispatch: func,
-}
-
 OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
+  // @dev this is required because 69:16  warning  'dispatch' is missing in props
+  // validation  react/prop-types
+  dispatch: PropTypes.func,
 }
 
 export default Redux.compose(
