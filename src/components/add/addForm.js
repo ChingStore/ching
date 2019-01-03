@@ -8,17 +8,14 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { NavLink } from 'react-router-dom'
-import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
 import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 // import Camera from './camera';
 import Camera, { FACING_MODES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
 import itemActions from '../../redux/actions/item'
-import selectors from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
-import itemAction from '../../redux/actions/item'
 
 const styles = theme => ({
   root: {

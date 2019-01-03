@@ -6,7 +6,7 @@ import { signOut, signIn, signUp } from './authentication'
 export default Redux.combineReducers({
   firestore: ReduxFirestore.firestoreReducer,
   items,
-  authentication: combineReducers({
+  authentication: Redux.combineReducers({
     signOut,
     signIn,
     signUp,
