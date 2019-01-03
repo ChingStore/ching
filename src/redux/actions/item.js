@@ -1,7 +1,7 @@
 import ACTIONS from '../actionTypes'
 
 const add = ({ name, picture, soldCount, quantity, price }) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     firestore
       .collection('items')
