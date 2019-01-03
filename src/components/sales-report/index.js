@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import SalesTable from './sales-table'
 import selectors from '../../redux/selectors'
@@ -20,6 +21,10 @@ const mapStateToProps = state => {
   return {
     items: selectors.getItemsState(state),
   }
+}
+
+SalesReport.propTypes = {
+  items: PropTypes.obj,
 }
 
 export default connect(mapStateToProps)(SalesReport)
