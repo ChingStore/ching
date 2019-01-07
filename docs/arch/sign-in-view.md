@@ -9,7 +9,7 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 **Start Date : 23/12/2018**
 
-**Expected Completion Date : 24/12/1984**
+**Expected Completion Date : 24/12/2018**
 
 **Actual Completion Date : [TBD]**
 
@@ -115,41 +115,19 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ## Sub-Features
 
-- [ ] Add components
-	- [ ] SignInScene
-	- [ ] SignUpScene
+- [ ] Add components - [ ] SignInScene - [ ] SignUpScene
 - [ ] Modify menu to add signOut button
-- [ ] Add actions
-	- [ ] userAction.signIn
-		- [ ] Tests
-	- [ ] userAction.signUp
-		- [ ] Tests
-	- [ ] userAction.signUpWithOAuth
-		- [ ] Tests
-	- [ ] userAction.signOut
-		- [ ] Tests
-	- [ ] bannerAction.show
-		- [ ] Tests
-- [ ] Add selectors
-	- [ ] isLoggedIn
-		- [ ] Tests
-	- [ ] currentUser
-		- [ ] Tests
-- [ ] Add reducers
-	- [ ] signIn
-		- [ ] Tests
-	- [ ] signUp
-		- [ ] Tests
-	- [ ] signOut
-		- [ ] Tests
-- [ ] Add constants
-	- [ ] BANNER
+- [ ] Add actions - [ ] userAction.signIn - [ ] Tests - [ ] userAction.signUp - [ ] Tests - [ ] userAction.signUpWithOAuth - [ ] Tests - [ ] userAction.signOut - [ ] Tests - [ ] bannerAction.show - [ ] Tests
+- [ ] Add selectors - [ ] isLoggedIn - [ ] Tests - [ ] currentUser - [ ] Tests
+- [ ] Add reducers - [ ] signIn - [ ] Tests - [ ] signUp - [ ] Tests - [ ] signOut - [ ] Tests
+- [ ] Add constants - [ ] BANNER
 
 ## API
 
 ### [API Section 1 (Eg. Public, Private, Store)]
 
 ### redux/actions/user.js
+
 ```js
 /**
  * Attempts to sign in a user.
@@ -173,6 +151,7 @@ async function signOut() {}
 ```
 
 ### redux/actions/banner.js
+
 ```js
 /**
  * Shows a banner
