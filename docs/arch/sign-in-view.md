@@ -51,13 +51,50 @@ the top of "Inventory", "Sales Report", and "Sign In"
 - Problem: Currently the app does not recognize who the user is
 
   - Describe results you obtained through research and development
-    - No research started
-  - Solution: TBD
+    - **_ Research needs to be added _**
+  - Solution: Firebase and Firestore will be implemented for login and
+    and persisting authorization.
 
 - Problem: Currently the app persists data to the browser cache
+
   - Describe results you obtained through research and development
-    - No research started
-  - Solution: TBD
+    - **_ Research needs to be added _**
+  - Solution:
+    - We will be using Firestore to persist data.
+    - Whats the store structure?
+    - Do we have a concept of models (e.g. User, Item, Transaction)?
+    - How are those defined and validated? Any frameworks we can use?
+    - Is data normalized?
+
+- Problem: How do we manage multiple users for the same vendor?
+
+  - Solution 1: Separate accounts linked to the same wallet
+    - Inventory needs to be shared - linking flow is required
+    - Clerk can change wallet address on their terminal
+    - Migrating to a different setup might be hard later on
+    - ...
+  - Solution 2: Admin and Clerk account types
+    - Admin account is created initially
+    - Admin can invite others by email
+      - User management screen is required
+    - High implementation cost
+    - ...
+  - Solution 3: All clerks and the owner use the same account
+    - Clerk can change the wallet address - Use email confirmation for wallet address change
+    - Clerk can update email and password - Use email confirmation for password change - Only allow changing email through support
+    - No way to track individual clerk sales
+      - Minimal effort required
+    - Should be easy to migrate to a more advanced setup later
+    - ...
+  - Solution 4: No support for multiple terminals
+    - No effort required
+    - Migration to option 2 or 3 is straight forward
+  - Conclusion: Solution 4 fits best for now due to time and resource constraints
+    - Migrate to Solution 2 or 3 later
+
+- Problem: Should we use Firebase OAuth? What kind?
+  - Firebase docs links
+  - ...
 
 ## Flow
 
