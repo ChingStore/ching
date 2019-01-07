@@ -115,18 +115,35 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ## Sub-Features
 
-- [ ] Add components - [ ] SignInScene - [ ] SignUpScene
-- [ ] Modify menu to add signOut button
-- [ ] Add actions - [ ] userAction.signIn - [ ] Tests - [ ] userAction.signUp - [ ] Tests - [ ] userAction.signUpWithOAuth - [ ] Tests - [ ] userAction.signOut - [ ] Tests - [ ] bannerAction.show - [ ] Tests
-- [ ] Add selectors - [ ] isLoggedIn - [ ] Tests - [ ] currentUser - [ ] Tests
-- [ ] Add reducers - [ ] signIn - [ ] Tests - [ ] signUp - [ ] Tests - [ ] signOut - [ ] Tests
-- [ ] Add constants - [ ] BANNER
-
-## Migration (optional)
-
-- How will the current architecture be modified to migrate to this new architecture?
-- What files will be removed?
-- What functions will be deprecated?
+[ ] Add components
+[ ] SignInScene
+[ ] SignUpScene
+[ ] Modify menu to add signOut button
+[ ] Add actions
+[ ] userAction.signIn
+[ ] Tests
+[ ] userAction.signUp
+[ ] Tests
+[ ] userAction.signUpWithOAuth
+[ ] Tests
+[ ] userAction.signOut
+[ ] Tests
+[ ] bannerAction.show
+[ ] Tests
+[ ] Add selectors
+[ ] isLoggedIn
+[ ] Tests
+[ ] currentUser
+[ ] Tests
+[ ] Add reducers
+[ ] signIn
+[ ] Tests
+[ ] signUp
+[ ] Tests
+[ ] signOut
+[ ] Tests
+[ ] Add constants
+[ ] BANNER
 
 ## API
 
