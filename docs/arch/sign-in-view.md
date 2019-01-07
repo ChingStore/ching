@@ -98,8 +98,12 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ## Flow
 
-1. This is the "when?" and "where?" of this feature
-
+- fields:
+  - Email
+  - Password
+- buttons:
+  - Login
+  - Sign Up
 - Vendor is prompted to sign in
 - Vendor enters data into the displayed fields
 - Sign in success is displayed
