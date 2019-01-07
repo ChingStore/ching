@@ -45,7 +45,7 @@ const signUp = newUser => {
           })
       })
       .then(() => {
-        dispatch({ type: ACTIONS.SIGNUP_SCCESS })
+        dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
       })
       .catch(err => {
         dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
