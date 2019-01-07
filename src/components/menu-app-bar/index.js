@@ -225,7 +225,7 @@ class MenuAppBar extends React.Component {
 // @dev pathname used instead of location.pathname because it wouldn't compile
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  location: PropTypes.string,
+  location: PropTypes.object,
   pathname: PropTypes.string,
   authenticated: PropTypes.bool,
 }
