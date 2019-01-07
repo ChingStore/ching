@@ -115,35 +115,35 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ## Sub-Features
 
-[ ] Add components
-[ ] SignInScene
-[ ] SignUpScene
-[ ] Modify menu to add signOut button
-[ ] Add actions
-[ ] userAction.signIn
-[ ] Tests
-[ ] userAction.signUp
-[ ] Tests
-[ ] userAction.signUpWithOAuth
-[ ] Tests
-[ ] userAction.signOut
-[ ] Tests
-[ ] bannerAction.show
-[ ] Tests
-[ ] Add selectors
-[ ] isLoggedIn
-[ ] Tests
-[ ] currentUser
-[ ] Tests
-[ ] Add reducers
-[ ] signIn
-[ ] Tests
-[ ] signUp
-[ ] Tests
-[ ] signOut
-[ ] Tests
-[ ] Add constants
-[ ] BANNER
+- [ ] Add components
+	- [ ] SignInScene
+	- [ ] SignUpScene
+- [ ] Modify menu to add signOut button
+- [ ] Add actions
+	- [ ] userAction.signIn
+		- [ ] Tests
+	- [ ] userAction.signUp
+		- [ ] Tests
+	- [ ] userAction.signUpWithOAuth
+		- [ ] Tests
+	- [ ] userAction.signOut
+		- [ ] Tests
+	- [ ] bannerAction.show
+		- [ ] Tests
+- [ ] Add selectors
+	- [ ] isLoggedIn
+		- [ ] Tests
+	- [ ] currentUser
+		- [ ] Tests
+- [ ] Add reducers
+	- [ ] signIn
+		- [ ] Tests
+	- [ ] signUp
+		- [ ] Tests
+	- [ ] signOut
+		- [ ] Tests
+- [ ] Add constants
+	- [ ] BANNER
 
 ## API
 
