@@ -84,8 +84,8 @@ MediaCard.propTypes = {
   count: PropTypes.number,
   photo: PropTypes.string,
   name: PropTypes.string,
-  price: PropTypes.number,
-  quantity: PropTypes.number,
+  price: PropTypes.string,
+  quantity: PropTypes.string,
   picture: PropTypes.string,
 }
 

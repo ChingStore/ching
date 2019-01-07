@@ -31,7 +31,7 @@ function CustomizedBadge(props) {
 
 CustomizedBadge.propTypes = {
   classes: PropTypes.object.isRequired,
-  badgeContent: PropTypes.object,
+  badgeContent: PropTypes.string,
 }
 
 export default withStyles(styles)(CustomizedBadge)

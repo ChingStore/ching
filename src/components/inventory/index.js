@@ -56,7 +56,7 @@ class InventoryScene extends React.PureComponent {
 }
 
 InventoryScene.propTypes = {
-  items: PropTypes.obj,
+  items: PropTypes.object,
 }
 
 const mapDispatchToProps = dispatch => {
