@@ -149,22 +149,40 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ### [API Section 1 (Eg. Public, Private, Store)]
 
-Provide the appropriate constants/variables/functions/etc. and their locations.
-
+### redux/actions/user.js
 ```js
-// NOTE: Be sure to alphabetize your api sections.
+/**
+ * Attempts to sign in a user.
+ */
+async function signIn({ usernameOrEmail, password }) {}
 
 /**
- * Fully document everything. This code is copy-pasteable for when
- * you begin the implementation phase.
- * @return {Boolean}
+ * Attempts to sign up a new user.
  */
-function yoMama() {}
+async function signUp({ username, email, password }) {}
+
+/**
+ * Sign up a new user. Signs user in if it already exists.
+ */
+async function signUpWithOauth({ username, email, password }) {}
+
+/**
+ * Signs out current user.
+ */
+async function signOut() {}
+```
+
+### redux/actions/banner.js
+```js
+/**
+ * Shows a banner
+ */
+function show({ text, color }) {}
 ```
 
 ### [API Section 2]
 
-Here is an example of a changed file:
+Changed files:
 
 ```js
 // ...
