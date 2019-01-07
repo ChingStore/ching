@@ -93,8 +93,10 @@ the top of "Inventory", "Sales Report", and "Sign In"
     - Migrate to Solution 2 or 3 later
 
 - Problem: Should we use Firebase OAuth? What kind?
-  - Firebase docs links
-  - ...
+  - (Firebase Auth)[https://firebase.google.com/docs/auth/]
+  - Firebase has multiple solutions to handle authentication. The easiest is
+    likely to be the "Drop-in authentication solution" which is an open source,
+    configurable login page which can be found (here)[https://github.com/firebase/firebaseui-web]
 
 ## Flow
 
@@ -105,6 +107,7 @@ the top of "Inventory", "Sales Report", and "Sign In"
   - Login
   - Sign Up
 - Vendor is prompted to sign in
+  - This can be handled by Firebase Auth UI
 - Vendor enters data into the displayed fields
 - Sign in success is displayed
 - Vendor is redirected to the "Inventory" view
@@ -112,18 +115,12 @@ the top of "Inventory", "Sales Report", and "Sign In"
 
 ## Sub-Features
 
-- [x] Sign In button is in menu
-- [x] Sign In button redirects vendor to Sign In page
-- [x] Unregistered vendors have the option to Sign Up at the Sign In page
-- [ ] Unregistered vendors are advised to Sign Up if their account has more
-      than 0 Dai
-- [ ] Sign In submit sends credentials to Firebase
-- [ ] Authentication status is stored in state
-- [ ] Successful response from Firebase alerts vendor of sign in success
-- [ ] Vendor is routed to "Inventory"
-- [ ] "Signed in as <username>" is displayed in the header
-- [ ] Once your architecture is merged, these must be moved to stories in Pivotal Tracker
-- [ ] Eg. `<ConversationsContainer>`: A container that will act as the root for the new `<Stack>`, left of `<NotificationsContainer>`
+- [ ] Add components - [ ] SignInScene - [ ] SignUpScene
+- [ ] Modify menu to add signOut button
+- [ ] Add actions - [ ] userAction.signIn - [ ] Tests - [ ] userAction.signUp - [ ] Tests - [ ] userAction.signUpWithOAuth - [ ] Tests - [ ] userAction.signOut - [ ] Tests - [ ] bannerAction.show - [ ] Tests
+- [ ] Add selectors - [ ] isLoggedIn - [ ] Tests - [ ] currentUser - [ ] Tests
+- [ ] Add reducers - [ ] signIn - [ ] Tests - [ ] signUp - [ ] Tests - [ ] signOut - [ ] Tests
+- [ ] Add constants - [ ] BANNER
 
 ## Migration (optional)
 
