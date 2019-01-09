@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import * as ReactRedux from 'react-redux'
-import { signIn } from '../../redux/actions/auth'
+import authActions from '../../redux/actions/auth'
 
-class SignIn extends Component {
+class SignIn extends React.Component {
   state = {
     email: '',
     password: '',
@@ -41,17 +41,13 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProp = state => {
-  return {
-    authError: state.auth.authError,
-  }
-}
+const mapStateToProp = state => ({
+  authError: state.auth.authError,
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signIn: credentials => dispatch(signIn(credentials)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  signIn: credentials => dispatch(authActions.signIn(credentials)),
+})
 
 export default ReactRedux.connect(
   mapStateToProp,

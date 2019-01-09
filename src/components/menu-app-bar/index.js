@@ -15,10 +15,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import selectors from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
-import { signOut } from '../../redux/actions/auth'
+import authActions from '../../redux/actions/auth'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
@@ -211,17 +212,13 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth,
-  }
-}
+const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signOut: () => dispatch(signOut()),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  signOut: () => dispatch(authActions.signOut()),
+})
 
 export default compose(
   withStyles(styles, { withTheme: true }),

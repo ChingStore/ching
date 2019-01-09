@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as ReactRedux from 'react-redux'
-import { signUp } from '../../redux/actions/auth'
+import authActions from '../../redux/actions/auth'
 
 class SignUp extends Component {
   state = {
@@ -69,7 +69,7 @@ const mapStateToProp = state => {
 
 const mapDispatchToProp = dispatch => {
   return {
-    signUp: newUser => dispatch(signUp(newUser)),
+    signUp: newUser => dispatch(authActions.signUp(newUser)),
   }
 }
 

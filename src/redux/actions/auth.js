@@ -1,17 +1,14 @@
 import ACTIONS from '../actionTypes'
 
-const signIn = credentials => {
-  return (dispatch, getState, { getFirebase }) => {
+const signIn = ({ email, password }) => {
+  return async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
-        dispatch({ type: ACTIONS.LOGIN_SUCCESS })
-      })
-      .catch(err => {
-        dispatch({ type: ACTIONS.LOGIN_ERROR, err })
-      })
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password)
+      dispatch({ type: ACTIONS.LOGIN_SUCCESS })
+    } catch (err) {
+      dispatch({ type: ACTIONS.LOGIN_ERROR, err })
+    }
   }
 }
 
@@ -27,21 +24,21 @@ const signOut = () => {
   }
 }
 
-const signUp = newUser => {
+const signUp = ({ email, password, firstName, lastName, storeName }) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
     firebase
       .auth()
-      .createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .createUserWithEmailAndPassword(email, password)
       .then(resp => {
         return firestore
           .collection('users')
           .doc(resp.user.uid)
           .set({
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            storeName: newUser.storeName,
+            firstName: firstName,
+            lastName: lastName,
+            storeName: storeName,
           })
       })
       .then(() => {
@@ -53,4 +50,4 @@ const signUp = newUser => {
   }
 }
 
-export { signIn, signOut, signUp }
+export default { signIn, signOut, signUp }
