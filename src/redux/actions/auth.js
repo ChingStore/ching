@@ -13,40 +13,34 @@ const signIn = ({ email, password }) => {
 }
 
 const signOut = () => {
-  return (dispatch, getState, { getFirebase }) => {
+  return async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        dispatch({ type: ACTIONS.SIGNOUT_SUCCESS })
-      })
+    try {
+      await firebase.auth().signOut()
+      dispatch({ type: ACTIONS.SIGNOUT_SUCCESS })
+    } catch (err) {
+      console.log('cannot logout')
+      console.log(err.message)
+    }
   }
 }
 
 const signUp = ({ email, password, firstName, lastName, storeName }) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(resp => {
-        return firestore
-          .collection('users')
-          .doc(resp.user.uid)
-          .set({
-            firstName: firstName,
-            lastName: lastName,
-            storeName: storeName,
-          })
-      })
-      .then(() => {
-        dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
-      })
-      .catch(err => {
-        dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
-      })
+    try {
+      const resp = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+      await firestore
+        .collection('users')
+        .doc(resp.user.uid)
+        .set({ firstName: firstName, lastName: lastName, storeName: storeName })
+      dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
+    } catch (err) {
+      dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
+    }
   }
 }
 
