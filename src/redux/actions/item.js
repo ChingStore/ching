@@ -29,7 +29,6 @@ const add = ({ name, picture, soldCount, quantity, price }) => {
 
 const sell = (id, quantity) => {
   return dispatch => {
-    // async transaction calls here
     dispatch({ type: ACTIONS.SELL_ITEM, payload: { id, quantity } })
   }
 }
