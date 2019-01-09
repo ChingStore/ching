@@ -1,0 +1,20 @@
+- users
+  - id
+  - firstName
+  - lastName
+  - storeName
+- items
+  - id
+  - name
+  - picture
+  - price
+  - quantity
+  - soldCount
+  - createdAt
+  - store_id
+- stores
+  - id
+  - name
+- stores_users
+  - store_id
+  - user_id
