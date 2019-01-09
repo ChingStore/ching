@@ -1,9 +1,9 @@
 import React from 'react'
+import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
 import { withRouter, NavLink } from 'react-router-dom'
-
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -15,9 +15,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import selectors from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
+import authActions from '../../redux/actions/auth'
+import SignedInLinks from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
 
 const drawerWidth = 200
 
@@ -104,6 +108,11 @@ class MenuAppBar extends React.Component {
     this.setState({ open: false })
   }
 
+  signOutAndHandleDrawerClose = () => {
+    this.handleDrawerClose()
+    this.props.signOut()
+  }
+
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
   updateBalance = async () => {
@@ -118,6 +127,15 @@ class MenuAppBar extends React.Component {
   render() {
     const { classes } = this.props
     const { open } = this.state
+    const { auth } = this.props
+
+    const authLinks = auth.uid ? (
+      <SignedInLinks
+        signOutAndHandleDrawerClose={this.signOutAndHandleDrawerClose}
+      />
+    ) : (
+      <SignedOutLinks handleDrawerClose={this.handleDrawerClose} />
+    )
 
     return (
       <div className={classes.root}>
@@ -182,6 +200,7 @@ class MenuAppBar extends React.Component {
                 primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]}
               />
             </ListItem>
+            {authLinks}
           </List>
         </SwipeableDrawer>
       </div>
@@ -193,7 +212,19 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
+const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  signOut: () => dispatch(authActions.signOut()),
+})
+
 export default compose(
   withStyles(styles, { withTheme: true }),
-  withRouter
+  withRouter,
+  ReactRedux.connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(MenuAppBar)
