@@ -61,17 +61,13 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProp = state => {
-  return {
-    authError: state.auth.authError,
-  }
-}
+const mapStateToProp = state => ({
+  authError: state.auth.authError,
+})
 
-const mapDispatchToProp = dispatch => {
-  return {
-    signUp: newUser => dispatch(authActions.signUp(newUser)),
-  }
-}
+const mapDispatchToProp = dispatch => ({
+  signUp: newUser => dispatch(authActions.signUp(newUser)),
+})
 
 export default ReactRedux.connect(
   mapStateToProp,
