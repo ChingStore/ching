@@ -36,7 +36,15 @@ const signUp = ({ email, password, firstName, lastName, storeName }) => {
       await firestore
         .collection('users')
         .doc(resp.user.uid)
-        .set({ firstName: firstName, lastName: lastName, storeName: storeName })
+        .set({ firstName, lastName })
+
+      const new_store = await firestore.collection('stores').add({
+        storeName,
+      })
+      await firestore.collection('storesUsers').add({
+        storeId: new_store.id,
+        userId: resp.user.uid,
+      })
       dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
     } catch (err) {
       dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
