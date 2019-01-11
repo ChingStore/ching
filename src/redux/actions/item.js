@@ -1,9 +1,8 @@
 import ACTIONS from '../actionTypes'
 
 const add = ({ name, picture, soldCount, quantity, price }) => {
-  return async (dispatch, getState, { getFirestore, getFirebase }) => {
+  return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
-    const firebase = getFirebase()
     const state = getState()
     try {
       await firestore.collection('items').add({
@@ -27,15 +26,6 @@ const add = ({ name, picture, soldCount, quantity, price }) => {
   }
 }
 
-const testFunction = (id, quantity) => {
-  return async (dispatch, getState, { getFirestore, getFirebase }) => {
-    const items = await getFirestore().collection('items')
-    const test_item = items.where('name', '==', 'test').orderBy('createdAt')
-    console.log(test_item)
-  }
-}
-
 export default {
   add,
-  testFunction,
 }
