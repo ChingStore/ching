@@ -10,10 +10,10 @@
   - quantity
   - soldCount
   - createdAt
-  - store_id
+  - storeId
 - stores
   - id
   - name
-- stores_users
-  - store_id
-  - user_id
+- storesUsers
+  - storeId
+  - userId
