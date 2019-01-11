@@ -1,4 +1,5 @@
 import ACTIONS from '../actionTypes'
+import { actionTypes } from 'redux-firestore'
 
 const signIn = ({ email, password }) => {
   return async (dispatch, getState, { getFirebase }) => {
@@ -17,7 +18,7 @@ const signOut = () => {
     const firebase = getFirebase()
     try {
       await firebase.auth().signOut()
-      dispatch({ type: ACTIONS.SIGNOUT_SUCCESS })
+      dispatch({ type: actionTypes.CLEAR_DATA })
     } catch (err) {
       console.log('cannot logout')
       console.log(err.message)
