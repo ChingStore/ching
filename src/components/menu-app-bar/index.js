@@ -199,6 +199,16 @@ class MenuAppBar extends React.Component {
                 primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]}
               />
             </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={ROUTE.PATH.TRANSACTIONS}
+              onClick={this.handleDrawerClose}
+            >
+              <ListItemText
+                primary={ROUTE.PATH_TITLE[ROUTE.PATH.TRANSACTIONS]}
+              />
+            </ListItem>
             {authLinks}
           </List>
         </SwipeableDrawer>
