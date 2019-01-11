@@ -32,6 +32,9 @@ class InventoryScene extends React.PureComponent {
   }
 
   render() {
+    const { auth } = this.props
+    const { items } = this.props
+
     return (
       <div
         style={{
@@ -41,7 +44,7 @@ class InventoryScene extends React.PureComponent {
           flexDirection: 'row',
         }}
       >
-        {_.map(this.props.items, (item, id) => (
+        {_.map(items, (item, id) => (
           <Card key={id} {...item} onClick={() => this.handleItemClick(item)} />
         ))}
         <Add />
@@ -54,22 +57,21 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    sellItem: (id, quantity) => dispatch(itemActions.sell(id, quantity)),
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    items: selectors.getItemsState(state),
-  }
-}
+const mapStateToProps = state => ({
+  items: selectors.getItemsState(state),
+  storeUsers: selectors.getStoresUsers(state),
+  auth: selectors.getAuthState(state),
+})
 
 export default Redux.compose(
-  ReactRedux.connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  ReactReduxFirebase.firestoreConnect(['items'])
+  ReactRedux.connect(mapStateToProps),
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
 )(InventoryScene)
