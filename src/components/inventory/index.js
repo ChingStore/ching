@@ -32,7 +32,6 @@ class InventoryScene extends React.PureComponent {
   }
 
   render() {
-    const { auth } = this.props
     const { items } = this.props
 
     return (
@@ -58,9 +57,9 @@ class InventoryScene extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
   items: selectors.getItemsState(state),
   storeUsers: selectors.getStoresUsers(state),
-  auth: selectors.getAuthState(state),
 })
 
 export default Redux.compose(
