@@ -2,7 +2,6 @@
   - id
   - firstName
   - lastName
-  - storeName
 - items
   - id
   - name
