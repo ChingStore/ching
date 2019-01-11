@@ -25,5 +25,13 @@ const mapStateToProps = state => {
 
 export default Redux.compose(
   ReactRedux.connect(mapStateToProps),
-  ReactReduxFirebase.firestoreConnect(['items'])
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
 )(SalesReport)

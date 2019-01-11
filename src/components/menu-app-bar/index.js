@@ -125,9 +125,8 @@ class MenuAppBar extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { auth, classes } = this.props
     const { open } = this.state
-    const { auth } = this.props
 
     const authLinks = auth.uid ? (
       <SignedInLinks
