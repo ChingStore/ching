@@ -17,3 +17,20 @@
 - storesUsers
   - storeId
   - userId
+- transactions
+  - userId
+  - authToken
+  - orderNumber
+  - transactionAddress
+  - status
+  - amountSent
+  - submittedAt
+- orders
+  - number
+  - authToken
+  - userId
+  - items
+    - itemId1
+    - itemId2
+  - price
+  - createdAt
