@@ -30,15 +30,6 @@ class InventoryScene extends React.PureComponent {
     })
   }
 
-  // async componentDidMount() {
-  //   let address = await web3Instance.getWalletAddress()
-  //   web3Instance.send({
-  //     address: '0xba05aba5b4189cf00beca527a1bc70b82414f895',
-  //     amount: 0.01,
-  //     metaData: {},
-  //   })
-  // }
-
   handleCloseDialog = () => {
     this.setState({
       qrUrl: null,
