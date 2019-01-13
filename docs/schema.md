@@ -19,9 +19,7 @@
   - userId
 - transactions
   - userId
-  - authToken
-  - orderNumber
-  - transactionAddress
+  - txHash
   - status
   - amountSent
   - submittedAt
