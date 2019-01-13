@@ -12,7 +12,7 @@ import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
-import Transactions from './components/transactions'
+import Orders from './components/orders'
 
 const styles = {
   backgroundColor: 'cornflowerblue',
@@ -59,8 +59,8 @@ class Root extends React.Component {
               />
               <Route
                 exact
-                path={ROUTE.PATH.TRANSACTIONS}
-                component={Transactions}
+                path={ROUTE.PATH.ORDERS}
+                component={Orders}
                 id={113}
               />
             </Switch>
