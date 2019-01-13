@@ -35,17 +35,15 @@ class Web3 {
     this.accounts = await this.dai._web3.eth.getAccounts()
   }
 
-  async send({ address, amount, userId, orderId, authToken }) {
+  async send({ address, amount, orderId }) {
     await this._initialized
     try {
       const tx = await this.dai.transfer(address, amount)
       fetch(
         TRANSACTION_BUFFER_URL +
           encodeQueryData({
-            userId,
             orderId,
-            authToken,
-            ...{ txHast: tx.hash },
+            ...{ txHash: tx.hash },
           })
       )
     } catch (err) {
