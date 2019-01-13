@@ -3,7 +3,7 @@ const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
 const reportTransaction = (orderId, txHash) => {
-  console.log('!!!!!!!!!!!!reportTransaction!!!!!!!!!!', orderId, txHash)
+  console.log('New transaction reported:', { orderId, txHash })
   return admin
     .firestore()
     .collection('orders')
