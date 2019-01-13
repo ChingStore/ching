@@ -202,12 +202,10 @@ class MenuAppBar extends React.Component {
             <ListItem
               button
               component={NavLink}
-              to={ROUTE.PATH.TRANSACTIONS}
+              to={ROUTE.PATH.ORDERS}
               onClick={this.handleDrawerClose}
             >
-              <ListItemText
-                primary={ROUTE.PATH_TITLE[ROUTE.PATH.TRANSACTIONS]}
-              />
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.ORDERS]} />
             </ListItem>
             {authLinks}
           </List>
