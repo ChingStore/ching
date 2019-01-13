@@ -43,7 +43,7 @@ class Web3 {
         TRANSACTION_BUFFER_URL +
           encodeQueryData({
             orderId,
-            ...{ txHash: tx.hash },
+            txHash: tx.hash,
           })
       )
     } catch (err) {
