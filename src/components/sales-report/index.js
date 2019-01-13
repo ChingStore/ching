@@ -17,11 +17,9 @@ class SalesReport extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    items: selectors.getItemsState(state),
-  }
-}
+const mapStateToProps = state => ({
+  items: selectors.getItemsState(state),
+})
 
 export default Redux.compose(
   ReactRedux.connect(mapStateToProps),
