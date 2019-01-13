@@ -13,8 +13,7 @@ const reportTransaction = (orderId, txHash) => {
 }
 
 exports.transactionBuffer = functions.https.onRequest((request, response) => {
-  // request should be in the form
-  // https://us-central1-daipos.cloudfunctions.net/transactionBuffer?store=Asdasa&token=asa13c&order=5&txHash=1asdas1231
+  console.log('The query:')
   console.log(request.query)
   reportTransaction(request.query.orderId, request.query.txHash)
 })
