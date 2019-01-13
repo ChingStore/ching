@@ -192,19 +192,21 @@ class MenuAppBar extends React.Component {
             <ListItem
               button
               component={NavLink}
-              to={ROUTE.PATH.ORDERS}
-              onClick={this.handleDrawerClose}
-            >
-              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.ORDERS]} />
-            </ListItem>
-            <ListItem
-              button
-              component={NavLink}
               to={ROUTE.PATH.SALES_REPORT}
               onClick={this.handleDrawerClose}
             >
               <ListItemText
                 primary={ROUTE.PATH_TITLE[ROUTE.PATH.SALES_REPORT]}
+              />
+            </ListItem>
+            <ListItem
+              button
+              component={NavLink}
+              to={ROUTE.PATH.TRANSACTIONS}
+              onClick={this.handleDrawerClose}
+            >
+              <ListItemText
+                primary={ROUTE.PATH_TITLE[ROUTE.PATH.TRANSACTIONS]}
               />
             </ListItem>
             {authLinks}
