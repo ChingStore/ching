@@ -8,10 +8,10 @@ import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
 
-import itemActions from '../../redux/actions/item'
+import orderActions from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
-const SERVER_URL = 'https://14767e6d.ngrok.io'
+const SERVER_URL = 'https://2375898d.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
@@ -19,11 +19,25 @@ class InventoryScene extends React.PureComponent {
 
   handleItemClick = async item => {
     let address = await web3Instance.getWalletAddress()
-    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${item.price}`
+    const orderId = await this.props.addOrder()
+
+    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
+      item.price
+    }/${orderId}`
+
     this.setState({
       qrUrl: url,
     })
   }
+
+  // async componentDidMount() {
+  //   let address = await web3Instance.getWalletAddress()
+  //   web3Instance.send({
+  //     address: '0xba05aba5b4189cf00beca527a1bc70b82414f895',
+  //     amount: 0.01,
+  //     metaData: {},
+  //   })
+  // }
 
   handleCloseDialog = () => {
     this.setState({
@@ -56,19 +70,36 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  addOrder: () => dispatch(orderActions.add()),
+})
+
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
   items: selectors.getItemsState(state),
+  orders: selectors.getOrders(state),
   storeUsers: selectors.getStoresUsers(state),
 })
 
 export default Redux.compose(
-  ReactRedux.connect(mapStateToProps),
+  ReactRedux.connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   ReactReduxFirebase.firestoreConnect(props => {
     if (!props.auth || !props.auth.uid) return []
     return [
       {
         collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'orders',
         where: [['userId', '==', props.auth.uid]],
       },
     ]

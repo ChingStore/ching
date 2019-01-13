@@ -2,11 +2,14 @@ const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
-const reportTransaction = transaction => {
-  return admin.firestore
-    .collection('transactions')
-    .add(transaction)
-    .then(doc => console.log('transaction added', transaction))
+const reportTransaction = (orderId, txHash) => {
+  console.log('!!!!!!!!!!!!reportTransaction!!!!!!!!!!', orderId, txHash)
+  return admin
+    .firestore()
+    .collection('orders')
+    .doc(orderId)
+    .update({ txHash: txHash })
+    .then(() => console.log('order updated'))
 }
 
 exports.transactionBuffer = functions.https.onRequest((request, response) => {
@@ -15,8 +18,6 @@ exports.transactionBuffer = functions.https.onRequest((request, response) => {
   )
   // request should be in the form
   // https://us-central1-daipos.cloudfunctions.net/transactionBuffer?store=Asdasa&token=asa13c&order=5&txHash=1asdas1231
-  console.log(request.query.store)
-  console.log(request.query.token)
-  console.log(request.query.order)
-  console.log(request.query.txHash)
+  console.log(request.query)
+  reportTransaction(request.query.orderId, request.query.txHash)
 })
