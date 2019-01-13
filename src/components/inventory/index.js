@@ -8,7 +8,7 @@ import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
 
-import orderActions from '../../redux/actions/order'
+import orderAction from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
 const SERVER_URL = 'https://2375898d.ngrok.io'
@@ -71,7 +71,7 @@ class InventoryScene extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addOrder: () => dispatch(orderActions.add()),
+  addOrder: () => dispatch(orderAction.add()),
 })
 
 const mapStateToProps = state => ({
