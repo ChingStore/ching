@@ -87,6 +87,7 @@ export default Redux.compose(
     ]
   }),
   ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
     if (!props.auth || !props.auth.uid) return []
     return [
       {
