@@ -41,7 +41,7 @@ class Root extends React.Component {
               <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
               <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121} />
               <Route
-                path="/payment/:address/:amount/"
+                path="/payment/:address/:amount/:userId/:orderId/:authToken"
                 component={Payment}
                 id={108}
               />
