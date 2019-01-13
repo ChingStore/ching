@@ -5,6 +5,7 @@ const PATH = {
   EDIT: '/edit',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
+  TRANSACTIONS: '/Transactions',
 }
 
 const PATH_TITLE = {
@@ -14,6 +15,7 @@ const PATH_TITLE = {
   [PATH.EDIT]: 'Edit',
   [PATH.SIGNIN]: 'Sign In',
   [PATH.SIGNUP]: 'Sign Up',
+  [PATH.TRANSACTIONS]: 'Transactions',
 }
 
 export default {

@@ -17,3 +17,18 @@
 - storesUsers
   - storeId
   - userId
+- transactions
+  - userId
+  - txHash
+  - status
+  - amountSent
+  - submittedAt
+- orders
+  - id
+  - authToken
+  - userId
+  - items
+    - itemId1
+    - itemId2
+  - price
+  - createdAt
