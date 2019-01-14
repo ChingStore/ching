@@ -4,7 +4,7 @@ const initialState = {}
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ACTIONS.ADD_ITEM_SUCCESS: {
+    case ACTIONS.ADD_ITEM: {
       console.log('item added')
       return {
         ...state,
