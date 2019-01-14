@@ -8,10 +8,10 @@ import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from '../../redux/selectors'
 
-import itemActions from '../../redux/actions/item'
+import orderAction from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
-const SERVER_URL = 'https://14767e6d.ngrok.io'
+const SERVER_URL = 'https://2375898d.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
@@ -19,7 +19,12 @@ class InventoryScene extends React.PureComponent {
 
   handleItemClick = async item => {
     let address = await web3Instance.getWalletAddress()
-    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${item.price}`
+    const orderId = await this.props.addOrder()
+
+    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
+      item.price
+    }/${orderId}`
+
     this.setState({
       qrUrl: url,
     })
@@ -32,6 +37,8 @@ class InventoryScene extends React.PureComponent {
   }
 
   render() {
+    const { items } = this.props
+
     return (
       <div
         style={{
@@ -41,7 +48,7 @@ class InventoryScene extends React.PureComponent {
           flexDirection: 'row',
         }}
       >
-        {_.map(this.props.items, (item, id) => (
+        {_.map(items, (item, id) => (
           <Card key={id} {...item} onClick={() => this.handleItemClick(item)} />
         ))}
         <Add />
@@ -54,22 +61,39 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    sellItem: (id, quantity) => dispatch(itemActions.sell(id, quantity)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addOrder: () => dispatch(orderAction.add()),
+})
 
-const mapStateToProps = state => {
-  return {
-    items: selectors.getItemsState(state),
-  }
-}
+const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
+  items: selectors.getItemsState(state),
+  orders: selectors.getOrders(state),
+  storeUsers: selectors.getStoresUsers(state),
+})
 
 export default Redux.compose(
   ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps
   ),
-  ReactReduxFirebase.firestoreConnect(['items'])
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'orders',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
 )(InventoryScene)

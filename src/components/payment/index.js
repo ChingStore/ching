@@ -3,14 +3,21 @@ import web3Util from '../../singletons/web3/web3'
 
 export default class Add extends React.PureComponent {
   componentDidMount = () => {
-    const { address, amount } = this.props.match.params
-    web3Util.send({ address, amount })
+    const { address, amount, orderId } = this.props.match.params
+
+    web3Util.send({
+      address,
+      amount,
+      orderId,
+    })
   }
 
   render() {
+    const { address, amount, orderId } = this.props.match.params
     return (
       <div>
-        <div>Loading...</div>
+        {address}, {amount}, {orderId}
+        <div />
         <pre />
       </div>
     )

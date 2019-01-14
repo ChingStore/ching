@@ -1,6 +1,15 @@
 import Maker from '@makerdao/dai'
 
 const { DAI } = Maker
+const TRANSACTION_BUFFER_URL =
+  'https://us-central1-daipos.cloudfunctions.net/transactionBuffer?'
+
+function encodeQueryData(data) {
+  const ret = []
+  for (let d in data)
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]))
+  return ret.join('&')
+}
 
 class Web3 {
   /**
@@ -26,19 +35,20 @@ class Web3 {
     this.accounts = await this.dai._web3.eth.getAccounts()
   }
 
-  async send({ address, amount }) {
+  async send({ address, amount, orderId }) {
     await this._initialized
-    let balance
-    balance = await this.dai.balanceOf(address)
-    console.log(balance.toString())
     try {
       const tx = await this.dai.transfer(address, amount)
-      console.log('tx', tx._state)
+      fetch(
+        TRANSACTION_BUFFER_URL +
+          encodeQueryData({
+            orderId,
+            txHash: tx.hash,
+          })
+      )
     } catch (err) {
       console.error(err)
     }
-    balance = await this.dai.balanceOf(address)
-    console.log(balance.toString())
   }
 
   async getBalance() {

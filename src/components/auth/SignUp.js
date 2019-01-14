@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import * as ReactRedux from 'react-redux'
+import authActions from '../../redux/actions/auth'
 
 class SignUp extends Component {
   state = {
@@ -6,7 +8,7 @@ class SignUp extends Component {
     password: '',
     firstName: '',
     lastName: '',
-    shopName: '',
+    storeName: '',
   }
   handleChange = e => {
     this.setState({
@@ -15,9 +17,10 @@ class SignUp extends Component {
   }
   handleSubmit = e => {
     e.preventDefault() //  prevent reload of the page
-    console.log(this.state)
+    this.props.signUp(this.state)
   }
   render() {
+    const { authError } = this.props
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -43,11 +46,14 @@ class SignUp extends Component {
             <input type="text" id="lastName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="shopName">Shop Name</label>
-            <input type="text" id="shopName" onChange={this.handleChange} />
+            <label htmlFor="storeName">Store Name</label>
+            <input type="text" id="storeName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <button className="btn">Sign up</button>
+            <div className="red-text center">
+              {authError ? <p> {authError} </p> : null}
+            </div>
           </div>
         </form>
       </div>
@@ -55,4 +61,15 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+const mapStateToProp = state => ({
+  authError: state.auth.authError,
+})
+
+const mapDispatchToProp = dispatch => ({
+  signUp: newUser => dispatch(authActions.signUp(newUser)),
+})
+
+export default ReactRedux.connect(
+  mapStateToProp,
+  mapDispatchToProp
+)(SignUp)

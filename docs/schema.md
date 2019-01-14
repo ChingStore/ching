@@ -1,0 +1,34 @@
+- users
+  - id
+  - firstName
+  - lastName
+- items
+  - id
+  - name
+  - picture
+  - price
+  - quantity
+  - soldCount
+  - createdAt
+  - storeId
+- stores
+  - id
+  - name
+- storesUsers
+  - storeId
+  - userId
+- transactions
+  - userId
+  - txHash
+  - status
+  - amountSent
+  - submittedAt
+- orders
+  - id
+  - authToken
+  - userId
+  - items
+    - itemId1
+    - itemId2
+  - price
+  - createdAt
