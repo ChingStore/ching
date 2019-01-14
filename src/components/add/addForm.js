@@ -160,11 +160,9 @@ OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addItem: item => dispatch(itemActions.add(item)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(itemActions.add(item)),
+})
 
 export default Redux.compose(
   withStyles(styles),
