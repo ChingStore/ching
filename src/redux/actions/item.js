@@ -15,7 +15,7 @@ const add = ({ name, picture, soldCount, quantity, price }) => {
         createdAt: new Date(),
       })
       dispatch({
-        type: ACTIONS.ADD_ITEM_SUCCESS,
+        type: ACTIONS.ADD_ITEM,
       })
     } catch (err) {
       dispatch({
