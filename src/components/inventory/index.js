@@ -17,9 +17,9 @@ const STATUS_UL = 'https://get.status.im/browse/'
 class InventoryScene extends React.PureComponent {
   state = {}
 
-  handleItemClick = async item => {
+  handleItemClick = async (item, id) => {
     let address = await web3Instance.getWalletAddress()
-    const orderId = await this.props.addOrder()
+    const orderId = await this.props.addOrder(id, 1, item.price)
 
     const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
       item.price
@@ -49,7 +49,11 @@ class InventoryScene extends React.PureComponent {
         }}
       >
         {_.map(items, (item, id) => (
-          <Card key={id} {...item} onClick={() => this.handleItemClick(item)} />
+          <Card
+            key={id}
+            {...item}
+            onClick={() => this.handleItemClick(item, id)}
+          />
         ))}
         <Add />
         <QRDialog
@@ -62,7 +66,8 @@ class InventoryScene extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addOrder: () => dispatch(orderAction.add()),
+  addOrder: (itemId, sellingQuantity, unitPrice) =>
+    dispatch(orderAction.add(itemId, sellingQuantity, unitPrice)),
 })
 
 const mapStateToProps = state => ({
