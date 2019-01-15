@@ -1,13 +1,17 @@
+import _ from 'lodash'
 import ACTIONS from '../actionTypes'
 import web3Instance from '../../singletons/web3/web3'
 
-const add = () => {
+const add = (itemId, sellingQuantity, unitPrice) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     const state = getState()
+    let itemsToSale = {}
+    itemsToSale[itemId] = { sellingQuantity, unitPrice }
     try {
       const newOrder = await firestore.collection('orders').add({
         txHash: null,
+        items: itemsToSale,
         userId: state.firebase.auth.uid,
         createdAt: new Date(),
       })
@@ -37,7 +41,28 @@ const txStatusCheckAndUpdate = order => {
           .update({
             txConfirmed: status,
           })
-        // if status is confirmed => update soldCount of items in the order
+        if (status) {
+          // updating selling items
+          const confirmed_order = await firestore
+            .collection('orders')
+            .doc(order.id)
+            .get()
+          const items = confirmed_order.data().items
+          _.map(items, async (item, id) => {
+            const fb_item = await firestore
+              .collection('items')
+              .doc(id)
+              .get()
+
+            await firestore
+              .collection('items')
+              .doc(id)
+              .update({
+                quantity: fb_item.data().quantity - item.sellingQuantity,
+                soldCount: fb_item.data().soldCount + item.sellingQuantity,
+              })
+          })
+        }
         dispatch({ type: ACTIONS.UPDATE_ORDER })
       } catch (error) {
         console.log('Cannot update order', order.id)
