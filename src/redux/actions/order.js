@@ -28,7 +28,7 @@ const add = (itemId, sellingQuantity, unitPrice) => {
   }
 }
 
-const txStatusCheckAndUpdate = order => {
+const txStatusCheckAndUpdateOrder = order => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
 
@@ -74,5 +74,5 @@ const txStatusCheckAndUpdate = order => {
 
 export default {
   add,
-  txStatusCheckAndUpdate,
+  txStatusCheckAndUpdateOrder,
 }

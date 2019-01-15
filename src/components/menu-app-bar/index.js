@@ -126,7 +126,7 @@ class MenuAppBar extends React.Component {
   checkOrdeersStatus = () => {
     _.map(this.props.orders, (order, id) => {
       if (!order.txConfirmed && order.txHash) {
-        this.props.txStatusCheckAndUpdate(order)
+        this.props.txStatusCheckAndUpdateOrder(order)
       }
     })
   }
@@ -238,8 +238,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(authActions.signOut()),
-  txStatusCheckAndUpdate: order =>
-    dispatch(orderAction.txStatusCheckAndUpdate(order)),
+  txStatusCheckAndUpdateOrder: order =>
+    dispatch(orderAction.txStatusCheckAndUpdateOrder(order)),
 })
 
 export default compose(
