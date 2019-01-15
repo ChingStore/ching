@@ -11,11 +11,10 @@ export default function(state = initialState, action) {
       }
     }
     case ACTIONS.SELL_ITEM: {
-      const { id, quantity } = action.payload
-      const newState = Object.assign({}, state)
-      newState[id].soldCount += quantity
-      newState[id].count -= quantity
-      return Object.assign({}, newState)
+      console.log('item sold')
+      return {
+        ...state,
+      }
     }
     case ACTIONS.ERROR: {
       console.log(action.err)
