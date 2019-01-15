@@ -21,10 +21,6 @@ const styles = theme => ({
   },
 })
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 class Orders extends React.PureComponent {
   orderDetails = order => {
     var details = ''
@@ -72,6 +68,7 @@ class Orders extends React.PureComponent {
 
 Orders.propTypes = {
   classes: PropTypes.object.isRequired,
+  orders: PropTypes.arrayOf(PropTypes.object),
 }
 
 const mapStateToProps = state => ({

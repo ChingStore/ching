@@ -3,6 +3,7 @@ import React from 'react'
 import * as ReactRedux from 'react-redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
+import PropTypes from 'prop-types'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
@@ -63,6 +64,11 @@ class InventoryScene extends React.PureComponent {
       </div>
     )
   }
+}
+
+InventoryScene.propTypes = {
+  addOrder: PropTypes.func,
+  items: PropTypes.object,
 }
 
 const mapDispatchToProps = dispatch => ({

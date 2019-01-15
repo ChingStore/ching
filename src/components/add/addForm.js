@@ -158,6 +158,7 @@ class OutlinedInputAdornments extends React.Component {
 
 OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
+  addItem: PropTypes.func,
 }
 
 const mapDispatchToProps = dispatch => ({

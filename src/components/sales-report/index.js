@@ -4,6 +4,7 @@ import * as Redux from 'redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import selectors from '../../redux/selectors'
 import SalesTable from './sales-table'
+import PropTypes from 'prop-types'
 
 class SalesReport extends React.PureComponent {
   render() {
@@ -15,6 +16,10 @@ class SalesReport extends React.PureComponent {
       </div>
     )
   }
+}
+
+SalesReport.propTypes = {
+  items: PropTypes.object,
 }
 
 const mapStateToProps = state => ({

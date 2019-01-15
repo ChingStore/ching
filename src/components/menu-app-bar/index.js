@@ -124,7 +124,7 @@ class MenuAppBar extends React.Component {
   }
 
   checkOrdeersStatus = () => {
-    _.map(this.props.orders, (order, id) => {
+    _.map(this.props.orders, order => {
       if (!order.txConfirmed && order.txHash) {
         this.props.txStatusCheckAndUpdateOrder(order)
       }
@@ -228,6 +228,11 @@ class MenuAppBar extends React.Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  signOut: PropTypes.func,
+  orders: PropTypes.arrayOf(PropTypes.object),
+  txStatusCheckAndUpdateOrder: PropTypes.func,
+  auth: PropTypes.object,
+  location: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
