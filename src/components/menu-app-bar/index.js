@@ -1,5 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
+import * as ReactReduxFirebase from 'react-redux-firebase'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'
@@ -22,6 +24,7 @@ import web3Instance from '../../singletons/web3/web3'
 import authActions from '../../redux/actions/auth'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
+import orderAction from '../../redux/actions/order'
 
 const drawerWidth = 200
 
@@ -120,8 +123,16 @@ class MenuAppBar extends React.Component {
     this.setState({ balance: balance.toString() })
   }
 
+  checkOrdeersStatus = () => {
+    _.map(this.props.orders, (order, id) => {
+      if (!order.txConfirmed && order.txHash) {
+        this.props.txStatusCheckAndUpdate(order)
+      }
+    })
+  }
   componentDidMount() {
     setInterval(this.updateBalance, 1000)
+    setInterval(this.checkOrdeersStatus, 1000)
   }
 
   render() {
@@ -221,10 +232,14 @@ MenuAppBar.propTypes = {
 
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
+  orders: selectors.getOrders(state),
+  items: selectors.getItemsState(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(authActions.signOut()),
+  txStatusCheckAndUpdate: order =>
+    dispatch(orderAction.txStatusCheckAndUpdate(order)),
 })
 
 export default compose(
@@ -233,5 +248,24 @@ export default compose(
   ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps
-  )
+  ),
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'orders',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
 )(MenuAppBar)
