@@ -11,7 +11,7 @@ import selectors from '../../redux/selectors'
 import orderAction from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
-const SERVER_URL = 'https://2375898d.ngrok.io'
+const SERVER_URL = 'https://74a7e268.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
