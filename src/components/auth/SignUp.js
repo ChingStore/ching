@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import * as ReactRedux from 'react-redux'
 import authActions from '../../redux/actions/auth'
 
+const registerStatus = {
+  backgroundColor: 'red',
+  color: 'white',
+  textAlignLast: 'center',
+}
+
 class SignUp extends Component {
   state = {
     email: '',
@@ -52,7 +58,7 @@ class SignUp extends Component {
           <div className="input-field">
             <button className="btn">Sign up</button>
             <div className="red-text center">
-              {authError ? <p> {authError} </p> : null}
+              {authError ? <p style={registerStatus}> {authError} </p> : null}
             </div>
           </div>
         </form>
