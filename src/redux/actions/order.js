@@ -1,31 +1,25 @@
 import _ from 'lodash'
-import ACTIONS from '../actionTypes'
 import web3Instance from '../../singletons/web3/web3'
 import selector from '../selectors'
 
-const add = (itemId, quantity) => {
+const add = ({ itemId, quantity }) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     const state = getState()
     const price = selector.getItemPrice(state, { itemId })
-    let itemsToSale = {}
-    itemsToSale[itemId] = { quantity, price }
+    const items = {
+      [itemId]: { quantity, price },
+    }
     try {
       const newOrder = await firestore.collection('orders').add({
         txHash: null,
-        items: itemsToSale,
+        items: items,
         userId: state.firebase.auth.uid,
         createdAt: new Date(),
       })
-      dispatch({
-        type: ACTIONS.ADD_ORDER,
-      })
       return newOrder.id
     } catch (err) {
-      dispatch({
-        type: ACTIONS.ERROR,
-        err,
-      })
+      console.log('Error in order/add action', err.message)
     }
   }
 }
@@ -34,16 +28,22 @@ const txStatusCheckAndUpdateOrder = order => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
 
+    if (order.txConfirmed) {
+      return
+    }
+
     if (!order.txConfirmed && order.txHash) {
       try {
-        const status = await web3Instance.isTxConfirmed(order.txHash)
+        const isConfirmed = await web3Instance.isTxConfirmed(order.txHash)
         await firestore
           .collection('orders')
           .doc(order.id)
           .update({
-            txConfirmed: status,
+            txConfirmed: isConfirmed,
           })
-        if (status) {
+        if (!isConfirmed) {
+          return
+        } else {
           // updating selling items
           const confirmed_order = await firestore
             .collection('orders')
@@ -63,12 +63,11 @@ const txStatusCheckAndUpdateOrder = order => {
                 quantity: fb_item.data().quantity - soldItem.quantity,
                 soldCount: fb_item.data().soldCount + soldItem.quantity,
               })
+            console.log('Order updated. ID:', order.id)
           })
         }
-        dispatch({ type: ACTIONS.UPDATE_ORDER })
       } catch (error) {
-        console.log('Cannot update order', order.id)
-        dispatch({ type: ACTIONS.ERROR })
+        console.log('Cannot update order. ID:', order.id)
       }
     }
   }
