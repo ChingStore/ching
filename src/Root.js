@@ -1,6 +1,8 @@
 import * as React from 'react'
-import { Route, HashRouter } from 'react-router-dom'
-import { Switch } from 'react-router-dom'
+import * as ReactRedux from 'react-redux'
+import * as ReactReduxFirebase from 'react-redux-firebase'
+import * as Redux from 'redux'
+import { Route, HashRouter, Switch } from 'react-router-dom'
 
 import MenuAppBar from './components/menu-app-bar'
 import Inventory from './components/inventory'
@@ -13,6 +15,8 @@ import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
+
+import selectors from './redux/selectors'
 
 const styles = {
   backgroundColor: 'cornflowerblue',
@@ -71,4 +75,32 @@ class Root extends React.Component {
   }
 }
 
-export default Root
+const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
+  items: selectors.getItemsState(state),
+  orders: selectors.getOrders(state),
+})
+
+export default Redux.compose(
+  ReactRedux.connect(mapStateToProps),
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'orders',
+        orderBy: ['createdAt', 'desc'],
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
+)(Root)

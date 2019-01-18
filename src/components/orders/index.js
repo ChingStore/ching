@@ -51,7 +51,7 @@ class Orders extends React.PureComponent {
   }
 
   getOrderTimestampString = order => {
-    moment(order.createdAt.toDate()).fromNow()
+    return moment(order.createdAt.toDate()).fromNow()
   }
 
   //////////////
@@ -102,15 +102,5 @@ const mapStateToProps = state => ({
 
 export default Redux.compose(
   withStyles(styles, { withTheme: true }),
-  ReactRedux.connect(mapStateToProps),
-  ReactReduxFirebase.firestoreConnect(props => {
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'orders',
-        orderBy: ['createdAt', 'desc'],
-        where: ['userId', '==', props.auth.uid],
-      },
-    ]
-  })
+  ReactRedux.connect(mapStateToProps)
 )(Orders)

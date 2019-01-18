@@ -3,6 +3,8 @@ const getAuthState = store => store.firebase.auth
 const getStores = store => store.firestore.data.stores
 const getStoresUsers = store => store.firestore.data.storesUsers
 const getOrders = store => store.firestore.ordered.orders
+const getItemPrice = (store, { itemId }) =>
+  store.firestore.data.items[itemId].price
 
 export default {
   getItemsState,
@@ -10,4 +12,5 @@ export default {
   getStores,
   getStoresUsers,
   getOrders,
+  getItemPrice,
 }

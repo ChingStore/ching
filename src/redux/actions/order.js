@@ -1,13 +1,15 @@
 import _ from 'lodash'
 import ACTIONS from '../actionTypes'
 import web3Instance from '../../singletons/web3/web3'
+import selector from '../selectors'
 
-const add = (itemId, sellingQuantity, unitPrice) => {
+const add = (itemId, quantity) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     const state = getState()
+    const price = selector.getItemPrice(state, { itemId })
     let itemsToSale = {}
-    itemsToSale[itemId] = { sellingQuantity, unitPrice }
+    itemsToSale[itemId] = { quantity, price }
     try {
       const newOrder = await firestore.collection('orders').add({
         txHash: null,
@@ -48,18 +50,18 @@ const txStatusCheckAndUpdateOrder = order => {
             .doc(order.id)
             .get()
           const items = confirmed_order.data().items
-          _.map(items, async (item, id) => {
+          _.map(items, async (soldItem, soldItemid) => {
             const fb_item = await firestore
               .collection('items')
-              .doc(id)
+              .doc(soldItemid)
               .get()
 
             await firestore
               .collection('items')
-              .doc(id)
+              .doc(soldItemid)
               .update({
-                quantity: fb_item.data().quantity - item.sellingQuantity,
-                soldCount: fb_item.data().soldCount + item.sellingQuantity,
+                quantity: fb_item.data().quantity - soldItem.quantity,
+                soldCount: fb_item.data().soldCount + soldItem.quantity,
               })
           })
         }

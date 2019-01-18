@@ -125,9 +125,7 @@ class MenuAppBar extends React.Component {
 
   checkOrdersStatus = () => {
     _.map(this.props.orders, order => {
-      if (!order.txConfirmed && order.txHash) {
-        this.props.txStatusCheckAndUpdateOrder(order)
-      }
+      this.props.txStatusCheckAndUpdateOrder(order)
     })
   }
   componentDidMount() {
@@ -253,24 +251,5 @@ export default compose(
   ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  ReactReduxFirebase.firestoreConnect(props => {
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'items',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  }),
-  ReactReduxFirebase.firestoreConnect(props => {
-    // TODO: Research possible performance issues for old accounts with lots of transactions
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'orders',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  })
+  )
 )(MenuAppBar)

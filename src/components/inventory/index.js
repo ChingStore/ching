@@ -12,7 +12,7 @@ import selectors from '../../redux/selectors'
 import orderAction from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
-const SERVER_URL = 'https://74a7e268.ngrok.io'
+const SERVER_URL = 'https://7444e33a.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
@@ -87,24 +87,5 @@ export default Redux.compose(
   ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  ReactReduxFirebase.firestoreConnect(props => {
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'items',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  }),
-  ReactReduxFirebase.firestoreConnect(props => {
-    // TODO: Research possible performance issues for old accounts with lots of transactions
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'orders',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  })
+  )
 )(InventoryScene)
