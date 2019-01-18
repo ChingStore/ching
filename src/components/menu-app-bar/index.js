@@ -123,7 +123,7 @@ class MenuAppBar extends React.Component {
     this.setState({ balance: balance.toString() })
   }
 
-  checkOrdeersStatus = () => {
+  checkOrdersStatus = () => {
     _.map(this.props.orders, order => {
       if (!order.txConfirmed && order.txHash) {
         this.props.txStatusCheckAndUpdateOrder(order)
@@ -132,7 +132,7 @@ class MenuAppBar extends React.Component {
   }
   componentDidMount() {
     setInterval(this.updateBalance, 1000)
-    setInterval(this.checkOrdeersStatus, 1000)
+    setInterval(this.checkOrdersStatus, 1000)
   }
 
   render() {
