@@ -6,6 +6,7 @@ const PATH = {
   SIGNIN: '/signin',
   SIGNUP: '/signup',
   TRANSACTIONS: '/Transactions',
+  HOME: '/home',
 }
 
 const PATH_TITLE = {

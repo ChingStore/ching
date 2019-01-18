@@ -2,6 +2,8 @@ import React from 'react'
 import * as ReactRedux from 'react-redux'
 import authActions from '../../redux/actions/auth'
 
+import FooterButton from '../common/footer-button'
+
 class SignIn extends React.Component {
   state = {
     email: '',
@@ -31,7 +33,7 @@ class SignIn extends React.Component {
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn">Login</button>
+            <FooterButton>Login</FooterButton>
             <div className="red-text center" />
             {authError ? <p> Login Failed! </p> : null}
           </div>

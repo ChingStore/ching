@@ -29,5 +29,5 @@
     "prettier",
     "prettier/react"
   ],
-  "plugins": ["react"]
+  "plugins": ["react", "emotion"]
 }

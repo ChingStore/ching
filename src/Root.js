@@ -7,6 +7,7 @@ import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
 import Add from './components/add'
 import Payment from './components/payment'
+import Home from './components/onboarding/home'
 
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
@@ -15,7 +16,7 @@ import SignUp from './components/auth/SignUp'
 import Transactions from './components/transactions'
 
 const styles = {
-  backgroundColor: 'cornflowerblue',
+  // backgroundColor: 'cornflowerblue',
 }
 
 class Root extends React.Component {
@@ -63,6 +64,7 @@ class Root extends React.Component {
                 component={Transactions}
                 id={113}
               />
+              <Route exact path={ROUTE.PATH.HOME} component={Home} id={113} />
             </Switch>
           </div>
         </HashRouter>
