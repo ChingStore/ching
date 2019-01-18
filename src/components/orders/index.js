@@ -22,10 +22,18 @@ const styles = theme => ({
 })
 
 class Orders extends React.PureComponent {
-  orderDetails = order => {
+  /////////////////////
+  // LIFECYCLE HOOKS //
+  /////////////////////
+
+  /////////////
+  // GETTERS //
+  /////////////
+
+  getOrderDetailsString = order => {
     var details = ''
 
-    if (order.txHash) {
+    if (this.isHashReceivied(order)) {
       details +=
         order.txHash.toString().slice(0, 5) +
         '...' +
@@ -34,13 +42,29 @@ class Orders extends React.PureComponent {
     } else {
       details += 'No txHash yet, '
     }
-    if (order.txConfirmed) {
+    if (this.isConfirmed(order)) {
       details += 'status: confirmed'
     } else {
       details += 'status: pending'
     }
     return details
   }
+
+  getOrderTimestampString = order => {
+    moment(order.createdAt.toDate()).fromNow()
+  }
+
+  //////////////
+  // CHECKERS //
+  //////////////
+
+  isConfirmed = order => order.txConfirmed
+
+  isHashReceivied = order => order.txHash
+
+  /////////////
+  // HELPERS //
+  /////////////
 
   render() {
     const { orders, classes } = this.props
@@ -55,8 +79,8 @@ class Orders extends React.PureComponent {
                   <ImageIcon />
                 </Avatar>
                 <ListItemText
-                  primary={this.orderDetails(order)}
-                  secondary={moment(order.createdAt.toDate()).fromNow()}
+                  primary={this.getOrderDetailsString(order)}
+                  secondary={this.getOrderTimestampString(order)}
                 />
               </ListItem>
             )
