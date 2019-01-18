@@ -5,6 +5,7 @@ import authActions from '../../redux/actions/auth'
 const loginStatus = {
   backgroundColor: 'red',
   color: 'white',
+  textAlignLast: 'center',
 }
 
 class SignIn extends React.Component {
