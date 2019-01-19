@@ -77,8 +77,6 @@ class Root extends React.Component {
 
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
-  items: selectors.getItemsState(state),
-  orders: selectors.getOrders(state),
 })
 
 export default Redux.compose(
