@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
-import * as ReactReduxFirebase from 'react-redux-firebase'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { compose } from 'recompose'

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
-import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import PropTypes from 'prop-types'
 import Card from './inventoryCard.js'
