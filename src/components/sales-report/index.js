@@ -2,7 +2,7 @@ import React from 'react'
 import * as ReactRedux from 'react-redux'
 import * as Redux from 'redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
-import selectors from '../../redux/selectors'
+import selectors from 'redux/selectors'
 import SalesTable from './sales-table'
 
 class SalesReport extends React.PureComponent {

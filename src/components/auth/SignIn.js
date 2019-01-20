@@ -1,6 +1,7 @@
 import React from 'react'
 import * as ReactRedux from 'react-redux'
-import authActions from '../../redux/actions/auth'
+
+import authActions from 'redux/actions/auth'
 
 import FooterButton from '../common/footer-button'
 

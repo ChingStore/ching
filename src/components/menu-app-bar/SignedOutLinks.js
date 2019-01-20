@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
-import ROUTE from '../../constants/route'
+import ROUTE from 'constants/route'
 
 class SignedOutLinks extends Component {
   render() {
