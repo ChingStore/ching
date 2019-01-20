@@ -6,10 +6,10 @@ import * as Redux from 'redux'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
-import selectors from '../../redux/selectors'
+import selectors from 'redux/selectors'
 
-import orderAction from '../../redux/actions/order'
-import web3Instance from '../../singletons/web3/web3'
+import orderAction from 'redux/actions/order'
+import web3Instance from 'singletons/web3/web3'
 
 const SERVER_URL = 'https://2375898d.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
