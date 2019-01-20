@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
@@ -213,6 +212,7 @@ class MenuAppBar extends React.Component {
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
   signOut: PropTypes.func,
+  walletInitialize: PropTypes.func,
   auth: PropTypes.object,
   walletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   location: PropTypes.object,
