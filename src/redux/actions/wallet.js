@@ -3,7 +3,7 @@ import ACTIONS from '../actionTypes'
 import selector from '../../redux/selectors'
 
 const initialize = () => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     setInterval(() => {
       dispatch(checkBalance())
     }, 1000)

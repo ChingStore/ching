@@ -95,7 +95,6 @@ Orders.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: selectors.getAuthState(state),
   orders: selectors.getOrders(state),
 })
 
