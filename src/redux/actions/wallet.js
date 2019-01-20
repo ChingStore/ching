@@ -15,7 +15,7 @@ const updateBalance = () => {
     const state = getState()
     const oldBalance = selector.getWalletBalance(state)
     const newBalance = await web3Instance.getBalance()
-    if (oldBalance.toString() != newBalance.toString()) {
+    if (oldBalance.toString() !== newBalance.toString()) {
       dispatch({ type: ACTIONS.UPDATE_WALLET_BALANCE, payload: newBalance })
     }
   }
