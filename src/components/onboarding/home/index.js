@@ -3,8 +3,8 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 
 import FooterButton from '../../common/footer-button'
-import Icon from './icon'
-import LogInIcon from './icon-login'
+import Art from './icon'
+import * as Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
@@ -31,7 +31,7 @@ export default class HomeScene extends React.Component {
   renderArt() {
     return (
       <div>
-        <Icon />
+        <Art />
       </div>
     )
   }
@@ -44,7 +44,7 @@ export default class HomeScene extends React.Component {
     return (
       <div>
         <a>
-          <LogInIcon /> Log In
+          <Icon.Login /> Log In
         </a>
       </div>
     )

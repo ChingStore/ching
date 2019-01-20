@@ -1,7 +1,7 @@
 import React from 'react'
 
-// /** @jsx jsx */
-// import { jsx } from '@emotion/core'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 // import style from './index.style.js'
 
