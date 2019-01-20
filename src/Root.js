@@ -3,7 +3,7 @@ import * as ReactRedux from 'react-redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { Route, HashRouter, Switch } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import MenuAppBar from './components/menu-app-bar'
 import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
@@ -15,7 +15,8 @@ import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
-
+import orderAction from './redux/actions/order'
+import walletAction from './redux/actions/wallet'
 import selectors from './redux/selectors'
 
 const styles = {
@@ -23,6 +24,11 @@ const styles = {
 }
 
 class Root extends React.Component {
+  componentDidMount() {
+    this.props.walletInitialize()
+    this.props.orderInitialize()
+  }
+
   render() {
     return (
       <div className="App" style={styles}>
@@ -75,12 +81,26 @@ class Root extends React.Component {
   }
 }
 
+Root.propTypes = {
+  orderInitialize: PropTypes.func,
+  walletInitialize: PropTypes.func,
+  auth: PropTypes.object,
+}
+
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
 })
 
+const mapDispatchToProps = dispatch => ({
+  orderInitialize: () => dispatch(orderAction.initialize()),
+  walletInitialize: () => dispatch(walletAction.initialize()),
+})
+
 export default Redux.compose(
-  ReactRedux.connect(mapStateToProps),
+  ReactRedux.connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   ReactReduxFirebase.firestoreConnect(props => {
     if (!props.auth || !props.auth.uid) return []
     return [

@@ -16,14 +16,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import selectors from '../../redux/selectors'
+import selector from '../../redux/selectors'
 
 import ROUTE from '../../constants/route'
 import web3Instance from '../../singletons/web3/web3'
 import authActions from '../../redux/actions/auth'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
-import orderAction from '../../redux/actions/order'
 
 const drawerWidth = 200
 
@@ -122,14 +121,8 @@ class MenuAppBar extends React.Component {
     this.setState({ balance: balance.toString() })
   }
 
-  checkOrdersStatus = () => {
-    _.map(this.props.orders, order => {
-      this.props.txStatusCheckAndUpdateOrder(order)
-    })
-  }
   componentDidMount() {
     setInterval(this.updateBalance, 1000)
-    setInterval(this.checkOrdersStatus, 1000)
   }
 
   render() {
@@ -226,22 +219,16 @@ class MenuAppBar extends React.Component {
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
   signOut: PropTypes.func,
-  orders: PropTypes.arrayOf(PropTypes.object),
-  txStatusCheckAndUpdateOrder: PropTypes.func,
   auth: PropTypes.object,
   location: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
-  auth: selectors.getAuthState(state),
-  orders: selectors.getOrders(state),
-  items: selectors.getItemsState(state),
+  auth: selector.getAuthState(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(authActions.signOut()),
-  txStatusCheckAndUpdateOrder: order =>
-    dispatch(orderAction.txStatusCheckAndUpdateOrder(order)),
 })
 
 export default compose(

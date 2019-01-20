@@ -26,13 +26,12 @@ const add = ({ itemId, quantity }) => {
 
 const txStatusCheckAndUpdateOrder = order => {
   return async (dispatch, getState, { getFirestore }) => {
-    const firestore = getFirestore()
-
     if (order.txConfirmed) {
       return
     }
 
     if (!order.txConfirmed && order.txHash) {
+      const firestore = getFirestore()
       try {
         const isConfirmed = await web3Instance.isTxConfirmed(order.txHash)
         await firestore
@@ -73,7 +72,25 @@ const txStatusCheckAndUpdateOrder = order => {
   }
 }
 
+const initialize = () => {
+  return async dispatch => {
+    setInterval(function() {
+      dispatch(processAllOrders())
+    }, 1000)
+  }
+}
+
+const processAllOrders = () => {
+  return async (dispatch, getState) => {
+    const state = getState()
+    const orders = selector.getOrders(state)
+    _.map(orders, order => {
+      dispatch(txStatusCheckAndUpdateOrder(order))
+    })
+  }
+}
+
 export default {
   add,
-  txStatusCheckAndUpdateOrder,
+  initialize,
 }
