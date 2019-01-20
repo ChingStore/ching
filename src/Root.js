@@ -9,14 +9,12 @@ import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
 import Add from './components/add'
 import Payment from './components/payment'
-
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
 import orderAction from './redux/actions/order'
-import walletAction from './redux/actions/wallet'
 import selectors from './redux/selectors'
 
 const styles = {
@@ -25,7 +23,6 @@ const styles = {
 
 class Root extends React.Component {
   componentDidMount() {
-    this.props.walletInitialize()
     this.props.orderInitialize()
   }
 
@@ -93,7 +90,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   orderInitialize: () => dispatch(orderAction.initialize()),
-  walletInitialize: () => dispatch(walletAction.initialize()),
 })
 
 export default Redux.compose(

@@ -17,9 +17,8 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import selector from '../../redux/selectors'
-
+import walletAction from '../../redux/actions/wallet'
 import ROUTE from '../../constants/route'
-import web3Instance from '../../singletons/web3/web3'
 import authActions from '../../redux/actions/auth'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
@@ -116,17 +115,12 @@ class MenuAppBar extends React.Component {
 
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
-  updateBalance = async () => {
-    const balance = await web3Instance.getBalance()
-    this.setState({ balance: balance.toString() })
-  }
-
   componentDidMount() {
-    setInterval(this.updateBalance, 1000)
+    this.props.walletInitialize()
   }
 
   render() {
-    const { auth, classes } = this.props
+    const { auth, classes, walletBalance } = this.props
     const { open } = this.state
 
     const authLinks = auth.uid ? (
@@ -160,7 +154,7 @@ class MenuAppBar extends React.Component {
               color="inherit"
               className={classes.balance}
             >
-              {this.state.balance || ''}
+              {walletBalance.toString()}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -220,15 +214,18 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
   signOut: PropTypes.func,
   auth: PropTypes.object,
+  walletBalance: PropTypes.object,
   location: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
   auth: selector.getAuthState(state),
+  walletBalance: selector.getWalletBalance(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(authActions.signOut()),
+  walletInitialize: () => dispatch(walletAction.initialize()),
 })
 
 export default compose(
