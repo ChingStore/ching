@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as ReactRedux from 'react-redux'
 import authActions from '../../redux/actions/auth'
+import PropTypes from 'prop-types'
 
 class SignUp extends Component {
   state = {
@@ -59,6 +60,11 @@ class SignUp extends Component {
       </div>
     )
   }
+}
+
+SignUp.propTypes = {
+  signUp: PropTypes.func,
+  authError: PropTypes.string,
 }
 
 const mapStateToProp = state => ({

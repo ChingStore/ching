@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
-import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
+import PropTypes from 'prop-types'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
@@ -11,15 +11,15 @@ import selectors from '../../redux/selectors'
 import orderAction from '../../redux/actions/order'
 import web3Instance from '../../singletons/web3/web3'
 
-const SERVER_URL = 'https://2375898d.ngrok.io'
+const SERVER_URL = 'https://7444e33a.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
   state = {}
 
-  handleItemClick = async item => {
+  handleItemClick = async ({ item, id }) => {
     let address = await web3Instance.getWalletAddress()
-    const orderId = await this.props.addOrder()
+    const orderId = await this.props.addOrder({ itemId: id, quantity: 1 })
 
     const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
       item.price
@@ -49,7 +49,11 @@ class InventoryScene extends React.PureComponent {
         }}
       >
         {_.map(items, (item, id) => (
-          <Card key={id} {...item} onClick={() => this.handleItemClick(item)} />
+          <Card
+            key={id}
+            {...item}
+            onClick={() => this.handleItemClick({ item, id })}
+          />
         ))}
         <Add />
         <QRDialog
@@ -61,8 +65,14 @@ class InventoryScene extends React.PureComponent {
   }
 }
 
+InventoryScene.propTypes = {
+  addOrder: PropTypes.func,
+  items: PropTypes.object,
+}
+
 const mapDispatchToProps = dispatch => ({
-  addOrder: () => dispatch(orderAction.add()),
+  addOrder: ({ itemId, quantity }) =>
+    dispatch(orderAction.add({ itemId, quantity })),
 })
 
 const mapStateToProps = state => ({
@@ -76,24 +86,5 @@ export default Redux.compose(
   ReactRedux.connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  ReactReduxFirebase.firestoreConnect(props => {
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'items',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  }),
-  ReactReduxFirebase.firestoreConnect(props => {
-    // TODO: Research possible performance issues for old accounts with lots of transactions
-    if (!props.auth || !props.auth.uid) return []
-    return [
-      {
-        collection: 'orders',
-        where: [['userId', '==', props.auth.uid]],
-      },
-    ]
-  })
+  )
 )(InventoryScene)

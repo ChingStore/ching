@@ -60,6 +60,12 @@ class Web3 {
     await this._initialized
     return this.accounts[0]
   }
+
+  async isTxConfirmed(hash) {
+    await this._initialized
+    const receipt = await this.dai._web3._web3.eth.getTransactionReceipt(hash)
+    return receipt.status
+  }
 }
 
 export default new Web3()

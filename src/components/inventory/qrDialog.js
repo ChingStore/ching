@@ -176,6 +176,9 @@ class QRDialog extends React.Component {
 
 QRDialog.propTypes = {
   classes: PropTypes.object.isRequired,
+  picture: PropTypes.string,
+  url: PropTypes.string,
+  onClose: PropTypes.func,
 }
 
 export default withStyles(styles)(QRDialog)

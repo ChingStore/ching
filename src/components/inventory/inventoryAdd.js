@@ -40,6 +40,7 @@ function MediaCard(props) {
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  auth: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
