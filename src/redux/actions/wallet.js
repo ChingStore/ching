@@ -5,12 +5,12 @@ import selector from '../../redux/selectors'
 const initialize = () => {
   return async dispatch => {
     setInterval(() => {
-      dispatch(checkBalance())
+      dispatch(updateBalance())
     }, 1000)
   }
 }
 
-const checkBalance = () => {
+const updateBalance = () => {
   return async (dispatch, getState) => {
     const state = getState()
     const oldBalance = selector.getWalletBalance(state)

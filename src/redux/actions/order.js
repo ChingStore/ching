@@ -33,40 +33,35 @@ const txStatusCheckAndUpdateOrder = order => {
     if (!order.txConfirmed && order.txHash) {
       const firestore = getFirestore()
       try {
-        const isConfirmed = await web3Instance.isTxConfirmed(order.txHash)
+        const isTxConfirmed = await web3Instance.isTxConfirmed(order.txHash)
         await firestore
           .collection('orders')
           .doc(order.id)
           .update({
-            txConfirmed: isConfirmed,
+            txConfirmed: isTxConfirmed,
           })
-        if (!isConfirmed) {
-          return
-        } else {
+        if (isTxConfirmed) {
           // updating selling items
-          const confirmed_order = await firestore
-            .collection('orders')
-            .doc(order.id)
-            .get()
-          const items = confirmed_order.data().items
-          _.map(items, async (soldItem, soldItemid) => {
-            const fb_item = await firestore
-              .collection('items')
-              .doc(soldItemid)
-              .get()
+          const state = getState()
+          const confirmedOrderItems = selector.getOrderItems(state, {
+            orderId: order.id,
+          })
+          _.map(confirmedOrderItems, async (soldItem, soldItemId) => {
+            const fbItem = selector.getItem(state, { itemId: soldItemId })
 
             await firestore
               .collection('items')
-              .doc(soldItemid)
+              .doc(soldItemId)
               .update({
-                quantity: fb_item.data().quantity - soldItem.quantity,
-                soldCount: fb_item.data().soldCount + soldItem.quantity,
+                quantity: fbItem.quantity - soldItem.quantity,
+                soldCount: fbItem.soldCount + soldItem.quantity,
               })
             console.log('Order updated. ID:', order.id)
           })
         }
       } catch (error) {
         console.log('Cannot update order. ID:', order.id)
+        console.log('Reason:', error.message)
       }
     }
   }

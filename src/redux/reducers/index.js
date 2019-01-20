@@ -7,7 +7,7 @@ import walletReducer from './wallet'
 
 export default Redux.combineReducers({
   auth: authReducer,
-  wallet: walletReducer,
   firestore: ReduxFirestore.firestoreReducer,
   firebase: ReactReduxFirebase.firebaseReducer,
+  wallet: walletReducer,
 })

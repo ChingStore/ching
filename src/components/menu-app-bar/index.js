@@ -214,7 +214,7 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
   signOut: PropTypes.func,
   auth: PropTypes.object,
-  walletBalance: PropTypes.object,
+  walletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   location: PropTypes.object,
 }
 
