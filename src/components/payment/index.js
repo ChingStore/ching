@@ -1,5 +1,7 @@
 import React from 'react'
-import web3Util from '../../singletons/web3/web3'
+import PropTypes from 'prop-types'
+
+import web3Util from 'singletons/web3/web3'
 
 export default class Add extends React.PureComponent {
   componentDidMount = () => {
@@ -22,4 +24,8 @@ export default class Add extends React.PureComponent {
       </div>
     )
   }
+}
+
+Add.propTypes = {
+  match: PropTypes.object,
 }

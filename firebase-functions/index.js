@@ -14,7 +14,7 @@ const reportTransaction = (orderId, txHash) => {
 }
 
 exports.transactionBuffer = functions.https.onRequest((request, response) => {
-  // NOTE: Request should be in the followinig form:
+  // NOTE: Request should be in the following form:
   // https://us-central1-daipos.cloudfunctions.net/transactionBuffer?orderid=prJgCFcSRIJsOMFuM6Bo&txHash=0x2946052ac5fb89124ef233645cae8cdd4e150dcd86d94508a2f0e5487fe63cc4
 
   console.log('The query:', request.query)

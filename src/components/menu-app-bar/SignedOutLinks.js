@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import PropTypes from 'prop-types'
 
-import ROUTE from '../../constants/route'
+import ROUTE from 'constants/route'
 
 class SignedOutLinks extends Component {
   render() {
@@ -28,6 +29,10 @@ class SignedOutLinks extends Component {
       </div>
     )
   }
+}
+
+SignedOutLinks.propTypes = {
+  handleDrawerClose: PropTypes.func,
 }
 
 export default SignedOutLinks

@@ -7,9 +7,9 @@ import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardMedia from '@material-ui/core/CardMedia'
 import { NavLink } from 'react-router-dom'
-import selectors from '../../redux/selectors'
+import selectors from 'redux/selectors'
 
-import ROUTE from '../../constants/route'
+import ROUTE from 'constants/route'
 import plus from './plus.svg'
 
 const styles = {
@@ -40,6 +40,7 @@ function MediaCard(props) {
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  auth: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
