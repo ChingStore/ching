@@ -57,13 +57,13 @@ class Root extends React.Component {
               />
               <Route
                 exact
-                path={ROUTE.PATH.SIGNIN}
+                path={ROUTE.PATH.SIGN_IN}
                 component={SignIn}
                 id={111}
               />
               <Route
                 exact
-                path={ROUTE.PATH.SIGNUP}
+                path={ROUTE.PATH.SIGN_UP}
                 component={SignUp}
                 id={112}
               />
