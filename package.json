@@ -31,8 +31,9 @@
   "devDependencies": {
     "canvas": "^2.2.0",
     "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "eslint-plugin-react": "^7.12.3",
+    "eslint-plugin-react": "^7.12.4",
     "husky": "^1.3.0",
     "lint-staged": "^8.1.0",
     "prettier": "1.15.3",
@@ -47,7 +48,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "lint": "eslint --max-warnings 19 \"src/**/*.js?(x)\""
+    "lint": "eslint --max-warnings 41 \"src/**/*.js?(x)\""
   },
   "browserslist": [
     ">0.2%",

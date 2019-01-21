@@ -15,10 +15,12 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import selector from '../../redux/selectors'
-import walletAction from '../../redux/actions/wallet'
-import ROUTE from '../../constants/route'
-import authActions from '../../redux/actions/auth'
+
+import ROUTE from 'constants/route'
+import selectors from 'redux/selectors'
+import authActions from 'redux/actions/auth'
+import walletAction from 'redux/actions/wallet'
+
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
@@ -219,8 +221,8 @@ MenuAppBar.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: selector.getAuthState(state),
-  walletBalance: selector.getWalletBalance(state),
+  auth: selectors.getAuthState(state),
+  walletBalance: selectors.getWalletBalance(state),
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -6,10 +6,10 @@ import PropTypes from 'prop-types'
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
-import selectors from '../../redux/selectors'
+import selectors from 'redux/selectors'
 
-import orderAction from '../../redux/actions/order'
-import web3Instance from '../../singletons/web3/web3'
+import orderAction from 'redux/actions/order'
+import web3Instance from 'singletons/web3/web3'
 
 const SERVER_URL = 'https://7444e33a.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'

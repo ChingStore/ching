@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Slide from '@material-ui/core/Slide'
 
-import qrUtil from '../../utils/qr'
+import qrUtil from 'utils/qr'
 
 const styles = theme => ({
   appBar: {

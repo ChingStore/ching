@@ -17,6 +17,11 @@
     "react": {
       "pragma": "React",
       "version": "16.6.3"
+    },
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
     }
   },
   "rules": {

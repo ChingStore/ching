@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import web3Instance from '../../singletons/web3/web3'
-import selector from '../selectors'
+
+import web3Instance from 'singletons/web3/web3'
+import selector from 'redux/selectors'
 
 const add = ({ itemId, quantity }) => {
   return async (dispatch, getState, { getFirestore }) => {

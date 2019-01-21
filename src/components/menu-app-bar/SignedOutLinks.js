@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import PropTypes from 'prop-types'
 
-import ROUTE from '../../constants/route'
+import ROUTE from 'constants/route'
 
 class SignedOutLinks extends Component {
   render() {
