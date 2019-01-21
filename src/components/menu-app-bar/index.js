@@ -15,11 +15,12 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import selectors from 'redux/selectors'
 
 import ROUTE from 'constants/route'
-import web3Instance from 'singletons/web3/web3'
+import selectors from 'redux/selectors'
 import authActions from 'redux/actions/auth'
+import walletAction from 'redux/actions/wallet'
+
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
@@ -115,17 +116,12 @@ class MenuAppBar extends React.Component {
 
   getTitle = () => ROUTE.PATH_TITLE[this.props.location.pathname]
 
-  updateBalance = async () => {
-    const balance = await web3Instance.getBalance()
-    this.setState({ balance: balance.toString() })
-  }
-
   componentDidMount() {
-    setInterval(this.updateBalance, 1000)
+    this.props.walletInitialize()
   }
 
   render() {
-    const { auth, classes } = this.props
+    const { auth, classes, walletBalance } = this.props
     const { open } = this.state
 
     const authLinks = auth.uid ? (
@@ -159,7 +155,7 @@ class MenuAppBar extends React.Component {
               color="inherit"
               className={classes.balance}
             >
-              {this.state.balance || ''}
+              {walletBalance.toString()}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -202,12 +198,10 @@ class MenuAppBar extends React.Component {
             <ListItem
               button
               component={NavLink}
-              to={ROUTE.PATH.TRANSACTIONS}
+              to={ROUTE.PATH.ORDERS}
               onClick={this.handleDrawerClose}
             >
-              <ListItemText
-                primary={ROUTE.PATH_TITLE[ROUTE.PATH.TRANSACTIONS]}
-              />
+              <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.ORDERS]} />
             </ListItem>
             {authLinks}
           </List>
@@ -219,14 +213,21 @@ class MenuAppBar extends React.Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  signOut: PropTypes.func,
+  walletInitialize: PropTypes.func,
+  auth: PropTypes.object,
+  walletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  location: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
+  walletBalance: selectors.getWalletBalance(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(authActions.signOut()),
+  walletInitialize: () => dispatch(walletAction.initialize()),
 })
 
 export default compose(

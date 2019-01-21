@@ -158,13 +158,12 @@ class OutlinedInputAdornments extends React.Component {
 
 OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired,
+  addItem: PropTypes.func,
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addItem: item => dispatch(itemActions.add(item)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(itemActions.add(item)),
+})
 
 export default Redux.compose(
   withStyles(styles),
