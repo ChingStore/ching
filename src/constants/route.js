@@ -1,11 +1,13 @@
 const PATH = {
-  INVENTORY: '/',
-  SALES_REPORT: '/sales-report',
-  ADD: '/add',
-  EDIT: '/edit',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
-  TRANSACTIONS: '/Transactions',
+  TABS: '/tabs',
+  INVENTORY: '/tabs/',
+  SALES_REPORT: '/tabs/sales-report',
+  ADD: '/tabs/add',
+  EDIT: '/tabs/edit',
+  SIGNIN: '/tabs/signin',
+  SIGNUP: '/tabs/signup',
+  TRANSACTIONS: '/tabs/Transactions',
+
   HOME: '/home',
 }
 

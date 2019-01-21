@@ -22,10 +22,11 @@ const styles = {
 class Root extends React.Component {
   render() {
     return (
-      <div className="App" style={styles}>
+      <div style={styles}>
         <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
-          <div id={'a'}>
-            <MenuAppBar id={98} />
+          <div style={styles}>
+            <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+            <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
             <Switch id={109}>
               <Route
                 exact
@@ -64,7 +65,6 @@ class Root extends React.Component {
                 component={Transactions}
                 id={113}
               />
-              <Route exact path={ROUTE.PATH.HOME} component={Home} id={113} />
             </Switch>
           </div>
         </HashRouter>

@@ -2,9 +2,8 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
-import FooterButton from '../../common/footer-button'
-import Art from './icon'
-import * as Icon from 'components/common/icon'
+import FooterButton from 'components/common/footer-button'
+import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
@@ -23,28 +22,33 @@ export default class HomeScene extends React.Component {
   renderTitle() {
     return (
       <div css={style.title}>
-        <p>Start accepting payments in DAI</p>
+        <p css={style.title__text}>Start accepting payments in DAI.</p>
       </div>
     )
   }
 
   renderArt() {
     return (
-      <div>
-        <Art />
+      <div css={style.art}>
+        <Icon.HomeArt />
       </div>
     )
   }
 
   renderBecomeVendor() {
-    return <FooterButton>Become a vendor!</FooterButton>
+    return (
+      <div css={style.becomeVendor}>
+        <FooterButton>Become a vendor</FooterButton>
+      </div>
+    )
   }
 
   renderLogIn() {
     return (
-      <div>
-        <a>
-          <Icon.Login /> Log In
+      <div css={style.logIn}>
+        <a css={style.logInLink} href="#">
+          <Icon.Login />
+          <span css={style.logInLink__text}>Log In</span>
         </a>
       </div>
     )
