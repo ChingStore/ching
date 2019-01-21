@@ -46,16 +46,7 @@ export default {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logInLink: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logInLink__text: {
+  logIn__text: {
     paddingLeft: 15,
-
-    fontWeight: 600,
-    fontSize: 16,
-    color: STYLE.COLOR.BLUE,
   },
 }
