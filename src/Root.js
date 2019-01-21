@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { Route, HashRouter } from 'react-router-dom'
-import { Switch } from 'react-router-dom'
-
+import * as ReactRedux from 'react-redux'
+import * as ReactReduxFirebase from 'react-redux-firebase'
+import * as Redux from 'redux'
+import { Route, HashRouter, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import MenuAppBar from './components/menu-app-bar'
 import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
@@ -13,13 +15,19 @@ import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
-import Transactions from './components/transactions'
+import Orders from './components/orders'
+import orderAction from './redux/actions/order'
+import selectors from './redux/selectors'
 
 const styles = {
   // backgroundColor: 'cornflowerblue',
 }
 
 class Root extends React.Component {
+  componentDidMount() {
+    this.props.orderInitialize()
+  }
+
   render() {
     return (
       <div style={styles}>
@@ -61,8 +69,8 @@ class Root extends React.Component {
               />
               <Route
                 exact
-                path={ROUTE.PATH.TRANSACTIONS}
-                component={Transactions}
+                path={ROUTE.PATH.ORDERS}
+                component={Orders}
                 id={113}
               />
             </Switch>
@@ -73,4 +81,43 @@ class Root extends React.Component {
   }
 }
 
-export default Root
+Root.propTypes = {
+  orderInitialize: PropTypes.func,
+  walletInitialize: PropTypes.func,
+  auth: PropTypes.object,
+}
+
+const mapStateToProps = state => ({
+  auth: selectors.getAuthState(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  orderInitialize: () => dispatch(orderAction.initialize()),
+})
+
+export default Redux.compose(
+  ReactRedux.connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  ReactReduxFirebase.firestoreConnect(props => {
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'items',
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'orders',
+        orderBy: ['createdAt', 'desc'],
+        where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  })
+)(Root)

@@ -1,5 +1,6 @@
 import React from 'react'
 import * as ReactRedux from 'react-redux'
+import PropTypes from 'prop-types'
 
 import authActions from 'redux/actions/auth'
 
@@ -42,6 +43,11 @@ class SignIn extends React.Component {
       </div>
     )
   }
+}
+
+SignIn.propTypes = {
+  signIn: PropTypes.func,
+  authError: PropTypes.string,
 }
 
 const mapStateToProp = state => ({

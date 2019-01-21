@@ -1,4 +1,5 @@
 const PATH = {
+  // Tabbed
   TABS: '/tabs',
   INVENTORY: '/tabs/',
   SALES_REPORT: '/tabs/sales-report',
@@ -6,8 +7,9 @@ const PATH = {
   EDIT: '/tabs/edit',
   SIGNIN: '/tabs/signin',
   SIGNUP: '/tabs/signup',
-  TRANSACTIONS: '/tabs/Transactions',
+  ORDERS: '/tabs/orders',
 
+  // Full-screen
   HOME: '/home',
 }
 
@@ -18,7 +20,7 @@ const PATH_TITLE = {
   [PATH.EDIT]: 'Edit',
   [PATH.SIGNIN]: 'Sign In',
   [PATH.SIGNUP]: 'Sign Up',
-  [PATH.TRANSACTIONS]: 'Transactions',
+  [PATH.ORDERS]: 'Orders',
 }
 
 export default {

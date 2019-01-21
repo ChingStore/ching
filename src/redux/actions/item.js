@@ -1,5 +1,3 @@
-import ACTIONS from 'redux/actionTypes'
-
 const add = ({ name, picture, soldCount, quantity, price }) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
@@ -14,14 +12,8 @@ const add = ({ name, picture, soldCount, quantity, price }) => {
         userId: state.firebase.auth.uid,
         createdAt: new Date(),
       })
-      dispatch({
-        type: ACTIONS.ADD_ITEM_SUCCESS,
-      })
     } catch (err) {
-      dispatch({
-        type: ACTIONS.ERROR,
-        err,
-      })
+      console.log('Error in item/add action', err.message)
     }
   }
 }
