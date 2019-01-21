@@ -1,11 +1,16 @@
 const PATH = {
-  INVENTORY: '/',
-  SALES_REPORT: '/sales-report',
-  ADD: '/add',
-  EDIT: '/edit',
-  SIGNIN: '/signin',
-  SIGNUP: '/signup',
-  ORDERS: '/Orders',
+  // Tabbed
+  TABS: '/tabs',
+  INVENTORY: '/tabs/',
+  SALES_REPORT: '/tabs/sales-report',
+  ADD: '/tabs/add',
+  EDIT: '/tabs/edit',
+  SIGN_IN: '/tabs/signin',
+  SIGN_UP: '/tabs/signup',
+  ORDERS: '/tabs/orders',
+
+  // Full-screen
+  HOME: '/home',
 }
 
 const PATH_TITLE = {
@@ -13,8 +18,8 @@ const PATH_TITLE = {
   [PATH.SALES_REPORT]: 'Sales Report',
   [PATH.ADD]: 'Add',
   [PATH.EDIT]: 'Edit',
-  [PATH.SIGNIN]: 'Sign In',
-  [PATH.SIGNUP]: 'Sign Up',
+  [PATH.SIGN_IN]: 'Sign In',
+  [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',
 }
 
