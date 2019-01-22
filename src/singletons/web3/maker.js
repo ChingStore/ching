@@ -11,7 +11,7 @@ function encodeQueryData(data) {
   return ret.join('&')
 }
 
-class Web3 {
+class Web3Maker {
   /**
    * Stores the initialization promise.
    */
@@ -68,4 +68,4 @@ class Web3 {
   }
 }
 
-export default new Web3()
+export default new Web3Maker()

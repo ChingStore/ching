@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import web3Instance from 'singletons/web3/web3'
+import web3Infura from 'singletons/web3/infura'
 import selector from 'redux/selectors'
 
 const add = ({ itemId, quantity }) => {
@@ -34,7 +34,7 @@ const txStatusCheckAndUpdateOrder = order => {
     if (!order.txConfirmed && order.txHash) {
       const firestore = getFirestore()
       try {
-        const isTxConfirmed = await web3Instance.isTxConfirmed(order.txHash)
+        const isTxConfirmed = await web3Infura.isTxConfirmed(order.txHash)
         await firestore
           .collection('orders')
           .doc(order.id)
