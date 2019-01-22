@@ -4,7 +4,7 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
-
+import InputField from 'components/common/input-field'
 import authActions from 'redux/actions/auth'
 import style from './index.style.js'
 
@@ -18,7 +18,7 @@ class SignIn extends React.Component {
       [e.target.id]: e.target.value,
     })
   }
-  handleSubmit = e => {
+  handleSignIn = e => {
     e.preventDefault() //  prevent reload of the page
     this.props.signIn(this.state)
   }
@@ -37,7 +37,7 @@ class SignIn extends React.Component {
 
   renderForm() {
     return (
-      <form onSubmit={this.handleSignUp}>
+      <form onSubmit={this.handleSignIn}>
         {this.renderUsernameField()}
         {this.renderPasswordField()}
         {this.renderContinueButton()}
@@ -48,7 +48,7 @@ class SignIn extends React.Component {
     return (
       <div>
         <InputField
-          onChange={e => this.setState({ email: e.target.value })}
+          onChange={this.handleChange}
           id="email"
           placeholder="Enter your e-mail"
           labelText="Email"
@@ -61,7 +61,7 @@ class SignIn extends React.Component {
     return (
       <div>
         <InputField
-          onChange={e => this.setState({ password: e.target.value })}
+          onChange={this.handleChange}
           id="password"
           placeholder="Type in your password"
           labelText="Password"
