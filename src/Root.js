@@ -10,10 +10,10 @@ import SalesReport from './components/sales-report'
 import Add from './components/add'
 import Payment from './components/payment'
 import Home from './components/onboarding/home'
+import SignIn from './components/onboarding/sign-in'
 
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
-import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
 import orderAction from './redux/actions/order'
@@ -29,6 +29,7 @@ class Root extends React.Component {
       <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
         <div>
           <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+          <Route exact path={ROUTE.PATH.SIGN_IN} component={SignIn} id={115} />
           <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
           <Switch id={109}>
             <Route
@@ -49,12 +50,6 @@ class Root extends React.Component {
               path="/payment/:address/:amount/:orderId"
               component={Payment}
               id={108}
-            />
-            <Route
-              exact
-              path={ROUTE.PATH.SIGN_IN}
-              component={SignIn}
-              id={111}
             />
             <Route
               exact
