@@ -30,6 +30,8 @@ class Root extends React.Component {
       <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
         <div>
           <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+          <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={114} />
+
           <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
           <Switch id={109}>
             <Route
@@ -56,12 +58,6 @@ class Root extends React.Component {
               path={ROUTE.PATH.SIGN_IN}
               component={SignIn}
               id={111}
-            />
-            <Route
-              exact
-              path={ROUTE.PATH.SIGN_UP}
-              component={SignUp}
-              id={112}
             />
             <Route exact path={ROUTE.PATH.ORDERS} component={Orders} id={113} />
           </Switch>

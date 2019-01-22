@@ -2,7 +2,9 @@ import SignUp from '..'
 import * as ReactRedux from 'react-redux'
 
 const mapDispatchToProps = dispatch => ({
-  signUp: (name, password) => {},
+  signUp: data => {
+    console.log('data', data)
+  },
 })
 
 export default ReactRedux.connect(

@@ -6,7 +6,7 @@ const PATH = {
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
   SIGN_IN: '/tabs/signin',
-  SIGN_UP: '/tabs/signup',
+  SIGN_UP: '/signup',
   ORDERS: '/tabs/orders',
 
   // Full-screen
