@@ -25,7 +25,7 @@ class Web3Maker {
 
   constructor() {
     this._initialized = this._initialize()
-    console.log('Init web3')
+    console.log('Maker Web3 initialized')
   }
 
   async _initialize() {
@@ -49,22 +49,6 @@ class Web3Maker {
     } catch (err) {
       console.error(err)
     }
-  }
-
-  async getBalance() {
-    await this._initialized
-    return await this.dai.balanceOf(this.accounts[0])
-  }
-
-  async getWalletAddress() {
-    await this._initialized
-    return this.accounts[0]
-  }
-
-  async isTxConfirmed(hash) {
-    await this._initialized
-    const receipt = await this.dai._web3._web3.eth.getTransactionReceipt(hash)
-    return receipt.status
   }
 }
 
