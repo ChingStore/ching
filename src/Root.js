@@ -10,11 +10,12 @@ import SalesReport from './components/sales-report'
 import Add from './components/add'
 import Payment from './components/payment'
 import Home from './components/onboarding/home'
+import SignUp from './components/onboarding/sign-up/container'
 
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
-import SignUp from './components/auth/SignUp'
+// import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
 import orderAction from './redux/actions/order'
 import selectors from './redux/selectors'
@@ -34,6 +35,12 @@ class Root extends React.Component {
         <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
           <div style={styles}>
             <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+            <Route
+              exact
+              path={ROUTE.PATH.SIGN_UP}
+              component={SignUp}
+              id={115}
+            />
             <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
             <Switch id={109}>
               <Route
@@ -61,12 +68,7 @@ class Root extends React.Component {
                 component={SignIn}
                 id={111}
               />
-              <Route
-                exact
-                path={ROUTE.PATH.SIGNUP}
-                component={SignUp}
-                id={112}
-              />
+
               <Route
                 exact
                 path={ROUTE.PATH.ORDERS}
