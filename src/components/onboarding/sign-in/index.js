@@ -35,6 +35,50 @@ class SignIn extends React.Component {
     )
   }
 
+  renderForm() {
+    return (
+      <form onSubmit={this.handleSignUp}>
+        {this.renderUsernameField()}
+        {this.renderPasswordField()}
+        {this.renderContinueButton()}
+      </form>
+    )
+  }
+  renderUsernameField = () => {
+    return (
+      <div>
+        <InputField
+          onChange={e => this.setState({ email: e.target.value })}
+          id="email"
+          placeholder="Enter your e-mail"
+          labelText="Email"
+        />
+      </div>
+    )
+  }
+
+  renderPasswordField = () => {
+    return (
+      <div>
+        <InputField
+          onChange={e => this.setState({ password: e.target.value })}
+          id="password"
+          placeholder="Type in your password"
+          labelText="Password"
+          type="password"
+        />
+      </div>
+    )
+  }
+
+  renderContinueButton = () => {
+    return (
+      <div>
+        <button>Continue</button>
+      </div>
+    )
+  }
+
   render() {
     const { authError } = this.props
 
@@ -42,6 +86,7 @@ class SignIn extends React.Component {
       <div css={style.base}>
         {this.renderBackLink()}
         {this.renderTitle()}
+        {this.renderForm()}
       </div>
     )
   }

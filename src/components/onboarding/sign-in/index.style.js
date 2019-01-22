@@ -17,6 +17,7 @@ export default {
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
+
   title: {
     flex: 0.08,
     flexDirection: 'column',
@@ -25,6 +26,7 @@ export default {
     width: '240px',
     height: '80px',
   },
+
   title__text: {
     fontWeight: 'bold',
     fontSize: 32,
