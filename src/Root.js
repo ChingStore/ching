@@ -20,10 +20,6 @@ import Orders from './components/orders'
 import orderAction from './redux/actions/order'
 import selectors from './redux/selectors'
 
-const styles = {
-  // backgroundColor: 'cornflowerblue',
-}
-
 class Root extends React.Component {
   componentDidMount() {
     this.props.orderInitialize()
@@ -31,54 +27,46 @@ class Root extends React.Component {
 
   render() {
     return (
-      <div style={styles}>
-        <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
-          <div style={styles}>
-            <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+      <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
+        <div>
+          <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+          <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
+          <Switch id={109}>
+            <Route
+              exact
+              path={ROUTE.PATH.INVENTORY}
+              component={Inventory}
+              id={105}
+            />
+            <Route
+              exact
+              path={ROUTE.PATH.SALES_REPORT}
+              component={SalesReport}
+              id={106}
+            />
+            <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
+            <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121} />
+            <Route
+              path="/payment/:address/:amount/:orderId"
+              component={Payment}
+              id={108}
+            />
+            <Route
+              exact
+              path={ROUTE.PATH.SIGN_IN}
+              component={SignIn}
+              id={111}
+            />
             <Route
               exact
               path={ROUTE.PATH.SIGN_UP}
               component={SignUp}
-              id={115}
+              id={112}
             />
-            <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
-            <Switch id={109}>
-              <Route
-                exact
-                path={ROUTE.PATH.INVENTORY}
-                component={Inventory}
-                id={105}
-              />
-              <Route
-                exact
-                path={ROUTE.PATH.SALES_REPORT}
-                component={SalesReport}
-                id={106}
-              />
-              <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
-              <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121} />
-              <Route
-                path="/payment/:address/:amount/:orderId"
-                component={Payment}
-                id={108}
-              />
-              <Route
-                exact
-                path={ROUTE.PATH.SIGNIN}
-                component={SignIn}
-                id={111}
-              />
-
-              <Route
-                exact
-                path={ROUTE.PATH.ORDERS}
-                component={Orders}
-                id={113}
-              />
-            </Switch>
-          </div>
-        </HashRouter>
-      </div>
+            <Route exact path={ROUTE.PATH.ORDERS} component={Orders} id={113} />
+          </Switch>
+        </div>
+      </HashRouter>
     )
   }
 }

@@ -5,12 +5,12 @@ import * as ReactRouter from 'react-router'
 
 import style from './index.style.js'
 
-class FooterButton extends React.Component {
+class LinkButton extends React.Component {
   render() {
     return (
-      <button css={style.base} onClick={this.handleClick}>
+      <a css={style.base} onClick={this.handleClick}>
         {this.props.children}
-      </button>
+      </a>
     )
   }
 
@@ -22,4 +22,4 @@ class FooterButton extends React.Component {
   }
 }
 
-export default ReactRouter.withRouter(FooterButton)
+export default ReactRouter.withRouter(LinkButton)

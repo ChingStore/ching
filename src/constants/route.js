@@ -5,8 +5,8 @@ const PATH = {
   SALES_REPORT: '/tabs/sales-report',
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
-  SIGNIN: '/tabs/signin',
-  SIGNUP: '/tabs/signup',
+  SIGN_IN: '/tabs/signin',
+  SIGN_UP: '/tabs/signup',
   ORDERS: '/tabs/orders',
 
   // Full-screen
@@ -18,8 +18,8 @@ const PATH_TITLE = {
   [PATH.SALES_REPORT]: 'Sales Report',
   [PATH.ADD]: 'Add',
   [PATH.EDIT]: 'Edit',
-  [PATH.SIGNIN]: 'Sign In',
-  [PATH.SIGNUP]: 'Sign Up',
+  [PATH.SIGN_IN]: 'Sign In',
+  [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',
 }
 

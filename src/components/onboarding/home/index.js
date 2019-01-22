@@ -2,7 +2,9 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
+import ROUTE from 'constants/route'
 import FooterButton from 'components/common/footer-button'
+import LinkButton from 'components/common/link-button'
 import Icon from 'components/common/icon'
 
 import style from './index.style.js'
@@ -38,7 +40,7 @@ export default class HomeScene extends React.Component {
   renderBecomeVendor() {
     return (
       <div css={style.becomeVendor}>
-        <FooterButton>Become a vendor</FooterButton>
+        <FooterButton to={ROUTE.PATH.SIGN_UP}>Become a vendor</FooterButton>
       </div>
     )
   }
@@ -46,10 +48,10 @@ export default class HomeScene extends React.Component {
   renderLogIn() {
     return (
       <div css={style.logIn}>
-        <a css={style.logInLink} href="#">
+        <LinkButton to={ROUTE.PATH.SIGN_IN}>
           <Icon.Login />
-          <span css={style.logInLink__text}>Log In</span>
-        </a>
+          <span css={style.logIn__text}>Log In</span>
+        </LinkButton>
       </div>
     )
   }
