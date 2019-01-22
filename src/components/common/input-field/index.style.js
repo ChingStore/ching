@@ -15,7 +15,7 @@ export default {
     borderWidth: 0,
   },
   line: {
-    border: 1,
+    borderWidth: 1,
     border: 'solid',
     border: STYLE.COLOR.BLUE,
   },
