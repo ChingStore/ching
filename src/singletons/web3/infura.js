@@ -1,5 +1,7 @@
 // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c
 
+import NETWORK from 'constants/eth-networks'
+
 const Web3 = require('web3')
 
 const daiMainnetAddress = '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359'
@@ -40,6 +42,13 @@ class Web3Infura {
 
   async _initialize() {
     this.web3 = new Web3(new Web3.providers.HttpProvider(INFURA_KOVAN_URI))
+    // const connection = await this.web3.currentProvider.connection
+    this.getNetwork()
+  }
+
+  getNetwork() {
+    const netId = parseInt(this.web3.version.network)
+    console.log(NETWORK[netId])
   }
 
   async isTxConfirmed(hash) {

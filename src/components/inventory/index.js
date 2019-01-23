@@ -9,15 +9,12 @@ import QRDialog from './qrDialog'
 import selectors from 'redux/selectors'
 
 import orderAction from 'redux/actions/order'
-import web3Infura from 'singletons/web3/infura'
 
 const SERVER_URL = 'https://f7b67086.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
   state = {}
-
-  componentDidMount = () => {}
 
   handleItemClick = async ({ item, id }) => {
     let address = '0xf82B82b4ebC83479eF10271190A7cf5487240955'

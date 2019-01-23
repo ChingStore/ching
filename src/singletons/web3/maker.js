@@ -27,7 +27,6 @@ class Web3Maker {
     this._initialized = this._initialize()
     console.log('Maker Web3 initialized')
   }
-
   async _initialize() {
     this._maker = Maker.create('browser')
     await this._maker.authenticate()
