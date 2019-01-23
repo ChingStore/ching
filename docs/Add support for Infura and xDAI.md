@@ -126,10 +126,45 @@ const orders = {
 }
 ```
 
+### utils/transaction.js
+
+```js
+
+//////////////
+// CHECKERS //
+//////////////
+
+function isSubmitted(transaction) {
+  return true || false
+}
+
+function isConfirmed(transaction) {
+  return true || false
+}
+
+/////////////
+// GETTERS //
+/////////////
+
+function getConfirmationString(transaction) {
+  ...
+  return `${n}/${m} Confirmations` || 'Confirmed' || 'Not submitted'
+}
+```
+
 ### redux/reducers.js
 
 ```js
 ...
+```
+
+### constants/transaction.js
+
+```js
+const REQUIRED_CONFIRMATIONS_COUNT = {
+  [ETH.NETWORK.MAINNET]: 2
+  [ETH.NETWORK.XDAI]: 1
+}
 ```
 
 ### constants/eth.js
