@@ -93,17 +93,12 @@ monitorTransaction({ txHash, networkId }) {
 ### redux/selectors.js
 
 ```js
-
-function select(path) {
-  return state => _.get(state, )
-}
-
 const eth = {
   transaction: (state, { networkId, walletAddress, txHash }) =>
-    _.get(state, `chains.eth[${networkId}].accounts[${walletAddress}].transactions[${txHash}]`,
+    _.get(state, `chains.eth[${networkId}].accounts[${walletAddress}].transactions[${txHash}]`)
 
   balance: (state, { network, walletAddress }) =>
-    _.get(state, `chains.eth[${network}].accounts[${walletAddress}].balance`
+    _.get(state, `chains.eth[${network}].accounts[${walletAddress}].balance`)
 }
 
 const store = {
