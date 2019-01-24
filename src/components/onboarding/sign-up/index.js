@@ -42,7 +42,7 @@ export default class SignUp extends React.Component {
     return (
       <div>
         <InputField
-          onChange={e => this.setState({ email: e.target.value })}
+          onChange={this.handleChange}
           id="email"
           placeholder="Enter your e-mail"
           labelText="E-mail"
@@ -55,7 +55,7 @@ export default class SignUp extends React.Component {
     return (
       <div>
         <InputField
-          onChange={e => this.setState({ password: e.target.value })}
+          onChange={this.handleChange}
           id="password"
           placeholder="Type in your password"
           labelText="Password"
@@ -83,5 +83,11 @@ export default class SignUp extends React.Component {
     const { email, password } = this.state
 
     signUp({ email, password })
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value,
+    })
   }
 }
