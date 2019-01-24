@@ -8,6 +8,10 @@ const daiMainnetAddress = '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359'
 const daiKovanAddress = '0xC4375B7De8af5a38a93548eb8453a498222C4fF2'
 const INFURA_KOVAN_URI =
   'https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c'
+const INFURA_MAINNET_URI =
+  'https://mainnet.infura.io/v3/3059c072371d4397b84e9577f896d91c'
+
+const INFURA_XDAI_URI = 'https://poa.infura.io'
 
 // The minimum ABI to get ERC20 Token balance
 const minABI = [
@@ -41,7 +45,7 @@ class Web3Infura {
   }
 
   async _initialize() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider(INFURA_KOVAN_URI))
+    this.web3 = new Web3(new Web3.providers.HttpProvider(INFURA_MAINNET_URI))
     // const connection = await this.web3.currentProvider.connection
     this.getNetwork()
   }
@@ -59,7 +63,7 @@ class Web3Infura {
 
   getBalance = async walletAddress => {
     await this._initialized
-    const contract = this.web3.eth.contract(minABI).at(daiKovanAddress)
+    const contract = this.web3.eth.contract(minABI).at(daiMainnetAddress)
     let balance = await contract.balanceOf(walletAddress)
     balance = balance.div(10 ** contract.decimals())
     return balance
