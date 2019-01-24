@@ -10,7 +10,10 @@ export default class InputField extends React.Component {
     return (
       <div css={style.base}>
         <label css={style.label}>{labelText}</label>
-        <input css={style.input} {...rest} />
+        <input
+          css={this.props.type === 'password' ? style.password : style.input}
+          {...rest}
+        />
         <hr css={style.line} />
       </div>
     )

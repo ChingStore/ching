@@ -14,9 +14,6 @@ export default {
   input: {
     fontSize: 22,
     borderWidth: 0,
-    placeholder: {
-      color: 'red',
-    },
   },
 
   line: {
@@ -24,5 +21,11 @@ export default {
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: STYLE.COLOR.BLUE,
+  },
+  password: {
+    fontSize: 22,
+    borderWidth: 0,
+    fontFamily: 'cursive',
+    '::placeholder': { fontFamily: 'Inter UI' },
   },
 }
