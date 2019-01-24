@@ -5,13 +5,14 @@ import React from 'react'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
+import vectorImg from './Vector.png'
 
 export default class SignUp extends React.Component {
   state = {}
 
   render() {
     return (
-      <div>
+      <div css={style.base}>
         {this.renderTitle()}
         {this.renderForm()}
       </div>
@@ -21,7 +22,7 @@ export default class SignUp extends React.Component {
   renderTitle = () => {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>Start accepting payments in DAI.</p>
+        <p css={style.title__text}>Create your account.</p>
       </div>
     )
   }
@@ -30,6 +31,7 @@ export default class SignUp extends React.Component {
     return (
       <form onSubmit={this.handleSignUp}>
         {this.renderUsernameField()}
+        <div css={style.spacer} />
         {this.renderPasswordField()}
         {this.renderContinueButton()}
       </form>
@@ -43,7 +45,7 @@ export default class SignUp extends React.Component {
           onChange={e => this.setState({ email: e.target.value })}
           id="email"
           placeholder="Enter your e-mail"
-          labelText="Email"
+          labelText="E-mail"
         />
       </div>
     )
@@ -65,20 +67,21 @@ export default class SignUp extends React.Component {
 
   renderContinueButton = () => {
     return (
-      <div>
-        <button>Continue</button>
+      <div css={style.button__location}>
+        <button css={style.continue__button}>
+          <div css={style.contnue__text}>Continue</div>
+          <div css={style.continue__circle}>
+            <img css={style.vector} src={vectorImg} />
+          </div>
+        </button>
       </div>
     )
   }
 
   handleSignUp = () => {
     const { signUp } = this.props
-    const { username, password } = this.state
+    const { email, password } = this.state
 
-    signUp({ username, password })
+    signUp({ email, password })
   }
-
-  // handleChange = ({ username, password }) => {
-  //   this.setState({ username, password })
-  // }
 }
