@@ -155,7 +155,7 @@ class MenuAppBar extends React.Component {
               color="inherit"
               className={classes.balance}
             >
-              {walletBalance.toString()}
+              {walletBalance ? walletBalance.toFixed(2).toString() : ''}
             </Typography>
           </Toolbar>
         </AppBar>
