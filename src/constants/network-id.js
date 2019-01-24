@@ -50,4 +50,7 @@ const NETWORK_ID = {
 
 const ID_NETWORK = _.invert(ID_NETWORK)
 
-export default NETWORK
+export default {
+  ID_NETWORK,
+  NETWORK_ID,
+}
