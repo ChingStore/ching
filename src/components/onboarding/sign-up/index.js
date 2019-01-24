@@ -71,7 +71,7 @@ export default class SignUp extends React.Component {
         <button css={style.continue__button}>
           <div css={style.contnue__text}>Continue</div>
           <div css={style.continue__circle}>
-            <img css={style.vector} src={vectorImg} />
+            <img css={style.vector} src={vectorImg} alt="" />
           </div>
         </button>
       </div>

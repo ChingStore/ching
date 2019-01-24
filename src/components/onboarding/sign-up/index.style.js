@@ -1,5 +1,4 @@
 import STYLE from 'constants/style'
-import vectorImg from './Vector.png'
 
 export default {
   base: {
@@ -80,7 +79,6 @@ export default {
     justifyContent: 'center',
     alignContent: 'center',
   },
-  vector: {},
   spacer: {
     marginTop: 30,
   },
