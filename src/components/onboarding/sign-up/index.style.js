@@ -61,6 +61,7 @@ export default {
     color: STYLE.COLOR.CYAN,
     display: 'flex',
     alignItems: 'center',
+    borderWidth: 0,
   },
   contnue__text: {
     marginRight: 20,

@@ -18,7 +18,7 @@ export default {
 
   line: {
     width: '100%',
-    borderWidth: 1,
+    borderTopWidth: 0,
     borderStyle: 'solid',
     borderColor: STYLE.COLOR.BLUE,
   },
