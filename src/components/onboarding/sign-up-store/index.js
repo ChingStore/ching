@@ -22,7 +22,7 @@ export default class SignUp extends React.Component {
   renderTitle = () => {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>Create your account.</p>
+        <p css={style.title__text}>Set up your store.</p>
       </div>
     )
   }
@@ -33,6 +33,7 @@ export default class SignUp extends React.Component {
         {this.renderUsernameField()}
         <div css={style.spacer} />
         {this.renderPasswordField()}
+        {this.renderHelpLink()}
         {this.renderContinueButton()}
       </form>
     )
@@ -43,9 +44,9 @@ export default class SignUp extends React.Component {
       <div>
         <InputField
           onChange={this.handleChange}
-          id="email"
-          placeholder="Enter your e-mail"
-          labelText="E-mail"
+          id="storeName"
+          placeholder="MyStore"
+          labelText="Name"
         />
       </div>
     )
@@ -56,11 +57,20 @@ export default class SignUp extends React.Component {
       <div>
         <InputField
           onChange={this.handleChange}
-          id="password"
-          placeholder="Type in your password"
-          labelText="Password"
-          type="password"
+          id="ethereumAddress"
+          placeholder="0x 1234 4444 4444 ... 4444"
+          labelText="Ethereum address"
         />
+      </div>
+    )
+  }
+
+  renderHelpLink = () => {
+    return (
+      <div css={style.help__link__location}>
+        <button css={style.help__link__button}>
+          <div css={style.help__link__text}>What is it?</div>
+        </button>
       </div>
     )
   }

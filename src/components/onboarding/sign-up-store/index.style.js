@@ -57,6 +57,19 @@ export default {
     display: 'flex',
     flexDirection: 'row-reverse',
   },
+  help__link__location: {
+    marginTop: 5,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row-reverse',
+  },
+  help__link__button: {
+    color: STYLE.COLOR.CYAN,
+    backgroundColor: 'transparent',
+    display: 'flex',
+    alignItems: 'center',
+    borderWidth: 0,
+  },
   continue__button: {
     color: STYLE.COLOR.CYAN,
     backgroundColor: 'transparent',
@@ -66,6 +79,11 @@ export default {
   },
   continue__text: {
     marginRight: 20,
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    fontSize: 16,
+  },
+  help__link__text: {
+    marginRight: 0,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 16,
   },
