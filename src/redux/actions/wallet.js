@@ -1,4 +1,4 @@
-import web3Infura from '../../singletons/web3/infura'
+import web3Infura from '../../singletons/web3/xdai'
 import ACTIONS from '../actionTypes'
 import selector from '../../redux/selectors'
 

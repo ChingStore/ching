@@ -11,7 +11,7 @@ function encodeQueryData(data) {
   return ret.join('&')
 }
 
-class Web3Maker {
+class Web3Dai {
   /**
    * Stores the initialization promise.
    */
@@ -34,7 +34,7 @@ class Web3Maker {
     this.accounts = await this.dai._web3.eth.getAccounts()
   }
 
-  async send({ address, amount, orderId }) {
+  async sendDAI({ address, amount, orderId }) {
     await this._initialized
     try {
       const tx = await this.dai.transfer(address, amount)
@@ -51,4 +51,4 @@ class Web3Maker {
   }
 }
 
-export default new Web3Maker()
+export default new Web3Dai()
