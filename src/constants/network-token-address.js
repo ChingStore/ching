@@ -1,0 +1,14 @@
+const DAI = {
+  MAINNET: '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',
+  KOVAN: '0xC4375B7De8af5a38a93548eb8453a498222C4fF2',
+}
+
+const XDAI = {
+  MAINNET: '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',
+  // KOVAN: '0xC4375B7De8af5a38a93548eb8453a498222C4fF2',
+}
+
+export default {
+  DAI,
+  XDAI,
+}
