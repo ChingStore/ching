@@ -1,4 +1,5 @@
 import Maker from '@makerdao/dai'
+import NetworkIdName from 'constants/network-id-name'
 
 const { DAI } = Maker
 const TRANSACTION_BUFFER_URL =
@@ -32,10 +33,17 @@ class Web3Dai {
     await this._maker.authenticate()
     this.dai = this._maker.service('token').getToken(DAI)
     this.accounts = await this.dai._web3.eth.getAccounts()
+    this.getNetwork()
+  }
+
+  getNetwork() {
+    this._netId = parseInt(this.dai._web3.networkId())
+    console.log('dai.js initialized at:', NetworkIdName[this._netId])
   }
 
   async sendDAI({ address, amount, orderId }) {
     await this._initialized
+
     try {
       const tx = await this.dai.transfer(address, amount)
       fetch(
@@ -43,6 +51,7 @@ class Web3Dai {
           encodeQueryData({
             orderId,
             txHash: tx.hash,
+            networkId: this._netId,
           })
       )
     } catch (err) {
