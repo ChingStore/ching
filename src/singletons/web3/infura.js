@@ -1,37 +1,11 @@
 // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c
 
-import NETWORK from 'constants/eth-networks'
+import NetworkIdName from 'constants/network-id-name'
+import NetworkIdUrl from 'constants/network-id-url'
+import NetworkTokenAddress from 'constants/network-token-address'
+import DAIABI from 'constants/abi'
 
 const Web3 = require('web3')
-
-const daiMainnetAddress = '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359'
-const daiKovanAddress = '0xC4375B7De8af5a38a93548eb8453a498222C4fF2'
-const INFURA_KOVAN_URI =
-  'https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c'
-const INFURA_MAINNET_URI =
-  'https://mainnet.infura.io/v3/3059c072371d4397b84e9577f896d91c'
-
-const INFURA_XDAI_URI = 'https://poa.infura.io'
-
-// The minimum ABI to get ERC20 Token balance
-const minABI = [
-  // balanceOf
-  {
-    constant: true,
-    inputs: [{ name: '_owner', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: 'balance', type: 'uint256' }],
-    type: 'function',
-  },
-  // decimals
-  {
-    constant: true,
-    inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', type: 'uint8' }],
-    type: 'function',
-  },
-]
 
 class Web3Infura {
   /**
@@ -41,18 +15,21 @@ class Web3Infura {
 
   constructor() {
     console.log('Infura Web3 initialized')
+    // this.networkId()
     this._initialized = this._initialize()
   }
 
   async _initialize() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider(INFURA_MAINNET_URI))
+    this.web3 = new Web3(
+      new Web3.providers.HttpProvider(NetworkIdUrl.URL.KOVAN)
+    )
     // const connection = await this.web3.currentProvider.connection
     this.getNetwork()
   }
 
   getNetwork() {
     const netId = parseInt(this.web3.version.network)
-    console.log(NETWORK[netId])
+    console.log(NetworkIdName[netId])
   }
 
   async isTxConfirmed(hash) {
@@ -63,7 +40,9 @@ class Web3Infura {
 
   getBalance = async walletAddress => {
     await this._initialized
-    const contract = this.web3.eth.contract(minABI).at(daiMainnetAddress)
+    const contract = this.web3.eth
+      .contract(DAIABI)
+      .at(NetworkTokenAddress.DAI.KOVAN)
     let balance = await contract.balanceOf(walletAddress)
     balance = balance.div(10 ** contract.decimals())
     return balance
