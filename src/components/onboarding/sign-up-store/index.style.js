@@ -22,6 +22,7 @@ export default {
     fontWeight: 'bold',
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
+    paddingRight: 120,
   },
 
   becomeVendor: {
@@ -31,14 +32,6 @@ export default {
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
-  //
-  // logIn: {
-  //   flex: 0.2,
-  //
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
   logInLink: {
     display: 'flex',
     alignItems: 'center',
@@ -52,7 +45,7 @@ export default {
     color: STYLE.COLOR.BLUE,
   },
   button__location: {
-    marginTop: 98,
+    marginTop: 81,
     flex: 1,
     display: 'flex',
     flexDirection: 'row-reverse',
@@ -69,6 +62,7 @@ export default {
     display: 'flex',
     alignItems: 'center',
     borderWidth: 0,
+    paddingRight: 0,
   },
   continue__button: {
     color: STYLE.COLOR.CYAN,
