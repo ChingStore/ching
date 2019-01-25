@@ -89,10 +89,10 @@ export default class SignUp extends React.Component {
   }
 
   handleSignUp = () => {
-    const { signUp } = this.props
-    const { email, password } = this.state
+    const { signUpStore } = this.props
+    const { storeName, ethereumAddress } = this.state
 
-    signUp({ email, password })
+    signUpStore({ storeName, ethereumAddress })
   }
 
   handleChange = e => {
