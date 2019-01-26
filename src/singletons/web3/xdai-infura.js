@@ -1,35 +1,28 @@
 // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c
 
-import NetworkIdName from 'constants/network-id-name'
-import NetworkIdUrl from 'constants/network-id-url'
-import NetworkTokenAddress from 'constants/network-token-address'
+import NETWORK from 'constants/network'
 import DAIABI from 'constants/abi'
 
 const Web3 = require('web3')
 
-class Web3Infura {
+class Web3XdaiInfura {
   /**
    * Stores the initialization promise.
    */
   _initialized = null
 
   constructor() {
-    console.log('Infura Web3 initialized')
-    // this.networkId()
     this._initialized = this._initialize()
   }
 
   async _initialize() {
-    this.web3 = new Web3(
-      new Web3.providers.HttpProvider(NetworkIdUrl.URL.KOVAN)
-    )
-    // const connection = await this.web3.currentProvider.connection
+    this.web3 = new Web3(new Web3.providers.HttpProvider(NETWORK.URL.XDAI))
     this.getNetwork()
   }
 
   getNetwork() {
     const netId = parseInt(this.web3.version.network)
-    console.log(NetworkIdName[netId])
+    console.log('Infura XDai initialized:', NETWORK.ID_NAME[netId])
   }
 
   async isTxConfirmed(hash) {
@@ -42,11 +35,12 @@ class Web3Infura {
     await this._initialized
     const contract = this.web3.eth
       .contract(DAIABI)
-      .at(NetworkTokenAddress.DAI.KOVAN)
-    let balance = await contract.balanceOf(walletAddress)
+      .at(NETWORK.TOKEN_ADDRESS.MAINNET)
+    let balance = this.web3.eth.getBalance(walletAddress)
     balance = balance.div(10 ** contract.decimals())
-    return balance
+    balance = this.web3.fromWei('' + balance, 'ether')
+    return parseFloat(balance).toFixed(2)
   }
 }
 
-export default new Web3Infura()
+export default new Web3XdaiInfura()
