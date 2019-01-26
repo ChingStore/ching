@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.6",
-    "@makerdao/dai": "^0.9.6",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "ajv": "^6.5.4",
