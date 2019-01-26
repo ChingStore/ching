@@ -1,4 +1,5 @@
-import web3Infura from '../../singletons/web3/xdai'
+import Web3DaiInfura from '../../singletons/web3/dai-infura'
+import Web3XdaiInfura from '../../singletons/web3/xdai-infura'
 import ACTIONS from '../actionTypes'
 import selector from '../../redux/selectors'
 
@@ -15,10 +16,21 @@ const initialize = () => {
 const updateBalance = () => {
   return async (dispatch, getState) => {
     const state = getState()
-    const oldBalance = selector.getWalletBalance(state)
-    const newBalance = await web3Infura.getBalance(walletAddress)
-    if (oldBalance.toString() !== newBalance.toString()) {
-      dispatch({ type: ACTIONS.UPDATE_WALLET_BALANCE, payload: newBalance })
+    const oldDaiBalance = selector.getDaiWalletBalance(state)
+    const newDaiBalance = await Web3DaiInfura.getBalance(walletAddress)
+    if (oldDaiBalance !== newDaiBalance) {
+      dispatch({
+        type: ACTIONS.UPDATE_DAIWALLET_BALANCE,
+        payload: newDaiBalance,
+      })
+    }
+    const oldXdaiBalance = selector.getXdaiWalletBalance(state)
+    const newXdaiBalance = await Web3XdaiInfura.getBalance(walletAddress)
+    if (oldXdaiBalance !== newXdaiBalance) {
+      dispatch({
+        type: ACTIONS.UPDATE_XDAIWALLET_BALANCE,
+        payload: newXdaiBalance,
+      })
     }
   }
 }

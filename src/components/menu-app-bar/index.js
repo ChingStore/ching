@@ -121,7 +121,7 @@ class MenuAppBar extends React.Component {
   }
 
   render() {
-    const { auth, classes, walletBalance } = this.props
+    const { auth, classes, daiWalletBalance, xdaiWalletBalance } = this.props
     const { open } = this.state
 
     const authLinks = auth.uid ? (
@@ -155,7 +155,14 @@ class MenuAppBar extends React.Component {
               color="inherit"
               className={classes.balance}
             >
-              {walletBalance ? walletBalance.toFixed(2).toString() : ''}
+              {daiWalletBalance ? `${daiWalletBalance.toString()} DAI` : ''}
+            </Typography>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={classes.balance}
+            >
+              {xdaiWalletBalance ? `${xdaiWalletBalance.toString()} XDAI` : ''}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -216,13 +223,14 @@ MenuAppBar.propTypes = {
   signOut: PropTypes.func,
   walletInitialize: PropTypes.func,
   auth: PropTypes.object,
-  walletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  daiWalletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   location: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
-  walletBalance: selectors.getWalletBalance(state),
+  daiWalletBalance: selectors.getDaiWalletBalance(state),
+  xdaiWalletBalance: selectors.getXdaiWalletBalance(state),
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,8 @@ const getOrderItems = (store, { orderId }) =>
 const getItem = (store, { itemId }) => store.firestore.data.items[itemId]
 const getItemPrice = (store, { itemId }) =>
   store.firestore.data.items[itemId].price
-const getWalletBalance = store => store.wallet.balance
+const getXdaiWalletBalance = store => store.wallet.xdaiBalance
+const getDaiWalletBalance = store => store.wallet.daiBalance
 
 export default {
   getItemsState,
@@ -19,5 +20,6 @@ export default {
   getItemPrice,
   getStores,
   getStoresUsers,
-  getWalletBalance,
+  getDaiWalletBalance,
+  getXdaiWalletBalance,
 }
