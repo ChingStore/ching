@@ -10,7 +10,7 @@ import selectors from 'redux/selectors'
 
 import orderAction from 'redux/actions/order'
 
-const SERVER_URL = 'https://63413fb7.ngrok.io'
+const SERVER_URL = 'https://39143ec6.ngrok.io'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {

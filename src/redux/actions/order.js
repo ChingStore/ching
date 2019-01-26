@@ -1,6 +1,7 @@
 import _ from 'lodash'
-
-import web3Infura from 'singletons/web3/infura'
+import NETWORK from 'constants/network'
+import web3DaiInfura from 'singletons/web3/dai-infura'
+import web3XdaiInfura from 'singletons/web3/xdai-infura'
 import selector from 'redux/selectors'
 
 const add = ({ itemId, quantity }) => {
@@ -14,6 +15,7 @@ const add = ({ itemId, quantity }) => {
     try {
       const newOrder = await firestore.collection('orders').add({
         txHash: null,
+        networkId: null,
         items: items,
         userId: state.firebase.auth.uid,
         createdAt: new Date(),
@@ -31,16 +33,26 @@ const txStatusCheckAndUpdateOrder = order => {
       return
     }
 
-    if (!order.txConfirmed && order.txHash) {
+    if (!order.txConfirmed && order.txHash && order.networkId) {
       const firestore = getFirestore()
+      let isTxConfirmed
       try {
-        const isTxConfirmed = await web3Infura.isTxConfirmed(order.txHash)
+        if (parseInt(order.networkId) == NETWORK.ID.MAINNET) {
+          isTxConfirmed = await web3DaiInfura.isTxConfirmed(order.txHash)
+        } else if (parseInt(order.networkId) == NETWORK.ID.XDAI) {
+          isTxConfirmed = await web3XdaiInfura.isTxConfirmed(order.txHash)
+        } else {
+          console.log('Cannot update order. Undefined network ID')
+          return
+        }
+
         await firestore
           .collection('orders')
           .doc(order.id)
           .update({
             txConfirmed: isTxConfirmed,
           })
+
         if (isTxConfirmed) {
           // updating selling items
           const state = getState()
@@ -61,8 +73,8 @@ const txStatusCheckAndUpdateOrder = order => {
           })
         }
       } catch (error) {
-        console.log('Cannot update order. ID:', order.id)
-        console.log('Reason:', error.message)
+        // console.log('Cannot update order. ID:', order.id)
+        // console.log('Reason:', error.message)
       }
     }
   }

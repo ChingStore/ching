@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import web3Dai from 'singletons/web3/dai'
+import Web3Injected from 'singletons/web3/injected'
 
 export default class Add extends React.PureComponent {
   componentDidMount = () => {
     const { address, amount, orderId } = this.props.match.params
 
-    web3Dai.sendDAI({
+    Web3Injected.sendDai({
       address,
       amount,
       orderId,

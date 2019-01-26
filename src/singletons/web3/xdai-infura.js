@@ -28,7 +28,9 @@ class Web3XdaiInfura {
   async isTxConfirmed(hash) {
     await this._initialized
     const receipt = await this.web3.eth.getTransactionReceipt(hash)
-    return receipt.status
+    if (receipt) {
+      return receipt.status
+    }
   }
 
   getBalance = async walletAddress => {
