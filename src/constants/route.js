@@ -9,6 +9,7 @@ const PATH = {
   SIGN_UP: '/signup',
   ORDERS: '/tabs/orders',
   SIGN_UP_STORE: '/signup-store',
+  STORE_WELCOME: '/store-welcome',
 
   // Full-screen
   HOME: '/home',
@@ -23,6 +24,7 @@ const PATH_TITLE = {
   [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',
   [PATH.SIGN_UP_STORE]: 'Sign Up Store',
+  [PATH.STORE_WELCOME]: 'Welcome to Your Store',
 }
 
 export default {

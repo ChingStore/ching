@@ -13,6 +13,7 @@ import Payment from './components/payment'
 import Home from './components/onboarding/home'
 import SignUp from './components/onboarding/sign-up/container'
 import SignUpStore from './components/onboarding/sign-up-store/container'
+import StoreWelcome from './components/store/store-welcome'
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
@@ -36,6 +37,12 @@ class Root extends React.Component {
             path={ROUTE.PATH.SIGN_UP_STORE}
             component={SignUpStore}
             id={117}
+          />
+          <Route
+            exact
+            path={ROUTE.PATH.STORE_WELCOME}
+            component={StoreWelcome}
+            id={118}
           />
 
           <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
