@@ -37,10 +37,12 @@ const txStatusCheckAndUpdateOrder = order => {
       const firestore = getFirestore()
       let isTxConfirmed
       try {
-        if (parseInt(order.networkId) == NETWORK.ID.MAINNET) {
+        if (parseInt(order.networkId) === NETWORK.ID.MAINNET) {
           isTxConfirmed = await web3DaiInfura.isTxConfirmed(order.txHash)
-        } else if (parseInt(order.networkId) == NETWORK.ID.XDAI) {
+        } else if (parseInt(order.networkId) === NETWORK.ID.XDAI) {
           isTxConfirmed = await web3XdaiInfura.isTxConfirmed(order.txHash)
+        } else if (parseInt(order.networkId) === NETWORK.ID.KOVAN) {
+          isTxConfirmed = await web3DaiInfura.isTxConfirmed(order.txHash)
         } else {
           console.log('Cannot update order. Undefined network ID')
           return
@@ -73,8 +75,8 @@ const txStatusCheckAndUpdateOrder = order => {
           })
         }
       } catch (error) {
-        // console.log('Cannot update order. ID:', order.id)
-        // console.log('Reason:', error.message)
+        console.log('Cannot update order:', order)
+        console.log('Reason:', error.message)
       }
     }
   }
@@ -84,7 +86,7 @@ const initialize = () => {
   return async dispatch => {
     setInterval(function() {
       dispatch(processAllOrders())
-    }, 1000)
+    }, 10000)
   }
 }
 
