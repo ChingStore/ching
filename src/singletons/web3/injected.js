@@ -26,63 +26,79 @@ class Web3Injected {
   }
 
   async _initialize() {
-    this.web3 = new Web3(window.web3.currentProvider)
-    this.getNetwork()
+    try {
+      await window.ethereum.enable()
+      this.web3 = new Web3(window.web3.currentProvider)
+      this.netId = await this.getNetworkId()
+      console.log('DAI initialized at:', NETWORK.ID_NAME[this.netId])
+    } catch (err) {
+      console.log('web3 not injected')
+    }
   }
 
-  getNetwork() {
-    const netId = parseInt(this.web3.version.network)
-    console.log('DAI initialized at:', NETWORK.ID_NAME[netId])
-    return netId
+  async getNetworkId() {
+    try {
+      console.log('web3 version:', this.web3.version.api)
+      const netId = parseInt(this.web3.version.network)
+      console.log({ netId })
+      return netId
+    } catch (error) {
+      console.log('Web3 version cannot be detected')
+    }
   }
 
-  sendTxHashToVendor({ orderId, txHash, netId }) {
+  sendTxHashToVendor({ orderId, txHash }) {
     fetch(
       TRANSACTION_BUFFER_URL +
         encodeQueryData({
           orderId,
           txHash,
-          networkId: netId,
+          networkId: this.netId,
         })
     )
   }
 
-  handleError({ error, orderId, txHash, netId }) {
+  handleError({ error, orderId, txHash }) {
     if (error) {
       console.log(error.message)
     } else {
-      this.sendTxHashToVendor({ orderId, txHash, netId })
+      this.sendTxHashToVendor({ orderId, txHash })
     }
   }
 
   async sendDai({ address, amount, orderId }) {
     await this._initialized
-    await window.ethereum.enable()
-    const netId = this.getNetwork()
-    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
 
-    if (netId === NETWORK.ID.MAINNET) {
+    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
+    let value = this.web3
+      .toBigNumber(amount)
+      .times(this.web3.toBigNumber(10).pow(18))
+
+    if (this.netId === NETWORK.ID.MAINNET) {
       // sending DAI
       let contract = this.web3.eth
         .contract(DAIABI)
         .at(NETWORK.TOKEN_ADDRESS.MAINNET)
       contract.transfer(
         address,
-        parseFloat(amount),
-        { gas: 1000000 },
+        value,
+        { gasPrice: this.web3.toWei(4, 'gwei'), gas: 4000000 },
         (error, txHash) => {
-          this.handleError({ error, orderId, txHash, netId })
+          this.handleError({ error, orderId, txHash })
         }
       )
-    } else if (netId === NETWORK.ID.XDAI) {
+    } else if (this.netId === NETWORK.ID.XDAI) {
       // sending XDAI
-      let value = this.web3
-        .toBigNumber(amount)
-        .times(this.web3.toBigNumber(10).pow(18))
       this.web3.eth.sendTransaction(
-        { to: address, value, gas: 10000000 },
+        {
+          // from: this.web3.eth.defaultAccount,
+          to: address,
+          value,
+          gasPrice: this.web3.toWei(100, 'gwei'),
+          gas: 4000000,
+        },
         (error, txHash) => {
-          this.handleError({ error, orderId, txHash, netId })
+          this.handleError({ error, orderId, txHash })
         }
       )
     }
