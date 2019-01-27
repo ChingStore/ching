@@ -17,10 +17,10 @@ class InventoryScene extends React.PureComponent {
   state = {}
 
   handleItemClick = async ({ item, id }) => {
-    let address = '0xf82B82b4ebC83479eF10271190A7cf5487240955'
+    let walletAddress = '0xf82B82b4ebC83479eF10271190A7cf5487240955'
     const orderId = await this.props.addOrder({ itemId: id, quantity: 1 })
 
-    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
+    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${walletAddress}/${
       item.price
     }/${orderId}`
 

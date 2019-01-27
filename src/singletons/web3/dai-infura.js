@@ -12,8 +12,6 @@ class Web3DaiInfura {
   _initialized = null
 
   constructor() {
-    console.log('Infura Dai initialized')
-    // this.networkId()
     this._initialized = this._initialize()
   }
 

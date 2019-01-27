@@ -3,12 +3,7 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'name',
-    outputs: [
-      {
-        name: '',
-        type: 'bytes32',
-      },
-    ],
+    outputs: [{ name: '', type: 'bytes32' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -25,34 +20,18 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'guy', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'approve',
-    outputs: [
-      {
-        name: '',
-        type: 'bool',
-      },
-    ],
+    outputs: [{ name: '', type: 'bool' }],
     payable: false,
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'owner_',
-        type: 'address',
-      },
-    ],
+    inputs: [{ name: 'owner_', type: 'address' }],
     name: 'setOwner',
     outputs: [],
     payable: false,
@@ -63,12 +42,7 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'totalSupply',
-    outputs: [
-      {
-        name: '',
-        type: 'uint256',
-      },
-    ],
+    outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -76,26 +50,21 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'src',
-        type: 'address',
-      },
-      {
-        name: 'dst',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'src', type: 'address' },
+      { name: 'dst', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'transferFrom',
-    outputs: [
-      {
-        name: '',
-        type: 'bool',
-      },
-    ],
+    outputs: [{ name: '', type: 'bool' }],
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    constant: false,
+    inputs: [{ name: 'symbol_', type: 'bytes32' }],
+    name: 'DSToken',
+    outputs: [],
     payable: false,
     stateMutability: 'nonpayable',
     type: 'function',
@@ -104,12 +73,7 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'decimals',
-    outputs: [
-      {
-        name: '',
-        type: 'uint256',
-      },
-    ],
+    outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -117,14 +81,8 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'guy', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'mint',
     outputs: [],
@@ -134,12 +92,7 @@ const DAIABI = [
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
-    ],
+    inputs: [{ name: 'wad', type: 'uint256' }],
     name: 'burn',
     outputs: [],
     payable: false,
@@ -148,12 +101,7 @@ const DAIABI = [
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'name_',
-        type: 'bytes32',
-      },
-    ],
+    inputs: [{ name: 'name_', type: 'bytes32' }],
     name: 'setName',
     outputs: [],
     payable: false,
@@ -162,19 +110,9 @@ const DAIABI = [
   },
   {
     constant: true,
-    inputs: [
-      {
-        name: 'src',
-        type: 'address',
-      },
-    ],
+    inputs: [{ name: 'src', type: 'address' }],
     name: 'balanceOf',
-    outputs: [
-      {
-        name: '',
-        type: 'uint256',
-      },
-    ],
+    outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -183,24 +121,14 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'stopped',
-    outputs: [
-      {
-        name: '',
-        type: 'bool',
-      },
-    ],
+    outputs: [{ name: '', type: 'bool' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'authority_',
-        type: 'address',
-      },
-    ],
+    inputs: [{ name: 'authority_', type: 'address' }],
     name: 'setAuthority',
     outputs: [],
     payable: false,
@@ -211,12 +139,7 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'owner',
-    outputs: [
-      {
-        name: '',
-        type: 'address',
-      },
-    ],
+    outputs: [{ name: '', type: 'address' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -225,12 +148,7 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'symbol',
-    outputs: [
-      {
-        name: '',
-        type: 'bytes32',
-      },
-    ],
+    outputs: [{ name: '', type: 'bytes32' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -238,14 +156,8 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'guy', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'burn',
     outputs: [],
@@ -255,12 +167,7 @@ const DAIABI = [
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
-    ],
+    inputs: [{ name: 'wad', type: 'uint256' }],
     name: 'mint',
     outputs: [],
     payable: false,
@@ -270,22 +177,11 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'dst',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'dst', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'transfer',
-    outputs: [
-      {
-        name: '',
-        type: 'bool',
-      },
-    ],
+    outputs: [{ name: '', type: 'bool' }],
     payable: false,
     stateMutability: 'nonpayable',
     type: 'function',
@@ -293,14 +189,8 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'dst',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'dst', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'push',
     outputs: [],
@@ -311,18 +201,9 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'src',
-        type: 'address',
-      },
-      {
-        name: 'dst',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'src', type: 'address' },
+      { name: 'dst', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'move',
     outputs: [],
@@ -343,31 +224,16 @@ const DAIABI = [
     constant: true,
     inputs: [],
     name: 'authority',
-    outputs: [
-      {
-        name: '',
-        type: 'address',
-      },
-    ],
+    outputs: [{ name: '', type: 'address' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
   },
   {
     constant: false,
-    inputs: [
-      {
-        name: 'guy',
-        type: 'address',
-      },
-    ],
+    inputs: [{ name: 'guy', type: 'address' }],
     name: 'approve',
-    outputs: [
-      {
-        name: '',
-        type: 'bool',
-      },
-    ],
+    outputs: [{ name: '', type: 'bool' }],
     payable: false,
     stateMutability: 'nonpayable',
     type: 'function',
@@ -375,22 +241,11 @@ const DAIABI = [
   {
     constant: true,
     inputs: [
-      {
-        name: 'src',
-        type: 'address',
-      },
-      {
-        name: 'guy',
-        type: 'address',
-      },
+      { name: 'src', type: 'address' },
+      { name: 'guy', type: 'address' },
     ],
     name: 'allowance',
-    outputs: [
-      {
-        name: '',
-        type: 'uint256',
-      },
-    ],
+    outputs: [{ name: '', type: 'uint256' }],
     payable: false,
     stateMutability: 'view',
     type: 'function',
@@ -398,14 +253,8 @@ const DAIABI = [
   {
     constant: false,
     inputs: [
-      {
-        name: 'src',
-        type: 'address',
-      },
-      {
-        name: 'wad',
-        type: 'uint256',
-      },
+      { name: 'src', type: 'address' },
+      { name: 'wad', type: 'uint256' },
     ],
     name: 'pull',
     outputs: [],
@@ -414,29 +263,10 @@ const DAIABI = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        name: 'symbol_',
-        type: 'bytes32',
-      },
-    ],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-  },
-  {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        name: 'wad',
-        type: 'uint256',
-      },
+      { indexed: true, name: 'guy', type: 'address' },
+      { indexed: false, name: 'wad', type: 'uint256' },
     ],
     name: 'Mint',
     type: 'event',
@@ -444,77 +274,33 @@ const DAIABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        name: 'wad',
-        type: 'uint256',
-      },
+      { indexed: true, name: 'guy', type: 'address' },
+      { indexed: false, name: 'wad', type: 'uint256' },
     ],
     name: 'Burn',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        name: 'authority',
-        type: 'address',
-      },
-    ],
+    inputs: [{ indexed: true, name: 'authority', type: 'address' }],
     name: 'LogSetAuthority',
     type: 'event',
   },
   {
     anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        name: 'owner',
-        type: 'address',
-      },
-    ],
+    inputs: [{ indexed: true, name: 'owner', type: 'address' }],
     name: 'LogSetOwner',
     type: 'event',
   },
   {
     anonymous: true,
     inputs: [
-      {
-        indexed: true,
-        name: 'sig',
-        type: 'bytes4',
-      },
-      {
-        indexed: true,
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        name: 'foo',
-        type: 'bytes32',
-      },
-      {
-        indexed: true,
-        name: 'bar',
-        type: 'bytes32',
-      },
-      {
-        indexed: false,
-        name: 'wad',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        name: 'fax',
-        type: 'bytes',
-      },
+      { indexed: true, name: 'sig', type: 'bytes4' },
+      { indexed: true, name: 'guy', type: 'address' },
+      { indexed: true, name: 'foo', type: 'bytes32' },
+      { indexed: true, name: 'bar', type: 'bytes32' },
+      { indexed: false, name: 'wad', type: 'uint256' },
+      { indexed: false, name: 'fax', type: 'bytes' },
     ],
     name: 'LogNote',
     type: 'event',
@@ -522,21 +308,9 @@ const DAIABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        name: 'src',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        name: 'guy',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        name: 'wad',
-        type: 'uint256',
-      },
+      { indexed: true, name: 'src', type: 'address' },
+      { indexed: true, name: 'guy', type: 'address' },
+      { indexed: false, name: 'wad', type: 'uint256' },
     ],
     name: 'Approval',
     type: 'event',
@@ -544,21 +318,9 @@ const DAIABI = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        name: 'src',
-        type: 'address',
-      },
-      {
-        indexed: true,
-        name: 'dst',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        name: 'wad',
-        type: 'uint256',
-      },
+      { indexed: true, name: 'src', type: 'address' },
+      { indexed: true, name: 'dst', type: 'address' },
+      { indexed: false, name: 'wad', type: 'uint256' },
     ],
     name: 'Transfer',
     type: 'event',

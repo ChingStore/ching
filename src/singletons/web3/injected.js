@@ -32,7 +32,7 @@ class Web3Injected {
       this.netId = await this.getNetworkId()
       console.log('DAI initialized at:', NETWORK.ID_NAME[this.netId])
     } catch (err) {
-      console.log('web3 not injected')
+      console.log('there is no injected web3.')
     }
   }
 
@@ -68,7 +68,6 @@ class Web3Injected {
 
   async sendDai({ address, amount, orderId }) {
     await this._initialized
-
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
     let value = this.web3
       .toBigNumber(amount)
@@ -82,7 +81,10 @@ class Web3Injected {
       contract.transfer(
         address,
         value,
-        { gasPrice: this.web3.toWei(4, 'gwei'), gas: 4000000 },
+        {
+          gasPrice: this.web3.toWei(20, 'gwei'),
+          gas: 8000000,
+        },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })
         }
@@ -91,11 +93,10 @@ class Web3Injected {
       // sending XDAI
       this.web3.eth.sendTransaction(
         {
-          // from: this.web3.eth.defaultAccount,
           to: address,
           value,
-          gasPrice: this.web3.toWei(100, 'gwei'),
-          gas: 4000000,
+          gasPrice: this.web3.toWei(20, 'gwei'),
+          gas: 8000000,
         },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })
