@@ -48,13 +48,14 @@ const txStatusCheckAndUpdateOrder = order => {
           return
         }
 
-        await firestore
-          .collection('orders')
-          .doc(order.id)
-          .update({
-            txConfirmed: isTxConfirmed,
-          })
-
+        if (!(typeof isTxConfirmed === 'undefined')) {
+          await firestore
+            .collection('orders')
+            .doc(order.id)
+            .update({
+              txConfirmed: isTxConfirmed,
+            })
+        }
         if (isTxConfirmed) {
           // updating selling items
           const state = getState()
