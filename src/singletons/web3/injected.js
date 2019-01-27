@@ -81,7 +81,7 @@ class Web3Injected {
       getHttpRequest('https://ethgasstation.info/json/ethgasAPI.json')
     )
     var fixedPrice = this.web3.toWei(20, 'gwei')
-    var gasPrice = this.web3.toWei(json_obj.safeLow, 'gwei') || fixedPrice
+    var gasPrice = this.web3.toWei(json_obj.average, 'gwei') || fixedPrice
     return gasPrice
   }
 
@@ -115,7 +115,7 @@ class Web3Injected {
           to: address,
           value,
           gasPrice: this.getGasPrice(),
-          gas: 21000,
+          gas: 40000,
         },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })

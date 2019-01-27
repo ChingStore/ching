@@ -12,7 +12,7 @@ Refactor web3Util and singleton to support Infura and injected web3, DAI and xDA
 
 ## Goals
 
-- Support getting balances for DAI and xDAI tokens
+- Support getting balances for DAI and xDAI tokens (we are not tracking balances. Maybe not necessary)
 - Support sending transactions on Mainnet and xDAI networks
 - Support tracking transactions on Mainnet and xDAI networks
 - Support injected web3 as well as Infura
@@ -48,6 +48,8 @@ Refactor web3Util and singleton to support Infura and injected web3, DAI and xDA
     - chains.eth.xdai.isConnected
     - chains.eth.xdai.account.balance
     - chains.eth.xdai.account.transactions
+- For some transactions with 21000 gas got stuck in xDai chain, however this is exact the amount of gas they are using.
+  - Can not find a way to see hanged transactions in the online chain scanners (EtherScan, etc)
 
 ## Sub-Features
 

@@ -56,7 +56,7 @@ const txStatusCheckAndUpdateOrder = order => {
               txConfirmed: isTxConfirmed,
             })
         }
-        if (isTxConfirmed) {
+        if (isTxConfirmed && !(typeof isTxConfirmed === 'undefined')) {
           // updating selling items
           const state = getState()
           const confirmedOrderItems = selector.getOrderItems(state, {
