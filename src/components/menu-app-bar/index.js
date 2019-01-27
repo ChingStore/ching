@@ -224,6 +224,7 @@ MenuAppBar.propTypes = {
   walletInitialize: PropTypes.func,
   auth: PropTypes.object,
   daiWalletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  xdaiWalletBalance: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   location: PropTypes.object,
 }
 
