@@ -15,6 +15,13 @@ function encodeQueryData(data) {
   return ret.join('&')
 }
 
+function getHttpRequest(yourUrl) {
+  var Httpreq = new XMLHttpRequest() // a new request
+  Httpreq.open('GET', yourUrl, false)
+  Httpreq.send(null)
+  return Httpreq.responseText
+}
+
 class Web3Injected {
   /**
    * Stores the initialization promise.
@@ -66,6 +73,18 @@ class Web3Injected {
     }
   }
 
+  getGasPrice() {
+    // making request to:
+    // https://ethgasstation.info/json/ethgasAPI.json
+    // {fastest: 200, safeLowWait: 23, fastestWait: 0.6, fast: 40,}
+    var json_obj = JSON.parse(
+      getHttpRequest('https://ethgasstation.info/json/ethgasAPI.json')
+    )
+    var fixedPrice = this.web3.toWei(20, 'gwei')
+    var gasPrice = this.web3.toWei(json_obj.safeLow, 'gwei') || fixedPrice
+    return gasPrice
+  }
+
   async sendDai({ address, amount, orderId }) {
     await this._initialized
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
@@ -82,8 +101,8 @@ class Web3Injected {
         address,
         value,
         {
-          gasPrice: this.web3.toWei(20, 'gwei'),
-          gas: 8000000,
+          gasPrice: this.getGasPrice(),
+          gas: 40000,
         },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })
@@ -95,8 +114,8 @@ class Web3Injected {
         {
           to: address,
           value,
-          gasPrice: this.web3.toWei(20, 'gwei'),
-          gas: 8000000,
+          gasPrice: this.getGasPrice(),
+          gas: 21000,
         },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })
