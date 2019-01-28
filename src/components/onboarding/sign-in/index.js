@@ -6,7 +6,6 @@ import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
 import InputField from 'components/common/input-field'
 import authActions from 'redux/actions/auth'
-import InputField from 'components/common/input-field'
 import style from './index.style.js'
 
 class SignIn extends React.Component {
