@@ -9,19 +9,19 @@ import QRDialog from './qrDialog'
 import selectors from 'redux/selectors'
 
 import orderAction from 'redux/actions/order'
-import web3Instance from 'singletons/web3/web3'
 
-const SERVER_URL = 'https://7444e33a.ngrok.io'
+// const SERVER_URL = 'https://39143ec6.ngrok.io'
+const SERVER_URL = '34-pr-daipos.surge.sh'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 class InventoryScene extends React.PureComponent {
   state = {}
 
   handleItemClick = async ({ item, id }) => {
-    let address = await web3Instance.getWalletAddress()
+    let walletAddress = '0xf82B82b4ebC83479eF10271190A7cf5487240955'
     const orderId = await this.props.addOrder({ itemId: id, quantity: 1 })
 
-    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${address}/${
+    const url = `${STATUS_UL}${SERVER_URL}/#/payment/${walletAddress}/${
       item.price
     }/${orderId}`
 
