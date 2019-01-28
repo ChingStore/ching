@@ -4,6 +4,7 @@ import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { Route, HashRouter, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 import MenuAppBar from './components/menu-app-bar'
 import Inventory from './components/inventory'
 import SalesReport from './components/sales-report'
@@ -11,11 +12,10 @@ import Add from './components/add'
 import Payment from './components/payment'
 import Home from './components/onboarding/home'
 import SignUp from './components/onboarding/sign-up/container'
-
+import SignUpStore from './components/onboarding/sign-up-store/container'
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
 import SignIn from './components/auth/SignIn'
-// import SignUp from './components/auth/SignUp'
 import Orders from './components/orders'
 import orderAction from './redux/actions/order'
 import selectors from './redux/selectors'
@@ -30,7 +30,13 @@ class Root extends React.Component {
       <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
         <div>
           <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
-          <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={114} />
+          <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={115} />
+          <Route
+            exact
+            path={ROUTE.PATH.SIGN_UP_STORE}
+            component={SignUpStore}
+            id={117}
+          />
 
           <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
           <Switch id={109}>

@@ -8,9 +8,9 @@ import style from './index.style.js'
 class LinkButton extends React.Component {
   render() {
     return (
-      <a css={style.base} onClick={this.handleClick}>
+      <button css={style.base} onClick={this.handleClick}>
         {this.props.children}
-      </a>
+      </button>
     )
   }
 
