@@ -27,7 +27,7 @@ const styles = {
 function MediaCard(props) {
   const { classes, auth } = props
 
-  const path = auth.uid ? ROUTE.PATH.ADD : ROUTE.PATH.SIGNIN
+  const path = auth.uid ? ROUTE.PATH.ADD : ROUTE.PATH.SIGN_IN
 
   return (
     <Card className={classes.card}>

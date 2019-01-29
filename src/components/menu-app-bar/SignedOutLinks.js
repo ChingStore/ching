@@ -13,18 +13,18 @@ class SignedOutLinks extends Component {
         <ListItem
           button
           component={NavLink}
-          to={ROUTE.PATH.SIGNIN}
+          to={ROUTE.PATH.SIGN_IN}
           onClick={this.props.handleDrawerClose}
         >
-          <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNIN]} />
+          <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGN_IN]} />
         </ListItem>
         <ListItem
           button
           component={NavLink}
-          to={ROUTE.PATH.SIGNUP}
+          to={ROUTE.PATH.SIGN_UP}
           onClick={this.props.handleDrawerClose}
         >
-          <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGNUP]} />
+          <ListItemText primary={ROUTE.PATH_TITLE[ROUTE.PATH.SIGN_UP]} />
         </ListItem>
       </div>
     )
