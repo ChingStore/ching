@@ -3,12 +3,14 @@ import React from 'react'
 import * as ReactRedux from 'react-redux'
 import * as Redux from 'redux'
 import PropTypes from 'prop-types'
+
 import Card from './inventoryCard.js'
 import Add from './inventoryAdd.js'
 import QRDialog from './qrDialog'
 import selectors from 'redux/selectors'
-
 import orderAction from 'redux/actions/order'
+import ShoppingCart from 'components/shopping-cart/container'
+import Flex from 'components/common/flex'
 
 // const SERVER_URL = 'https://39143ec6.ngrok.io'
 const SERVER_URL = '34-pr-daipos.surge.sh'
@@ -40,27 +42,23 @@ class InventoryScene extends React.PureComponent {
     const { items } = this.props
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flex: 1,
-          flexDirection: 'row',
-        }}
-      >
-        {_.map(items, (item, id) => (
-          <Card
-            key={id}
-            {...item}
-            onClick={() => this.handleItemClick({ item, id })}
-          />
-        ))}
-        <Add />
+      <Flex column>
+        <Flex wrap>
+          {_.map(items, (item, id) => (
+            <Card
+              key={id}
+              {...item}
+              onClick={() => this.handleItemClick({ item, id })}
+            />
+          ))}
+          <Add />
+        </Flex>
         <QRDialog
           url={this.state.qrUrl}
           onClose={() => this.setState({ qrUrl: null })}
         />
-      </div>
+        <ShoppingCart />
+      </Flex>
     )
   }
 }
