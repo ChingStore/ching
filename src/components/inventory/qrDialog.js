@@ -65,6 +65,8 @@ const styles = theme => ({
     right: 0,
     top: 0,
     bottom: 0,
+    width: '50%',
+    height: 'auto',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -120,6 +122,7 @@ class QRDialog extends React.Component {
 
   componentDidUpdate = prevProps => {
     if (this.props.url && !prevProps.url) {
+      console.log('url: :', this.props.url)
       this.setState({ open: true, url: this.props.url })
     }
   }

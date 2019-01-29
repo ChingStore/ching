@@ -1,6 +1,7 @@
 import _ from 'lodash'
-
-import web3Instance from 'singletons/web3/web3'
+import NETWORK from 'constants/network'
+import web3DaiInfura from 'singletons/web3/dai-infura'
+import web3XdaiInfura from 'singletons/web3/xdai-infura'
 import selector from 'redux/selectors'
 
 const add = ({ itemId, quantity }) => {
@@ -14,6 +15,7 @@ const add = ({ itemId, quantity }) => {
     try {
       const newOrder = await firestore.collection('orders').add({
         txHash: null,
+        networkId: null,
         items: items,
         userId: state.firebase.auth.uid,
         createdAt: new Date(),
@@ -31,17 +33,30 @@ const txStatusCheckAndUpdateOrder = order => {
       return
     }
 
-    if (!order.txConfirmed && order.txHash) {
+    if (!order.txConfirmed && order.txHash && order.networkId) {
       const firestore = getFirestore()
+      let isTxConfirmed
       try {
-        const isTxConfirmed = await web3Instance.isTxConfirmed(order.txHash)
-        await firestore
-          .collection('orders')
-          .doc(order.id)
-          .update({
-            txConfirmed: isTxConfirmed,
-          })
-        if (isTxConfirmed) {
+        if (parseInt(order.networkId) === NETWORK.ID.MAINNET) {
+          isTxConfirmed = await web3DaiInfura.isTxConfirmed(order.txHash)
+        } else if (parseInt(order.networkId) === NETWORK.ID.XDAI) {
+          isTxConfirmed = await web3XdaiInfura.isTxConfirmed(order.txHash)
+        } else if (parseInt(order.networkId) === NETWORK.ID.KOVAN) {
+          isTxConfirmed = await web3DaiInfura.isTxConfirmed(order.txHash)
+        } else {
+          console.log('Cannot update order. Undefined network ID')
+          return
+        }
+
+        if (!(typeof isTxConfirmed === 'undefined')) {
+          await firestore
+            .collection('orders')
+            .doc(order.id)
+            .update({
+              txConfirmed: isTxConfirmed,
+            })
+        }
+        if (isTxConfirmed && !(typeof isTxConfirmed === 'undefined')) {
           // updating selling items
           const state = getState()
           const confirmedOrderItems = selector.getOrderItems(state, {
@@ -61,7 +76,7 @@ const txStatusCheckAndUpdateOrder = order => {
           })
         }
       } catch (error) {
-        console.log('Cannot update order. ID:', order.id)
+        console.log('Cannot update order:', order)
         console.log('Reason:', error.message)
       }
     }
@@ -72,7 +87,7 @@ const initialize = () => {
   return async dispatch => {
     setInterval(function() {
       dispatch(processAllOrders())
-    }, 1000)
+    }, 10000)
   }
 }
 
