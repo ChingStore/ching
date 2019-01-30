@@ -12,16 +12,41 @@ export default {
   },
 
   title: {
-    flex: 0.2,
+    flex: 0.3,
 
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
 
-  title__text: {
+  titleText: {
+    flex: 0.3,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     fontWeight: 'bold',
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
+  },
+
+  backLink: {
+    flex: 0.15,
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+  },
+
+  inputField: {
+    flex: 0.1,
+    flexDirection: 'column',
+  },
+
+  forgot: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+
+  forgotText: {
+    color: STYLE.COLOR.CYAN,
   },
 }

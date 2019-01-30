@@ -1,11 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-
 import React from 'react'
 import * as ReactRedux from 'react-redux'
+import ROUTE from 'constants/route'
 import PropTypes from 'prop-types'
 import InputField from 'components/common/input-field'
+import NextButton from 'components/common/next-button'
+import Icon from 'components/common/icon'
 import authActions from 'redux/actions/auth'
+import LinkButton from 'components/common/link-button'
 import style from './index.style.js'
 
 class SignIn extends React.Component {
@@ -24,13 +27,21 @@ class SignIn extends React.Component {
   }
 
   renderBackLink() {
-    return <div css={style.backArrow}>back</div>
+    return (
+      <div css={style.backLink}>
+        <LinkButton to={ROUTE.PATH.HOME}>
+          <div>
+            <Icon.LeftArrow />
+          </div>
+        </LinkButton>
+      </div>
+    )
   }
 
   renderTitle() {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>It's nice to have you back!</p>
+        <p css={style.titleText}>It's nice to have you back!</p>
       </div>
     )
   }
@@ -40,18 +51,18 @@ class SignIn extends React.Component {
       <form onSubmit={this.handleSignIn}>
         {this.renderUsernameField()}
         {this.renderPasswordField()}
+        {this.renderForgot()}
         {this.renderContinueButton()}
       </form>
     )
   }
   renderUsernameField = () => {
     return (
-      <div>
+      <div css={style.inputField}>
         <InputField
           onChange={this.handleChange}
           id="email"
-          placeholder="Enter your e-mail"
-          labelText="Email"
+          placeholder="E-mail"
         />
       </div>
     )
@@ -63,20 +74,25 @@ class SignIn extends React.Component {
         <InputField
           onChange={this.handleChange}
           id="password"
-          placeholder="Type in your password"
-          labelText="Password"
+          placeholder="Password"
           type="password"
         />
       </div>
     )
   }
 
-  renderContinueButton = () => {
+  renderForgot = () => {
     return (
-      <div>
-        <button>Continue</button>
+      <div css={style.forgot}>
+        <LinkButton css={{ justifyContent: 'flex-end' }} to={ROUTE.PATH.HOME}>
+          <div css={style.forgotText}>Forgot?</div>
+        </LinkButton>
       </div>
     )
+  }
+
+  renderContinueButton = () => {
+    return <NextButton to={ROUTE.PATH.INVENTORY}>Continue</NextButton>
   }
 
   render() {
