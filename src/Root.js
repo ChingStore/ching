@@ -12,10 +12,10 @@ import Add from './components/add'
 import Payment from './components/payment'
 import Home from './components/onboarding/home'
 import SignUp from './components/onboarding/sign-up/container'
+import SignIn from './components/onboarding/sign-in'
 import SignUpStore from './components/onboarding/sign-up-store/container'
 import CONFIG from './constants/config'
 import ROUTE from './constants/route'
-import SignIn from './components/auth/SignIn'
 import Orders from './components/orders'
 import orderAction from './redux/actions/order'
 import selectors from './redux/selectors'
@@ -29,6 +29,7 @@ class Root extends React.Component {
     return (
       <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
         <div>
+          <Route exact path={ROUTE.PATH.SIGN_IN} component={SignIn} id={111} />
           <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
           <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={115} />
           <Route
@@ -58,12 +59,6 @@ class Root extends React.Component {
               path="/payment/:address/:amount/:orderId"
               component={Payment}
               id={108}
-            />
-            <Route
-              exact
-              path={ROUTE.PATH.SIGN_IN}
-              component={SignIn}
-              id={111}
             />
             <Route exact path={ROUTE.PATH.ORDERS} component={Orders} id={113} />
           </Switch>
@@ -109,6 +104,15 @@ export default Redux.compose(
         collection: 'orders',
         orderBy: ['createdAt', 'desc'],
         where: [['userId', '==', props.auth.uid]],
+      },
+    ]
+  }),
+  ReactReduxFirebase.firestoreConnect(props => {
+    // TODO: Research possible performance issues for old accounts with lots of transactions
+    if (!props.auth || !props.auth.uid) return []
+    return [
+      {
+        collection: 'users',
       },
     ]
   })
