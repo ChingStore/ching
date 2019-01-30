@@ -35,6 +35,7 @@ export default {
     fontSize: 15,
     width: '110%',
     lineHeight: 1.5,
+    fontWeight: '500',
   },
   recommended__wallets__text: {
     fontSize: 14,
