@@ -41,7 +41,7 @@ export default {
     fontWeight: 'bold',
     color: STYLE.COLOR.BLUE,
     marginTop: 80,
-    marginBottom: 0,
+    marginBottom: 6,
   },
   recommended__wallets__p: {
     marginTop: 0,
@@ -74,7 +74,7 @@ export default {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 20,
+    marginTop: 10,
   },
 
   logIn: {

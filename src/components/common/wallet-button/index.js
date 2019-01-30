@@ -6,10 +6,12 @@ import Status from './Status'
 import Trust from './Trust'
 import Coinbase from './Coinbase'
 
+import style from './index.style.js'
+
 class WalletButton extends React.Component {
   render() {
     const { targetWallet } = this.props
-    return <button>{this.wallet(targetWallet)}</button>
+    return <button css={style.base}>{this.wallet(targetWallet)}</button>
   }
 
   wallet = targetWallet => {
