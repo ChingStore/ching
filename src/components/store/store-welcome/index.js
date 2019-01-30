@@ -17,7 +17,7 @@ export default class HomeScene extends React.Component {
           {this.renderBackground()}
           {this.renderTag()}
         </div>
-        {this.renderBecomeVendor()}
+        {this.renderAddFirstItem()}
       </div>
     )
   }
@@ -47,9 +47,9 @@ export default class HomeScene extends React.Component {
     )
   }
 
-  renderBecomeVendor() {
+  renderAddFirstItem() {
     return (
-      <div css={style.becomeVendor}>
+      <div css={style.addFirstItem}>
         <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a first item</FooterButton>
       </div>
     )

@@ -51,12 +51,13 @@ export default {
     left: 33,
   },
 
-  becomeVendor: {
+  addFirstItem: {
     flex: 0.2,
 
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
+    marginTop: 61,
   },
 
   logIn: {
