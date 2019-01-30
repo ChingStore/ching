@@ -21,15 +21,15 @@ class InventoryScene extends React.PureComponent {
 
   handleItemClick = async ({ item, id }) => {
     let walletAddress = '0xf82B82b4ebC83479eF10271190A7cf5487240955'
-    const orderId = await this.props.addOrder({ itemId: id, quantity: 1 })
+    const orderId = await this.props.addItem({ itemId: id })
 
     const url = `${STATUS_UL}${SERVER_URL}/#/payment/${walletAddress}/${
       item.price
     }/${orderId}`
 
-    this.setState({
-      qrUrl: url,
-    })
+    // this.setState({
+    //   qrUrl: url,
+    // })
   }
 
   handleCloseDialog = () => {
@@ -39,7 +39,7 @@ class InventoryScene extends React.PureComponent {
   }
 
   render() {
-    const { items } = this.props
+    const { items, shoppingCartOrderId } = this.props
 
     return (
       <Flex column>
@@ -57,27 +57,27 @@ class InventoryScene extends React.PureComponent {
           url={this.state.qrUrl}
           onClose={() => this.setState({ qrUrl: null })}
         />
-        <ShoppingCart />
+        {shoppingCartOrderId && <ShoppingCart />}
       </Flex>
     )
   }
 }
 
 InventoryScene.propTypes = {
-  addOrder: PropTypes.func,
+  selectItem: PropTypes.func,
   items: PropTypes.object,
 }
 
 const mapDispatchToProps = dispatch => ({
-  addOrder: ({ itemId, quantity }) =>
-    dispatch(orderAction.add({ itemId, quantity })),
+  addItem: ({ itemId }) => dispatch(orderAction.upsertItem({ itemId })),
 })
 
 const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
   items: selectors.getItemsState(state),
-  orders: selectors.getOrders(state),
+  orders: selectors.orders.all(state),
   storeUsers: selectors.getStoresUsers(state),
+  shoppingCartOrderId: selectors.users.shoppingCartOrderId(state),
 })
 
 export default Redux.compose(
