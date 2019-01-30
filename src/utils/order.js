@@ -3,7 +3,7 @@ function getTotalPrice(order) {
     return 0
   }
 
-  return order.items.reduce((totalPrice, item) => {
+  return Object.values(order.items).reduce((totalPrice, item) => {
     return totalPrice + item.quantity * item.price
   }, 0)
 }
