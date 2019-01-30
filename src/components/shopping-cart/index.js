@@ -6,10 +6,13 @@ import React from 'react'
 import orderUtil from 'utils/order'
 import Flex from 'components/common/flex'
 
+import ItemRow from './container/item-row'
 import style from './index.style'
 
 export default class ShoppingCart extends React.Component {
   render() {
+    console.log('ShoppingCart render')
+    console.log({ props: this.props })
     return (
       <Flex column css={style.baseWrapper}>
         <Flex column css={style.base}>
@@ -37,11 +40,14 @@ export default class ShoppingCart extends React.Component {
   }
 
   renderItemList = () => {
-    const items = this.getItems()
+    const { order } = this.props
+    const itemIds = this.getItemIds()
     return (
       <Flex column css={style.itemsList}>
         <p css={style.itemsListTitleText}>Items</p>
-        {items.map(item => item)}
+        {itemIds.map(itemId => (
+          <ItemRow {...{ order, itemId }} key={itemId} />
+        ))}
       </Flex>
     )
   }
@@ -60,9 +66,9 @@ export default class ShoppingCart extends React.Component {
   // GETTERS //
   /////////////
 
-  getItems = () => Object.values(_.get(this.props, 'order.items', {}))
+  getItemIds = () => Object.keys(_.get(this.props, 'order.items', {}))
 
-  getItemCount = () => this.getItems().length
+  getItemCount = () => this.getItemIds().length
 
   getTotalPrice = () => orderUtil.getTotalPrice(this.props.order)
 }
