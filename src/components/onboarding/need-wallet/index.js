@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 
 import ROUTE from 'constants/route'
-import FooterButton from 'components/common/footer-button'
+import WalletButton from 'components/common/wallet-button'
 
 import vectorImg from './Vector.png'
 import style from './index.style.js'
@@ -57,21 +57,21 @@ export default class HomeScene extends React.Component {
   renderDownloadStatus() {
     return (
       <div css={style.walletButton}>
-        <FooterButton to={ROUTE.PATH.SIGN_UP}>Download Status</FooterButton>
+        <WalletButton targetWallet={'Status'} to={ROUTE.PATH.SIGN_UP} />
       </div>
     )
   }
   renderDownloadCoinbase() {
     return (
       <div css={style.walletButton}>
-        <FooterButton to={ROUTE.PATH.SIGN_UP}>Download Coinbase</FooterButton>
+        <WalletButton targetWallet={'Coinbase'} to={ROUTE.PATH.SIGN_UP} />
       </div>
     )
   }
   renderDownloadTrust() {
     return (
       <div css={style.walletButton}>
-        <FooterButton to={ROUTE.PATH.SIGN_UP}>Download Trust</FooterButton>
+        <WalletButton targetWallet={'Trust'} to={ROUTE.PATH.SIGN_UP} />
       </div>
     )
   }
