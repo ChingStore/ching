@@ -108,16 +108,13 @@ export default Redux.compose(
         collection: 'items',
         where: [['userId', '==', props.auth.uid]],
       },
-    ]
-  }),
-  ReactReduxFirebase.firestoreConnect(props => {
-    // TODO: Research possible performance issues for old accounts with lots of transactions
-    if (!props.auth || !props.auth.uid) return []
-    return [
       {
         collection: 'orders',
         orderBy: ['createdAt', 'desc'],
         where: [['userId', '==', props.auth.uid]],
+      },
+      {
+        collection: 'users',
       },
     ]
   })
