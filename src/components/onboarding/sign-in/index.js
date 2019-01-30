@@ -41,7 +41,7 @@ class SignIn extends React.Component {
   renderTitle() {
     return (
       <div css={style.title}>
-        <p css={style.titleText}>It's nice to have you back!</p>
+        <p css={style.titleText}>{`It's nice to have you back!`}</p>
       </div>
     )
   }
@@ -100,6 +100,7 @@ class SignIn extends React.Component {
 
     return (
       <div css={style.base}>
+        <p>{authError}</p>
         {this.renderBackLink()}
         {this.renderTitle()}
         {this.renderForm()}
