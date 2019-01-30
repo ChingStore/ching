@@ -60,6 +60,7 @@ class Root extends React.Component {
               component={Payment}
               id={108}
             />
+
             <Route exact path={ROUTE.PATH.ORDERS} component={Orders} id={113} />
           </Switch>
         </div>

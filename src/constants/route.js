@@ -5,6 +5,7 @@ const PATH = {
   SALES_REPORT: '/tabs/sales-report',
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
+  SIGN_IN: '/tabs/signin',
   SIGN_UP: '/signup',
   ORDERS: '/tabs/orders',
   SIGN_UP_STORE: '/signup-store',
