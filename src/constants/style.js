@@ -3,12 +3,21 @@ const COLOR = {
   WHITE: '#FFFFFF',
   BLUE: '#333963',
   GREY: '#E7E4DE',
+  // DARK_GREY: '#C3C4CB;'
 
   TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.3)',
 }
 
 const FONT_WEIGHT = {
-  BOLD: 'bold',
+  HAIRLINE: 100,
+  LIGHTER: 200,
+  LIGHT: 300,
+  NORMAL: 400,
+  MEDIUM: 500,
+  SEMI_BOLD: 600,
+  BOLD: 700,
+  BOLDER: 800,
+  BOLDEST: 900,
 }
 
 const FONT = {
