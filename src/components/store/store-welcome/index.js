@@ -13,7 +13,10 @@ export default class HomeScene extends React.Component {
     return (
       <div css={style.base}>
         {this.renderTitle()}
-        {this.renderArt()}
+        <div css={style.composition}>
+          {this.renderBackground()}
+          {this.renderTag()}
+        </div>
         {this.renderBecomeVendor()}
       </div>
     )
@@ -28,10 +31,18 @@ export default class HomeScene extends React.Component {
     )
   }
 
-  renderArt() {
+  renderBackground() {
     return (
-      <div css={style.art}>
-        <Icon.HomeArt />
+      <div css={style.background}>
+        <Icon.StoreArtBackground />
+      </div>
+    )
+  }
+
+  renderTag() {
+    return (
+      <div css={style.tag}>
+        <Icon.StoreArtTag />
       </div>
     )
   }

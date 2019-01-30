@@ -31,11 +31,24 @@ export default {
     fontSize: 22,
   },
 
-  art: {
+  composition: {
+    position: 'relative',
     flex: 0.4,
 
-    display: 'flex',
-    justifyContent: 'center',
+    display: 'block',
+
+    marginTop: 40,
+  },
+  background: {
+    position: 'absolute',
+    zIndex: 0,
+  },
+  tag: {
+    position: 'absolute',
+    zIndex: 1,
+
+    top: 17,
+    left: 33,
   },
 
   becomeVendor: {
