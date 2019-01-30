@@ -41,7 +41,7 @@ const styles = theme => ({
 class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
-    picture: '',
+    photo: '',
     quantity: '',
     soldCount: 0,
     price: '',
@@ -52,7 +52,7 @@ class OutlinedInputAdornments extends React.Component {
   }
 
   onTakePhoto(dataUri) {
-    this.setState({ picture: dataUri })
+    this.setState({ photo: dataUri })
     console.log('takePhoto')
   }
 
@@ -70,7 +70,7 @@ class OutlinedInputAdornments extends React.Component {
       name: this.state.name,
       quantity: this.state.quantity,
       price: this.state.price,
-      picture: this.state.picture,
+      photo: this.state.photo,
       soldCount: this.state.soldCount,
     })
   }
@@ -107,8 +107,8 @@ class OutlinedInputAdornments extends React.Component {
           id="outlined-adornment-picture"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
-          label="Picture (optional)"
-          value={this.state.picture}
+          label="Photo (optional)"
+          value={this.state.photo}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
