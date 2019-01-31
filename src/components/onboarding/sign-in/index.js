@@ -96,8 +96,6 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const { authError } = this.props
-
     return (
       <div css={style.base}>
         {this.renderBackLink()}
