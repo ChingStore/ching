@@ -31,7 +31,7 @@ class SignIn extends React.Component {
       <div css={style.backLink}>
         <LinkButton to={ROUTE.PATH.HOME}>
           <div>
-            <Icon.LeftArrow />
+            <Icon.ArrowLeft />
           </div>
         </LinkButton>
       </div>

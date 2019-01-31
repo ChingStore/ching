@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LeftArrow = () => (
+const ArrowLeft = () => (
   <svg
     width="20"
     height="20"
@@ -15,4 +15,4 @@ const LeftArrow = () => (
   </svg>
 )
 
-export default LeftArrow
+export default ArrowLeft

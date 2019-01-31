@@ -1,9 +1,9 @@
 import Login from './login'
 import HomeArt from './home-art'
-import LeftArrow from './left-arrow'
+import ArrowLeft from './arrow-left'
 
 export default {
   Login,
   HomeArt,
-  LeftArrow,
+  ArrowLeft,
 }
