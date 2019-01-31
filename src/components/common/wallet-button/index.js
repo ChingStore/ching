@@ -11,7 +11,11 @@ import style from './index.style.js'
 class WalletButton extends React.Component {
   render() {
     const { targetWallet } = this.props
-    return <button css={style.base}>{this.wallet(targetWallet)}</button>
+    return (
+      <a css={style.base} href={this.link(targetWallet)}>
+        {this.wallet(targetWallet)}
+      </a>
+    )
   }
 
   wallet = targetWallet => {
@@ -22,6 +26,19 @@ class WalletButton extends React.Component {
         return <Trust />
       case 'Coinbase':
         return <Coinbase />
+      default:
+        return null
+    }
+  }
+
+  link = targetWallet => {
+    switch (targetWallet) {
+      case 'Status':
+        return 'https://dev.status.im/'
+      case 'Trust':
+        return 'https://trustwallet.com/'
+      case 'Coinbase':
+        return 'https://wallet.coinbase.com/'
       default:
         return null
     }
