@@ -25,8 +25,6 @@ const PATH_TITLE = {
   [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',
   [PATH.SIGN_UP_STORE]: 'Sign Up Store',
-  [PATH.STORE_WELCOME]: 'Welcome to Your Store',
-  [PATH.NEED_WALLET]: 'Wallet Providers',
 }
 
 export default {
