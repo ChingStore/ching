@@ -2,9 +2,10 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
-import ROUTE from 'constants/route'
-import WalletButton from 'components/common/wallet-button'
+import STYLE from 'constants/style'
 import BackButton from 'components/common/back-button'
+import ActionButton from 'components/common/action-button'
+import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
@@ -47,21 +48,39 @@ export default class HomeScene extends React.Component {
   renderDownloadStatus() {
     return (
       <div css={style.walletButton}>
-        <WalletButton targetWallet={'Status'} to={ROUTE.PATH.SIGN_UP} />
+        <ActionButton
+          css={{ backgroundColor: STYLE.COLOR.STATUS }}
+          icon={<Icon.Status />}
+          url={'https://get.status.im/'}
+        >
+          Download Status
+        </ActionButton>
       </div>
     )
   }
   renderDownloadCoinbase() {
     return (
       <div css={style.walletButton}>
-        <WalletButton targetWallet={'Coinbase'} to={ROUTE.PATH.SIGN_UP} />
+        <ActionButton
+          css={{ backgroundColor: STYLE.COLOR.COINBASE }}
+          icon={<Icon.Coinbase />}
+          url={'https://wallet.coinbase.com/'}
+        >
+          Download Coinbase
+        </ActionButton>
       </div>
     )
   }
   renderDownloadTrust() {
     return (
       <div css={style.walletButton}>
-        <WalletButton targetWallet={'Trust'} to={ROUTE.PATH.SIGN_UP} />
+        <ActionButton
+          css={{ backgroundColor: STYLE.COLOR.TRUST }}
+          icon={<Icon.Trust />}
+          url={'https://trustwallet.com/'}
+        >
+          Download Trust
+        </ActionButton>
       </div>
     )
   }
