@@ -8,7 +8,7 @@ import style from './index.style.js'
 class LinkButton extends React.Component {
   render() {
     return (
-      <button css={style.base} onClick={this.handleClick}>
+      <button css={style.base} {...this.props} onClick={this.handleClick}>
         {this.props.children}
       </button>
     )
