@@ -3,7 +3,7 @@ const COLOR = {
   WHITE: '#FFFFFF',
   BLUE: '#333963',
   GREY: '#E7E4DE',
-  // DARK_GREY: '#C3C4CB;'
+  DARK_GREY: '#C3C4CB',
 
   TRANSPARENT: 'transparent',
 

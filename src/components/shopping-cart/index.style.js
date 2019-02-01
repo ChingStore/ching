@@ -57,7 +57,7 @@ const style = {
   },
 
   itemsList: {
-    borderTop: `1px dashed ${STYLE.COLOR.GREY}`,
+    borderTop: `1px dashed ${STYLE.COLOR.DARK_GREY}`,
 
     marginLeft: 30,
     marginRight: 30,
@@ -75,7 +75,7 @@ const style = {
     overflow: 'hidden',
   },
   qrCode__sqaureWrapper: {
-    borderTop: `1px solid ${STYLE.COLOR.GREY}`,
+    borderTop: `1px solid ${STYLE.COLOR.DARK_GREY}`,
 
     justifyContent: 'center',
     alignItems: 'center',

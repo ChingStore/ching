@@ -13,8 +13,9 @@ import SalesReport from 'components/sales-report'
 import Add from 'components/add'
 import Payment from 'components/payment'
 import SignIn from 'components/auth/SignIn'
-import SignUp from 'components/auth/SignUp'
 import Home from 'components/onboarding/home'
+import SignUp from 'components/onboarding/sign-up/container'
+import SignUpStore from 'components/onboarding/sign-up-store/container'
 import Orders from 'components/orders'
 import CONFIG from 'constants/config'
 import ROUTE from 'constants/route'
@@ -33,6 +34,15 @@ class Root extends React.Component {
     return (
       <HashRouter basename={CONFIG.PUBLIC_URL} id={110}>
         <Flex column style={style.base}>
+          <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
+          <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={115} />
+          <Route
+            exact
+            path={ROUTE.PATH.SIGN_UP_STORE}
+            component={SignUpStore}
+            id={117}
+          />
+
           <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
           <Flex column auto>
             <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
@@ -61,12 +71,6 @@ class Root extends React.Component {
                 path={ROUTE.PATH.SIGN_IN}
                 component={SignIn}
                 id={111}
-              />
-              <Route
-                exact
-                path={ROUTE.PATH.SIGN_UP}
-                component={SignUp}
-                id={112}
               />
               <Route
                 exact
