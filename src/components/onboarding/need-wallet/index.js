@@ -4,15 +4,15 @@ import React from 'react'
 
 import ROUTE from 'constants/route'
 import WalletButton from 'components/common/wallet-button'
+import BackButton from 'components/common/back-button'
 
-import vectorImg from './Vector.png'
 import style from './index.style.js'
 
 export default class HomeScene extends React.Component {
   render() {
     return (
       <div css={style.base}>
-        {this.renderBackButton()}
+        <BackButton />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
         <div css={style.buttonCollection}>
@@ -20,16 +20,6 @@ export default class HomeScene extends React.Component {
           {this.renderDownloadCoinbase()}
           {this.renderDownloadTrust()}
         </div>
-      </div>
-    )
-  }
-
-  renderBackButton() {
-    return (
-      <div css={style.button__location}>
-        <button css={style.continue__button}>
-          <img css={style.vector} src={vectorImg} alt="" />
-        </button>
       </div>
     )
   }

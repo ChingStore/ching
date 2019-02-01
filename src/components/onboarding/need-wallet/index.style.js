@@ -10,11 +10,6 @@ export default {
     left: 40,
     right: 40,
   },
-  continue__button: {
-    paddingTop: 40,
-    paddingBottom: 20,
-  },
-
   title: {
     flex: 0.2,
 
@@ -76,16 +71,5 @@ export default {
     justifyContent: 'center',
     alignItems: 'flex-end',
     marginTop: 10,
-  },
-
-  logIn: {
-    flex: 0.2,
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logIn__text: {
-    paddingLeft: 15,
   },
 }
