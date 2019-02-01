@@ -32,14 +32,14 @@ export default {
     lineHeight: 1.5,
     fontWeight: '500',
   },
-  recommended__wallets__text: {
+  recommendedWallets__text: {
     fontSize: 14,
     fontWeight: 'bold',
     color: STYLE.COLOR.BLUE,
     marginTop: 80,
     marginBottom: 6,
   },
-  recommended__wallets__p: {
+  recommendedWallets__p: {
     marginTop: 0,
     marginBottom: 0,
   },

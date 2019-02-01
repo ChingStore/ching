@@ -38,8 +38,8 @@ export default class HomeScene extends React.Component {
 
   renderRecommendedWallets() {
     return (
-      <div css={style.recommended__wallets__text}>
-        <p css={style.recommended__wallets__p}>Recommended wallets</p>
+      <div css={style.recommendedWallets__text}>
+        <p css={style.recommendedWallets__p}>Recommended wallets</p>
       </div>
     )
   }
