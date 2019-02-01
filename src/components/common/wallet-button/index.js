@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 import * as ReactRouter from 'react-router'
-import Status from './Status'
-import Trust from './Trust'
-import Coinbase from './Coinbase'
+import Coinbase from 'components/common/icon/coinbase'
+import Status from 'components/common/icon/status'
+import Trust from 'components/common/icon/trust'
 
 import style from './index.style.js'
 
