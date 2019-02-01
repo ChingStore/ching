@@ -40,7 +40,7 @@ export default class ShoppingCart extends React.PureComponent {
     return (
       <Flex css={style.header} onClick={this.handleHeaderClick}>
         <p css={style.headerTitleText}>
-          Checkout {itemCount} item{itemCount != 1 ? 's' : ''}
+          Checkout {itemCount} item{itemCount !== 1 ? 's' : ''}
         </p>
         <Flex css={style.headerTotalPrice}>
           <p css={style.headerTotalPriceText}>${totalPrice}</p>
