@@ -43,13 +43,6 @@ class WalletButton extends React.Component {
         return null
     }
   }
-
-  handleClick = event => {
-    const { history, to, onClick } = this.props
-    console.log(this.props)
-    onClick && onClick(event)
-    to && history.push(to)
-  }
 }
 
 export default ReactRouter.withRouter(WalletButton)
