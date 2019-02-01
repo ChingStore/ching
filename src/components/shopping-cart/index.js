@@ -7,18 +7,29 @@ import orderUtil from 'utils/order'
 import Flex from 'components/common/flex'
 
 import ItemRow from './container/item-row'
+import QRCode from './qr-code'
 import style from './index.style'
 
-export default class ShoppingCart extends React.Component {
+export default class ShoppingCart extends React.PureComponent {
+  state = {
+    isExpanded: false,
+  }
+
   render() {
     console.log('ShoppingCart render')
     console.log({ props: this.props })
     return (
-      <Flex column css={style.baseWrapper}>
+      <Flex
+        column
+        css={[
+          style.baseWrapper,
+          this.state.isExpanded && style.baseWrapper__expanded,
+        ]}
+      >
         <Flex column css={style.base}>
           {this.renderHeader()}
-          {this.renderItemList()}
-          {this.renderQRCode()}
+          {this.state.isExpanded && this.renderItemList()}
+          {this.state.isExpanded && this.renderQRCode()}
         </Flex>
       </Flex>
     )
@@ -28,7 +39,7 @@ export default class ShoppingCart extends React.Component {
     const itemCount = this.getItemCount()
     const totalPrice = this.getTotalPrice()
     return (
-      <Flex css={style.header}>
+      <Flex css={style.header} onClick={this.handleHeaderClick}>
         <p css={style.headerTitleText}>
           Checkout {itemCount} item{itemCount != 1 ? 's' : ''}
         </p>
@@ -40,13 +51,12 @@ export default class ShoppingCart extends React.Component {
   }
 
   renderItemList = () => {
-    const { order } = this.props
     const itemIds = this.getItemIds()
     return (
       <Flex column css={style.itemsList}>
         <p css={style.itemsListTitleText}>Items</p>
         {itemIds.map(itemId => (
-          <ItemRow {...{ order, itemId }} key={itemId} />
+          <ItemRow {...{ itemId }} key={itemId} />
         ))}
       </Flex>
     )
@@ -54,12 +64,26 @@ export default class ShoppingCart extends React.Component {
 
   renderQRCode = () => {
     return (
-      <Flex css={style.qrCodeWrapper}>
-        <Flex css={style.qrCode}>
-          <p>QR</p>
+      <Flex css={style.qrCode__maxHeightWrapper}>
+        <Flex css={style.qrCode__sqaureWrapper}>
+          <Flex css={style.qrCode__innerFillWrapper}>
+            <Flex css={style.qrCode}>
+              <QRCode {...this.props} />
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     )
+  }
+
+  ////////////////////
+  // EVENT HANDLERS //
+  ////////////////////
+
+  handleHeaderClick = () => {
+    this.setState({
+      isExpanded: !this.state.isExpanded,
+    })
   }
 
   /////////////
@@ -70,5 +94,5 @@ export default class ShoppingCart extends React.Component {
 
   getItemCount = () => this.getItemIds().length
 
-  getTotalPrice = () => orderUtil.getTotalPrice(this.props.order)
+  getTotalPrice = () => orderUtil.getTotalPrice(this.props.order).toFixed(2)
 }

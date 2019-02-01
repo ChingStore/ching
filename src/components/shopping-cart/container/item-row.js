@@ -7,11 +7,16 @@ import orderAction from 'redux/actions/order'
 
 const mapStateToProps = Reselect.createStructuredSelector({
   item: selectors.items.item,
+  order: selectors.orders.shoppingCart,
+  orderId: selectors.users.shoppingCartOrderId,
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleRemoveButtonClick: ({ orderId, itemId }) => {
+  remove: ({ orderId, itemId }) => {
     dispatch(orderAction.removeItem({ orderId, itemId }))
+  },
+  updateQuantity: ({ orderId, itemId, quantity }) => {
+    dispatch(orderAction.upsertItem({ orderId, itemId, quantity }))
   },
 })
 

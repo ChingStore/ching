@@ -14,7 +14,7 @@ import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 import Camera, { FACING_MODES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
 
-import itemActions from 'redux/actions/item'
+import itemAction from 'redux/actions/item'
 import ROUTE from 'constants/route'
 
 const styles = theme => ({
@@ -68,10 +68,10 @@ class OutlinedInputAdornments extends React.Component {
     }
     this.props.addItem({
       name: this.state.name,
-      quantity: this.state.quantity,
-      price: this.state.price,
+      quantity: parseInt(this.state.quantity),
+      price: parseFloat(this.state.price),
       photo: this.state.photo,
-      soldCount: this.state.soldCount,
+      soldCount: parseInt(this.state.soldCount),
     })
   }
 
@@ -162,7 +162,7 @@ OutlinedInputAdornments.propTypes = {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(itemActions.add(item)),
+  addItem: item => dispatch(itemAction.add(item)),
 })
 
 export default Redux.compose(

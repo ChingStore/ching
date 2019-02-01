@@ -1,10 +1,14 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
 
+import Icon from 'components/common/icon'
 import Flex from 'components/common/flex'
+import SHOPPING_CART from 'constants/shopping-cart'
 import style from './item-row.style'
 
-export default class ShoppingCartItemRow extends React.Component {
+export default class ShoppingCartItemRow extends React.PureComponent {
   render() {
     return (
       <Flex css={style.base}>
@@ -18,11 +22,8 @@ export default class ShoppingCartItemRow extends React.Component {
 
   renderRemoveButton = () => (
     <Flex>
-      <button
-        css={style.removeButton}
-        onClick={this.props.handleRemoveButtonClick}
-      >
-        x
+      <button css={style.removeButton} onClick={this.handleRemoveButtonClick}>
+        <Icon.Cross />
       </button>
     </Flex>
   )
@@ -30,14 +31,18 @@ export default class ShoppingCartItemRow extends React.Component {
   renderImage = () => {
     return (
       <Flex>
-        <img src={this.getPhoto()} width="58px" height="44px" />
+        <img
+          src={this.getPhoto()}
+          width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
+          height={SHOPPING_CART.ROW_HEIGHT}
+        />
       </Flex>
     )
   }
 
   renderDescription = () => {
     return (
-      <Flex column auto>
+      <Flex column auto css={style.description}>
         <Flex css={style.descriptionText}>{this.getName()}</Flex>
         <Flex css={style.descriptionText}>${this.getPrice()}</Flex>
       </Flex>
@@ -48,9 +53,11 @@ export default class ShoppingCartItemRow extends React.Component {
     return (
       <Flex>
         <input
-          css={style.quantityInput}
+          css={style.quantity_input}
+          defaultValue={this.getQuantity()}
           type="number"
-          onInput={this.handleQuantityInput}
+          onBlur={this.handleQuantityInputBlur}
+          onKeyPress={this.handleOnKeyPress}
         />
       </Flex>
     )
@@ -62,7 +69,11 @@ export default class ShoppingCartItemRow extends React.Component {
 
   getName = () => _.get(this.props, 'item.name', '...')
 
-  getPrice = () => _.get(this.props, 'item.price', 0)
+  getOrderItem = () => _.get(this.props, `order.items[${this.props.itemId}`)
+
+  getPrice = () => _.get(this.getOrderItem(), 'price', 0).toFixed(2)
+
+  getQuantity = () => _.get(this.getOrderItem(this.props), 'quantity', 0)
 
   getPhoto = () => _.get(this.props, 'item.photo')
 
@@ -70,9 +81,17 @@ export default class ShoppingCartItemRow extends React.Component {
   // EVENT HANDLERS //
   ////////////////////
 
-  handleQuantityInput = e => {
-    console.log({ e })
+  handleQuantityInputChange = e => {
+    console.log('change', { e, value: e.target.value })
+    this.changedQuantity = e.target.value
   }
 
-  handleRemoveButtonClick = () => {}
+  handleQuantityInputBlur = e => {
+    console.log('blur', { e, value: e.target.value })
+    this.props.updateQuantity({ ...this.props, quantity: e.target.value })
+  }
+
+  handleRemoveButtonClick = () => {
+    this.props.remove(this.props)
+  }
 }

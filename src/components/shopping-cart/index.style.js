@@ -1,4 +1,5 @@
 import STYLE from 'constants/style'
+import SHOPPING_CART from 'constants/shopping-cart'
 
 const style = {
   baseWrapper: {
@@ -6,7 +7,8 @@ const style = {
 
     justifyContent: 'flex-end',
     alignItems: 'center',
-
+  },
+  baseWrapper__expanded: {
     backgroundColor: STYLE.COLOR.TRANSLUCENT_BLACK,
   },
   base: {
@@ -16,6 +18,7 @@ const style = {
 
     borderRadius: '20px 20px 0 0',
     backgroundColor: STYLE.COLOR.WHITE,
+    boxShadow: `0 0 200px 5px ${STYLE.COLOR.TRANSLUCENT_BLACK}`,
   },
 
   header: {
@@ -57,20 +60,35 @@ const style = {
   itemsListTitleText: {
     fontSize: 16,
     color: STYLE.COLOR.BLUE,
-    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    fontWeight: STYLE.FONT.WEIGHT.MEDIUM,
   },
 
-  qrCodeWrapper: {
+  // NOTE: This is make QR-code square and limits it's size
+  // @see: https://stackoverflow.com/questions/21750091/max-height-on-border-boxed-div-with-padding-is-not-set
+  qrCode__maxHeightWrapper: {
+    maxHeight: SHOPPING_CART.QR_CODE_MAX_SIZE,
+    overflow: 'hidden',
+  },
+  qrCode__sqaureWrapper: {
     borderTop: `1px solid ${STYLE.COLOR.GREY}`,
+
+    justifyContent: 'center',
+    alignItems: 'center',
 
     width: '100%',
     paddingTop: '100%',
     position: 'relative',
   },
-  qrCode: {
+  qrCode__innerFillWrapper: {
     ...STYLE.ABSOLUTE_FILL,
     justifyContent: 'center',
     alignItems: 'center',
+    maxHeight: SHOPPING_CART.QR_CODE_MAX_SIZE,
+  },
+  qrCode: {
+    maxWidth: SHOPPING_CART.QR_CODE_MAX_SIZE,
+    height: '100%',
+    flexGrow: 1,
   },
 }
 

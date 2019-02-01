@@ -6,6 +6,8 @@ import ShoppingCart from '../index'
 
 const mapStateToProps = Reselect.createStructuredSelector({
   order: selectors.orders.shoppingCart,
+  orderId: selectors.users.shoppingCartOrderId,
+  walletAddress: selectors.wallet.address,
 })
 
 const mapDispatchToProps = null

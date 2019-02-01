@@ -5,6 +5,8 @@ const COLOR = {
   GREY: '#E7E4DE',
   // DARK_GREY: '#C3C4CB;'
 
+  TRANSPARENT: 'transparent',
+
   TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.3)',
 }
 

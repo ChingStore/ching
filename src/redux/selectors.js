@@ -42,6 +42,11 @@ const items = {
   item: (store, { itemId }) => _.get(store, `firestore.data.items[${itemId}]`),
 }
 
+const wallet = {
+  // TODO: Use store wallet
+  address: () => '0xf82B82b4ebC83479eF10271190A7cf5487240955',
+}
+
 export default {
   getItemsState,
   getAuthState,
@@ -54,4 +59,5 @@ export default {
   orders,
   users,
   items,
+  wallet,
 }

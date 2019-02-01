@@ -1,28 +1,41 @@
 import STYLE from 'constants/style'
+import SHOPPING_CART from 'constants/shopping-cart'
 
 const style = {
   base: {
-    height: 44,
-    marginTop: 10,
-    marginBottom: 10,
+    height: SHOPPING_CART.ROW_HEIGHT,
+    marginBottom: 20,
 
     display: 'flex',
     flexDirection: 'row',
-
-    // borderRadius: '20px 20px 0 0',
-    // backgroundColor: STYLE.COLOR.WHITE,
   },
 
-  descriptionText: {
+  removeButton: {
+    alignItems: 'center',
+
+    paddingLeft: 5,
+    paddingRight: 20,
+    height: '100%',
+  },
+
+  description: {
+    justifyContent: 'space-between',
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  description_text: {
     fontWeight: STYLE.FONT.WEIGHT.MEDIUM,
     fontSize: 16,
     color: STYLE.COLOR.BLUE,
     margin: 0,
   },
 
-  quantityInput: {
+  quantity_input: {
     border: `1px solid ${STYLE.COLOR.GREY}`,
     borderRadius: 7,
+    width: 33,
+    textAlign: 'center',
+    fontWeight: STYLE.FONT.WEIGHT.MEDIUM,
   },
 }
 

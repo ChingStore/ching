@@ -19,7 +19,7 @@ const upsertItem = ({ orderId, itemId, quantity }) => {
 
     let order
     if (orderId) {
-      order = selector.getOrder(state, { orderId })
+      order = selector.orders.order(state, { orderId })
     } else if (shoppingCartOrderId) {
       order = selector.orders.shoppingCart(state)
       orderId = shoppingCartOrderId
@@ -91,6 +91,7 @@ const upsertItem = ({ orderId, itemId, quantity }) => {
           .collection('orders')
           .doc(orderId)
           .update({
+            ...order,
             items: {
               ...order.items,
               ...newItems,
@@ -103,14 +104,43 @@ const upsertItem = ({ orderId, itemId, quantity }) => {
   }
 }
 
-const removeItem = ({ orederId, itemId }) => {
+const removeItem = ({ orderId, itemId }) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     const state = getState()
 
-    await firestore.delete({
-      collection: '',
-    })
+    const order = selector.orders.order(state, { orderId })
+
+    const updatedOrderItems = _.omit(order.items, itemId)
+    console.log({ itemId, order, updatedOrderItems })
+
+    if (_.isEmpty(updatedOrderItems)) {
+      const currentUserId = selector.users.currentId(state)
+
+      await Promise.all([
+        firestore
+          .collection('users')
+          .doc(currentUserId)
+          .update({
+            shoppingCartOrderId: null,
+          }),
+        firestore
+          .collection('orders')
+          .doc(orderId)
+          .delete(),
+      ])
+    } else {
+      await firestore.update(
+        {
+          collection: 'orders',
+          doc: orderId,
+        },
+        {
+          ...order,
+          items: updatedOrderItems,
+        }
+      )
+    }
   }
 }
 
