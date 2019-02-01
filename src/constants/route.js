@@ -5,13 +5,15 @@ const PATH = {
   SALES_REPORT: '/tabs/sales-report',
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
-  SIGN_UP: '/signup',
   ORDERS: '/tabs/orders',
-  SIGN_UP_STORE: '/signup-store',
 
   // Full-screen
   HOME: '/home',
+  NEED_WALLET: '/need-wallet',
   SIGN_IN: '/signin',
+  SIGN_UP: '/signup',
+  SIGN_UP_STORE: '/signup-store',
+  STORE_WELCOME: '/store-welcome',
 }
 
 const PATH_TITLE = {

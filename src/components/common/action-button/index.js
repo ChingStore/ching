@@ -5,11 +5,13 @@ import * as ReactRouter from 'react-router'
 
 import style from './index.style.js'
 
-class LinkButton extends React.Component {
+class ActionButton extends React.Component {
   render() {
     return (
       <button css={style.base} {...this.props} onClick={this.handleClick}>
-        {this.props.children}
+        <div css={style.icon}>{this.props.icon}</div>
+        <div css={style.spacer} />
+        <div>{this.props.children}</div>
       </button>
     )
   }
@@ -22,4 +24,4 @@ class LinkButton extends React.Component {
   }
 }
 
-export default ReactRouter.withRouter(LinkButton)
+export default ReactRouter.withRouter(ActionButton)

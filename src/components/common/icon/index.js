@@ -1,9 +1,17 @@
 import Login from './login'
 import HomeArt from './home-art'
-import ArrowLeft from './arrow-left'
+import StoreArtTag from './store-art-tag'
+import StoreArtBackground from './store-art-background'
+import Coinbase from './coinbase'
+import Status from './status'
+import Trust from './trust'
 
 export default {
+  Coinbase,
   Login,
   HomeArt,
-  ArrowLeft,
+  Status,
+  StoreArtTag,
+  StoreArtBackground,
+  Trust,
 }

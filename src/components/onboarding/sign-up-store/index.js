@@ -2,6 +2,8 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
+import ROUTE from 'constants/route'
+import LinkButton from 'components/common/link-button'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
@@ -68,9 +70,9 @@ export default class SignUp extends React.Component {
   renderHelpLink = () => {
     return (
       <div css={style.help__link__location}>
-        <button css={style.help__link__button}>
+        <LinkButton css={style.help__link__button} to={ROUTE.PATH.NEED_WALLET}>
           <div css={style.help__link__text}>What is it?</div>
-        </button>
+        </LinkButton>
       </div>
     )
   }
@@ -78,12 +80,12 @@ export default class SignUp extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.button__location}>
-        <button css={style.continue__button}>
+        <LinkButton css={style.continue__button} to={ROUTE.PATH.STORE_WELCOME}>
           <div css={style.continue__text}>Continue</div>
           <div css={style.continue__circle}>
             <img css={style.vector} src={vectorImg} alt="" />
           </div>
-        </button>
+        </LinkButton>
       </div>
     )
   }
