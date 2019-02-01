@@ -13,40 +13,29 @@ export default {
 
   title: {
     flex: 0.3,
-
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
 
-  titleText: {
-    flex: 0.3,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+  title__text: {
+    marginTop: 0,
+    marginBottom: 0,
     fontWeight: 'bold',
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
   },
 
-  backLink: {
-    flex: 0.15,
-    display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
-  },
-
   inputField: {
     flex: 0.1,
-    flexDirection: 'column',
   },
 
   forgot: {
+    marginTop: 5,
     display: 'flex',
     justifyContent: 'flex-end',
   },
 
-  forgotText: {
+  forgot__text: {
     color: STYLE.COLOR.CYAN,
   },
 }
