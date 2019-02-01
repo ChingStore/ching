@@ -7,9 +7,12 @@ const style = {
 
     justifyContent: 'flex-end',
     alignItems: 'center',
+    zIndex: 1,
+    pointerEvents: 'none',
   },
   baseWrapper__expanded: {
     backgroundColor: STYLE.COLOR.TRANSLUCENT_BLACK,
+    pointerEvents: 'auto',
   },
   base: {
     marginLeft: 10,
@@ -19,6 +22,8 @@ const style = {
     borderRadius: '20px 20px 0 0',
     backgroundColor: STYLE.COLOR.WHITE,
     boxShadow: `0 0 200px 5px ${STYLE.COLOR.TRANSLUCENT_BLACK}`,
+
+    pointerEvents: 'auto',
   },
 
   header: {

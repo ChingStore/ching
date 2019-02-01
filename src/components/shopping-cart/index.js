@@ -16,8 +16,6 @@ export default class ShoppingCart extends React.PureComponent {
   }
 
   render() {
-    console.log('ShoppingCart render')
-    console.log({ props: this.props })
     return (
       <Flex
         column
@@ -25,6 +23,7 @@ export default class ShoppingCart extends React.PureComponent {
           style.baseWrapper,
           this.state.isExpanded && style.baseWrapper__expanded,
         ]}
+        // onClick={this.handleHeaderClick}
       >
         <Flex column css={style.base}>
           {this.renderHeader()}
@@ -92,7 +91,11 @@ export default class ShoppingCart extends React.PureComponent {
 
   getItemIds = () => Object.keys(_.get(this.props, 'order.items', {}))
 
-  getItemCount = () => this.getItemIds().length
+  getItemCount = () =>
+    Object.values(_.get(this.props, 'order.items')).reduce(
+      (totalCount, item) => totalCount + item.quantity,
+      0
+    )
 
   getTotalPrice = () => orderUtil.getTotalPrice(this.props.order).toFixed(2)
 }
