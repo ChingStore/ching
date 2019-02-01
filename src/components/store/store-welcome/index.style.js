@@ -59,15 +59,4 @@ export default {
     alignItems: 'flex-end',
     marginTop: 61,
   },
-
-  logIn: {
-    flex: 0.2,
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logIn__text: {
-    paddingLeft: 15,
-  },
 }
