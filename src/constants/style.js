@@ -8,6 +8,10 @@ const COLOR = {
   TRANSPARENT: 'transparent',
 
   TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.3)',
+
+  COINBASE: '#0B36F0',
+  STATUS: '#5B6DEE',
+  TRUST: '#3375BB',
 }
 
 const FONT_WEIGHT = {
