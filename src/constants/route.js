@@ -8,12 +8,12 @@ const PATH = {
   SIGN_UP: '/signup',
   ORDERS: '/tabs/orders',
   SIGN_UP_STORE: '/signup-store',
-  STORE_WELCOME: '/store-welcome',
-  NEED_WALLET: '/need-wallet',
 
   // Full-screen
   HOME: '/home',
   SIGN_IN: '/signin',
+  STORE_WELCOME: '/store-welcome',
+  NEED_WALLET: '/need-wallet',
 }
 
 const PATH_TITLE = {
