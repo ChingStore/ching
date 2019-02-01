@@ -4,10 +4,9 @@ import React from 'react'
 
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
-import LinkButton from 'components/common/link-button'
+import NextButton from 'components/common/next-button'
 
 import style from './index.style.js'
-import vectorImg from './Vector.png'
 
 export default class SignUp extends React.Component {
   state = {}
@@ -70,12 +69,7 @@ export default class SignUp extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.button__location}>
-        <LinkButton css={style.continue__button} to={ROUTE.PATH.SIGN_UP_STORE}>
-          <div css={style.continue__text}>Continue</div>
-          <div css={style.continue__circle}>
-            <img css={style.vector} src={vectorImg} alt="->" />
-          </div>
-        </LinkButton>
+        <NextButton to={ROUTE.PATH.SIGN_UP_STORE}>Continue</NextButton>
       </div>
     )
   }
