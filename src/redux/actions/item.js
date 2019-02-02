@@ -1,11 +1,11 @@
-const add = ({ name, picture, soldCount, quantity, price }) => {
+const add = ({ name, photo, soldCount, quantity, price }) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     const state = getState()
     try {
       await firestore.collection('items').add({
         name,
-        picture,
+        photo,
         soldCount,
         quantity,
         price,

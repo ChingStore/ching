@@ -95,7 +95,7 @@ Orders.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  orders: selectors.getOrders(state),
+  orders: selectors.orders.all(state),
 })
 
 export default Redux.compose(

@@ -5,7 +5,7 @@
 - items
   - id
   - name
-  - picture
+  - photo
   - price
   - quantity
   - soldCount

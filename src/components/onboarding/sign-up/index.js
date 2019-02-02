@@ -73,7 +73,7 @@ export default class SignUp extends React.Component {
         <LinkButton css={style.continue__button} to={ROUTE.PATH.SIGN_UP_STORE}>
           <div css={style.continue__text}>Continue</div>
           <div css={style.continue__circle}>
-            <img css={style.vector} src={vectorImg} alt="->" />
+            <img css={style.vector} src={vectorImg} alt="Continue" />
           </div>
         </LinkButton>
       </div>

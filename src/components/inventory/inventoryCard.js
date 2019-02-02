@@ -45,7 +45,7 @@ function MediaCard(props) {
   const { classes } = props
 
   // componentWillMount () {
-  //   image = props.picture;
+  //   image = props.photo;
   // }
 
   return (
@@ -55,8 +55,8 @@ function MediaCard(props) {
         <CardActionArea className={classes.button}>
           <CardMedia
             className={classes.media}
-            image={props.picture || image}
-            alt={props.picture}
+            image={props.photo || image}
+            alt=""
           />
           <CardContent className={classes.content}>
             <Typography
@@ -81,7 +81,7 @@ MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   name: PropTypes.string,
-  picture: PropTypes.string,
+  photo: PropTypes.string,
   price: PropTypes.string,
   quantity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }

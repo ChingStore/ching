@@ -179,7 +179,7 @@ class QRDialog extends React.Component {
 
 QRDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-  picture: PropTypes.string,
+  photo: PropTypes.string,
   url: PropTypes.string,
   onClose: PropTypes.func,
 }
