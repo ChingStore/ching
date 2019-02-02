@@ -45,6 +45,7 @@ export default {
     color: STYLE.COLOR.BLUE,
   },
   button__location: {
+    marginTop: 84,
     flex: 0.1,
     flexDirection: 'row-reverse',
   },

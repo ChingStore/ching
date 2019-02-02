@@ -29,6 +29,12 @@ export default {
     flex: 0.1,
   },
 
+  NextButton__location: {
+    marginTop: 50,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+
   forgot: {
     marginTop: 5,
     display: 'flex',

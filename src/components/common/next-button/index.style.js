@@ -2,7 +2,6 @@ import STYLE from 'constants/style'
 
 export default {
   button__location: {
-    marginTop: 98,
     flex: 1,
     display: 'flex',
     flexDirection: 'row-reverse',
