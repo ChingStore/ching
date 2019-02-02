@@ -1,5 +1,6 @@
-import SignUp from '..'
 import * as ReactRedux from 'react-redux'
+
+import SignUp from '..'
 
 const mapDispatchToProps = dispatch => ({
   signUpStore: data => {

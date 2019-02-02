@@ -4,13 +4,14 @@ import * as ReactRedux from 'react-redux'
 import * as Redux from 'redux'
 import PropTypes, { string } from 'prop-types'
 
-import Card from './inventoryCard.js'
-import Add from './inventoryAdd.js'
-import QRDialog from './qrDialog'
 import selectors from 'redux/selectors'
 import orderAction from 'redux/actions/order'
 import ShoppingCart from 'components/shopping-cart/container'
 import Flex from 'components/common/flex'
+
+import Card from './inventoryCard.js'
+import Add from './inventoryAdd.js'
+import QRDialog from './qrDialog'
 
 class InventoryScene extends React.PureComponent {
   state = {}

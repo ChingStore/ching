@@ -2,8 +2,9 @@ import * as ReactRedux from 'react-redux'
 import * as Reselect from 'reselect'
 
 import selectors from 'redux/selectors'
-import ItemRow from '../item-row'
 import orderAction from 'redux/actions/order'
+
+import ItemRow from '../item-row'
 
 const mapStateToProps = Reselect.createStructuredSelector({
   item: selectors.items.item,
