@@ -29,7 +29,7 @@ export default {
     flex: 0.1,
   },
 
-  NextButton__location: {
+  next__buttonLocation: {
     marginTop: 50,
     alignItems: 'center',
     justifyContent: 'flex-start',

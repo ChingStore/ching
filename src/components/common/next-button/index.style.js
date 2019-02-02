@@ -13,12 +13,12 @@ export default {
     alignItems: 'center',
     borderWidth: 0,
   },
-  continue__text: {
+  continue__buttonText: {
     marginRight: 20,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 16,
   },
-  continue__circle: {
+  continue__buttonCircle: {
     width: '48px',
     height: '48px',
     background: '#5EBAA0',

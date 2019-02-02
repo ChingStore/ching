@@ -78,7 +78,7 @@ export default class SignIn extends React.Component {
 
   renderContinueButton = () => {
     return (
-      <div css={style.NextButton__location}>
+      <div css={style.next__buttonLocation}>
         <NextButton to={ROUTE.PATH.INVENTORY}>Continue</NextButton>
       </div>
     )
@@ -86,7 +86,6 @@ export default class SignIn extends React.Component {
 
   render() {
     const { authError } = this.props
-    // return 0
     return (
       <div css={style.base}>
         <p>{authError}</p>

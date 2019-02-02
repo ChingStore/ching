@@ -11,8 +11,8 @@ class NextButton extends React.Component {
     return (
       <div css={style.button__location}>
         <button css={style.continue__button}>
-          <div css={style.continue__text}>{this.props.children}</div>
-          <div css={style.continue__circle}>
+          <div css={style.continue__buttonText}>{this.props.children}</div>
+          <div css={style.continue__buttonCircle}>
             <img css={style.vector} src={vectorImg} alt="" />
           </div>
         </button>
