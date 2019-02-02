@@ -5,6 +5,13 @@
 
 NODE_VERSION=10.15.1
 
+if [[ ${CI+x} ]]
+then
+  echo "CI build detected. Skipping pre-install."
+  exit 0
+fi
+
+
 
 n -V >/dev/null 2 >& 1 || {
   echo "[Pre-Install] n is not found... Installing now"
