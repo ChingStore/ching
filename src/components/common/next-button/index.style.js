@@ -22,8 +22,6 @@ export default {
   continue__circle: {
     width: '48px',
     height: '48px',
-    left: '283px',
-    top: '444px',
     background: '#5EBAA0',
     borderRadius: '70px',
 

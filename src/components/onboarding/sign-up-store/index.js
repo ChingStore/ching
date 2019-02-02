@@ -8,7 +8,6 @@ import NextButton from 'components/common/next-button'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
-import vectorImg from './Vector.png'
 
 export default class SignUp extends React.Component {
   state = {}
