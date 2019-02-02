@@ -14,11 +14,11 @@ export default {
     display: 'flex',
     alignItems: 'center',
   },
+  button__text: {
+    marginLeft: 15,
+  },
   icon: {
     display: 'flex',
     alignItems: 'center',
-  },
-  spacer: {
-    width: 15,
   },
 }

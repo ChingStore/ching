@@ -15,8 +15,7 @@ class ActionButton extends React.Component {
         type="button"
       >
         <div css={style.icon}>{this.props.icon}</div>
-        <div css={style.spacer} />
-        <div>{this.props.children}</div>
+        <div css={style.button__text}>{this.props.children}</div>
       </button>
     )
   }
