@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import _ from 'lodash'
 import React from 'react'
 import * as Redux from 'redux'
@@ -21,23 +23,21 @@ const styles = theme => ({
 })
 
 class Orders extends React.PureComponent {
-  /////////////////////
+  // ///////////////////
   // LIFECYCLE HOOKS //
-  /////////////////////
+  // ///////////////////
 
-  /////////////
+  // ///////////
   // GETTERS //
-  /////////////
+  // ///////////
 
   getOrderDetailsString = order => {
-    var details = ''
+    let details = ''
 
     if (this.isHashReceivied(order)) {
-      details +=
-        order.txHash.toString().slice(0, 5) +
-        '...' +
-        order.txHash.toString().slice(60) +
-        ', '
+      details += `${order.txHash
+        .toString()
+        .slice(0, 5)}...${order.txHash.toString().slice(60)}, `
     } else {
       details += 'No txHash yet, '
     }
@@ -49,21 +49,19 @@ class Orders extends React.PureComponent {
     return details
   }
 
-  getOrderTimestampString = order => {
-    return moment(order.createdAt.toDate()).fromNow()
-  }
+  getOrderTimestampString = order => moment(order.createdAt.toDate()).fromNow()
 
-  //////////////
+  // ////////////
   // CHECKERS //
-  //////////////
+  // ////////////
 
   isConfirmed = order => order.txConfirmed
 
   isHashReceivied = order => order.txHash
 
-  /////////////
+  // ///////////
   // HELPERS //
-  /////////////
+  // ///////////
 
   render() {
     const { orders, classes } = this.props
@@ -71,19 +69,17 @@ class Orders extends React.PureComponent {
     return (
       <List className={classes.root}>
         {orders &&
-          _.map(orders, (order, id) => {
-            return (
-              <ListItem key={id}>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-                <ListItemText
-                  primary={this.getOrderDetailsString(order)}
-                  secondary={this.getOrderTimestampString(order)}
-                />
-              </ListItem>
-            )
-          })}
+          _.map(orders, (order, id) => (
+            <ListItem key={id}>
+              <Avatar>
+                <ImageIcon />
+              </Avatar>
+              <ListItemText
+                primary={this.getOrderDetailsString(order)}
+                secondary={this.getOrderTimestampString(order)}
+              />
+            </ListItem>
+          ))}
       </List>
     )
   }
@@ -95,7 +91,7 @@ Orders.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  orders: selectors.getOrders(state),
+  orders: selectors.orders.all(state),
 })
 
 export default Redux.compose(

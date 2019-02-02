@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Provider } from 'react-redux'
 
-import './App.css'
+import store from 'redux/store'
+import Root from 'components/root'
 
-import store from './redux/store'
-import Root from './Root'
+import './App.css'
 
 class App extends React.Component {
   render() {

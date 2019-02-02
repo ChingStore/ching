@@ -13,20 +13,22 @@ export default class SignIn extends React.Component {
     email: '',
     password: '',
   }
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value,
     })
   }
+
   handleSignIn = e => {
     e.preventDefault() //  prevent reload of the page
     this.props.signIn(this.state)
   }
 
-  renderTitle() {
+  renderTitle = () => {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>{`It’s nice to have you back!`}</p>
+        <p css={style.title__text}>It’s nice to have you back!</p>
       </div>
     )
   }
@@ -41,6 +43,7 @@ export default class SignIn extends React.Component {
       </form>
     )
   }
+
   renderUsernameField = () => {
     return (
       <div css={style.inputField}>
@@ -70,7 +73,7 @@ export default class SignIn extends React.Component {
     return (
       <div css={style.forgot}>
         <LinkButton to={ROUTE.PATH.HOME}>
-          <div css={style.forgot__text}>{'Forgot?'}</div>
+          <div css={style.forgot__text}>Forgot?</div>
         </LinkButton>
       </div>
     )

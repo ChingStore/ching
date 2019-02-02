@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -179,7 +180,7 @@ class QRDialog extends React.Component {
 
 QRDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-  picture: PropTypes.string,
+  photo: PropTypes.string,
   url: PropTypes.string,
   onClose: PropTypes.func,
 }

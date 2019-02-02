@@ -1,7 +1,7 @@
 import * as ReactRedux from 'react-redux'
-import SignIn from '..'
 import PropTypes from 'prop-types'
 import authActions from 'redux/actions/auth'
+import SignIn from '..'
 
 SignIn.propTypes = {
   signIn: PropTypes.func,

@@ -15,6 +15,8 @@ jobs:
     - stage: Test
       name: 'lint'
       script: yarn lint
+    - name: 'flow'
+      script: yarn flow
     - name: 'unit tests'
       script: yarn test
     - stage: Deploy

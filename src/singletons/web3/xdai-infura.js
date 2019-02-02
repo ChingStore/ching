@@ -21,16 +21,15 @@ class Web3XdaiInfura {
   }
 
   getNetwork() {
-    const netId = parseInt(this.web3.version.network)
+    const netId = parseInt(this.web3.version.network, 10)
     console.log('Infura XDai initialized:', NETWORK.ID_NAME[netId])
   }
 
   async isTxConfirmed(hash) {
     await this._initialized
     const receipt = await this.web3.eth.getTransactionReceipt(hash)
-    if (receipt) {
-      return receipt.status
-    }
+
+    return receipt && receipt.status
   }
 
   getBalance = async walletAddress => {
@@ -40,7 +39,7 @@ class Web3XdaiInfura {
       .at(NETWORK.TOKEN_ADDRESS.MAINNET)
     let balance = this.web3.eth.getBalance(walletAddress)
     balance = balance.div(10 ** contract.decimals())
-    balance = this.web3.fromWei('' + balance, 'ether')
+    balance = this.web3.fromWei(`${balance}`, 'ether')
     return parseFloat(balance).toFixed(2)
   }
 }

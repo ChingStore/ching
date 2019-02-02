@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
-import * as ReactRouter from 'react-router'
+import * as ReactRouter from 'react-router-dom'
 import Coinbase from 'components/common/icon/coinbase'
 import Status from 'components/common/icon/status'
 import Trust from 'components/common/icon/trust'

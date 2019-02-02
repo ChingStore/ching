@@ -21,17 +21,16 @@ class Web3DaiInfura {
   }
 
   getNetwork() {
-    const netId = parseInt(this.web3.version.network)
+    const netId = parseInt(this.web3.version.network, 10)
     console.log('Infura Dai initialized:', NETWORK.ID_NAME[netId])
   }
 
   async isTxConfirmed(hash) {
     await this._initialized
     const receipt = await this.web3.eth.getTransactionReceipt(hash)
-    if (receipt) {
-      return receipt.status
-    }
+    return receipt && receipt.status
   }
+
   getBalance = async walletAddress => {
     await this._initialized
     const contract = this.web3.eth

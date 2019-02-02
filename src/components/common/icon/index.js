@@ -1,3 +1,4 @@
+import Cross from './cross'
 import Login from './login'
 import HomeArt from './home-art'
 import StoreArtTag from './store-art-tag'
@@ -7,6 +8,7 @@ import Status from './status'
 import Trust from './trust'
 
 export default {
+  Cross,
   Coinbase,
   Login,
   HomeArt,

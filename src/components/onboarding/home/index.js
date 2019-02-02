@@ -21,38 +21,30 @@ export default class HomeScene extends React.Component {
     )
   }
 
-  renderTitle() {
-    return (
-      <div css={style.title}>
-        <p css={style.title__text}>Start accepting payments in DAI.</p>
-      </div>
-    )
-  }
+  renderTitle = () => (
+    <div css={style.title}>
+      <p css={style.title__text}>Start accepting payments in DAI.</p>
+    </div>
+  )
 
-  renderArt() {
-    return (
-      <div css={style.art}>
-        <Icon.HomeArt />
-      </div>
-    )
-  }
+  renderArt = () => (
+    <div css={style.art}>
+      <Icon.HomeArt />
+    </div>
+  )
 
-  renderBecomeVendor() {
-    return (
-      <div css={style.becomeVendor}>
-        <FooterButton to={ROUTE.PATH.SIGN_UP}>Become a vendor</FooterButton>
-      </div>
-    )
-  }
+  renderBecomeVendor = () => (
+    <div css={style.becomeVendor}>
+      <FooterButton to={ROUTE.PATH.SIGN_UP}>Become a vendor</FooterButton>
+    </div>
+  )
 
-  renderLogIn() {
-    return (
-      <div css={style.logIn}>
-        <LinkButton to={ROUTE.PATH.SIGN_IN}>
-          <Icon.Login />
-          <span css={style.logIn__text}>Log In</span>
-        </LinkButton>
-      </div>
-    )
-  }
+  renderLogIn = () => (
+    <div css={style.logIn}>
+      <LinkButton to={ROUTE.PATH.SIGN_IN}>
+        <Icon.Login />
+        <span css={style.logIn__text}>Log In</span>
+      </LinkButton>
+    </div>
+  )
 }

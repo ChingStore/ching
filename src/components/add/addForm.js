@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import * as React from 'react'
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
@@ -14,7 +16,7 @@ import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate'
 import Camera, { FACING_MODES } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
 
-import itemActions from 'redux/actions/item'
+import itemAction from 'redux/actions/item'
 import ROUTE from 'constants/route'
 
 const styles = theme => ({
@@ -41,7 +43,7 @@ const styles = theme => ({
 class OutlinedInputAdornments extends React.Component {
   state = {
     name: '',
-    picture: '',
+    photo: '',
     quantity: '',
     soldCount: 0,
     price: '',
@@ -52,7 +54,7 @@ class OutlinedInputAdornments extends React.Component {
   }
 
   onTakePhoto(dataUri) {
-    this.setState({ picture: dataUri })
+    this.setState({ photo: dataUri })
     console.log('takePhoto')
   }
 
@@ -68,10 +70,10 @@ class OutlinedInputAdornments extends React.Component {
     }
     this.props.addItem({
       name: this.state.name,
-      quantity: this.state.quantity,
-      price: this.state.price,
-      picture: this.state.picture,
-      soldCount: this.state.soldCount,
+      quantity: parseInt(this.state.quantity, 10),
+      price: parseFloat(this.state.price),
+      photo: this.state.photo,
+      soldCount: parseInt(this.state.soldCount, 10),
     })
   }
 
@@ -107,8 +109,8 @@ class OutlinedInputAdornments extends React.Component {
           id="outlined-adornment-picture"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
-          label="Picture (optional)"
-          value={this.state.picture}
+          label="Photo (optional)"
+          value={this.state.photo}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -162,7 +164,7 @@ OutlinedInputAdornments.propTypes = {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(itemActions.add(item)),
+  addItem: item => dispatch(itemAction.add(item)),
 })
 
 export default Redux.compose(

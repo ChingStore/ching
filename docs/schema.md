@@ -1,3 +1,5 @@
+<!-- eslint-disable -->
+
 - users
   - id
   - firstName
@@ -5,7 +7,7 @@
 - items
   - id
   - name
-  - picture
+  - photo
   - price
   - quantity
   - soldCount

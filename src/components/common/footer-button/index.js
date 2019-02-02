@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
-import * as ReactRouter from 'react-router'
+import * as ReactRouter from 'react-router-dom'
 
 import style from './index.style.js'
 
 class FooterButton extends React.Component {
   render() {
     return (
-      <button css={style.base} onClick={this.handleClick}>
+      <button css={style.base} onClick={this.handleClick} type="button">
         {this.props.children}
       </button>
     )
@@ -16,9 +16,13 @@ class FooterButton extends React.Component {
 
   handleClick = event => {
     const { history, to, onClick } = this.props
-    console.log(this.props)
-    onClick && onClick(event)
-    to && history.push(to)
+
+    if (onClick) {
+      onClick(event)
+    }
+    if (to) {
+      history.push(to)
+    }
   }
 }
 

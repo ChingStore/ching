@@ -22,36 +22,28 @@ export default class HomeScene extends React.Component {
     )
   }
 
-  renderTitle() {
-    return (
-      <div css={style.title}>
-        <p css={style.title__text}>StoreName</p>
-        <p css={style.welcome__msg}>Welcome to your store!</p>
-      </div>
-    )
-  }
+  renderTitle = () => (
+    <div css={style.title}>
+      <p css={style.title__text}>StoreName</p>
+      <p css={style.welcome__msg}>Welcome to your store!</p>
+    </div>
+  )
 
-  renderBackground() {
-    return (
-      <div css={style.background}>
-        <Icon.StoreArtBackground />
-      </div>
-    )
-  }
+  renderBackground = () => (
+    <div css={style.background}>
+      <Icon.StoreArtBackground />
+    </div>
+  )
 
-  renderTag() {
-    return (
-      <div css={style.tag}>
-        <Icon.StoreArtTag />
-      </div>
-    )
-  }
+  renderTag = () => (
+    <div css={style.tag}>
+      <Icon.StoreArtTag />
+    </div>
+  )
 
-  renderAddFirstItem() {
-    return (
-      <div css={style.addFirstItem}>
-        <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a first item</FooterButton>
-      </div>
-    )
-  }
+  renderAddFirstItem = () => (
+    <div css={style.addFirstItem}>
+      <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a first item</FooterButton>
+    </div>
+  )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import Badge from '@material-ui/core/Badge'
 import { withStyles } from '@material-ui/core/styles'
