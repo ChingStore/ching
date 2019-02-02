@@ -50,7 +50,7 @@ export default {
     display: 'flex',
     flexDirection: 'row-reverse',
   },
-  helpLink__location: {
+  helpLink_wrapper: {
     marginTop: 5,
     flex: 1,
     display: 'flex',
