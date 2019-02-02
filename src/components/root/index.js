@@ -12,12 +12,11 @@ import Inventory from 'components/inventory'
 import SalesReport from 'components/sales-report'
 import Add from 'components/add'
 import Payment from 'components/payment'
-import SignIn from 'components/auth/SignIn'
 import Home from 'components/onboarding/home'
-import NeedWallet from './components/onboarding/need-wallet'
+import NeedWallet from 'components/onboarding/need-wallet'
 import SignUp from 'components/onboarding/sign-up/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
-import StoreWelcome from './components/store/store-welcome'
+import StoreWelcome from 'components/store/store-welcome'
 import Orders from 'components/orders'
 import CONFIG from 'constants/config'
 import ROUTE from 'constants/route'
@@ -79,12 +78,6 @@ class Root extends React.Component {
                 path="/payment/:address/:amount/:orderId"
                 component={Payment}
                 id={108}
-              />
-              <Route
-                exact
-                path={ROUTE.PATH.SIGN_IN}
-                component={SignIn}
-                id={111}
               />
               <Route
                 exact

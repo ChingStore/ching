@@ -11,7 +11,7 @@ class BackButton extends React.Component {
     return (
       <div css={style.button__location}>
         <button css={style.continue__button} onClick={this.handleClick}>
-          <img css={style.vector} src={vectorImg} alt="" />
+          <img css={style.vector} src={vectorImg} alt="Go back" />
         </button>
       </div>
     )

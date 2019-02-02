@@ -35,7 +35,7 @@ export default class ShoppingCartItemRow extends React.PureComponent {
           src={this.getPhoto()}
           width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
           height={SHOPPING_CART.ROW_HEIGHT}
-          alt='error generating photo'
+          alt={'Item photo'}
         />
       </Flex>
     )
@@ -84,12 +84,15 @@ export default class ShoppingCartItemRow extends React.PureComponent {
 
   handleQuantityInputChange = e => {
     console.log('change', { e, value: e.target.value })
-    this.changedQuantity = e.target.value
+    this.changedQuantity = parseInt(e.target.value)
   }
 
   handleQuantityInputBlur = e => {
     console.log('blur', { e, value: e.target.value })
-    this.props.updateQuantity({ ...this.props, quantity: e.target.value })
+    this.props.updateQuantity({
+      ...this.props,
+      quantity: parseInt(e.target.value),
+    })
   }
 
   handleRemoveButtonClick = () => {

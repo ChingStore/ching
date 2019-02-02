@@ -11,7 +11,7 @@ export default class ShoppingCartQRCode extends React.PureComponent {
   render() {
     return (
       <Flex css={style.base}>
-        <img css={style.qrCode} src={this.getQRImage()} alt='error generating QR code'/>
+        <img css={style.qrCode} src={this.getQRImage()} alt="QR code" />
       </Flex>
     )
   }

@@ -56,7 +56,7 @@ function MediaCard(props) {
           <CardMedia
             className={classes.media}
             image={props.photo || image}
-            alt={props.photo}
+            alt=""
           />
           <CardContent className={classes.content}>
             <Typography
