@@ -35,7 +35,7 @@ export default class ShoppingCartItemRow extends React.PureComponent {
           src={this.getPhoto()}
           width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
           height={SHOPPING_CART.ROW_HEIGHT}
-          alt={'Item photo'}
+          alt={this.getName()}
         />
       </Flex>
     )
