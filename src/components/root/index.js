@@ -14,6 +14,7 @@ import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
 import NeedWallet from 'components/onboarding/need-wallet'
 import SignUp from 'components/onboarding/sign-up/container'
+import SignIn from 'components/onboarding/sign-in/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
 import StoreWelcome from 'components/store/store-welcome'
 import Orders from 'components/orders'
@@ -42,6 +43,7 @@ class Root extends React.Component {
             id={119}
           />
           <Route exact path={ROUTE.PATH.SIGN_UP} component={SignUp} id={115} />
+          <Route exact path={ROUTE.PATH.SIGN_IN} component={SignIn} id={114} />
           <Route
             exact
             path={ROUTE.PATH.SIGN_UP_STORE}

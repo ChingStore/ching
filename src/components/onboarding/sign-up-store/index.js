@@ -4,10 +4,10 @@ import React from 'react'
 
 import ROUTE from 'constants/route'
 import LinkButton from 'components/common/link-button'
+import NextButton from 'components/common/next-button'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
-import vectorImg from './Vector.png'
 
 export default class SignUp extends React.Component {
   state = {}
@@ -21,62 +21,69 @@ export default class SignUp extends React.Component {
     )
   }
 
-  renderTitle = () => (
-    <div css={style.title}>
-      <p css={style.title__text}>Set up your store.</p>
-    </div>
-  )
+  renderTitle = () => {
+    return (
+      <div css={style.title}>
+        <p css={style.title__text}>Set up your store.</p>
+      </div>
+    )
+  }
 
-  renderForm = () => (
-    <form onSubmit={this.handleSignUp}>
-      {this.renderUsernameField()}
-      <div css={style.spacer} />
-      {this.renderPasswordField()}
-      {this.renderHelpLink()}
-      {this.renderContinueButton()}
-    </form>
-  )
+  renderForm = () => {
+    return (
+      <form onSubmit={this.handleSignUp}>
+        {this.renderUsernameField()}
+        <div css={style.spacer} />
+        {this.renderPasswordField()}
+        {this.renderHelpLink()}
+        {this.renderContinueButton()}
+      </form>
+    )
+  }
 
-  renderUsernameField = () => (
-    <div>
-      <InputField
-        onChange={this.handleChange}
-        id="storeName"
-        placeholder="MyStore"
-        labelText="Name"
-      />
-    </div>
-  )
+  renderUsernameField = () => {
+    return (
+      <div>
+        <InputField
+          onChange={this.handleChange}
+          id="storeName"
+          placeholder="MyStore"
+          labelText="Name"
+        />
+      </div>
+    )
+  }
 
-  renderPasswordField = () => (
-    <div>
-      <InputField
-        onChange={this.handleChange}
-        id="ethereumAddress"
-        placeholder="0x 1234 4444 4444 ... 4444"
-        labelText="Ethereum address"
-      />
-    </div>
-  )
+  renderPasswordField = () => {
+    return (
+      <div>
+        <InputField
+          onChange={this.handleChange}
+          id="ethereumAddress"
+          placeholder="0x 1234 4444 4444 ... 4444"
+          labelText="Ethereum address"
+        />
+      </div>
+    )
+  }
 
-  renderHelpLink = () => (
-    <div css={style.help__link__location}>
-      <LinkButton css={style.help__link__button} to={ROUTE.PATH.NEED_WALLET}>
-        <div css={style.help__link__text}>What is it?</div>
-      </LinkButton>
-    </div>
-  )
+  renderHelpLink = () => {
+    return (
+      <div css={style.helpLink_wrapper}>
+        <LinkButton css={style.helpLink_button} to={ROUTE.PATH.NEED_WALLET}>
+          <div css={style.helpLink_text}>What is it?</div>
+        </LinkButton>
+      </div>
+    )
+  }
 
-  renderContinueButton = () => (
-    <div css={style.button__location}>
-      <LinkButton css={style.continue__button} to={ROUTE.PATH.STORE_WELCOME}>
-        <div css={style.continue__text}>Continue</div>
-        <div css={style.continue__circle}>
-          <img css={style.vector} src={vectorImg} alt="Continue" />
-        </div>
-      </LinkButton>
-    </div>
-  )
+  renderContinueButton = () => {
+    return (
+      <div css={style.button__location}>
+        <NextButton to={ROUTE.PATH.STORE_WELCOME}>Continue</NextButton>
+      </div>
+    )
+  }
 
   handleSignUp = () => {
     const { signUpStore } = this.props
