@@ -1,6 +1,16 @@
-[options]
+[ignore]
 
-# NOTE: This is needed for absolute path imports to work
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+# NOTE: Following lines are needed for absolute path imports to work
 # https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
+
+[strict]
