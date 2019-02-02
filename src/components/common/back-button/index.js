@@ -9,13 +9,13 @@ import style from './index.style.js'
 class BackButton extends React.Component {
   render() {
     return (
-      <div css={style.button__location}>
+      <div css={style.base}>
         <button
-          css={style.continue__button}
+          css={style.back__button}
           onClick={this.handleClick}
           type="button"
         >
-          <img css={style.vector} src={vectorImg} alt="Go back" />
+          <img src={vectorImg} alt="Go back" />
         </button>
       </div>
     )
