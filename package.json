@@ -2,6 +2,15 @@
   "name": "daipos",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "preinstall": "./scripts/pre-install.sh",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "lint": "eslint \"src/**/*.js?(x)\""
+  },
   "dependencies": {
     "@emotion/core": "^10.0.6",
     "@material-ui/core": "^3.3.1",
@@ -45,14 +54,6 @@
   },
   "resolutions": {
     "**/jest/**/jsdom": "13.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "lint": "eslint \"src/**/*.js?(x)\""
   },
   "browserslist": [
     ">0.2%",
