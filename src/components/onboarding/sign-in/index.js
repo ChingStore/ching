@@ -26,7 +26,7 @@ export default class SignIn extends React.Component {
   renderTitle() {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>{`It's nice to have you back!`}</p>
+        <p css={style.title__text}>{`It’s nice to have you back!`}</p>
       </div>
     )
   }
