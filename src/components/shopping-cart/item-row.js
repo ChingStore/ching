@@ -22,51 +22,49 @@ export default class ShoppingCartItemRow extends React.PureComponent {
 
   renderRemoveButton = () => (
     <Flex>
-      <button css={style.removeButton} onClick={this.handleRemoveButtonClick}>
+      <button
+        css={style.removeButton}
+        onClick={this.handleRemoveButtonClick}
+        type="button"
+      >
         <Icon.Cross />
       </button>
     </Flex>
   )
 
-  renderImage = () => {
-    return (
-      <Flex>
-        <img
-          src={this.getPhoto()}
-          width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
-          height={SHOPPING_CART.ROW_HEIGHT}
-          alt={this.getName()}
-        />
-      </Flex>
-    )
-  }
+  renderImage = () => (
+    <Flex>
+      <img
+        src={this.getPhoto()}
+        width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
+        height={SHOPPING_CART.ROW_HEIGHT}
+        alt={this.getName()}
+      />
+    </Flex>
+  )
 
-  renderDescription = () => {
-    return (
-      <Flex column auto css={style.description}>
-        <Flex css={style.descriptionText}>{this.getName()}</Flex>
-        <Flex css={style.descriptionText}>${this.getPrice()}</Flex>
-      </Flex>
-    )
-  }
+  renderDescription = () => (
+    <Flex column auto css={style.description}>
+      <Flex css={style.descriptionText}>{this.getName()}</Flex>
+      <Flex css={style.descriptionText}>${this.getPrice()}</Flex>
+    </Flex>
+  )
 
-  renderQuantity = () => {
-    return (
-      <Flex>
-        <input
-          css={style.quantity_input}
-          defaultValue={this.getQuantity()}
-          type="number"
-          onBlur={this.handleQuantityInputBlur}
-          onKeyPress={this.handleOnKeyPress}
-        />
-      </Flex>
-    )
-  }
+  renderQuantity = () => (
+    <Flex>
+      <input
+        css={style.quantity_input}
+        defaultValue={this.getQuantity()}
+        type="number"
+        onBlur={this.handleQuantityInputBlur}
+        onKeyPress={this.handleOnKeyPress}
+      />
+    </Flex>
+  )
 
-  /////////////
+  // ///////////
   // GETTERS //
-  /////////////
+  // ///////////
 
   getName = () => _.get(this.props, 'item.name', '...')
 
@@ -78,20 +76,20 @@ export default class ShoppingCartItemRow extends React.PureComponent {
 
   getPhoto = () => _.get(this.props, 'item.photo')
 
-  ////////////////////
+  // //////////////////
   // EVENT HANDLERS //
-  ////////////////////
+  // //////////////////
 
   handleQuantityInputChange = e => {
     console.log('change', { e, value: e.target.value })
-    this.changedQuantity = parseInt(e.target.value)
+    this.changedQuantity = parseInt(e.target.value, 10)
   }
 
   handleQuantityInputBlur = e => {
     console.log('blur', { e, value: e.target.value })
     this.props.updateQuantity({
       ...this.props,
-      quantity: parseInt(e.target.value),
+      quantity: parseInt(e.target.value, 10),
     })
   }
 

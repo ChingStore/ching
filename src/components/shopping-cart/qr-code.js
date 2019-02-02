@@ -16,9 +16,9 @@ export default class ShoppingCartQRCode extends React.PureComponent {
     )
   }
 
-  /////////////
+  // ///////////
   // GETTERS //
-  /////////////
+  // ///////////
 
   getQRImage = () => {
     const { order, orderId, walletAddress } = this.props
@@ -29,9 +29,9 @@ export default class ShoppingCartQRCode extends React.PureComponent {
     })
   }
 
-  ////////////////////
+  // //////////////////
   // EVENT HANDLERS //
-  ////////////////////
+  // //////////////////
 
   handleQuantityInputChange = e => {
     console.log('change', { e, value: e.target.value })

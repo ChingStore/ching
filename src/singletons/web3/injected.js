@@ -1,5 +1,6 @@
 // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c
 
+import _ from 'lodash'
 import NETWORK from 'constants/network'
 import DAIABI from 'constants/abi'
 
@@ -9,14 +10,14 @@ const TRANSACTION_BUFFER_URL =
   'https://us-central1-daipos.cloudfunctions.net/transactionBuffer?'
 
 function encodeQueryData(data) {
-  const ret = []
-  for (let d in data)
-    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]))
-  return ret.join('&')
+  return _.map(
+    data,
+    (value, key) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+  ).join('&')
 }
 
 function getHttpRequest(yourUrl) {
-  var Httpreq = new XMLHttpRequest() // a new request
+  const Httpreq = new XMLHttpRequest() // a new request
   Httpreq.open('GET', yourUrl, false)
   Httpreq.send(null)
   return Httpreq.responseText
@@ -46,11 +47,12 @@ class Web3Injected {
   async getNetworkId() {
     try {
       console.log('web3 version:', this.web3.version.api)
-      const netId = parseInt(this.web3.version.network)
+      const netId = parseInt(this.web3.version.network, 10)
       console.log({ netId })
       return netId
     } catch (error) {
       console.log('Web3 version cannot be detected')
+      return undefined
     }
   }
 
@@ -77,24 +79,24 @@ class Web3Injected {
     // making request to:
     // https://ethgasstation.info/json/ethgasAPI.json
     // {fastest: 200, safeLowWait: 23, fastestWait: 0.6, fast: 40,}
-    var json_obj = JSON.parse(
+    const jsonObj = JSON.parse(
       getHttpRequest('https://ethgasstation.info/json/ethgasAPI.json')
     )
-    var fixedPrice = this.web3.toWei(20, 'gwei')
-    var gasPrice = this.web3.toWei(json_obj.average, 'gwei') || fixedPrice
+    const fixedPrice = this.web3.toWei(20, 'gwei')
+    const gasPrice = this.web3.toWei(jsonObj.average, 'gwei') || fixedPrice
     return gasPrice
   }
 
   async sendDai({ address, amount, orderId }) {
     await this._initialized
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
-    let value = this.web3
+    const value = this.web3
       .toBigNumber(amount)
       .times(this.web3.toBigNumber(10).pow(18))
 
     if (this.netId === NETWORK.ID.MAINNET) {
       // sending DAI
-      let contract = this.web3.eth
+      const contract = this.web3.eth
         .contract(DAIABI)
         .at(NETWORK.TOKEN_ADDRESS.MAINNET)
       contract.transfer(

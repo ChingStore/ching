@@ -1,3 +1,4 @@
+/* eslint-disable */
 import _ from 'lodash'
 import React from 'react'
 import * as ReactRedux from 'react-redux'

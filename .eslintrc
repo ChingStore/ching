@@ -27,18 +27,29 @@
   },
   "rules": {
     "no-console": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "import/extensions": 0,
     "import/imports-first": ["error", "absolute-first"],
-    "import/newline-after-import": "error"
+    "import/newline-after-import": "error",
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
+  "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["react", "emotion", "jsx-a11y"]
 }

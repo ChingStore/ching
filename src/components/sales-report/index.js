@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import * as ReactRedux from 'react-redux'
 import * as Redux from 'redux'

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import * as React from 'react'
 import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
@@ -68,10 +70,10 @@ class OutlinedInputAdornments extends React.Component {
     }
     this.props.addItem({
       name: this.state.name,
-      quantity: parseInt(this.state.quantity),
+      quantity: parseInt(this.state.quantity, 10),
       price: parseFloat(this.state.price),
       photo: this.state.photo,
-      soldCount: parseInt(this.state.soldCount),
+      soldCount: parseInt(this.state.soldCount, 10),
     })
   }
 

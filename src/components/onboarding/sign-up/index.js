@@ -21,64 +21,54 @@ export default class SignUp extends React.Component {
     )
   }
 
-  renderTitle = () => {
-    return (
-      <div css={style.title}>
-        <p css={style.title__text}>Create your account.</p>
-      </div>
-    )
-  }
+  renderTitle = () => (
+    <div css={style.title}>
+      <p css={style.title__text}>Create your account.</p>
+    </div>
+  )
 
-  renderForm = () => {
-    return (
-      <form onSubmit={this.handleSignUp}>
-        {this.renderUsernameField()}
-        <div css={style.spacer} />
-        {this.renderPasswordField()}
-        {this.renderContinueButton()}
-      </form>
-    )
-  }
+  renderForm = () => (
+    <form onSubmit={this.handleSignUp}>
+      {this.renderUsernameField()}
+      <div css={style.spacer} />
+      {this.renderPasswordField()}
+      {this.renderContinueButton()}
+    </form>
+  )
 
-  renderUsernameField = () => {
-    return (
-      <div>
-        <InputField
-          onChange={this.handleChange}
-          id="email"
-          placeholder="Enter your e-mail"
-          labelText="E-mail"
-        />
-      </div>
-    )
-  }
+  renderUsernameField = () => (
+    <div>
+      <InputField
+        onChange={this.handleChange}
+        id="email"
+        placeholder="Enter your e-mail"
+        labelText="E-mail"
+      />
+    </div>
+  )
 
-  renderPasswordField = () => {
-    return (
-      <div>
-        <InputField
-          onChange={this.handleChange}
-          id="password"
-          placeholder="Type in your password"
-          labelText="Password"
-          type="password"
-        />
-      </div>
-    )
-  }
+  renderPasswordField = () => (
+    <div>
+      <InputField
+        onChange={this.handleChange}
+        id="password"
+        placeholder="Type in your password"
+        labelText="Password"
+        type="password"
+      />
+    </div>
+  )
 
-  renderContinueButton = () => {
-    return (
-      <div css={style.button__location}>
-        <LinkButton css={style.continue__button} to={ROUTE.PATH.SIGN_UP_STORE}>
-          <div css={style.continue__text}>Continue</div>
-          <div css={style.continue__circle}>
-            <img css={style.vector} src={vectorImg} alt="Continue" />
-          </div>
-        </LinkButton>
-      </div>
-    )
-  }
+  renderContinueButton = () => (
+    <div css={style.button__location}>
+      <LinkButton css={style.continue__button} to={ROUTE.PATH.SIGN_UP_STORE}>
+        <div css={style.continue__text}>Continue</div>
+        <div css={style.continue__circle}>
+          <img css={style.vector} src={vectorImg} alt="Continue" />
+        </div>
+      </LinkButton>
+    </div>
+  )
 
   handleSignUp = () => {
     const { signUp } = this.props

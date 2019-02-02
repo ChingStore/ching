@@ -5,7 +5,7 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import * as ReduxLogger from 'redux-logger'
-import { default as ReduxThunk } from 'redux-thunk'
+import ReduxThunk from 'redux-thunk'
 import * as ReduxDevtoolsExtension from 'redux-devtools-extension'
 
 import rootReducer from 'redux/reducers'

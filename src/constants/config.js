@@ -1,6 +1,4 @@
-/* eslint-disable no-process-env, no-undef */
-
-const PUBLIC_URL = process.env.PUBLIC_URL
+const { PUBLIC_URL } = process.env
 
 export default {
   PUBLIC_URL,

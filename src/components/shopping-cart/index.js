@@ -61,33 +61,31 @@ export default class ShoppingCart extends React.PureComponent {
     )
   }
 
-  renderQRCode = () => {
-    return (
-      <Flex css={style.qrCode__maxHeightWrapper}>
-        <Flex css={style.qrCode__sqaureWrapper}>
-          <Flex css={style.qrCode__innerFillWrapper}>
-            <Flex css={style.qrCode}>
-              <QRCode {...this.props} />
-            </Flex>
+  renderQRCode = () => (
+    <Flex css={style.qrCode__maxHeightWrapper}>
+      <Flex css={style.qrCode__sqaureWrapper}>
+        <Flex css={style.qrCode__innerFillWrapper}>
+          <Flex css={style.qrCode}>
+            <QRCode {...this.props} />
           </Flex>
         </Flex>
       </Flex>
-    )
-  }
+    </Flex>
+  )
 
-  ////////////////////
+  // //////////////////
   // EVENT HANDLERS //
-  ////////////////////
+  // //////////////////
 
   handleHeaderClick = () => {
-    this.setState({
-      isExpanded: !this.state.isExpanded,
-    })
+    this.setState(prevState => ({
+      isExpanded: !prevState.isExpanded,
+    }))
   }
 
-  /////////////
+  // ///////////
   // GETTERS //
-  /////////////
+  // ///////////
 
   getItemIds = () => Object.keys(_.get(this.props, 'order.items', {}))
 

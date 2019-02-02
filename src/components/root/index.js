@@ -5,7 +5,6 @@ import * as ReactRedux from 'react-redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { Route, HashRouter, Switch } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 import MenuAppBar from 'components/menu-app-bar'
 import Inventory from 'components/inventory'
@@ -91,12 +90,6 @@ class Root extends React.Component {
       </HashRouter>
     )
   }
-}
-
-Root.propTypes = {
-  orderInitialize: PropTypes.func,
-  walletInitialize: PropTypes.func,
-  auth: PropTypes.object,
 }
 
 const mapStateToProps = state => ({

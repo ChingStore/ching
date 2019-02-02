@@ -3,9 +3,10 @@ function getTotalPrice(order) {
     return 0
   }
 
-  return Object.values(order.items).reduce((totalPrice, item) => {
-    return totalPrice + item.quantity * item.price
-  }, 0)
+  return Object.values(order.items).reduce(
+    (totalPrice, item) => totalPrice + item.quantity * item.price,
+    0
+  )
 }
 
 export default {

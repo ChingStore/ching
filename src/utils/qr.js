@@ -9,7 +9,7 @@ const SERVER_URL = '34-pr-daipos.surge.sh'
 const STATUS_UL = 'https://get.status.im/browse/'
 
 function generate(url) {
-  var qr = new QRious({
+  const qr = new QRious({
     background: 'white',
     foreground: STYLE.COLOR.BLUE,
     level: 'H',
