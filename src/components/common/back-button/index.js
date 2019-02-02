@@ -10,7 +10,7 @@ class BackButton extends React.Component {
   render() {
     return (
       <div css={style.button__location}>
-        <button css={style.continue__button}>
+        <button css={style.continue__button} onClick={this.handleClick}>
           <img css={style.vector} src={vectorImg} alt="" />
         </button>
       </div>
@@ -18,10 +18,10 @@ class BackButton extends React.Component {
   }
 
   handleClick = event => {
-    const { history, to, onClick } = this.props
+    const { history, onClick } = this.props
     console.log(this.props)
     onClick && onClick(event)
-    to && history.push(to)
+    history.goBack()
   }
 }
 
