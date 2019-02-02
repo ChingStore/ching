@@ -69,9 +69,9 @@ export default class SignUp extends React.Component {
 
   renderHelpLink = () => {
     return (
-      <div css={style.help__link__location}>
-        <LinkButton css={style.help__link__button} to={ROUTE.PATH.NEED_WALLET}>
-          <div css={style.help__link__text}>What is it?</div>
+      <div css={style.helpLink__location}>
+        <LinkButton css={style.helpLink_button} to={ROUTE.PATH.NEED_WALLET}>
+          <div css={style.helpLink_text}>What is it?</div>
         </LinkButton>
       </div>
     )

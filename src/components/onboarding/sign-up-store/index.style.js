@@ -50,13 +50,13 @@ export default {
     display: 'flex',
     flexDirection: 'row-reverse',
   },
-  help__link__location: {
+  helpLink__location: {
     marginTop: 5,
     flex: 1,
     display: 'flex',
     flexDirection: 'row-reverse',
   },
-  help__link__button: {
+  helpLink_button: {
     color: STYLE.COLOR.CYAN,
     backgroundColor: 'transparent',
     display: 'flex',
@@ -64,7 +64,7 @@ export default {
     borderWidth: 0,
     paddingRight: 0,
   },
-  help__link__text: {
+  helpLink_text: {
     marginRight: 0,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 16,
