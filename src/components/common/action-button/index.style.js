@@ -7,7 +7,7 @@ export default {
     height: 68,
     width: '100%',
 
-    fontWeight: 'bold',
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 18,
 
     color: STYLE.COLOR.WHITE,
