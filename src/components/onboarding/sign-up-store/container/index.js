@@ -1,15 +1,17 @@
 import * as ReactRedux from 'react-redux'
-
+import shopAction from 'redux/actions/shop'
+import selectors from 'redux/selectors'
 import SignUp from '..'
 
+const mapStateToProp = state => ({
+  shopError: selectors.getShopError(state),
+})
+
 const mapDispatchToProps = dispatch => ({
-  signUpStore: data => {
-    console.log('data', data)
-    return dispatch
-  },
+  signUpStore: data => dispatch(shopAction.signUp(data)),
 })
 
 export default ReactRedux.connect(
-  null,
+  mapStateToProp,
   mapDispatchToProps
 )(SignUp)
