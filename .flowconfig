@@ -1,4 +1,8 @@
 [ignore]
+<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/docs/.*
+<PROJECT_ROOT>/public/.*
 
 [include]
 
@@ -8,9 +12,12 @@ flow-typed
 [lints]
 
 [options]
-# NOTE: Following lines are needed for absolute path imports to work
-# https://itnext.io/configure-absolute-paths-with-create-react-app-and-flow-e4b8922676a2
-module.system.node.resolve_dirname=node_modules
-module.system.node.resolve_dirname=src
+; NOTE: This is needed for absolute imports to work
+module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
+module.name_mapper='^config/\(.*\)$' -> '<PROJECT_ROOT>/src/config/\1'
+module.name_mapper='^constants/\(.*\)$' -> '<PROJECT_ROOT>/src/constants/\1'
+module.name_mapper='^redux/\(.*\)$' -> '<PROJECT_ROOT>/src/redux/\1'
+module.name_mapper='^singletons/\(.*\)$' -> '<PROJECT_ROOT>/src/singletons/\1'
+module.name_mapper='^utils/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
 
 [strict]
