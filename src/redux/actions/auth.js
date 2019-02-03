@@ -26,33 +26,26 @@ const signOut = () => async (dispatch, getState, { getFirebase }) => {
   }
 }
 
-const signUp = ({ email, password, firstName, lastName, storeName }) => async (
+const signUp = ({ email, password }) => async (
   dispatch,
   getState,
-  { getFirebase, getFirestore }
+  { getFirebase }
 ) => {
   const firebase = getFirebase()
-  const firestore = getFirestore()
   try {
-    const resp = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-    await firestore
-      .collection('users')
-      .doc(resp.user.uid)
-      .set({ firstName, lastName })
-
-    const newstore = await firestore.collection('stores').add({
-      storeName,
-    })
-    await firestore.collection('storesUsers').add({
-      storeId: newstore.id,
-      userId: resp.user.uid,
-    })
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
     dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
+    return true
   } catch (err) {
     dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
+    return false
   }
 }
+
+// const signUpStore = ({ firstName, lastName, storeName }) => async (
+//   dispatch,
+//   getState,
+//   { getFirebase, getFirestore }
+// ) => {}
 
 export default { signIn, signOut, signUp }
