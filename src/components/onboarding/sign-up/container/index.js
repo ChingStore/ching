@@ -5,7 +5,7 @@ import authActions from 'redux/actions/auth'
 import SignUp from '..'
 
 SignUp.propTypes = {
-  signIn: PropTypes.func,
+  signUp: PropTypes.func,
   authError: PropTypes.string,
 }
 
