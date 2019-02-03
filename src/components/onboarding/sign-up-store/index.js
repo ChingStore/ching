@@ -80,7 +80,7 @@ export default class SignUp extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.button__location}>
-        <NextButton to={ROUTE.PATH.STORE_WELCOME}>Continue</NextButton>
+        <NextButton onClick={this.handleSignUp}>Continue</NextButton>
       </div>
     )
   }

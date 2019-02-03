@@ -10,8 +10,7 @@ SignUp.propTypes = {
 }
 
 const mapStateToProp = state => ({
-  authError: state.auth.authError,
-  daiWalletBalance: selectors.getDaiWalletBalance(state),
+  authError: selectors.getAuthError(state),
 })
 
 const mapDispatchToProps = dispatch => ({
