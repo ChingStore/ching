@@ -87,11 +87,14 @@ export default class SignUp extends React.Component {
     )
   }
 
-  handleSignUp = () => {
-    const { signUpStore } = this.props
+  handleSignUp = async () => {
+    const { signUpStore, history } = this.props
     const { storeName, walletAddress } = this.state
 
-    signUpStore({ storeName, walletAddress })
+    const isStoreCreated = await signUpStore({ storeName, walletAddress })
+    if (isStoreCreated) {
+      history.push(ROUTE.PATH.STORE_WELCOME)
+    }
   }
 
   handleChange = e => {
