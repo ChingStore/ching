@@ -9,6 +9,7 @@ const getItemPrice = (store, { itemId }) =>
 const getXdaiWalletBalance = store => store.wallet.xdaiBalance
 const getDaiWalletBalance = store => store.wallet.daiBalance
 const getAuthError = store => store.auth.authError
+const getShopError = store => store.shop.shopError
 
 const users = {
   currentId: store => _.get(store, 'firebase.auth.uid'),
@@ -57,6 +58,7 @@ export default {
   getDaiWalletBalance,
   getXdaiWalletBalance,
   getAuthError,
+  getShopError,
 
   orders,
   users,
