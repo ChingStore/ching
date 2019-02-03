@@ -3,8 +3,6 @@ import Web3XdaiInfura from '../../singletons/web3/xdai-infura'
 import ACTIONS from '../actionTypes'
 import selector from '../selectors'
 
-const walletAddress = '0xf82B82b4ebC83479eF10271190A7cf5487240955'
-
 const initialize = () => async dispatch => {
   setInterval(() => {
     dispatch(updateBalance())
@@ -13,6 +11,7 @@ const initialize = () => async dispatch => {
 
 const updateBalance = () => async (dispatch, getState) => {
   const state = getState()
+  const walletAddress = selector.wallet.address(state)
   const oldDaiBalance = selector.getDaiWalletBalance(state)
   const newDaiBalance = await Web3DaiInfura.getBalance(walletAddress)
   if (oldDaiBalance !== newDaiBalance) {

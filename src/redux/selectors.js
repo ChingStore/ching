@@ -23,6 +23,11 @@ const users = {
     const currentUser = users.current(store)
     return _.get(currentUser, 'shoppingCartOrderId')
   },
+
+  storeId: store => {
+    const currentUser = users.current(store)
+    return _.get(currentUser, 'storeId')
+  },
 }
 
 const orders = {
@@ -44,9 +49,17 @@ const items = {
   item: (store, { itemId }) => _.get(store, `firestore.data.items[${itemId}]`),
 }
 
+const shop = {
+  current: (store, { storeId }) =>
+    _.get(store, `firestore.data.stores[${storeId}]`),
+}
+
 const wallet = {
-  // TODO: Use store wallet
-  address: () => '0xf82B82b4ebC83479eF10271190A7cf5487240955',
+  address: store => {
+    const storeId = users.storeId(store)
+    const currentShop = shop.current(store, { storeId })
+    return _.get(currentShop, 'walletAddress')
+  },
 }
 
 export default {
@@ -64,4 +77,5 @@ export default {
   users,
   items,
   wallet,
+  shop,
 }
