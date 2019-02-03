@@ -10,8 +10,10 @@ const signIn = ({ email, password }) => async (
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password)
     dispatch({ type: ACTIONS.LOGIN_SUCCESS })
+    return true
   } catch (error) {
     dispatch({ type: ACTIONS.LOGIN_ERROR, error })
+    return false
   }
 }
 
