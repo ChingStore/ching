@@ -12,8 +12,10 @@ export default class SignUp extends React.Component {
   state = {}
 
   render() {
+    const { authError } = this.props
     return (
       <div css={style.base}>
+        <p>{authError}</p>
         {this.renderTitle()}
         {this.renderForm()}
       </div>
