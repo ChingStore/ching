@@ -8,6 +8,8 @@ const getItemPrice = (store, { itemId }) =>
   store.firestore.data.items[itemId].price
 const getXdaiWalletBalance = store => store.wallet.xdaiBalance
 const getDaiWalletBalance = store => store.wallet.daiBalance
+const getAuthError = store => store.auth.authError
+const getShopError = store => store.shop.shopError
 
 const users = {
   currentId: store => _.get(store, 'firebase.auth.uid'),
@@ -20,6 +22,11 @@ const users = {
   shoppingCartOrderId: store => {
     const currentUser = users.current(store)
     return _.get(currentUser, 'shoppingCartOrderId')
+  },
+
+  storeId: store => {
+    const currentUser = users.current(store)
+    return _.get(currentUser, 'storeId')
   },
 }
 
@@ -42,9 +49,17 @@ const items = {
   item: (store, { itemId }) => _.get(store, `firestore.data.items[${itemId}]`),
 }
 
+const shop = {
+  current: (store, { storeId }) =>
+    _.get(store, `firestore.data.stores[${storeId}]`),
+}
+
 const wallet = {
-  // TODO: Use store wallet
-  address: () => '0xf82B82b4ebC83479eF10271190A7cf5487240955',
+  address: store => {
+    const storeId = users.storeId(store)
+    const currentShop = shop.current(store, { storeId })
+    return _.get(currentShop, 'walletAddress')
+  },
 }
 
 export default {
@@ -55,9 +70,12 @@ export default {
   getStoresUsers,
   getDaiWalletBalance,
   getXdaiWalletBalance,
+  getAuthError,
+  getShopError,
 
   orders,
   users,
   items,
   wallet,
+  shop,
 }

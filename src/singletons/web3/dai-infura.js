@@ -33,6 +33,9 @@ class Web3DaiInfura {
 
   getBalance = async walletAddress => {
     await this._initialized
+    if (!this.web3.isAddress(walletAddress)) {
+      return 'ETH_ADR_ERR'
+    }
     const contract = this.web3.eth
       .contract(DAIABI)
       .at(NETWORK.TOKEN_ADDRESS.MAINNET)

@@ -1,5 +1,4 @@
 /** @jsx jsx */
-/* eslint-disable */
 
 import { jsx } from '@emotion/core'
 import React from 'react'
@@ -12,7 +11,11 @@ class NextButton extends React.Component {
   render() {
     return (
       <div css={style.button__location}>
-        <button css={style.continue__button}>
+        <button
+          css={style.continue__button}
+          onClick={this.handleClick}
+          type="button"
+        >
           <div css={style.continue__buttonText}>{this.props.children}</div>
           <div css={style.continue__buttonCircle}>
             <img css={style.vector} src={vectorImg} alt="" />
@@ -25,8 +28,12 @@ class NextButton extends React.Component {
   handleClick = event => {
     const { history, to, onClick } = this.props
     console.log(this.props)
-    onClick && onClick(event)
-    to && history.push(to)
+    if (onClick) {
+      onClick(event)
+    }
+    if (to) {
+      history.push(to)
+    }
   }
 }
 

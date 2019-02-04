@@ -13,8 +13,10 @@ export default class SignUp extends React.Component {
   state = {}
 
   render() {
+    const { shopError } = this.props
     return (
       <div css={style.base}>
+        <p>{shopError}</p>
         {this.renderTitle()}
         {this.renderForm()}
       </div>
@@ -34,7 +36,7 @@ export default class SignUp extends React.Component {
       <form onSubmit={this.handleSignUp}>
         {this.renderUsernameField()}
         <div css={style.spacer} />
-        {this.renderPasswordField()}
+        {this.renderWalletAddressField()}
         {this.renderHelpLink()}
         {this.renderContinueButton()}
       </form>
@@ -54,12 +56,12 @@ export default class SignUp extends React.Component {
     )
   }
 
-  renderPasswordField = () => {
+  renderWalletAddressField = () => {
     return (
       <div>
         <InputField
           onChange={this.handleChange}
-          id="ethereumAddress"
+          id="walletAddress"
           placeholder="0x 1234 4444 4444 ... 4444"
           labelText="Ethereum address"
         />
@@ -80,16 +82,19 @@ export default class SignUp extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.button__location}>
-        <NextButton to={ROUTE.PATH.STORE_WELCOME}>Continue</NextButton>
+        <NextButton onClick={this.handleSignUp}>Continue</NextButton>
       </div>
     )
   }
 
-  handleSignUp = () => {
-    const { signUpStore } = this.props
-    const { storeName, ethereumAddress } = this.state
+  handleSignUp = async () => {
+    const { signUpStore, history } = this.props
+    const { storeName, walletAddress } = this.state
 
-    signUpStore({ storeName, ethereumAddress })
+    const isStoreCreated = await signUpStore({ storeName, walletAddress })
+    if (isStoreCreated) {
+      history.push(ROUTE.PATH.STORE_WELCOME)
+    }
   }
 
   handleChange = e => {
