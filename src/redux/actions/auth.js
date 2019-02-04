@@ -10,8 +10,10 @@ const signIn = ({ email, password }) => async (
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password)
     dispatch({ type: ACTIONS.LOGIN_SUCCESS })
-  } catch (err) {
-    dispatch({ type: ACTIONS.LOGIN_ERROR, err })
+    return true
+  } catch (error) {
+    dispatch({ type: ACTIONS.LOGIN_ERROR, error })
+    return false
   }
 }
 
@@ -20,38 +22,25 @@ const signOut = () => async (dispatch, getState, { getFirebase }) => {
   try {
     await firebase.auth().signOut()
     dispatch({ type: actionTypes.CLEAR_DATA })
-  } catch (err) {
+  } catch (error) {
     console.log('cannot logout')
-    console.log(err.message)
+    console.log(error.message)
   }
 }
 
-const signUp = ({ email, password, firstName, lastName, storeName }) => async (
+const signUp = ({ email, password }) => async (
   dispatch,
   getState,
-  { getFirebase, getFirestore }
+  { getFirebase }
 ) => {
   const firebase = getFirebase()
-  const firestore = getFirestore()
   try {
-    const resp = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-    await firestore
-      .collection('users')
-      .doc(resp.user.uid)
-      .set({ firstName, lastName })
-
-    const newstore = await firestore.collection('stores').add({
-      storeName,
-    })
-    await firestore.collection('storesUsers').add({
-      storeId: newstore.id,
-      userId: resp.user.uid,
-    })
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
     dispatch({ type: ACTIONS.SIGNUP_SUCCESS })
-  } catch (err) {
-    dispatch({ type: ACTIONS.SIGNUP_ERROR, err })
+    return true
+  } catch (error) {
+    dispatch({ type: ACTIONS.SIGNUP_ERROR, error })
+    return false
   }
 }
 

@@ -122,6 +122,9 @@ export default Redux.compose(
       {
         collection: 'users',
       },
+      {
+        collection: 'stores',
+      },
     ]
   })
 )(Root)

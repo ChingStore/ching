@@ -20,9 +20,14 @@ export default class SignIn extends React.Component {
     })
   }
 
-  handleSignIn = e => {
-    e.preventDefault() //  prevent reload of the page
-    this.props.signIn(this.state)
+  handleSignIn = async () => {
+    const { signIn, history } = this.props
+    const { email, password } = this.state
+
+    const isSigned = await signIn({ email, password })
+    if (isSigned) {
+      history.push(ROUTE.PATH.INVENTORY)
+    }
   }
 
   renderTitle = () => {
@@ -82,7 +87,7 @@ export default class SignIn extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.next__buttonLocation}>
-        <NextButton to={ROUTE.PATH.INVENTORY}>Continue</NextButton>
+        <NextButton onClick={this.handleSignIn}>Continue</NextButton>
       </div>
     )
   }

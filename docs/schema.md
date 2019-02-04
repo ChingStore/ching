@@ -1,9 +1,8 @@
-<!-- eslint-disable -->
-
 - users
   - id
   - firstName
   - lastName
+  - storeId
 - items
   - id
   - name
@@ -16,16 +15,10 @@
 - stores
   - id
   - name
-- storesUsers
-  - storeId
-  - userId
-- transactions
-  - userId
+  - walletAddress
+- orders
   - txHash
   - status
-  - amountSent
-  - submittedAt
-- orders
   - id
   - authToken
   - userId
