@@ -10,6 +10,11 @@ export default {
     left: 40,
     right: 40,
   },
+  back__button: {
+    paddingTop: 40,
+    paddingBottom: 20,
+    paddingRight: 20,
+  },
   title: {
     flex: 0.2,
 

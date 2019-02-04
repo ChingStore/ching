@@ -9,11 +9,11 @@ import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
-export default class HomeScene extends React.Component {
+export default class NeedWallet extends React.Component {
   render() {
     return (
       <div css={style.base}>
-        <BackButton />
+        <BackButton css={style.back__button} />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
         <div css={style.buttonCollection}>

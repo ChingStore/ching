@@ -12,7 +12,12 @@ class BackButton extends React.Component {
   render() {
     return (
       <Flex css={style.base}>
-        <Flex css={style.back__button} onClick={this.handleClick} type="button">
+        <Flex
+          css={style.button}
+          {...this.props}
+          onClick={this.handleClick}
+          type="button"
+        >
           <img src={vectorImg} alt="Go back" />
         </Flex>
       </Flex>
