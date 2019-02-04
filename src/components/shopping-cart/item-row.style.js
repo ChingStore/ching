@@ -1,3 +1,5 @@
+// @flow
+
 import STYLE from 'constants/style'
 import SHOPPING_CART from 'constants/shopping-cart'
 

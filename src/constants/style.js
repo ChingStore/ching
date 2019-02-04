@@ -1,9 +1,12 @@
+// @flow
+
 const COLOR = {
   CYAN: '#5EBAA0',
   WHITE: '#FFFFFF',
+  LIGHT_BLUE: '#EDEFF6',
   BLUE: '#333963',
-  GREY: '#E7E4DE',
-  DARK_GREY: '#C3C4CB',
+  YELLOWISH_GREY: '#E7E4DE',
+  GREY: '#C3C4CB',
 
   TRANSPARENT: 'transparent',
 

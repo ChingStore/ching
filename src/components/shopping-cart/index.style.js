@@ -1,3 +1,5 @@
+// @flow
+
 import STYLE from 'constants/style'
 import SHOPPING_CART from 'constants/shopping-cart'
 
@@ -57,7 +59,7 @@ const style = {
   },
 
   itemsList: {
-    borderTop: `1px dashed ${STYLE.COLOR.DARK_GREY}`,
+    borderTop: `1px dashed ${STYLE.COLOR.YELLOWISH_GREY}`,
 
     marginLeft: 30,
     marginRight: 30,
@@ -75,7 +77,7 @@ const style = {
     overflow: 'hidden',
   },
   qrCode__sqaureWrapper: {
-    borderTop: `1px solid ${STYLE.COLOR.DARK_GREY}`,
+    borderTop: `1px solid ${STYLE.COLOR.GREY}`,
 
     justifyContent: 'center',
     alignItems: 'center',
