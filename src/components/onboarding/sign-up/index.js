@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
-
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 import NextButton from 'components/common/next-button'
@@ -12,8 +11,10 @@ export default class SignUp extends React.Component {
   state = {}
 
   render() {
+    const { authError } = this.props
     return (
       <div css={style.base}>
+        <p>{authError}</p>
         {this.renderTitle()}
         {this.renderForm()}
       </div>
@@ -68,17 +69,20 @@ export default class SignUp extends React.Component {
 
   renderContinueButton = () => {
     return (
-      <div css={style.button__location}>
-        <NextButton to={ROUTE.PATH.SIGN_UP_STORE}>Continue</NextButton>
+      <div onClick={this.handleSignUp} css={style.button__location}>
+        <NextButton>Continue</NextButton>
       </div>
     )
   }
 
-  handleSignUp = () => {
-    const { signUp } = this.props
+  handleSignUp = async () => {
+    const { signUp, history } = this.props
     const { email, password } = this.state
 
-    signUp({ email, password })
+    const isSigned = await signUp({ email, password })
+    if (isSigned) {
+      history.push(ROUTE.PATH.SIGN_UP_STORE)
+    }
   }
 
   handleChange = e => {

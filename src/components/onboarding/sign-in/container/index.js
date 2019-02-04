@@ -1,6 +1,7 @@
 import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
 import authActions from 'redux/actions/auth'
+import selectors from 'redux/selectors'
 import SignIn from '..'
 
 SignIn.propTypes = {
@@ -9,7 +10,7 @@ SignIn.propTypes = {
 }
 
 const mapStateToProp = state => ({
-  authError: state.auth.authError,
+  authError: selectors.getAuthError(state),
 })
 
 const mapDispatchToProps = dispatch => ({
