@@ -3,6 +3,7 @@
 const COLOR = {
   CYAN: '#5EBAA0',
   WHITE: '#FFFFFF',
+  LIGHT_BLUE: '#EDEFF6',
   BLUE: '#333963',
   YELLOWISH_GREY: '#E7E4DE',
   GREY: '#C3C4CB',
