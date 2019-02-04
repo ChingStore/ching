@@ -1,24 +1,27 @@
+// @flow
+
 const PATH = {
   // Tabbed
   TABS: '/tabs',
-  INVENTORY: '/tabs/',
-  SALES_REPORT: '/tabs/sales-report',
+  SALES: '/tabs/sales-report',
+  STORE: '/tabs/',
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
   ORDERS: '/tabs/orders',
+  PROFILE: '/tabs/profile',
 
   // Full-screen
   HOME: '/home',
   NEED_WALLET: '/need-wallet',
-  SIGN_IN: '/signin',
-  SIGN_UP: '/signup',
-  SIGN_UP_STORE: '/signup-store',
+  SIGN_IN: '/sign-in',
+  SIGN_UP: '/sign-up',
+  SIGN_UP_STORE: '/sign-up-store',
   STORE_WELCOME: '/store-welcome',
 }
 
 const PATH_TITLE = {
-  [PATH.INVENTORY]: 'Inventory',
-  [PATH.SALES_REPORT]: 'Sales Report',
+  [PATH.STORE]: 'Inventory',
+  [PATH.SALES]: 'Sales Report',
   [PATH.ADD]: 'Add',
   [PATH.EDIT]: 'Edit',
   [PATH.SIGN_IN]: 'Sign In',
