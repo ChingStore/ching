@@ -149,7 +149,7 @@ class OutlinedInputAdornments extends React.Component {
           className={classNames(classes.button)}
           onClick={this.handleSave}
           component={NavLink}
-          to={ROUTE.PATH.INVENTORY}
+          to={ROUTE.PATH.STORE}
         >
           Save
         </Button>

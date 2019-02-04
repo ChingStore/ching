@@ -6,7 +6,7 @@ import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { Route, HashRouter, Switch } from 'react-router-dom'
 
-import MenuAppBar from 'components/menu-app-bar'
+import NavBar from 'components/nav-bar'
 import Inventory from 'components/inventory'
 import SalesReport from 'components/sales-report'
 import Add from 'components/add'
@@ -57,19 +57,19 @@ class Root extends React.Component {
             id={118}
           />
 
-          <Route path={ROUTE.PATH.TABS} component={MenuAppBar} id={116} />
+          <Route path={ROUTE.PATH.TABS} component={NavBar} id={116} />
           <Flex column auto>
             <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
             <Switch id={109}>
               <Route
                 exact
-                path={ROUTE.PATH.INVENTORY}
+                path={ROUTE.PATH.STORE}
                 component={Inventory}
                 id={105}
               />
               <Route
                 exact
-                path={ROUTE.PATH.SALES_REPORT}
+                path={ROUTE.PATH.SALES}
                 component={SalesReport}
                 id={106}
               />
