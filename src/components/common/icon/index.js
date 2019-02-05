@@ -1,3 +1,5 @@
+// @flow
+
 import Cross from './cross'
 import Login from './login'
 import HomeArt from './home-art'
@@ -6,6 +8,9 @@ import StoreArtBackground from './store-art-background'
 import Coinbase from './coinbase'
 import Status from './status'
 import Trust from './trust'
+import Store from './store'
+import Sales from './sales'
+import Profile from './profile'
 
 export default {
   Cross,
@@ -16,4 +21,7 @@ export default {
   StoreArtTag,
   StoreArtBackground,
   Trust,
+  Store,
+  Sales,
+  Profile,
 }
