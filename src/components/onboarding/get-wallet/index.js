@@ -13,7 +13,7 @@ export default class GetWallet extends React.Component {
   render() {
     return (
       <div css={style.base}>
-        <BackButton css={style.back__button} />
+        <BackButton css={style.back_button} />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
         <div>
@@ -27,8 +27,8 @@ export default class GetWallet extends React.Component {
 
   renderTitle = () => (
     <div css={style.title}>
-      <p css={style.title__text}>You need an Ethereum wallet</p>
-      <p css={style.welcome__msg}>
+      <p css={style.title_text}>You need an Ethereum wallet</p>
+      <p css={style.welcome_msg}>
         It’s an application to interact with the Ethereum blockchain. It stores
         your money.
       </p>
@@ -36,8 +36,8 @@ export default class GetWallet extends React.Component {
   )
 
   renderRecommendedWallets = () => (
-    <div css={style.recommendedWallets__text}>
-      <p css={style.recommendedWallets__p}>Recommended wallets</p>
+    <div css={style.recommendedWallets_text}>
+      <p css={style.recommendedWallets_p}>Recommended wallets</p>
     </div>
   )
 

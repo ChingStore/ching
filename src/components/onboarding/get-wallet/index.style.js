@@ -10,7 +10,7 @@ export default {
     left: 40,
     right: 40,
   },
-  back__button: {
+  back_button: {
     paddingTop: 40,
     paddingBottom: 20,
     paddingRight: 20,
@@ -22,14 +22,14 @@ export default {
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  title__text: {
+  title_text: {
     marginTop: 0,
     marginBottom: 0,
     fontWeight: 'bold',
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
   },
-  welcome__msg: {
+  welcome_msg: {
     marginTop: 10,
     color: STYLE.COLOR.BLUE,
     fontSize: 15,
@@ -37,18 +37,17 @@ export default {
     lineHeight: 1.5,
     fontWeight: '500',
   },
-  recommendedWallets__text: {
+  recommendedWallets_text: {
     fontSize: 14,
     fontWeight: 'bold',
     color: STYLE.COLOR.BLUE,
     marginTop: 80,
     marginBottom: 0,
   },
-  recommendedWallets__p: {
+  recommendedWallets_p: {
     marginTop: 0,
     marginBottom: 0,
   },
-
   walletButton: {
     flex: 0.2,
 
