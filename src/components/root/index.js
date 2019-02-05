@@ -9,7 +9,7 @@ import { Route, HashRouter, Switch } from 'react-router-dom'
 import NavBar from 'components/nav-bar'
 import Inventory from 'components/inventory'
 import SalesReport from 'components/sales-report'
-import Add from 'components/add'
+import Add from 'components/add/container'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
 import NeedWallet from 'components/onboarding/need-wallet'
@@ -56,7 +56,7 @@ class Root extends React.Component {
             component={StoreWelcome}
             id={118}
           />
-
+          <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
           <Route path={ROUTE.PATH.TABS} component={NavBar} id={116} />
           <Flex column auto>
             <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
@@ -73,7 +73,7 @@ class Root extends React.Component {
                 component={SalesReport}
                 id={106}
               />
-              <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
+
               <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121} />
               <Route
                 path="/payment/:address/:amount/:orderId"
