@@ -48,24 +48,20 @@ export default {
 
   inputForm_secondRow_firstColumn: {
     flex: 0.4,
-    border: '1px solid',
   },
 
   inputForm_secondRow_secondColumn: {
     flex: 0.4,
     width: '20%',
-    border: '1px solid',
   },
 
   photo: {
     width: '80%',
     flex: 0.25,
-    border: '1px solid',
   },
 
   footer: {
     width: '80%',
     flex: 0.25,
-    border: '1px solid',
   },
 }
