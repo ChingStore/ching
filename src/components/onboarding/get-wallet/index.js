@@ -23,7 +23,7 @@ export default class GetWalletScene extends React.Component {
   renderTitle = () => (
     <div css={style.title}>
       <p css={style.title_text}>You need an Ethereum wallet</p>
-      <p css={style.welcome_msg}>
+      <p css={style.title_welcomeText}>
         It’s an application to interact with the Ethereum blockchain. It stores
         your money.
       </p>

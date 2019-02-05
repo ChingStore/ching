@@ -29,7 +29,7 @@ export default {
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
   },
-  welcome_msg: {
+  title_welcomeText: {
     marginTop: 10,
     color: STYLE.COLOR.BLUE,
     fontSize: 15,
