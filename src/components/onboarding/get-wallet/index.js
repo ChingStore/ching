@@ -9,7 +9,7 @@ import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
-export default class NeedWallet extends React.Component {
+export default class GetWallet extends React.Component {
   render() {
     return (
       <div css={style.base}>

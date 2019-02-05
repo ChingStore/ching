@@ -49,26 +49,6 @@ export default {
     marginBottom: 0,
   },
 
-  composition: {
-    position: 'relative',
-    flex: 0.4,
-
-    display: 'block',
-
-    marginTop: 40,
-  },
-  background: {
-    position: 'absolute',
-    zIndex: 0,
-  },
-  tag: {
-    position: 'absolute',
-    zIndex: 1,
-
-    top: 17,
-    left: 33,
-  },
-
   walletButton: {
     flex: 0.2,
 
