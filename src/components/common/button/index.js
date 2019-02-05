@@ -3,14 +3,12 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
-import Flex from 'components/common/flex'
-
 import style from './index.style.js'
 
 class Button extends React.Component {
   render() {
     return (
-      <Flex
+      <button
         css={style.base}
         {...this.props}
         onClick={this.handleClick}
