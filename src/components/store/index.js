@@ -57,10 +57,12 @@ class StoreScene extends React.Component<PropsType, StateType> {
     return (
       <Flex grow>
         <Flex column grow relative css={style.base}>
-          {this.renderEditControls()}
-          {this.renderStoreName()}
-          {this.renderItemsList()}
-          {this.renderLoadingSpinner()}
+          <Flex column absoluteFill>
+            {this.renderEditControls()}
+            {this.renderStoreName()}
+            {this.renderItemsList()}
+            {this.renderLoadingSpinner()}
+          </Flex>
         </Flex>
         <ShoppingCart />
       </Flex>
@@ -134,6 +136,8 @@ class StoreScene extends React.Component<PropsType, StateType> {
           itemRenderer={this.renderItemsRow}
           length={this.getListRowsCount()}
           type="uniform"
+          useTranslate3d
+          threshold={3000}
         />
       )}
       <ReactResizeDetector
@@ -150,7 +154,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     const { isEditing } = this.state
 
     return (
-      <Flex spaceBetween grow key={key}>
+      <Flex grow key={key}>
         {_.times(this.getListRowItemsCount(), columnIndex => {
           const itemIndex = this.getItemIndex({ rowIndex, columnIndex })
           const item = itemsOrdered[itemIndex]

@@ -68,7 +68,12 @@ class Root extends React.Component {
                 component={SalesReport}
                 id={106}
               />
-              <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
+              <Route
+                exact
+                path={ROUTE.PATH.ADD_ITEM}
+                component={Add}
+                id={107}
+              />
               <Route
                 exact
                 path={ROUTE.PATH.EDIT_ITEM}

@@ -5,7 +5,14 @@ import { jsx } from '@emotion/core'
 import * as React from 'react'
 
 type PropsType = {
+  /**
+   * Fills closes relatively positioned parent.
+   */
   absoluteFill?: boolean,
+
+  /**
+   * Set position to relative.
+   */
   relative?: boolean,
   alignCenter?: boolean,
   alignEnd?: boolean,

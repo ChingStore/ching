@@ -4,9 +4,9 @@ const PATH = {
   // Tabbed
   TABS: '/tabs',
   SALES: '/tabs/sales-report',
-  STORE: '/tabs/',
-  ADD: '/tabs/add',
-  EDIT_ITEM: '/tabs/store/edit-item',
+  STORE: '/tabs/store',
+  ADD_ITEM: '/tabs/store/add-item',
+  EDIT_ITEM: '/tabs/store/edit-item/:itemId',
   ORDERS: '/tabs/orders',
   PROFILE: '/tabs/profile',
 
@@ -21,7 +21,7 @@ const PATH = {
 
 const PATH_TITLE = {
   [PATH.SALES]: 'Sales Report',
-  [PATH.ADD]: 'Add',
+  [PATH.ADD_ITEM]: 'Add',
   [PATH.ORDERS]: 'Orders',
 }
 

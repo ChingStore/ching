@@ -14,9 +14,9 @@ class ActionButton extends React.Component {
     return (
       <Button
         css={[style.base, { backgroundColor: WALLET_BUTTON.COLOR[type] }]}
-        {...this.props}
         action="externalLink"
         to={WALLET_BUTTON.LINK[type]}
+        {...this.props}
       >
         <div css={style.icon}>{WALLET_BUTTON.ICON[type]}</div>
         <div css={style.button_text}>{this.props.children}</div>
