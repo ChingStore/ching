@@ -57,7 +57,6 @@ export default class ShoppingCartItemRow extends React.PureComponent {
         defaultValue={this.getQuantity()}
         type="number"
         onBlur={this.handleQuantityInputBlur}
-        onKeyPress={this.handleOnKeyPress}
       />
     </Flex>
   )
@@ -80,13 +79,7 @@ export default class ShoppingCartItemRow extends React.PureComponent {
   // EVENT HANDLERS //
   // //////////////////
 
-  handleQuantityInputChange = e => {
-    console.log('change', { e, value: e.target.value })
-    this.changedQuantity = parseInt(e.target.value, 10)
-  }
-
   handleQuantityInputBlur = e => {
-    console.log('blur', { e, value: e.target.value })
     this.props.updateQuantity({
       ...this.props,
       quantity: parseInt(e.target.value, 10),

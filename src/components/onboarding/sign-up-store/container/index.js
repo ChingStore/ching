@@ -8,7 +8,7 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  signUpStore: data => dispatch(shopAction.signUp(data)),
+  signUpStore: data => dispatch(shopAction.create(data)),
 })
 
 export default ReactRedux.connect(
