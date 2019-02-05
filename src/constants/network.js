@@ -1,3 +1,5 @@
+// @flow
+
 import _ from 'lodash'
 
 const NAME = {
@@ -47,6 +49,7 @@ const ID = {
   MUSICOIN: 7762959,
   AQUACHAIN: 61717561,
 }
+export type NetworkIdType = $Values<typeof ID>
 
 const TOKEN_ADDRESS = {
   MAINNET: '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',
