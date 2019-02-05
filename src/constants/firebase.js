@@ -2,55 +2,79 @@
 
 import type { NetworkIdType } from 'constants/network'
 
+export type GetFirebaseType = Object
+export type GetFirestoreType = Object
+
 export type IdType = string
 
 export type DateType = Object
 
-export type FirebaseStateType = Object
+///////////
+// ITEMS //
+///////////
 
-export type FirestoreStateType = {
-  +data: {
-    +items?: ItemsType,
-    +orders?: {
-      +[IdType]: OrderType,
+export type ItemType = $ReadOnly<{
+  createdAt: DateType,
+  name: string,
+  photo: string,
+  price: number,
+  quantity: number,
+  soldCount: number,
+  userId: IdType,
+}>
+
+export type ItemsType = $ReadOnly<{
+  [IdType]: ItemType,
+}>
+
+////////////
+// ORDERS //
+////////////
+
+export type OrderItemsType = $ReadOnly<{
+  [IdType]: { price: number, quantity: number },
+}>
+
+export type OrderType = $ReadOnly<{
+  createdAt: DateType,
+  items: OrderItemsType,
+  networkId: NetworkIdType,
+  txHash: string,
+  userId: IdType,
+}>
+
+export type OrdersType = $ReadOnly<{
+  [IdType]: ItemType,
+}>
+
+////////////
+// STORES //
+////////////
+
+export type StoreType = $ReadOnly<{
+  storeName: string,
+  walletAddress: string,
+}>
+
+/////////////////////
+// FIRESTORE STATE //
+/////////////////////
+
+export type FirestoreStateType = $ReadOnly<{
+  data: {
+    items?: ItemsType,
+    orders?: {
+      [IdType]: OrderType,
     },
-    +users?: {},
-    +stores?: {
-      +[IdType]: StoreType,
+    users?: {},
+    stores?: {
+      [IdType]: StoreType,
     },
   },
-}
+}>
 
-export type ItemsType = {
-  +[IdType]: ItemType,
-}
+////////////////////
+// FIREBASE STATE //
+////////////////////
 
-export type ItemType = {
-  +createdAt: DateType,
-  +name: string,
-  +photo: string,
-  +price: number,
-  +quantity: number,
-  +soldCount: number,
-  +userId: IdType,
-}
-
-export type OrdersType = {
-  +[IdType]: ItemType,
-}
-
-export type OrderType = {
-  +createdAt: DateType,
-  +items: OrderItemsType,
-  +networkId: NetworkIdType,
-  +txHash: string,
-  +userId: IdType,
-}
-
-export type OrderItemsType = {
-  +[IdType]: { +price: number, +quantity: number },
-}
-
-export type StoreType = {
-  +storeName: string,
-}
+export type FirebaseStateType = Object

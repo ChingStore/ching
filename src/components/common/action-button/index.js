@@ -7,16 +7,17 @@ import style from './index.style.js'
 
 class ActionButton extends React.Component {
   render() {
+    const { children, icon, staticContext, ...restProps } = this.props
     return (
       <button
         css={style.base}
-        {...this.props}
+        {...restProps}
         onClick={this.handleClick}
         type="button"
       >
-        <div css={style.icon}>{this.props.icon}</div>
+        <div css={style.icon}>{icon}</div>
         <div css={style.spacer} />
-        <div>{this.props.children}</div>
+        <div>{children}</div>
       </button>
     )
   }

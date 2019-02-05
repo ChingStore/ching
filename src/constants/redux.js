@@ -1,6 +1,11 @@
 // @flow
 
-import type { FirebaseStateType, FirestoreStateType } from 'constants/firebase'
+import type {
+  GetFirebaseType,
+  GetFirestoreType,
+  FirebaseStateType,
+  FirestoreStateType,
+} from 'constants/firebase'
 
 export type StateType = {
   +auth: {
@@ -25,6 +30,7 @@ export type DispatchType = (
 export type GetStateType = () => StateType
 export type ThunkActionType = (
   dispatch: DispatchType,
-  getState: GetStateType
+  getState: GetStateType,
+  { getFirebase: GetFirebaseType, getFirestore: GetFirestoreType }
 ) => any
 export type PromiseActionType = Promise<Action>
