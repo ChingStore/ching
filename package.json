@@ -29,6 +29,7 @@
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-html5-camera-photo": "^1.2.9",
+    "react-list": "^0.8.11",
     "react-redux": "^5.1.0",
     "react-redux-firebase": "^2.2.6",
     "react-resize-detector": "^3.4.0",
