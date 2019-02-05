@@ -7,18 +7,19 @@ export default {
     height: 68,
     width: '100%',
 
-    fontWeight: 'bold',
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 18,
 
     color: STYLE.COLOR.WHITE,
     display: 'flex',
     alignItems: 'center',
   },
+  button_text: {
+    marginLeft: 15,
+  },
   icon: {
     display: 'flex',
     alignItems: 'center',
-  },
-  spacer: {
-    width: 15,
+    marginLeft: 11,
   },
 }

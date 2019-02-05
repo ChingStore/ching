@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 
 import ROUTE from 'constants/route'
+import Flex from 'components/common/flex'
 import FooterButton from 'components/common/footer-button'
 import Icon from 'components/common/icon'
 
@@ -42,8 +43,8 @@ export default class HomeScene extends React.Component {
   )
 
   renderAddFirstItem = () => (
-    <div css={style.addFirstItem}>
-      <FooterButton to={ROUTE.PATH.ADD}>Add a first item</FooterButton>
-    </div>
+    <Flex css={style.addFirstItem}>
+      <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a first item</FooterButton>
+    </Flex>
   )
 }

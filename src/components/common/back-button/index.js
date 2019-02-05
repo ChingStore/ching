@@ -2,6 +2,9 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 import * as ReactRouter from 'react-router-dom'
+
+import Button from 'components/common/button'
+import Flex from 'components/common/flex'
 import vectorImg from 'components/common/icon/Vector.png'
 
 import style from './index.style.js'
@@ -9,25 +12,18 @@ import style from './index.style.js'
 class BackButton extends React.Component {
   render() {
     return (
-      <div css={style.button__location}>
-        <button
-          css={style.continue__button}
+      <Flex css={style.base}>
+        <Button
+          css={style.button}
+          {...this.props}
           onClick={this.handleClick}
           type="button"
+          action="goBack"
         >
-          <img css={style.vector} src={vectorImg} alt="Go back" />
-        </button>
-      </div>
+          <img src={vectorImg} alt="Go back" />
+        </Button>
+      </Flex>
     )
-  }
-
-  handleClick = event => {
-    const { history, onClick } = this.props
-    console.log(this.props)
-    if (onClick) {
-      onClick(event)
-    }
-    history.goBack()
   }
 }
 

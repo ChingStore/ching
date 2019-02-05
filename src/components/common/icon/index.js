@@ -16,18 +16,18 @@ import Edit from './edit'
 import NoPhoto from './no-photo'
 
 export default {
-  Cross,
   Coinbase,
+  Cross,
   Edit,
-  NoPhoto,
-  Login,
   HomeArt,
-  Status,
-  StoreArtTag,
-  StoreArtBackground,
-  Trust,
-  Store,
-  Sales,
+  Login,
+  NoPhoto,
   Plus,
   Profile,
+  Sales,
+  Status,
+  Store,
+  StoreArtBackground,
+  StoreArtTag,
+  Trust,
 }
