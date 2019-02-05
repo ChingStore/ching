@@ -5,6 +5,7 @@ import type {
   IdType,
   ItemsType,
   ItemType,
+  OrderItemType,
   OrderItemsType,
   OrdersType,
   OrderType,
@@ -45,6 +46,11 @@ const orders = {
     return orders.order(state, { orderId })
   },
 
+  shoppingCartItems: (state: StateType) => {
+    const orderId = users.shoppingCartOrderId(state)
+    return orders.items(state, { orderId })
+  },
+
   all: (state: StateType): OrdersType =>
     _.get(state, 'firestore.ordered.orders'),
 
@@ -66,6 +72,14 @@ const items = {
 
   price: (state: StateType, { itemId }: { itemId: IdType }): number =>
     _.get(state, `firestore.data.items[${itemId}].price`),
+
+  shoppingCartOrderItem: (
+    state: StateType,
+    { itemId }: { itemId: IdType }
+  ): OrderItemType => {
+    const shoppingCartItems = orders.shoppingCartItems(state)
+    return shoppingCartItems && shoppingCartItems[itemId]
+  },
 }
 
 const shop = {

@@ -19,8 +19,9 @@ type OwnPropsType = {
 }
 
 const mapStateToProps = Reselect.createStructuredSelector({
-  order: selectors.orders.shoppingCart,
+  item: selectors.items.item,
   orderId: selectors.users.shoppingCartOrderId,
+  shoppingCartOrderItem: selectors.items.shoppingCartOrderItem,
 })
 
 const mapDispatchToProps = (

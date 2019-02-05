@@ -157,7 +157,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
             <ItemCardContainer
               {...{
                 isFirstInRow,
-                item,
                 itemId,
                 isEditing,
                 key: itemIndex,

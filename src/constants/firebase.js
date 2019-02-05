@@ -31,8 +31,13 @@ export type ItemsType = $ReadOnly<{
 // ORDERS //
 ////////////
 
+export type OrderItemType = $ReadOnly<{
+  price: number,
+  quantity: number,
+}>
+
 export type OrderItemsType = $ReadOnly<{
-  [IdType]: { price: number, quantity: number },
+  [IdType]: OrderItemType,
 }>
 
 export type OrderType = $ReadOnly<{

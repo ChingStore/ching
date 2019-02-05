@@ -1,7 +1,9 @@
 // @flow
 
-import type { ItemType, IdType } from 'constants/firebase'
+import type { ItemType, OrderItemType, IdType } from 'constants/firebase'
 
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
 
@@ -16,8 +18,7 @@ type PropsType = {
   item: ItemType,
   itemId: IdType,
   isEditing: boolean,
-  // order: OrderType,
-  // orderId: IdType,
+  shoppingCartOrderItem: OrderItemType,
 
   onPhotoClick: () => void,
 }
@@ -35,7 +36,7 @@ class ItemCard extends React.PureComponent<PropsType> {
   }
 
   renderPhoto = () => {
-    const { isEditing, itemId, item } = this.props
+    const { isEditing, itemId, item, shoppingCartOrderItem } = this.props
     return (
       <Flex
         css={[
@@ -46,13 +47,19 @@ class ItemCard extends React.PureComponent<PropsType> {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           },
+          !!shoppingCartOrderItem && style.photo__selected,
         ]}
-        onClick={this.handlePhotoClick}
+        onClick={!isEditing && this.handlePhotoClick}
       >
         {isEditing && (
           <ActionButton to={`${ROUTE.PATH.EDIT_ITEM}/${itemId}`}>
             Edit
           </ActionButton>
+        )}
+        {!!shoppingCartOrderItem && (
+          <Flex center css={style.photo_badge}>
+            {this.getShoppingCartQuantity()}
+          </Flex>
         )}
       </Flex>
     )
@@ -78,6 +85,11 @@ class ItemCard extends React.PureComponent<PropsType> {
   getItemName = (): string => _.get(this.props, 'item.name')
 
   getItemPrice = (): string => _.get(this.props, 'item.price', 0).toFixed(2)
+
+  getShoppingCartQuantity = (): number => {
+    const { shoppingCartOrderItem } = this.props
+    return _.get(shoppingCartOrderItem, 'quantity')
+  }
 }
 
 export default ItemCard
