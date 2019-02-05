@@ -10,11 +10,13 @@ export default {
     left: 40,
     right: 40,
   },
+
   back_button: {
     paddingTop: 40,
     paddingBottom: 20,
     paddingRight: 20,
   },
+
   title: {
     flex: 0.2,
 
@@ -37,6 +39,7 @@ export default {
     lineHeight: 1.5,
     fontWeight: '500',
   },
+
   recommendedWallets: {
     fontSize: 14,
     fontWeight: 'bold',
@@ -48,6 +51,7 @@ export default {
     marginTop: 0,
     marginBottom: 0,
   },
+
   walletButton: {
     flex: 0.15,
 
