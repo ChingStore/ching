@@ -1,15 +1,19 @@
 // @flow
 
+import type { IdType } from 'constants/firebase'
+import type { DispatchType } from 'constants/redux'
+
 import * as ReactRedux from 'react-redux'
 import * as Reselect from 'reselect'
 
 import shopAction from 'redux/actions/shop'
 import selectors from 'redux/selectors'
+
 import Store from '../index'
 
 const mapStateToProps = Reselect.createStructuredSelector({
   order: selectors.orders.shoppingCart,
-  items: selectors.items.all,
+  itemsOrdered: selectors.items.allOrdered,
   store: selectors.shop.current,
   storeId: selectors.users.currentStoreId,
 })

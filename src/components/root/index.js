@@ -69,7 +69,12 @@ class Root extends React.Component {
                 id={106}
               />
               <Route exact path={ROUTE.PATH.ADD} component={Add} id={107} />
-              <Route exact path={ROUTE.PATH.EDIT} component={Add} id={121} />
+              <Route
+                exact
+                path={ROUTE.PATH.EDIT_ITEM}
+                component={Add}
+                id={121}
+              />
               <Route
                 path="/payment/:address/:amount/:orderId"
                 component={Payment}

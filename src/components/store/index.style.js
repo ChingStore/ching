@@ -34,4 +34,9 @@ export default {
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     letterSpacing: STYLE.FONT.LETTER_SPACING.TINY,
   },
+
+  itemsList: {
+    overflow: 'auto',
+    marginTop: 10,
+  },
 }

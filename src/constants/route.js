@@ -6,7 +6,7 @@ const PATH = {
   SALES: '/tabs/sales-report',
   STORE: '/tabs/',
   ADD: '/tabs/add',
-  EDIT: '/tabs/edit',
+  EDIT_ITEM: '/tabs/store/edit-item',
   ORDERS: '/tabs/orders',
   PROFILE: '/tabs/profile',
 
@@ -20,14 +20,9 @@ const PATH = {
 }
 
 const PATH_TITLE = {
-  [PATH.STORE]: 'Inventory',
   [PATH.SALES]: 'Sales Report',
   [PATH.ADD]: 'Add',
-  [PATH.EDIT]: 'Edit',
-  [PATH.SIGN_IN]: 'Sign In',
-  [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',
-  [PATH.SIGN_UP_STORE]: 'Sign Up Store',
 }
 
 export default {
