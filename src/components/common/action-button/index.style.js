@@ -20,5 +20,6 @@ export default {
   icon: {
     display: 'flex',
     alignItems: 'center',
+    marginLeft: 11,
   },
 }

@@ -14,7 +14,7 @@ class ActionButton extends React.Component {
         css={style.base}
         {...this.props}
         action="externalLink"
-        to={this.props.url}
+        to={this.props.to}
       >
         <div css={style.icon}>{this.props.icon}</div>
         <div css={style.button__text}>{this.props.children}</div>

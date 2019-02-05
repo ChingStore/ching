@@ -46,7 +46,7 @@ export default class NeedWallet extends React.Component {
       <ActionButton
         css={{ backgroundColor: STYLE.COLOR.STATUS }}
         icon={<Icon.Status />}
-        url="https://get.status.im/"
+        to="https://get.status.im/"
       >
         Download Status
       </ActionButton>
@@ -58,7 +58,7 @@ export default class NeedWallet extends React.Component {
       <ActionButton
         css={{ backgroundColor: STYLE.COLOR.COINBASE }}
         icon={<Icon.Coinbase />}
-        url="https://wallet.coinbase.com/"
+        to="https://wallet.coinbase.com/"
       >
         Download Coinbase
       </ActionButton>
@@ -70,7 +70,7 @@ export default class NeedWallet extends React.Component {
       <ActionButton
         css={{ backgroundColor: STYLE.COLOR.TRUST }}
         icon={<Icon.Trust />}
-        url="https://trustwallet.com/"
+        to="https://trustwallet.com/"
       >
         Download Trust
       </ActionButton>
