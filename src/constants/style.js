@@ -11,7 +11,7 @@ const COLOR = {
 
   TRANSPARENT: 'transparent',
 
-  TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.3)',
+  TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.25)',
 
   COINBASE: '#0B36F0',
   STATUS: '#5B6DEE',

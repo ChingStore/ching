@@ -5,6 +5,8 @@ import { jsx } from '@emotion/core'
 import * as React from 'react'
 
 type PropsType = {
+  absoluteFill?: boolean,
+  relative?: boolean,
   alignCenter?: boolean,
   alignEnd?: boolean,
   auto?: boolean,
@@ -21,6 +23,8 @@ type PropsType = {
 class Flex extends React.PureComponent<PropsType> {
   render = () => {
     const {
+      absoluteFill,
+      relative,
       alignCenter,
       alignEnd,
       auto,
@@ -46,7 +50,11 @@ class Flex extends React.PureComponent<PropsType> {
       justifyContent:
         (spaceBetween && 'space-between') ||
         ((justifyCenter || center) && 'center'),
+      position: (absoluteFill && 'absolute') || (relative && 'relative'),
+      width: absoluteFill && '100%',
+      height: absoluteFill && '100%',
     }
+
     return (
       // NOTE: The style from parent component takes precedence here
       // @see https://emotion.sh/docs/css-prop#style-precedence

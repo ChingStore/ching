@@ -7,7 +7,6 @@ import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
 
-import ActionButton from 'components/common/action-button'
 import Flex from 'components/common/flex'
 import ROUTE from 'constants/route'
 
@@ -36,7 +35,7 @@ class ItemCard extends React.PureComponent<PropsType> {
   }
 
   renderPhoto = () => {
-    const { isEditing, itemId, item, shoppingCartOrderItem } = this.props
+    const { isEditing, item, shoppingCartOrderItem } = this.props
     return (
       <Flex
         css={[
@@ -49,13 +48,9 @@ class ItemCard extends React.PureComponent<PropsType> {
           },
           !!shoppingCartOrderItem && style.photo__selected,
         ]}
-        onClick={!isEditing && this.handlePhotoClick}
+        onClick={this.handlePhotoClick}
       >
-        {isEditing && (
-          <ActionButton to={`${ROUTE.PATH.EDIT_ITEM}/${itemId}`}>
-            Edit
-          </ActionButton>
-        )}
+        {isEditing && this.renderPhotoEditButton()}
         {!!shoppingCartOrderItem && (
           <Flex center css={style.photo_badge}>
             {this.getShoppingCartQuantity()}
@@ -64,6 +59,12 @@ class ItemCard extends React.PureComponent<PropsType> {
       </Flex>
     )
   }
+
+  renderPhotoEditButton = () => (
+    <Flex grow center>
+      <Flex css={style.photo_editButton}>Edit</Flex>
+    </Flex>
+  )
 
   renderName = () => <Flex css={style.itemName}>{this.getItemName()}</Flex>
 
@@ -74,7 +75,15 @@ class ItemCard extends React.PureComponent<PropsType> {
   ////////////////////
 
   handlePhotoClick = () => {
-    const { onPhotoClick } = this.props
+    const { onPhotoClick, isEditing, itemId } = this.props
+
+    // Ignore photo clicks when editing
+    if (isEditing) {
+      // TODO: navigate to editing scene
+      console.log('should navigate to ', `${ROUTE.PATH.EDIT_ITEM}/${itemId}`)
+      return
+    }
+
     onPhotoClick()
   }
 

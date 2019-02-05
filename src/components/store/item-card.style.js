@@ -39,7 +39,19 @@ export default {
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
   },
   photo_gradient: {},
-  photo_editButton: {},
+  photo_editButton: {
+    background: STYLE.COLOR.WHITE,
+    borderRadius: 70,
+    boxShadow: `0px 8px 8px ${STYLE.COLOR.TRANSLUCENT_BLACK}`,
+
+    fontSize: 12,
+    fontWeight: STYLE.FONT.WEIGHT.MEDIUM,
+
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
 
   itemName: {
     marginTop: 15,

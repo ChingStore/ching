@@ -36,7 +36,9 @@ export default {
   },
 
   itemsList: {
-    overflow: 'auto',
+    overflow: 'visible',
+    overflowY: 'auto',
+    // overflowX: 'auto',
     marginTop: 10,
   },
 }

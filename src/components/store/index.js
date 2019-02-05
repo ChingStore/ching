@@ -17,7 +17,7 @@ import Icon from 'components/common/icon'
 
 import STORE from './constants'
 import ItemCardContainer from './container/item-card'
-import AddItemButton from './add-item-button'
+import AddItemCard from './add-item-card'
 
 import style from './index.style'
 
@@ -52,25 +52,34 @@ class StoreScene extends React.Component<PropsType, StateType> {
       isLoadedItems: ReactReduxFirebase.isLoaded(this.props.itemsOrdered),
     })
 
-    if (this.isLoading()) {
-      console.log('Loading...')
-      return <div>Loading...</div>
-    }
-
     console.log('Rendering...')
 
     return (
-      <Flex grow column css={style.base}>
-        {this.renderEditControls()}
-        {this.renderStoreName()}
-        {this.renderItemsList()}
+      <Flex grow>
+        <Flex column grow relative css={style.base}>
+          {this.renderEditControls()}
+          {this.renderStoreName()}
+          {this.renderItemsList()}
+          {this.renderLoadingSpinner()}
+        </Flex>
         <ShoppingCart />
       </Flex>
     )
   }
 
+  renderLoadingSpinner = () =>
+    this.isLoading() && (
+      <Flex absoluteFill center>
+        Loading...
+      </Flex>
+    )
+
   renderEditControls = () => {
     const { isEditing } = this.state
+
+    if (this.isLoading()) {
+      return null
+    }
 
     return (
       <Flex spaceBetween>
@@ -92,6 +101,10 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   renderStoreName = () => {
     const { isEditing, isEditingStoreName } = this.state
+
+    if (this.isLoading()) {
+      return null
+    }
 
     return isEditingStoreName ? (
       <input
@@ -116,7 +129,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   renderItemsList = () => (
     <Flex grow css={style.itemsList}>
-      {this.state.listWidth && (
+      {!!this.state.listWidth && !this.isLoading() && (
         <ReactList
           itemRenderer={this.renderItemsRow}
           length={this.getListRowsCount()}
@@ -146,7 +159,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
           // Render add button instead of the last card if editing
           if (isEditing && isLastItem) {
-            return <AddItemButton {...{ isFirstInRow, key: itemIndex }} />
+            return <AddItemCard {...{ isFirstInRow, key: itemIndex }} />
           }
           // Skip extra card slots in the last row
           if (itemIndex >= this.getItemsCount()) {
@@ -168,7 +181,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     )
   }
 
-  renderAddItemButton = () => (
+  renderAddItemCard = () => (
     <Flex column center css={style.addItem}>
       <Icon.Plus />
       Add another
