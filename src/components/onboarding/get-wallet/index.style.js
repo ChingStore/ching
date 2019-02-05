@@ -49,7 +49,7 @@ export default {
     marginBottom: 0,
   },
   walletButton: {
-    flex: 0.2,
+    flex: 0.15,
 
     display: 'flex',
     justifyContent: 'center',
