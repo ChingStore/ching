@@ -53,8 +53,7 @@ export default {
   },
 
   walletButton: {
-    flex: 0.15,
-
+    marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
