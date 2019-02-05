@@ -14,7 +14,7 @@ export default {
     display: 'flex',
     alignItems: 'center',
   },
-  button__text: {
+  button_text: {
     marginLeft: 15,
   },
   icon: {

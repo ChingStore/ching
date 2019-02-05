@@ -5,7 +5,6 @@ import React from 'react'
 import STYLE from 'constants/style'
 import BackButton from 'components/common/back-button'
 import ActionButton from 'components/common/action-button'
-import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
@@ -43,11 +42,7 @@ export default class GetWalletScene extends React.Component {
 
   renderDownloadStatus = () => (
     <div css={style.walletButton}>
-      <ActionButton
-        css={{ backgroundColor: STYLE.COLOR.STATUS }}
-        icon={<Icon.Status />}
-        to="https://get.status.im/"
-      >
+      <ActionButton css={{ backgroundColor: STYLE.COLOR.STATUS }} type="Status">
         Download Status
       </ActionButton>
     </div>
@@ -57,8 +52,7 @@ export default class GetWalletScene extends React.Component {
     <div css={style.walletButton}>
       <ActionButton
         css={{ backgroundColor: STYLE.COLOR.COINBASE }}
-        icon={<Icon.Coinbase />}
-        to="https://wallet.coinbase.com/"
+        type="Coinbase"
       >
         Download Coinbase
       </ActionButton>
@@ -67,13 +61,13 @@ export default class GetWalletScene extends React.Component {
 
   renderDownloadTrust = () => (
     <div css={style.walletButton}>
-      <ActionButton
-        css={{ backgroundColor: STYLE.COLOR.TRUST }}
-        icon={<Icon.Trust />}
-        to="https://trustwallet.com/"
-      >
+      <ActionButton css={{ backgroundColor: STYLE.COLOR.TRUST }} type="Trust">
         Download Trust
       </ActionButton>
     </div>
   )
+
+  // renderWalletList = () => (
+  //   WALLET_BUTTON.TYPES.map(type => <WalletButton {...{ type, key: type }}/>
+  // )
 }

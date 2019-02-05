@@ -4,20 +4,22 @@ import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Button from 'components/common/button'
+import WALLET_BUTTON from 'constants/wallet_button.js'
 
 import style from './index.style.js'
 
 class ActionButton extends React.Component {
   render() {
+    const { type } = this.props
     return (
       <Button
         css={style.base}
         {...this.props}
         action="externalLink"
-        to={this.props.to}
+        to={WALLET_BUTTON.LINK[type]}
       >
-        <div css={style.icon}>{this.props.icon}</div>
-        <div css={style.button__text}>{this.props.children}</div>
+        <div css={style.icon}>{WALLET_BUTTON.ICON[type]}</div>
+        <div css={style.button_text}>{this.props.children}</div>
       </Button>
     )
   }
