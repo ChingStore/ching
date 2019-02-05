@@ -54,6 +54,5 @@ export default {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 20,
   },
 }

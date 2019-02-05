@@ -4,6 +4,7 @@ import React from 'react'
 
 import BackButton from 'components/common/back-button'
 import ActionButton from 'components/common/action-button'
+import WALLET_BUTTON from 'constants/wallet_button'
 
 import style from './index.style.js'
 
@@ -14,11 +15,7 @@ export default class GetWalletScene extends React.Component {
         <BackButton css={style.back_button} />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
-        <div>
-          {this.renderDownloadStatus()}
-          {this.renderDownloadCoinbase()}
-          {this.renderDownloadTrust()}
-        </div>
+        {this.renderWalletList()}
       </div>
     )
   }
@@ -39,25 +36,10 @@ export default class GetWalletScene extends React.Component {
     </div>
   )
 
-  renderDownloadStatus = () => (
-    <div css={style.walletButton}>
-      <ActionButton type="Status">Download Status</ActionButton>
-    </div>
-  )
-
-  renderDownloadCoinbase = () => (
-    <div css={style.walletButton}>
-      <ActionButton type="Coinbase">Download Coinbase</ActionButton>
-    </div>
-  )
-
-  renderDownloadTrust = () => (
-    <div css={style.walletButton}>
-      <ActionButton type="Trust">Download Trust</ActionButton>
-    </div>
-  )
-
-  // renderWalletList = () => (
-  //   WALLET_BUTTON.TYPES.map(type => <WalletButton {...{ type, key: type }}/>
-  // )
+  renderWalletList = () =>
+    WALLET_BUTTON.TYPES.map(type => (
+      <div css={style.walletButton}>
+        <ActionButton {...{ type, key: type }}>Download {type}</ActionButton>
+      </div>
+    ))
 }
