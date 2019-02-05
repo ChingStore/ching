@@ -7,7 +7,7 @@ import * as Redux from 'redux'
 import { Route, HashRouter, Switch } from 'react-router-dom'
 
 import NavBar from 'components/nav-bar'
-import Inventory from 'components/inventory'
+import Store from 'components/store/container'
 import SalesReport from 'components/sales-report'
 import Add from 'components/add'
 import Payment from 'components/payment'
@@ -16,7 +16,7 @@ import NeedWallet from 'components/onboarding/need-wallet'
 import SignUp from 'components/onboarding/sign-up/container'
 import SignIn from 'components/onboarding/sign-in/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
-import StoreWelcome from 'components/store/store-welcome'
+import StoreWelcome from 'components/onboarding/store-welcome'
 import Orders from 'components/orders'
 import CONFIG from 'constants/config'
 import ROUTE from 'constants/route'
@@ -61,12 +61,7 @@ class Root extends React.Component {
           <Flex column auto>
             <Route exact path={ROUTE.PATH.HOME} component={Home} id={114} />
             <Switch id={109}>
-              <Route
-                exact
-                path={ROUTE.PATH.STORE}
-                component={Inventory}
-                id={105}
-              />
+              <Route exact path={ROUTE.PATH.STORE} component={Store} id={105} />
               <Route
                 exact
                 path={ROUTE.PATH.SALES}

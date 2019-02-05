@@ -5,6 +5,7 @@ import { jsx } from '@emotion/core'
 import * as React from 'react'
 
 type PropsType = {
+  alignEnd?: boolean,
   auto?: boolean,
   children: React.Node,
   column?: boolean,
@@ -17,6 +18,7 @@ type PropsType = {
 class Flex extends React.PureComponent<PropsType> {
   render = () => {
     const {
+      alignEnd,
       auto,
       children,
       column,
@@ -27,6 +29,7 @@ class Flex extends React.PureComponent<PropsType> {
     } = this.props
 
     const flexStyle = {
+      alignItems: alignEnd && 'flex-end',
       display: 'flex',
       flex: auto && 'auto',
       flexGrow: grow && 1,

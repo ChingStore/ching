@@ -2,7 +2,7 @@ import STYLE from 'constants/style'
 
 export default {
   base: {
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
 
