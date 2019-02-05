@@ -23,9 +23,6 @@ class Button extends React.Component {
     if (onClick) {
       onClick(event)
     }
-    if (action === 'goBack') {
-      history.goBack()
-    }
     if (action === 'externalLink') {
       window.location = to
     }
