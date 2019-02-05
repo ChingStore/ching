@@ -19,7 +19,6 @@ class Button extends React.Component {
 
   handleClick = event => {
     const { action, history, onClick, to } = this.props
-    console.log(this.props)
     if (onClick) {
       onClick(event)
     }
