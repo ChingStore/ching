@@ -25,7 +25,7 @@ export default {
   title_text: {
     marginTop: 0,
     marginBottom: 0,
-    fontWeight: 'bold',
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
   },
