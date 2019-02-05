@@ -11,22 +11,18 @@ import style from './index.style.js'
 
 class BackButton extends React.Component {
   render() {
+    const { history } = this.props
     return (
       <Flex css={style.base}>
-        <Button css={style.button} {...this.props} onClick={this.handleClick}>
+        <Button
+          css={style.button}
+          {...this.props}
+          onClick={() => history.goBack()}
+        >
           <img src={vectorImg} alt="Go back" />
         </Button>
       </Flex>
     )
-  }
-
-  handleClick = event => {
-    const { history, onClick } = this.props
-    console.log(this.props)
-    if (onClick) {
-      onClick(event)
-    }
-    history.goBack()
   }
 }
 
