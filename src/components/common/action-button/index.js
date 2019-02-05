@@ -4,7 +4,7 @@ import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Button from 'components/common/button'
-import WALLET_BUTTON from 'constants/wallet_button.js'
+import WALLET_BUTTON from 'constants/wallet_button'
 
 import style from './index.style.js'
 
