@@ -36,8 +36,8 @@ export default class GetWallet extends React.Component {
   )
 
   renderRecommendedWallets = () => (
-    <div css={style.recommendedWallets_text}>
-      <p css={style.recommendedWallets_p}>Recommended wallets</p>
+    <div css={style.recommendedWallets}>
+      <p css={style.recommendedWallets_text}>Recommended wallets</p>
     </div>
   )
 
