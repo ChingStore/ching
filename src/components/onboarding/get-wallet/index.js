@@ -2,7 +2,6 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
-import STYLE from 'constants/style'
 import BackButton from 'components/common/back-button'
 import ActionButton from 'components/common/action-button'
 
@@ -42,28 +41,19 @@ export default class GetWalletScene extends React.Component {
 
   renderDownloadStatus = () => (
     <div css={style.walletButton}>
-      <ActionButton css={{ backgroundColor: STYLE.COLOR.STATUS }} type="Status">
-        Download Status
-      </ActionButton>
+      <ActionButton type="Status">Download Status</ActionButton>
     </div>
   )
 
   renderDownloadCoinbase = () => (
     <div css={style.walletButton}>
-      <ActionButton
-        css={{ backgroundColor: STYLE.COLOR.COINBASE }}
-        type="Coinbase"
-      >
-        Download Coinbase
-      </ActionButton>
+      <ActionButton type="Coinbase">Download Coinbase</ActionButton>
     </div>
   )
 
   renderDownloadTrust = () => (
     <div css={style.walletButton}>
-      <ActionButton css={{ backgroundColor: STYLE.COLOR.TRUST }} type="Trust">
-        Download Trust
-      </ActionButton>
+      <ActionButton type="Trust">Download Trust</ActionButton>
     </div>
   )
 

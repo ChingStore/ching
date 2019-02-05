@@ -13,7 +13,7 @@ class ActionButton extends React.Component {
     const { type } = this.props
     return (
       <Button
-        css={style.base}
+        css={[style.base, { backgroundColor: WALLET_BUTTON.COLOR[type] }]}
         {...this.props}
         action="externalLink"
         to={WALLET_BUTTON.LINK[type]}
