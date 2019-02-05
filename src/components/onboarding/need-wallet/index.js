@@ -16,7 +16,7 @@ export default class NeedWallet extends React.Component {
         <BackButton css={style.back__button} />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
-        <div css={style.buttonCollection}>
+        <div>
           {this.renderDownloadStatus()}
           {this.renderDownloadCoinbase()}
           {this.renderDownloadTrust()}
