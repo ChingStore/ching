@@ -3,20 +3,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import * as React from 'react'
-import type { BrowserHistory, HashHistory, MemoryHistory } from 'history'
+import * as ReactRouter from 'react-router-dom'
 
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
 
-export type RouterHistory = BrowserHistory | HashHistory | MemoryHistory
-
 export type ProfilePropsType = {
   authError?: Object,
   css?: Object,
   children?: React.Node,
-  history?: RouterHistory,
+  history?: ReactRouter.ContextRouter,
   email?: string,
   password?: string,
   signUp?: ({}) => boolean,
