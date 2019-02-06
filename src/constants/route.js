@@ -12,7 +12,7 @@ const PATH = {
 
   // Full-screen
   HOME: '/home',
-  NEED_WALLET: '/need-wallet',
+  GET_WALLET: '/get-wallet',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   SIGN_UP_STORE: '/sign-up-store',

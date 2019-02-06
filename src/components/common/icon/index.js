@@ -17,11 +17,11 @@ export default {
   Coinbase,
   Login,
   HomeArt,
+  Sales,
   Status,
   StoreArtTag,
   StoreArtBackground,
-  Trust,
   Store,
-  Sales,
+  Trust,
   Profile,
 }
