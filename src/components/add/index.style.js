@@ -56,12 +56,37 @@ export default {
   },
 
   photo: {
+    display: 'flex',
     width: '80%',
-    flex: 0.25,
+    flex: 0.3,
+    flexDirection: 'column',
+  },
+
+  photo__text: {
+    flex: 0.2,
+  },
+
+  photo__button: {
+    display: 'flex',
+    width: '100%',
+    flex: 1.67,
+    flexDirection: 'column',
+    alignItems: ' center',
+    justifyContent: 'center',
+  },
+
+  DashedBox: {
+    position: 'absolute',
+    bottom: '390px',
+    height: '10px',
+    width: '300px',
   },
 
   footer: {
     width: '80%',
+    display: 'flex',
     flex: 0.25,
+    alignItems: ' center',
+    justifyContent: 'center',
   },
 }

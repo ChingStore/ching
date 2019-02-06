@@ -1,27 +1,31 @@
 // @flow
 
-import Cross from './cross'
-import Login from './login'
-import HomeArt from './home-art'
-import StoreArtTag from './store-art-tag'
-import StoreArtBackground from './store-art-background'
 import Coinbase from './coinbase'
-import Status from './status'
-import Trust from './trust'
-import Store from './store'
-import Sales from './sales'
+import Cross from './cross'
+import DashedBox from './dashed-box'
+import HomeArt from './home-art'
+import Login from './login'
 import Profile from './profile'
+import Sales from './sales'
+import Status from './status'
+import Store from './store'
+import StoreArtBackground from './store-art-background'
+import StoreArtTag from './store-art-tag'
+import Trust from './trust'
+import UploadCloud from './upload-cloud'
 
 export default {
-  Cross,
   Coinbase,
-  Login,
+  Cross,
+  DashedBox,
   HomeArt,
-  Status,
-  StoreArtTag,
-  StoreArtBackground,
-  Trust,
-  Store,
-  Sales,
+  Login,
   Profile,
+  Sales,
+  Status,
+  Store,
+  StoreArtBackground,
+  StoreArtTag,
+  Trust,
+  UploadCloud,
 }
