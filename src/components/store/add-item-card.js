@@ -20,10 +20,8 @@ class AddItemCard extends React.PureComponent<PropsType> {
   render = () => {
     const { isFirstInRow } = this.props
     return (
-      // TODO: Use Button instead
       <ActionButton
         css={[style.base, isFirstInRow && style.base__first]}
-        action="internalLink"
         to={ROUTE.PATH.ADD_ITEM}
       >
         <Flex column center>
