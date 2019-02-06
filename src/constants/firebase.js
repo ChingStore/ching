@@ -9,6 +9,15 @@ export type IdType = string
 
 export type DateType = Object
 
+//////////
+// AUTH //
+//////////
+
+export type AuthType = $ReadOnly<{
+  email: string,
+  password: string,
+}>
+
 ///////////
 // ITEMS //
 ///////////
