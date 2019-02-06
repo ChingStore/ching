@@ -4,9 +4,9 @@ const PATH = {
   // Tabbed
   TABS: '/tabs',
   SALES: '/tabs/sales-report',
-  STORE: '/tabs/',
-  ADD: '/tabs/add',
-  EDIT: '/tabs/edit',
+  STORE: '/tabs/store',
+  ADD_ITEM: '/tabs/store/add-item',
+  EDIT_ITEM: '/tabs/store/edit-item/:itemId',
   ORDERS: '/tabs/orders',
 
   // Full-screen
@@ -20,15 +20,9 @@ const PATH = {
 }
 
 const PATH_TITLE = {
-  [PATH.STORE]: 'Inventory',
   [PATH.SALES]: 'Sales Report',
-  [PATH.ADD]: 'Add',
-  [PATH.EDIT]: 'Edit',
-  [PATH.PROFILE]: 'Profile',
-  [PATH.SIGN_IN]: 'Sign In',
-  [PATH.SIGN_UP]: 'Sign Up',
+  [PATH.ADD_ITEM]: 'Add',
   [PATH.ORDERS]: 'Orders',
-  [PATH.SIGN_UP_STORE]: 'Sign Up Store',
 }
 
 export default {

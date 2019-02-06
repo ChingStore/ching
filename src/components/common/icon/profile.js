@@ -1,13 +1,10 @@
 // @flow
 
+import type { BasicIconPropTypes } from 'constants/icon'
+
 import React from 'react'
-import STYLE from 'constants/style'
 
-type PropsType = {
-  fill: typeof STYLE.COLOR,
-}
-
-const ProfileIcon = ({ fill }: PropsType) => (
+const ProfileIcon = ({ fill }: BasicIconPropTypes) => (
   <svg
     width="24"
     height="24"

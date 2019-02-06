@@ -10,18 +10,24 @@ import Status from './status'
 import Trust from './trust'
 import Store from './store'
 import Sales from './sales'
+import Plus from './plus'
 import Profile from './profile'
+import Edit from './edit'
+import NoPhoto from './no-photo'
 
 export default {
-  Cross,
   Coinbase,
-  Login,
+  Cross,
+  Edit,
   HomeArt,
+  Login,
+  NoPhoto,
+  Plus,
+  Profile,
   Sales,
   Status,
-  StoreArtTag,
-  StoreArtBackground,
   Store,
+  StoreArtBackground,
+  StoreArtTag,
   Trust,
-  Profile,
 }

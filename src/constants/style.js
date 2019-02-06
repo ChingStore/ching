@@ -7,10 +7,11 @@ const COLOR = {
   BLUE: '#333963',
   YELLOWISH_GREY: '#E7E4DE',
   GREY: '#C3C4CB',
+  RED: '#FB525C',
 
   TRANSPARENT: 'transparent',
 
-  TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.3)',
+  TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.25)',
 
   COINBASE: '#0B36F0',
   STATUS: '#5B6DEE',
@@ -29,8 +30,13 @@ const FONT_WEIGHT = {
   BOLDEST: 900,
 }
 
+const FONT_LETTER_SPACING = {
+  TINY: '-0.02em',
+}
+
 const FONT = {
   WEIGHT: FONT_WEIGHT,
+  LETTER_SPACING: FONT_LETTER_SPACING,
 }
 
 const PRESETS = {

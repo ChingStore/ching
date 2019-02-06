@@ -67,7 +67,6 @@ const mapStateToProps = state => ({
   auth: selectors.getAuthState(state),
   items: selectors.getItemsState(state),
   orders: selectors.orders.all(state),
-  storeUsers: selectors.getStoresUsers(state),
   shoppingCartOrderId: selectors.users.shoppingCartOrderId(state),
 })
 
