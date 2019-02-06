@@ -1,35 +1,35 @@
+// @flow
+
+import type { ButtonPropsType } from 'components/common/button'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
+
+import Button from 'components/common/button'
 
 import style from './index.style.js'
 
-class ActionButton extends React.Component {
+type PropsType = ButtonPropsType & {
+  Icon?: React.Node,
+  iconProps?: *,
+}
+
+class ActionButton extends React.PureComponent<PropsType> {
   render() {
+    const { Icon, iconProps, children, ...restProps } = this.props
     return (
-      <button
-        css={style.base}
-        {...this.props}
-        onClick={this.handleClick}
-        type="button"
-      >
-        <div css={style.icon}>{this.props.icon}</div>
-        <div css={style.spacer} />
-        <div>{this.props.children}</div>
-      </button>
+      <Button css={style.base} {...restProps}>
+        {!!Icon && (
+          <div css={style.icon}>
+            {/* $FlowFixMe */}
+            <Icon {...iconProps} />
+          </div>
+        )}
+        <div css={style.button_text}>{children}</div>
+      </Button>
     )
-  }
-
-  handleClick = event => {
-    const { history, to, onClick } = this.props
-
-    if (onClick) {
-      onClick(event)
-    }
-    if (to) {
-      history.push(to)
-    }
   }
 }
 

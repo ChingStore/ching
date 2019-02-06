@@ -34,18 +34,16 @@ type TabType = $ElementType<typeof TABS, number>
 
 type PropsType = ReactRouter.ContextRouter
 
-type StateType = {}
-
-class NavBar extends React.PureComponent<PropsType, StateType> {
-  state = {
-    nextActiveTab: null,
-  }
-
+class NavBar extends React.PureComponent<PropsType> {
   render() {
     return (
       <Flex css={style.base}>
         {TABS.map(tab => (
-          <Flex css={style.tab} onClick={() => this.handleTabClick(tab)}>
+          <Flex
+            css={style.tab}
+            onClick={() => this.handleTabClick(tab)}
+            key={tab.title}
+          >
             <tab.icon
               fill={this.isActiveTab(tab) ? STYLE.COLOR.BLUE : STYLE.COLOR.GREY}
             />

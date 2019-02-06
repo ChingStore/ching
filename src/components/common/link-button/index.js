@@ -7,14 +7,15 @@ import style from './index.style.js'
 
 class LinkButton extends React.Component {
   render() {
+    const { children, staticContext, ...restProps } = this.props
     return (
       <button
         css={style.base}
-        {...this.props}
+        {...restProps}
         onClick={this.handleClick}
         type="button"
       >
-        {this.props.children}
+        {children}
       </button>
     )
   }

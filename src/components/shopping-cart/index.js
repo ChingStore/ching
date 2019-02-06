@@ -16,6 +16,12 @@ export default class ShoppingCart extends React.PureComponent {
   }
 
   render() {
+    const { orderId } = this.props
+
+    if (!orderId) {
+      return null
+    }
+
     return (
       <Flex
         column
