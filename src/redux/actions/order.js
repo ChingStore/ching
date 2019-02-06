@@ -16,7 +16,7 @@ const upsertItem = ({ orderId: inputOrderId, itemId, quantity }) => async (
 ) => {
   const firestore = getFirestore()
   const state = getState()
-  const price = selector.getItemPrice(state, { itemId })
+  const price = selector.items.price(state, { itemId })
   const shoppingCartOrderId = selector.users.shoppingCartOrderId(state)
   const currentUserId = selector.users.currentId(state)
 

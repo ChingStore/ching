@@ -1,7 +1,15 @@
+// @flow
+
+import type { IdType, StoreType } from 'constants/firebase'
+import type { ThunkActionType } from 'constants/redux'
+
 import ACTIONS from 'redux/actionTypes'
 import selectors from 'redux/selectors'
 
-const signUp = ({ storeName, walletAddress }) => async (
+const create = ({
+  storeName,
+  walletAddress,
+}: $Shape<StoreType>): ThunkActionType => async (
   dispatch,
   getState,
   { getFirestore }
@@ -44,4 +52,20 @@ const signUp = ({ storeName, walletAddress }) => async (
   }
 }
 
-export default { signUp }
+const update = ({
+  storeId,
+  data,
+}: {
+  storeId: IdType,
+  data: $Shape<StoreType>,
+}): ThunkActionType => {
+  return async (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore()
+    await firestore
+      .collection('stores')
+      .doc(storeId)
+      .set(data)
+  }
+}
+
+export default { create, update }
