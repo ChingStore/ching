@@ -1,25 +1,33 @@
+// @flow
+
+import type { ButtonPropsType } from 'components/common/button'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Button from 'components/common/button'
-import WALLET_BUTTON from 'constants/wallet_button.js'
 
 import style from './index.style.js'
 
-class ActionButton extends React.Component {
+type PropsType = ButtonPropsType & {
+  Icon?: React.Node,
+  iconProps?: *,
+}
+
+class ActionButton extends React.PureComponent<PropsType> {
   render() {
-    const { type } = this.props
+    const { Icon, iconProps, children, ...restProps } = this.props
     return (
-      <Button
-        css={[style.base, { backgroundColor: WALLET_BUTTON.COLOR[type] }]}
-        action="externalLink"
-        to={WALLET_BUTTON.LINK[type]}
-        {...this.props}
-      >
-        <div css={style.icon}>{WALLET_BUTTON.ICON[type]}</div>
-        <div css={style.button_text}>{this.props.children}</div>
+      <Button css={style.base} {...restProps}>
+        {!!Icon && (
+          <div css={style.icon}>
+            {/* $FlowFixMe */}
+            <Icon {...iconProps} />
+          </div>
+        )}
+        <div css={style.button_text}>{children}</div>
       </Button>
     )
   }

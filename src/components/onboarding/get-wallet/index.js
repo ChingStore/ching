@@ -3,10 +3,10 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 
 import BackButton from 'components/common/back-button'
-import ActionButton from 'components/common/action-button'
-import WALLET_BUTTON from 'constants/wallet_button'
+import WALLET_BUTTON from 'constants/get-wallet-button'
 
 import style from './index.style.js'
+import GetWalletButton from './get-wallet-button'
 
 export default class GetWalletScene extends React.Component {
   render() {
@@ -22,24 +22,22 @@ export default class GetWalletScene extends React.Component {
 
   renderTitle = () => (
     <div css={style.title}>
-      <p css={style.title_text}>You need an Ethereum wallet</p>
-      <p css={style.welcome_msg}>
+      <div css={style.title_text}>You need an Ethereum wallet</div>
+      <div css={style.title_welcomeText}>
         It’s an application to interact with the Ethereum blockchain. It stores
         your money.
-      </p>
+      </div>
     </div>
   )
 
   renderRecommendedWallets = () => (
-    <div css={style.recommendedWallets}>
-      <p css={style.recommendedWallets_text}>Recommended wallets</p>
-    </div>
+    <div css={style.recommendedWallets}>Recommended wallets</div>
   )
 
   renderWalletList = () =>
     WALLET_BUTTON.TYPES.map(type => (
-      <div css={style.walletButton}>
-        <ActionButton {...{ type, key: type }}>Download {type}</ActionButton>
-      </div>
+      <GetWalletButton css={style.walletButton} {...{ type, key: type }}>
+        {`Download ${type}`}
+      </GetWalletButton>
     ))
 }

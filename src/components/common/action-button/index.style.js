@@ -1,3 +1,5 @@
+// @flow
+
 import STYLE from 'constants/style'
 
 export default {

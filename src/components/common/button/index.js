@@ -1,37 +1,33 @@
+// @flow
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
-import Flex from 'components/common/flex'
+export type ButtonPropsType = {
+  css?: Object,
+  to?: string,
+  url?: string,
+  onClick?: () => void,
+  children?: React.Node,
+} & ReactRouter.ContextRouter
 
-import style from './index.style.js'
-
-class Button extends React.Component {
+class Button extends React.PureComponent<ButtonPropsType> {
   render() {
-    return (
-      <Flex
-        css={style.base}
-        {...this.props}
-        onClick={this.handleClick}
-        type="button"
-      />
-    )
+    const { staticContext, ...restProps } = this.props
+    return <button {...restProps} onClick={this.handleClick} type="button" />
   }
 
-  handleClick = event => {
-    const { action, history, onClick, to } = this.props
-    console.log(this.props)
+  handleClick = () => {
+    const { history, onClick, to, url } = this.props
     if (onClick) {
-      onClick(event)
+      onClick()
     }
-    if (action === 'goBack') {
-      history.goBack()
+    if (url) {
+      window.location = url
     }
-    if (action === 'externalLink') {
-      window.location = to
-    }
-    if (action === 'internalLink') {
+    if (to) {
       history.push(to)
     }
   }
