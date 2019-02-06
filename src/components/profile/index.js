@@ -17,7 +17,7 @@ export type ProfilePropsType = {
   history?: ReactRouter.ContextRouter,
   email?: string,
   password?: string,
-  signUp?: ({}) => boolean,
+  signUp: ({}) => boolean,
 }
 
 type StateType = {
@@ -109,7 +109,6 @@ export default class Profile extends React.Component<
     const { signUp, history }: ProfilePropsType = this.props
     const { email, password } = this.state
 
-    // $FlowFixMe Cannot call signUp because undefined [1] is not a function.
     const isSigned = await signUp({ email, password })
     if (isSigned) {
       // $FlowFixMe Cannot call history.push because property push is missing in undefined [1].

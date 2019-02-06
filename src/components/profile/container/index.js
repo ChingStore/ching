@@ -1,13 +1,7 @@
 import * as ReactRedux from 'react-redux'
-import PropTypes from 'prop-types'
 import selectors from 'redux/selectors'
 import authActions from 'redux/actions/auth'
 import SignUp from '..'
-
-SignUp.propTypes = {
-  signUp: PropTypes.func,
-  authError: PropTypes.string,
-}
 
 const mapStateToProp = state => ({
   authError: selectors.getAuthError(state),
