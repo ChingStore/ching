@@ -1,7 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
+import ROUTE from 'constants/route'
+import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
+import FooterButton from 'components/common/footer-button'
 import style from './index.style.js'
 
 export default class Add extends React.PureComponent {
@@ -54,12 +57,37 @@ export default class Add extends React.PureComponent {
     )
   }
 
+  handleClick = () => {
+    console.log(1)
+  }
+
   renderPhoto = () => {
-    return <div css={style.photo}>Photo</div>
+    return (
+      <div css={style.photo}>
+        <div css={style.photo__text}>Picture</div>
+        <button
+          css={style.photo__button}
+          onClick={this.handleClick}
+          type="button"
+        >
+          <div css={style.photo__icon}>
+            <Icon.UploadCloud />
+          </div>
+          <div>Upload Photo</div>
+          <div css={style.DashedBox}>
+            <Icon.DashedBox />
+          </div>
+        </button>
+      </div>
+    )
   }
 
   renderFooter = () => {
-    return <div css={style.footer}>Footer</div>
+    return (
+      <div css={style.footer}>
+        <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a First Item</FooterButton>
+      </div>
+    )
   }
 
   render() {
