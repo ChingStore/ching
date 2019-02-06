@@ -4,7 +4,7 @@ import type { IdType } from 'constants/firebase'
 
 import * as React from 'react'
 import * as ReactRedux from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import * as ReactRouter from 'react-router-dom'
 import * as Reselect from 'reselect'
 
 import NavBar from 'components/nav-bar'
@@ -23,7 +23,11 @@ import ROUTE from 'constants/route'
 import Flex from 'components/common/flex'
 import selectors from 'redux/selectors'
 
-type OwnPropsType = {||}
+const { Redirect, Route, Switch } = ReactRouter
+
+type OwnPropsType = {|
+  location: ReactRouter.Location,
+|}
 
 type PropsType = {|
   ...OwnPropsType,

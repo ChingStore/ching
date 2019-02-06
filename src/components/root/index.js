@@ -13,13 +13,14 @@ import * as Redux from 'redux'
 
 import Routes from 'components/routes'
 import Flex from 'components/common/flex'
-import CONFIG from 'constants/config'
 import orderAction from 'redux/actions/order'
 import selectors from 'redux/selectors'
 
 import style from './index.style'
 
-type OwnPropsType = {||}
+type OwnPropsType = {|
+  ...ReactRouter.ContextRouter,
+|}
 
 type PropsType = {|
   ...OwnPropsType,
@@ -31,17 +32,15 @@ class Root extends React.Component<PropsType> {
   render() {
     if (!this.isLoaded()) {
       return (
-        <Flex grow center>
-          Loading Firebase...
+        <Flex absoluteFill center>
+          Loading...
         </Flex>
       )
     }
 
     return (
       <Flex column style={style.base}>
-        <ReactRouter.BrowserRouter basename={CONFIG.PUBLIC_URL}>
-          <Routes />
-        </ReactRouter.BrowserRouter>
+        <Routes location={this.props.location} />
       </Flex>
     )
   }
@@ -73,6 +72,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
 })
 
 export default Redux.compose(
+  ReactRouter.withRouter,
   ReactRedux.connect<PropsType, OwnPropsType, _, _, _, _>(
     mapStateToProps,
     mapDispatchToProps
