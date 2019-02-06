@@ -1,10 +1,17 @@
+// @flow
+
 import ACTIONS from 'redux/actionTypes'
 import { actionTypes } from 'redux-firestore'
 
-const signIn = ({ email, password }) => async (
-  dispatch,
-  getState,
-  { getFirebase }
+type SignInUpArgsType = {
+  email: string,
+  password: string,
+}
+
+const signIn = ({ email, password }: SignInUpArgsType) => async (
+  dispatch: actionTypes,
+  getState: actionTypes,
+  { getFirebase }: actionTypes
 ) => {
   const firebase = getFirebase()
   try {
@@ -17,7 +24,11 @@ const signIn = ({ email, password }) => async (
   }
 }
 
-const signOut = () => async (dispatch, getState, { getFirebase }) => {
+const signOut = () => async (
+  dispatch: actionTypes,
+  getState: actionTypes,
+  { getFirebase }: actionTypes
+) => {
   const firebase = getFirebase()
   try {
     await firebase.auth().signOut()
@@ -28,10 +39,10 @@ const signOut = () => async (dispatch, getState, { getFirebase }) => {
   }
 }
 
-const signUp = ({ email, password }) => async (
-  dispatch,
-  getState,
-  { getFirebase }
+const signUp = ({ email, password }: SignInUpArgsType) => async (
+  dispatch: actionTypes,
+  getState: actionTypes,
+  { getFirebase }: actionTypes
 ) => {
   const firebase = getFirebase()
   try {

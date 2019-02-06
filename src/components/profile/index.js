@@ -2,14 +2,39 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import * as React from 'react'
+import type { BrowserHistory, HashHistory, MemoryHistory } from 'history'
+
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
 
-export default class SignUp extends React.Component {
-  state = {}
+export type RouterHistory = BrowserHistory | HashHistory | MemoryHistory
+
+export type ProfilePropsType = {
+  authError?: Object,
+  css?: Object,
+  children?: React.Node,
+  history?: RouterHistory,
+  email?: string,
+  password?: string,
+  signUp?: ({}) => boolean,
+}
+
+type StateType = {
+  email?: string,
+  password?: string,
+}
+
+export default class Profile extends React.Component<
+  ProfilePropsType,
+  StateType
+> {
+  state = {
+    email: 'test@test.com',
+    password: 'password',
+  }
 
   render() {
     const { authError } = this.props
@@ -83,16 +108,18 @@ export default class SignUp extends React.Component {
   }
 
   handleSignUp = async () => {
-    const { signUp, history } = this.props
+    const { signUp, history }: ProfilePropsType = this.props
     const { email, password } = this.state
 
+    // $FlowFixMe Cannot call signUp because undefined [1] is not a function.
     const isSigned = await signUp({ email, password })
     if (isSigned) {
+      // $FlowFixMe Cannot call history.push because property push is missing in undefined [1].
       history.push(ROUTE.PATH.SIGN_UP_STORE)
     }
   }
 
-  handleChange = e => {
+  handleChange = (e: Object) => {
     this.setState({
       [e.target.id]: e.target.value,
     })

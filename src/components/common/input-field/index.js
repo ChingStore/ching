@@ -1,10 +1,18 @@
+// @flow
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import * as React from 'react'
 
 import style from './index.style.js'
 
-export default class InputField extends React.Component {
+export type InputFieldPropsType = {
+  css?: Object,
+  labelText?: string,
+  type?: string,
+}
+
+export default class InputField extends React.PureComponent<InputFieldPropsType> {
   render() {
     const { labelText, ...rest } = this.props
     return (
