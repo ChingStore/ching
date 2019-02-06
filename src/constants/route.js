@@ -8,11 +8,11 @@ const PATH = {
   ADD: '/tabs/add',
   EDIT: '/tabs/edit',
   ORDERS: '/tabs/orders',
-  PROFILE: '/tabs/profile',
 
   // Full-screen
   HOME: '/home',
   GET_WALLET: '/get-wallet',
+  PROFILE: '/profile',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   SIGN_UP_STORE: '/sign-up-store',
@@ -24,6 +24,7 @@ const PATH_TITLE = {
   [PATH.SALES]: 'Sales Report',
   [PATH.ADD]: 'Add',
   [PATH.EDIT]: 'Edit',
+  [PATH.PROFILE]: 'Profile',
   [PATH.SIGN_IN]: 'Sign In',
   [PATH.SIGN_UP]: 'Sign Up',
   [PATH.ORDERS]: 'Orders',

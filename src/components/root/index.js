@@ -18,6 +18,7 @@ import SignIn from 'components/onboarding/sign-in/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
 import StoreWelcome from 'components/store/store-welcome'
 import Orders from 'components/orders'
+import Profile from 'components/profile'
 import CONFIG from 'constants/config'
 import ROUTE from 'constants/route'
 import orderAction from 'redux/actions/order'
@@ -56,6 +57,7 @@ class Root extends React.Component {
             component={StoreWelcome}
             id={118}
           />
+          <Route exact path={ROUTE.PATH.PROFILE} component={Profile} id={130} />
 
           <Route path={ROUTE.PATH.TABS} component={NavBar} id={116} />
           <Flex column auto>
