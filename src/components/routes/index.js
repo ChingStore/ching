@@ -38,8 +38,6 @@ class Routes extends React.Component<PropsType> {
   render = () => {
     const { currentUserId } = this.props
 
-    console.log('Render routes', this.props)
-
     return (
       <Flex grow column relative>
         {currentUserId ? this.renderPrivateRoutes() : this.renderPublicRoutes()}
@@ -64,21 +62,22 @@ class Routes extends React.Component<PropsType> {
   )
 
   renderPrivateRoutes = () => (
-    <Flex grow column relative>
-      <Route path="/" component={NavBar} />
-      <Switch>
-        {/* Store */}
-        <Route exact path={ROUTE.PATH.STORE} component={Store} />
-        <Route exact path={ROUTE.PATH.ADD_ITEM} component={Add} />
-        <Route exact path={ROUTE.PATH.EDIT_ITEM} component={Add} />
-        {/* Sales */}
-        <Route exact path={ROUTE.PATH.SALES} component={SalesReport} />
-        {/* Orders */}
-        <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
-        {/* Redirect if no match */}
-        <Redirect to={ROUTE.PATH.STORE} />
-      </Switch>
-    </Flex>
+    <Switch>
+      {/* No NavBar */}
+      <Route exact path={ROUTE.PATH.ADD_ITEM} component={Add} />
+      <Route exact path={ROUTE.PATH.EDIT_ITEM} component={Add} />
+      <Flex grow column>
+        <Route path="/" component={NavBar} />
+        <Switch>
+          {/* With NavBar */}
+          <Route exact path={ROUTE.PATH.STORE} component={Store} />
+          <Route exact path={ROUTE.PATH.SALES} component={SalesReport} />
+          <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
+          {/* Redirect if no match */}
+          <Redirect to={ROUTE.PATH.STORE} />
+        </Switch>
+      </Flex>
+    </Switch>
   )
 }
 
