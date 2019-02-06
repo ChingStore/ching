@@ -1,5 +1,4 @@
 // @flow
-import React from 'react'
 
 import Icon from 'components/common/icon'
 import STYLE from './style.js'
@@ -18,9 +17,9 @@ const LINK = {
 }
 
 const ICON = {
-  [TYPE.COINBASE]: <Icon.Coinbase />,
-  [TYPE.STATUS]: <Icon.Status />,
-  [TYPE.TRUST]: <Icon.Trust />,
+  [TYPE.COINBASE]: Icon.Coinbase,
+  [TYPE.STATUS]: Icon.Status,
+  [TYPE.TRUST]: Icon.Trust,
 }
 
 const COLOR = {
@@ -30,6 +29,7 @@ const COLOR = {
 }
 
 export default {
+  TYPE,
   TYPES,
   LINK,
   ICON,

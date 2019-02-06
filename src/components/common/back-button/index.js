@@ -1,3 +1,5 @@
+// @flow
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
@@ -7,18 +9,15 @@ import Button from 'components/common/button'
 import Flex from 'components/common/flex'
 import vectorImg from 'components/common/icon/Vector.png'
 
-import style from './index.style.js'
+type PropsType = ReactRouter.ContextRouter
 
-class BackButton extends React.Component {
+class BackButton extends React.Component<PropsType> {
   render() {
     const { history } = this.props
     return (
-      <Flex css={style.base}>
-        <Button
-          css={style.button}
-          {...this.props}
-          onClick={() => history.goBack()}
-        >
+      <Flex>
+        {/* $FlowFixMe */}
+        <Button {...this.props} onClick={() => history.goBack()}>
           <img src={vectorImg} alt="Go back" />
         </Button>
       </Flex>

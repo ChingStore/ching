@@ -25,8 +25,6 @@ export default {
     justifyContent: 'flex-end',
   },
   title_text: {
-    marginTop: 0,
-    marginBottom: 0,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
@@ -47,15 +45,8 @@ export default {
     marginTop: 80,
     marginBottom: 0,
   },
-  recommendedWallets_text: {
-    marginTop: 0,
-    marginBottom: 0,
-  },
 
   walletButton: {
     marginTop: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
   },
 }
