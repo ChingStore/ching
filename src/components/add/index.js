@@ -1,10 +1,13 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
+
 import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
 import InputFieldNumerical from 'components/common/input-field-numerical'
 import FooterButton from 'components/common/footer-button'
+import ROUTE from 'constants/route'
+
 import style from './index.style.js'
 
 export default class Add extends React.Component {
@@ -14,6 +17,11 @@ export default class Add extends React.Component {
     quantity: 1,
     photo: '',
     soldCount: '',
+  }
+
+  handleAddItemClick = async () => {
+    await this.props.addItem(this.state)
+    this.props.history.push(ROUTE.PATH.STORE)
   }
 
   handleChange = e => {
@@ -131,7 +139,7 @@ export default class Add extends React.Component {
   renderFooter = () => {
     return (
       <div css={style.footer}>
-        <FooterButton onClick={() => this.props.addItem(this.state)}>
+        <FooterButton onClick={this.handleAddItemClick}>
           Add a First Item
         </FooterButton>
       </div>
