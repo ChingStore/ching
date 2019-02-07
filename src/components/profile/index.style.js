@@ -26,10 +26,14 @@ export default {
     height: 250,
   },
 
+  inputField: {
+    fontSize: 16,
+  },
+
   logOut: {
-    borderColor: '#FB525C',
+    borderColor: STYLE.COLOR.RED,
     borderStyle: 'solid',
     borderWidth: 1,
-    color: '#FB525C',
+    color: STYLE.COLOR.RED,
   },
 }
