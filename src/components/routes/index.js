@@ -14,6 +14,7 @@ import Add from 'components/add'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
 import GetWallet from 'components/onboarding/get-wallet'
+import Profile from 'components/profile'
 import SignUp from 'components/onboarding/sign-up/container'
 import SignIn from 'components/onboarding/sign-in/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
@@ -73,6 +74,7 @@ class Routes extends React.Component<PropsType> {
           <Route exact path={ROUTE.PATH.STORE} component={Store} />
           <Route exact path={ROUTE.PATH.SALES} component={SalesReport} />
           <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
+          <Route exact path={ROUTE.PATH.PROFILE} component={Profile} />
           {/* Redirect if no match */}
           <Redirect to={ROUTE.PATH.STORE} />
         </Switch>
