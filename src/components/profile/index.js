@@ -6,7 +6,6 @@ import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Flex from 'components/common/flex'
-import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
@@ -15,7 +14,7 @@ export type ProfilePropsType = {
   authError?: Object,
   css?: Object,
   children?: React.Node,
-  history?: ReactRouter.ContextRouter,
+  history: ?ReactRouter.ContextRouter,
   email?: string,
   password?: string,
   signUp: ({}) => boolean,
@@ -57,13 +56,7 @@ export default class Profile extends React.Component<
 
   renderCollection = () => {
     return (
-      <Flex
-        column
-        spaceBetween
-        css={style.collection}
-        onSubmit={this.handleSignUp}
-        key="renderFlex"
-      >
+      <Flex column spaceBetween css={style.collection} key="renderFlex">
         {this.renderUsernameField()}
         {this.renderPasswordField()}
         {this.renderWalletAddressField()}
@@ -103,17 +96,6 @@ export default class Profile extends React.Component<
         labelText="Ethereum address"
       />
     )
-  }
-
-  handleSignUp = async () => {
-    const { signUp, history }: ProfilePropsType = this.props
-    const { email, password } = this.state
-
-    const isSigned = await signUp({ email, password })
-    if (isSigned) {
-      // $FlowFixMe Cannot call history.push because property push is missing in undefined [1].
-      history.push(ROUTE.PATH.SIGN_UP_STORE)
-    }
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
