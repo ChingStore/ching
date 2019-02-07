@@ -7,6 +7,10 @@ export type GetFirestoreType = Object
 
 export type IdType = string
 
+export type FirebaseAuthType = $ReadOnly<{
+  uid: IdType,
+}>
+
 export type DateType = Object
 
 ///////////
@@ -42,6 +46,7 @@ export type OrderItemsType = $ReadOnly<{
 
 export type OrderType = $ReadOnly<{
   createdAt: DateType,
+  txConfirmed: boolean,
   items: OrderItemsType,
   networkId: NetworkIdType,
   txHash: string,

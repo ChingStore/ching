@@ -43,6 +43,9 @@ class Flex extends React.PureComponent<PropsType> {
       innerRef,
       spaceBetween,
       wrap,
+      // Remove react-router props
+      // $FlowFixMe: missing in Props
+      computedMatch,
       ...restProps
     } = this.props
 

@@ -26,7 +26,7 @@ export default class SignIn extends React.Component {
 
     const isSigned = await signIn({ email, password })
     if (isSigned) {
-      history.push(ROUTE.PATH.INVENTORY)
+      history.push(ROUTE.PATH.STORE)
     }
   }
 
