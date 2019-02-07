@@ -81,7 +81,7 @@ export default class ShoppingCart extends React.PureComponent<
     const { order } = this.props
     const itemIds = this.getItemIds()
 
-    if (!this.state.isExpanded) {
+    if (!this.state.isExpanded || !order) {
       return null
     }
 
@@ -104,7 +104,7 @@ export default class ShoppingCart extends React.PureComponent<
   renderPayment = () => {
     const { order } = this.props
 
-    if (!this.state.isExpanded) {
+    if (!this.state.isExpanded || !order) {
       return null
     }
 
@@ -170,20 +170,4 @@ export default class ShoppingCart extends React.PureComponent<
     )
 
   getTotalPrice = () => orderUtil.getTotalPrice(this.props.order).toFixed(2)
-
-  //////////////
-  // CHECKERS //
-  //////////////
-
-  isWaitingForTransaction = () => !this.isConfirming() && !this.isConfirmed()
-
-  isConfirming = () => {
-    const { order } = this.props
-    return order.txHash && !order.txConfirmed
-  }
-
-  isConfirmed = () => {
-    const { order } = this.props
-    return order.txConfirmed
-  }
 }
