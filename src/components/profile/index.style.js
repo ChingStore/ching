@@ -28,10 +28,12 @@ export default {
 
   inputField: {
     fontSize: 16,
+    width: '100%',
   },
 
   edit: {
-    backgroundColor: STYLE.COLOR.RED,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   logOut: {

@@ -16,7 +16,7 @@ export default class InputField extends React.PureComponent<InputFieldPropsType>
   render() {
     const { labelText, ...rest } = this.props
     return (
-      <div css={style.base}>
+      <div css={style.base} {...this.props}>
         <label css={style.label}>{labelText}</label>
         <input
           css={this.props.type === 'password' ? style.password : style.input}

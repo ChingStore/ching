@@ -73,7 +73,7 @@ class Profile extends React.Component<PropsType, StateType> {
 
   renderUsernameField = () => {
     return (
-      <Flex>
+      <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
@@ -88,7 +88,7 @@ class Profile extends React.Component<PropsType, StateType> {
 
   renderPasswordField = () => {
     return (
-      <Flex>
+      <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
@@ -104,7 +104,7 @@ class Profile extends React.Component<PropsType, StateType> {
 
   renderWalletAddressField = () => {
     return (
-      <Flex>
+      <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
