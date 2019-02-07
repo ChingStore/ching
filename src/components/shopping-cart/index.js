@@ -32,7 +32,7 @@ export default class ShoppingCart extends React.PureComponent<
   StateType
 > {
   state = {
-    isExpanded: true,
+    isExpanded: false,
   }
 
   render() {
