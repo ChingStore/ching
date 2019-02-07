@@ -5,6 +5,7 @@ import { jsx } from '@emotion/core'
 import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
+import Flex from 'components/common/flex'
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 
@@ -41,7 +42,7 @@ export default class Profile extends React.Component<
       <div css={style.base}>
         <p>{authError}</p>
         {this.renderTitle()}
-        {this.renderForm()}
+        {this.renderCollection()}
       </div>
     )
   }
@@ -54,55 +55,53 @@ export default class Profile extends React.Component<
     )
   }
 
-  renderForm = () => {
+  renderCollection = () => {
     return (
-      <form onSubmit={this.handleSignUp}>
+      <Flex
+        column
+        spaceBetween
+        css={style.collection}
+        onSubmit={this.handleSignUp}
+        key="renderFlex"
+      >
         {this.renderUsernameField()}
-        <div css={style.spacer} />
         {this.renderPasswordField()}
-        <div css={style.spacer} />
         {this.renderWalletAddressField()}
-      </form>
+      </Flex>
     )
   }
 
   renderUsernameField = () => {
     return (
-      <div>
-        <InputField
-          onChange={this.handleChange}
-          id="email"
-          placeholder="Enter your e-mail"
-          labelText="E-mail"
-        />
-      </div>
+      <InputField
+        onChange={this.handleChange}
+        id="email"
+        placeholder="Enter your e-mail"
+        labelText="E-mail"
+      />
     )
   }
 
   renderPasswordField = () => {
     return (
-      <div>
-        <InputField
-          onChange={this.handleChange}
-          id="password"
-          placeholder="Type in your password"
-          labelText="Password"
-          type="password"
-        />
-      </div>
+      <InputField
+        onChange={this.handleChange}
+        id="password"
+        placeholder="Type in your password"
+        labelText="Password"
+        type="password"
+      />
     )
   }
 
   renderWalletAddressField = () => {
     return (
-      <div>
-        <InputField
-          onChange={this.handleChange}
-          id="walletAddress"
-          placeholder="0x 1234 4444 4444 ... 4444"
-          labelText="Ethereum address"
-        />
-      </div>
+      <InputField
+        onChange={this.handleChange}
+        id="walletAddress"
+        placeholder="0x 1234 4444 4444 ... 4444"
+        labelText="Ethereum address"
+      />
     )
   }
 

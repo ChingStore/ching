@@ -26,7 +26,7 @@ export default {
     color: STYLE.COLOR.BLUE,
   },
 
-  spacer: {
-    marginTop: 30,
+  collection: {
+    height: 250,
   },
 }
