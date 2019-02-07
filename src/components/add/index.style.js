@@ -30,7 +30,7 @@ export default {
     flexDirection: 'column',
     justifyContent: 'center',
     width: '80%',
-    flex: 0.25,
+    flex: 0.3,
   },
 
   inputForm_firstRow: {
@@ -48,7 +48,7 @@ export default {
   photo: {
     display: 'flex',
     width: '80%',
-    flex: 0.3,
+    flex: 0.35,
     flexDirection: 'column',
   },
 

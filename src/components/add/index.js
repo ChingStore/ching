@@ -71,7 +71,7 @@ export default class Add extends React.Component {
   }
 
   handleClick = () => {
-    console.log(1)
+    document.getElementById('photo').click()
   }
 
   renderPhoto = () => {
@@ -83,6 +83,7 @@ export default class Add extends React.Component {
           onClick={this.handleClick}
           type="button"
         >
+          <input id="photo" hidden type="file" onChange={this.handleChange} />
           <div css={style.photo__icon}>
             <Icon.UploadCloud />
           </div>
