@@ -30,6 +30,10 @@ export default {
     fontSize: 16,
   },
 
+  edit: {
+    backgroundColor: STYLE.COLOR.RED,
+  },
+
   logOut: {
     borderColor: STYLE.COLOR.RED,
     borderStyle: 'solid',

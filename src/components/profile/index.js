@@ -9,7 +9,7 @@ import Flex from 'components/common/flex'
 import InputField from 'components/common/input-field'
 import ActionButton from 'components/common/action-button'
 import ROUTE from 'constants/route'
-import Icon from 'components/common/icon'
+import EditButton from 'components/common/edit-button'
 
 import style from './index.style.js'
 
@@ -81,34 +81,39 @@ class Profile extends React.Component<PropsType, StateType> {
           placeholder="Enter your e-mail"
           labelText="E-mail"
         />
-
-        <Icon.EditIcon fill="#3ECF8E" />
+        <EditButton />
       </Flex>
     )
   }
 
   renderPasswordField = () => {
     return (
-      <InputField
-        css={style.inputField}
-        onChange={this.handleChange}
-        id="password"
-        placeholder="Type in your password"
-        labelText="Password"
-        type="password"
-      />
+      <Flex>
+        <InputField
+          css={style.inputField}
+          onChange={this.handleChange}
+          id="password"
+          placeholder="Type in your password"
+          labelText="Password"
+          type="password"
+        />
+        <EditButton />
+      </Flex>
     )
   }
 
   renderWalletAddressField = () => {
     return (
-      <InputField
-        css={style.inputField}
-        onChange={this.handleChange}
-        id="walletAddress"
-        placeholder="0x 1234 4444 4444 ... 4444"
-        labelText="Ethereum address"
-      />
+      <Flex>
+        <InputField
+          css={style.inputField}
+          onChange={this.handleChange}
+          id="walletAddress"
+          placeholder="0x 1234 4444 4444 ... 4444"
+          labelText="Ethereum address"
+        />
+        <EditButton />
+      </Flex>
     )
   }
 

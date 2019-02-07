@@ -8,6 +8,7 @@ const COLOR = {
   YELLOWISH_GREY: '#E7E4DE',
   GREY: '#C3C4CB',
   RED: '#FB525C',
+  GREEN: '#3ECF8E',
 
   TRANSPARENT: 'transparent',
 

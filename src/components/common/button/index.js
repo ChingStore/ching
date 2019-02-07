@@ -1,5 +1,7 @@
 // @flow
 
+import type { ActionButtonPropsType } from 'components/common/action-button'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import * as React from 'react'
@@ -13,7 +15,8 @@ export type ButtonPropsType = {
   url?: string,
   onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
   children?: React.Node,
-} & ReactRouter.ContextRouter
+} & ReactRouter.ContextRouter &
+  ActionButtonPropsType
 
 class Button extends React.PureComponent<ButtonPropsType> {
   render() {
