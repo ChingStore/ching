@@ -8,6 +8,7 @@ import * as ReactRouter from 'react-router-dom'
 import Flex from 'components/common/flex'
 import InputField from 'components/common/input-field'
 import ActionButton from 'components/common/action-button'
+import ROUTE from 'constants/route'
 
 import style from './index.style.js'
 
@@ -109,12 +110,20 @@ class Profile extends React.Component<PropsType, StateType> {
       <ActionButton
         css={style.logOut}
         onClick={() => {
-          alert('TODO: Log out!')
+          this.handleLogOut()
         }}
       >
         <Flex>Log out</Flex>
       </ActionButton>
     )
+  }
+
+  ////////////////////
+  // EVENT HANDLERS //
+  ////////////////////
+
+  handleLogOut = () => {
+    this.props.history.push(ROUTE.PATH.HOME)
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
