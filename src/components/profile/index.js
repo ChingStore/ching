@@ -13,13 +13,13 @@ import ROUTE from 'constants/route'
 import style from './index.style.js'
 
 export type PropsType = {
-  authError?: Object,
+  authError: Object,
   css?: Object,
   children?: React.Node,
   history: ?ReactRouter.ContextRouter,
   email?: string,
   password?: string,
-  signUp: ({}) => boolean,
+  signOut: ({}) => void,
   handleChange: {},
 }
 
@@ -109,8 +109,8 @@ class Profile extends React.Component<PropsType, StateType> {
     return (
       <ActionButton
         css={style.logOut}
-        onClick={() => {
-          this.handleLogOut()
+        onClick={e => {
+          this.handleLogOut(e)
         }}
       >
         <Flex>Log out</Flex>
@@ -122,8 +122,13 @@ class Profile extends React.Component<PropsType, StateType> {
   // EVENT HANDLERS //
   ////////////////////
 
-  handleLogOut = () => {
-    this.props.history.push(ROUTE.PATH.HOME)
+  handleLogOut = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const { signOut, history, authError } = this.props
+
+    signOut()
+      .then(history.push(ROUTE.PATH.HOME))
+      .catch(authError())
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {

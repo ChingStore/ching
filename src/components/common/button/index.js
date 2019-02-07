@@ -9,7 +9,7 @@ export type ButtonPropsType = {
   css?: Object,
   to?: string,
   url?: string,
-  onClick?: () => void,
+  onClick?: ({}) => void,
   children?: React.Node,
 } & ReactRouter.ContextRouter
 
@@ -19,10 +19,10 @@ class Button extends React.PureComponent<ButtonPropsType> {
     return <button {...restProps} onClick={this.handleClick} type="button" />
   }
 
-  handleClick = () => {
+  handleClick = e => {
     const { history, onClick, to, url } = this.props
     if (onClick) {
-      onClick()
+      onClick(e)
     }
     if (url) {
       window.location = url
