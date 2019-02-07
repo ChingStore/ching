@@ -108,8 +108,8 @@ class Profile extends React.Component<PropsType, StateType> {
     return (
       <ActionButton
         css={style.logOut}
-        onClick={e => {
-          this.handleLogOut(e)
+        onClick={() => {
+          this.handleLogOut()
         }}
       >
         <Flex>Log out</Flex>
@@ -121,13 +121,9 @@ class Profile extends React.Component<PropsType, StateType> {
   // EVENT HANDLERS //
   ////////////////////
 
-  handleLogOut = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const { signOut, history, authError } = this.props
-
-    signOut()
-      .then(history.push(ROUTE.PATH.HOME))
-      .catch(authError())
+  handleLogOut = async () => {
+    await this.props.signOut()
+    this.props.history.push(ROUTE.PATH.HOME)
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
