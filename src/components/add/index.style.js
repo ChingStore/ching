@@ -39,20 +39,10 @@ export default {
   },
 
   inputForm_secondRow: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 0.5,
-  },
-
-  inputForm_secondRow_firstColumn: {
-    flex: 0.4,
-  },
-
-  inputForm_secondRow_secondColumn: {
-    flex: 0.4,
-    width: '20%',
   },
 
   photo: {
@@ -64,6 +54,9 @@ export default {
 
   photo__text: {
     flex: 0.2,
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    fontSize: 14,
+    color: STYLE.COLOR.BLUE,
   },
 
   photo__button: {
