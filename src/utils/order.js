@@ -2,7 +2,7 @@
 
 import type { OrderType, OrderItemType } from 'constants/firebase'
 
-function getTotalPrice(order: OrderType): number {
+function getTotalPrice(order?: OrderType): number {
   if (!order || !order.items) {
     return 0
   }

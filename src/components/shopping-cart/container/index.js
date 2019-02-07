@@ -32,4 +32,5 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
 export default ReactRedux.connect<PropsType, OwnPropsType, _, _, _, _>(
   mapStateToProps,
   mapDispatchToProps
+  // $FlowFixMe: onResetShoppingCart can't be optional
 )(ShoppingCart.default)
