@@ -7,6 +7,10 @@ export type GetFirestoreType = Object
 
 export type IdType = string
 
+export type FirebaseAuthType = $ReadOnly<{
+  uid: IdType,
+}>
+
 export type DateType = Object
 
 //////////

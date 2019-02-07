@@ -144,6 +144,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
         handleWidth
         refreshMode="debounce"
         refreshRate={500}
+        refreshOptions={{ leading: true, trailing: true }}
         onResize={this.handleResize}
       />
     </Flex>
