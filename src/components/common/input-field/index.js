@@ -10,11 +10,12 @@ export type InputFieldPropsType = {
   css?: Object,
   labelText?: string,
   type?: string,
+  underline?: boolean,
 }
 
 export default class InputField extends React.PureComponent<InputFieldPropsType> {
   render() {
-    const { labelText, ...rest } = this.props
+    const { labelText, underline, ...rest } = this.props
     return (
       <div css={style.base} {...this.props}>
         <label css={style.label}>{labelText}</label>
@@ -22,7 +23,7 @@ export default class InputField extends React.PureComponent<InputFieldPropsType>
           css={this.props.type === 'password' ? style.password : style.input}
           {...rest}
         />
-        <hr css={style.line} />
+        {underline && <hr css={style.line} />}
       </div>
     )
   }

@@ -51,6 +51,7 @@ export default class SignUp extends React.Component {
           id="storeName"
           placeholder="MyStore"
           labelText="Name"
+          underline
         />
       </div>
     )
@@ -64,6 +65,7 @@ export default class SignUp extends React.Component {
           id="walletAddress"
           placeholder="0x 1234 4444 4444 ... 4444"
           labelText="Ethereum address"
+          underline
         />
       </div>
     )

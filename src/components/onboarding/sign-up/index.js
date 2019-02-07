@@ -48,6 +48,7 @@ export default class SignUp extends React.Component {
           id="email"
           placeholder="Enter your e-mail"
           labelText="E-mail"
+          underline
         />
       </div>
     )
@@ -62,6 +63,7 @@ export default class SignUp extends React.Component {
           placeholder="Type in your password"
           labelText="Password"
           type="password"
+          underline
         />
       </div>
     )
