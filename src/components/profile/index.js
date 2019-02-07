@@ -106,7 +106,12 @@ class Profile extends React.Component<PropsType, StateType> {
 
   renderLogOut = () => {
     return (
-      <ActionButton css={style.logOut}>
+      <ActionButton
+        css={style.logOut}
+        onClick={() => {
+          alert('TODO: Log out!')
+        }}
+      >
         <Flex>Log out</Flex>
       </ActionButton>
     )
