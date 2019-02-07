@@ -44,7 +44,7 @@ export default class HomeScene extends React.Component {
 
   renderAddFirstItem = () => (
     <Flex css={style.addFirstItem}>
-      <FooterButton to={ROUTE.PATH.SIGN_UP}>Add a first item</FooterButton>
+      <FooterButton to={ROUTE.PATH.ADD_ITEM}>Add a first item</FooterButton>
     </Flex>
   )
 }

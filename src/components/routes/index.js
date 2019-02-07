@@ -9,8 +9,8 @@ import * as Reselect from 'reselect'
 
 import NavBar from 'components/nav-bar'
 import Store from 'components/store/container'
-import SalesReport from 'components/sales-report'
-import Add from 'components/add'
+import Sales from 'components/sales'
+import Add from 'components/add/container'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
 import GetWallet from 'components/onboarding/get-wallet'
@@ -41,46 +41,42 @@ class Routes extends React.Component<PropsType> {
 
     return (
       <Flex grow column relative>
-        {currentUserId ? this.renderPrivateRoutes() : this.renderPublicRoutes()}
+        <Switch>
+          {/* On-boarding */}
+          <Route path={ROUTE.PATH.HOME} component={Home} />
+          <Route path={ROUTE.PATH.GET_WALLET} component={GetWallet} />
+          <Route path={ROUTE.PATH.SIGN_IN} component={SignIn} />
+          <Route path={ROUTE.PATH.SIGN_UP} component={SignUp} />
+          <Route path={ROUTE.PATH.SIGN_UP_STORE} component={SignUpStore} />
+          <Route path={ROUTE.PATH.STORE_WELCOME} component={StoreWelcome} />
+          {/* Payment */}
+          <Route
+            path="/payment/:address/:amount/:orderId"
+            component={Payment}
+          />
+
+          {/* Redirect if logged out */}
+          {!currentUserId && <Redirect to={ROUTE.PATH.HOME} />}
+
+          {/* No NavBar */}
+          <Route exact path={ROUTE.PATH.ADD_ITEM} component={Add} />
+          <Route exact path={ROUTE.PATH.EDIT_ITEM} component={Add} />
+          <Flex grow column>
+            <Route path="/" component={NavBar} />
+            <Switch>
+              {/* With NavBar */}
+              <Route exact path={ROUTE.PATH.STORE} component={Store} />
+              <Route exact path={ROUTE.PATH.SALES} component={Sales} />
+              <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
+              <Route exact path={ROUTE.PATH.PROFILE} component={Profile} />
+              {/* Redirect if no match */}
+              <Redirect to={ROUTE.PATH.STORE} />
+            </Switch>
+          </Flex>
+        </Switch>
       </Flex>
     )
   }
-
-  renderPublicRoutes = () => (
-    <Switch>
-      {/* On-boarding */}
-      <Route path={ROUTE.PATH.HOME} component={Home} />
-      <Route path={ROUTE.PATH.GET_WALLET} component={GetWallet} />
-      <Route path={ROUTE.PATH.SIGN_IN} component={SignIn} />
-      <Route path={ROUTE.PATH.SIGN_UP} component={SignUp} />
-      <Route path={ROUTE.PATH.SIGN_UP_STORE} component={SignUpStore} />
-      <Route path={ROUTE.PATH.STORE_WELCOME} component={StoreWelcome} />
-      {/* Payment */}
-      <Route path="/payment/:address/:amount/:orderId" component={Payment} />
-      {/* Redirect if no match */}
-      <Redirect to={ROUTE.PATH.HOME} />
-    </Switch>
-  )
-
-  renderPrivateRoutes = () => (
-    <Switch>
-      {/* No NavBar */}
-      <Route exact path={ROUTE.PATH.ADD_ITEM} component={Add} />
-      <Route exact path={ROUTE.PATH.EDIT_ITEM} component={Add} />
-      <Flex grow column>
-        <Route path="/" component={NavBar} />
-        <Switch>
-          {/* With NavBar */}
-          <Route exact path={ROUTE.PATH.STORE} component={Store} />
-          <Route exact path={ROUTE.PATH.SALES} component={SalesReport} />
-          <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
-          <Route exact path={ROUTE.PATH.PROFILE} component={Profile} />
-          {/* Redirect if no match */}
-          <Redirect to={ROUTE.PATH.STORE} />
-        </Switch>
-      </Flex>
-    </Switch>
-  )
 }
 
 const mapStateToProps = Reselect.createStructuredSelector({

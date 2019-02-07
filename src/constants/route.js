@@ -16,6 +16,7 @@ const PATH = {
   SIGN_UP: '/sign-up',
   SIGN_UP_STORE: '/sign-up-store',
   STORE_WELCOME: '/store-welcome',
+  ADD: '/add',
 }
 
 const PATH_TITLE = {

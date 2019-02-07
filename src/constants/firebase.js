@@ -52,6 +52,7 @@ export type OrderItemsType = $ReadOnly<{
 
 export type OrderType = $ReadOnly<{
   createdAt: DateType,
+  txConfirmed: boolean,
   items: OrderItemsType,
   networkId: NetworkIdType,
   txHash: string,
