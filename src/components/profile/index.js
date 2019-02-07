@@ -16,12 +16,11 @@ export type PropsType = {
   authError: Object,
   css?: Object,
   children?: React.Node,
-  history: ?ReactRouter.ContextRouter,
   email?: string,
   password?: string,
   signOut: () => Promise<any>,
   handleChange: {},
-}
+} & ReactRouter.ContextRouter
 
 type StateType = {
   email?: string,
