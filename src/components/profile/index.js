@@ -18,6 +18,7 @@ export type ProfilePropsType = {
   email?: string,
   password?: string,
   signUp: ({}) => boolean,
+  handleChange: {},
 }
 
 type StateType = {
@@ -116,9 +117,9 @@ export default class Profile extends React.Component<
     }
   }
 
-  handleChange = (e: Object) => {
+  handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
     this.setState({
-      [e.target.id]: e.target.value,
+      [e.currentTarget.id]: e.currentTarget.value,
     })
   }
 }
