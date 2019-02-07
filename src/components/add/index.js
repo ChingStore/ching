@@ -21,6 +21,17 @@ export default class Add extends React.Component {
     })
   }
 
+  handleNewImage = event => {
+    this.setState(
+      {
+        photo: URL.createObjectURL(event.target.files[0]),
+      },
+      () => {
+        console.log(this.state.photo)
+      }
+    )
+  }
+
   changeQuantity = newQuantity => {
     this.setState({
       quantity: newQuantity,
@@ -74,7 +85,7 @@ export default class Add extends React.Component {
     document.getElementById('photo').click()
   }
 
-  renderPhoto = () => {
+  renderUploadPhoto = () => {
     return (
       <div css={style.photo}>
         <div css={style.photo__text}>Picture</div>
@@ -83,7 +94,7 @@ export default class Add extends React.Component {
           onClick={this.handleClick}
           type="button"
         >
-          <input id="photo" hidden type="file" onChange={this.handleChange} />
+          <input id="photo" hidden type="file" onChange={this.handleNewImage} />
           <div css={style.photo__icon}>
             <Icon.UploadCloud />
           </div>
@@ -92,6 +103,17 @@ export default class Add extends React.Component {
             <Icon.DashedBox />
           </div>
         </button>
+      </div>
+    )
+  }
+
+  renderPhoto = () => {
+    return (
+      <div css={style.photo}>
+        <div css={style.photo__text}>Picture</div>
+        <div css={style.photo__button}>
+          <img css={style.photo__img} src={this.state.photo} alt="go" />
+        </div>
       </div>
     )
   }
@@ -111,7 +133,9 @@ export default class Add extends React.Component {
       <div css={style.base}>
         {this.renderTitle()}
         {this.renderForm()}
-        {this.renderPhoto()}
+        {this.state.photo === ''
+          ? this.renderUploadPhoto()
+          : this.renderPhoto()}
         {this.renderFooter()}
       </div>
     )

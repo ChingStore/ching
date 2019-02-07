@@ -75,6 +75,12 @@ export default {
     width: '300px',
   },
 
+  photo__img: {
+    height: '100%',
+    width: '100%',
+    objectFit: 'contain',
+  },
+
   footer: {
     width: '80%',
     display: 'flex',
