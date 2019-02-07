@@ -5,6 +5,8 @@ import { jsx } from '@emotion/core'
 import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
+import style from './index.style'
+
 export type ButtonPropsType = {
   css?: Object,
   to?: string,
@@ -16,7 +18,14 @@ export type ButtonPropsType = {
 class Button extends React.PureComponent<ButtonPropsType> {
   render() {
     const { staticContext, ...restProps } = this.props
-    return <button {...restProps} onClick={this.handleClick} type="button" />
+    return (
+      <button
+        css={style.base}
+        {...restProps}
+        onClick={this.handleClick}
+        type="button"
+      />
+    )
   }
 
   handleClick = () => {

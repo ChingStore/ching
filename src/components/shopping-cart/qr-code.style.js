@@ -1,6 +1,7 @@
 export default {
   base: {
     flexGrow: 1,
+    margin: 10,
   },
 
   qrCode: {
