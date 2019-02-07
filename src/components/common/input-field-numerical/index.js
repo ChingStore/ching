@@ -11,7 +11,7 @@ export default class InputFieldNumerical extends React.Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (this.state !== prevState) {
-      this.props.onChange(this.state.value)
+      this.props.onChange(parseFloat(this.state.value))
     }
   }
 
@@ -32,7 +32,7 @@ export default class InputFieldNumerical extends React.Component {
 
   onChange = e => {
     this.setState({
-      value: parseFloat(e.target.value),
+      value: e.target.value,
     })
   }
 
