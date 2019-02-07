@@ -49,7 +49,7 @@ export default class Profile extends React.Component<
   renderTitle = () => {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>Profile</p>
+        <div css={style.title__text}>Profile</div>
       </div>
     )
   }
