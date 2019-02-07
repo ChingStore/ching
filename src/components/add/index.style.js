@@ -66,6 +66,10 @@ export default {
     flexDirection: 'column',
     alignItems: ' center',
     justifyContent: 'center',
+
+    border: `1px dashed ${STYLE.COLOR.GREY}`,
+    borderRadius: 4,
+    boxSizing: 'border-box',
   },
 
   DashedBox: {

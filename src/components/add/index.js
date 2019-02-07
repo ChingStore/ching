@@ -23,16 +23,23 @@ export default class Add extends React.Component {
   }
 
   handleNewImage = event => {
-    const file = event.target.files[0]
-    const localImageUrl = window.URL.createObjectURL(file)
-    this.setState(
-      {
-        photo: localImageUrl,
-      },
+    const reader = new FileReader()
+
+    reader.addEventListener(
+      'load',
       () => {
-        console.log(this.state.photo)
-      }
+        const base64 = reader.result
+        this.setState({
+          photo: base64,
+        })
+      },
+      false
     )
+
+    const file = event.target.files[0]
+    if (file) {
+      reader.readAsDataURL(file)
+    }
   }
 
   changeQuantity = newQuantity => {
@@ -102,9 +109,9 @@ export default class Add extends React.Component {
             <Icon.UploadCloud />
           </div>
           <div>Upload Photo</div>
-          <div css={style.DashedBox}>
+          {/* <div css={style.DashedBox}>
             <Icon.DashedBox />
-          </div>
+          </div> */}
         </button>
       </div>
     )
@@ -132,6 +139,7 @@ export default class Add extends React.Component {
   }
 
   render() {
+    console.log('AddItem render...', this.state)
     return (
       <div css={style.base}>
         {this.renderTitle()}
