@@ -10,7 +10,7 @@ import InputField from 'components/common/input-field'
 
 import style from './index.style.js'
 
-export type ProfilePropsType = {
+export type PropsType = {
   authError?: Object,
   css?: Object,
   children?: React.Node,
@@ -26,20 +26,22 @@ type StateType = {
   password?: string,
 }
 
-export default class Profile extends React.Component<
-  ProfilePropsType,
-  StateType
-> {
+class Profile extends React.Component<PropsType, StateType> {
   state = {
     email: 'test@test.com',
     password: 'password',
   }
 
-  render() {
+  render = () => {
+    console.log('Profile props', this.props)
+    console.log('TODO : {}')
+
+    console.log('Rendering...')
+
     const { authError } = this.props
     return (
       <div css={style.base}>
-        <p>{authError}</p>
+        <div>{authError}</div>
         {this.renderTitle()}
         {this.renderCollection()}
       </div>
@@ -104,3 +106,5 @@ export default class Profile extends React.Component<
     })
   }
 }
+
+export default Profile

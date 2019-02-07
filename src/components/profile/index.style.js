@@ -4,13 +4,9 @@ import STYLE from 'constants/style'
 
 export default {
   base: {
-    display: 'flex',
-    flexDirection: 'column',
-
-    position: 'absolute',
-    height: '100%',
-    left: 40,
-    right: 40,
+    marginLeft: 40,
+    marginRight: 40,
+    marginTop: 40,
   },
 
   title: {
