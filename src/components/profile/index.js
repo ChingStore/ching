@@ -7,6 +7,7 @@ import * as ReactRouter from 'react-router-dom'
 
 import Flex from 'components/common/flex'
 import InputField from 'components/common/input-field'
+import ActionButton from 'components/common/action-button'
 
 import style from './index.style.js'
 
@@ -45,6 +46,7 @@ class Profile extends React.Component<PropsType, StateType> {
           <Flex>{authError}</Flex>
           {this.renderTitle()}
           {this.renderCollection()}
+          {this.renderLogOut()}
         </Flex>
       </Flex>
     )
@@ -99,6 +101,14 @@ class Profile extends React.Component<PropsType, StateType> {
         placeholder="0x 1234 4444 4444 ... 4444"
         labelText="Ethereum address"
       />
+    )
+  }
+
+  renderLogOut = () => {
+    return (
+      <ActionButton css={style.logOut}>
+        <Flex>Log out</Flex>
+      </ActionButton>
     )
   }
 

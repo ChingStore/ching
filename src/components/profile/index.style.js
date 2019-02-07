@@ -25,4 +25,11 @@ export default {
   collection: {
     height: 250,
   },
+
+  logOut: {
+    borderColor: '#FB525C',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    color: '#FB525C',
+  },
 }
