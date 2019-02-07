@@ -1,22 +1,24 @@
+// @flow
+
+import type { DispatchType } from 'constants/redux'
+
 import * as ReactRedux from 'react-redux'
-import PropTypes from 'prop-types'
+import * as Reselect from 'reselect'
+
 import selectors from 'redux/selectors'
 import authActions from 'redux/actions/auth'
-import Profile from '..'
 
-Profile.propTypes = {
-  signOut: PropTypes.func,
-  authError: PropTypes.string,
-}
+import Profile from '../index'
 
-const mapStateToProp = state => ({
-  authError: selectors.getAuthError(state),
+const mapStateToProp = Reselect.createStructuredSelector({
+  authError: selectors.getAuthError,
 })
 
-const mapDispatchToProps = dispatch => ({
-  signOut: dispatch(authActions.signOut()),
+const mapDispatchToProps = (dispatch: DispatchType) => ({
+  signOut: () => dispatch(authActions.signOut()),
 })
 
+// $FlowFixMe
 export default ReactRedux.connect(
   mapStateToProp,
   mapDispatchToProps
