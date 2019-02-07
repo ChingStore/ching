@@ -19,7 +19,7 @@ export type PropsType = {
   history: ?ReactRouter.ContextRouter,
   email?: string,
   password?: string,
-  signOut: ({}) => void,
+  signOut: () => void,
   handleChange: {},
 }
 
