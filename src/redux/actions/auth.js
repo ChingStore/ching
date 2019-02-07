@@ -4,12 +4,12 @@ import ACTIONS from 'redux/actionTypes'
 
 import type { ThunkActionType } from 'constants/redux'
 
-import type { AuthType } from 'constants/firebase'
+import type { FirebaseAuthType } from 'constants/firebase'
 
 const signIn = ({
   email,
   password,
-}: $Shape<AuthType>): ThunkActionType => async (
+}: $Shape<FirebaseAuthType>): ThunkActionType => async (
   dispatch,
   getState,
   { getFirebase }
@@ -43,7 +43,7 @@ const signOut = (): ThunkActionType => async (
 const signUp = ({
   email,
   password,
-}: $Shape<AuthType>): ThunkActionType => async (
+}: $Shape<FirebaseAuthType>): ThunkActionType => async (
   dispatch,
   getState,
   { getFirebase }
