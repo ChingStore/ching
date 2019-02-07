@@ -2,13 +2,12 @@
 
 const PATH = {
   // Tabbed
-  TABS: '/tabs',
-  SALES: '/tabs/sales-report',
-  STORE: '/tabs/store',
-  ADD_ITEM: '/tabs/store/add-item',
-  EDIT_ITEM: '/tabs/store/edit-item/:itemId',
-  ORDERS: '/tabs/orders',
-  PROFILE: '/tabs/profile',
+  SALES: '/sales-report',
+  STORE: '/store',
+  ADD_ITEM: '/store/add-item',
+  EDIT_ITEM: '/store/edit-item/:itemId',
+  ORDERS: '/orders',
+  PROFILE: '/profile',
 
   // Full-screen
   HOME: '/home',
