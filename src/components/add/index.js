@@ -13,6 +13,7 @@ export default class Add extends React.Component {
     price: 1,
     quantity: 1,
     photo: '',
+    soldCount: '',
   }
 
   handleChange = e => {
@@ -22,9 +23,11 @@ export default class Add extends React.Component {
   }
 
   handleNewImage = event => {
+    const file = event.target.files[0]
+    const localImageUrl = window.URL.createObjectURL(file)
     this.setState(
       {
-        photo: URL.createObjectURL(event.target.files[0]),
+        photo: localImageUrl,
       },
       () => {
         console.log(this.state.photo)
@@ -121,7 +124,7 @@ export default class Add extends React.Component {
   renderFooter = () => {
     return (
       <div css={style.footer}>
-        <FooterButton onClick={() => console.log(this.state)}>
+        <FooterButton onClick={() => this.props.addItem(this.state)}>
           Add a First Item
         </FooterButton>
       </div>
