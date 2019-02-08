@@ -31,11 +31,7 @@ type PropsType = {|
 class Root extends React.Component<PropsType> {
   render() {
     if (!this.isLoaded()) {
-      return (
-        <Flex absoluteFill center>
-          Loading...
-        </Flex>
-      )
+      return <div />
     }
 
     return (

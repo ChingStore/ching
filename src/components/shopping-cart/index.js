@@ -1,3 +1,7 @@
+// @flow
+
+import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
@@ -8,15 +12,33 @@ import Flex from 'components/common/flex'
 
 import ItemRow from './container/item-row'
 import QRCode from './qr-code'
+import Confirmation from './confirmation'
+
 import style from './index.style'
 
-export default class ShoppingCart extends React.PureComponent {
+export type PropsType = {
+  orderId?: IdType,
+  order?: OrderType,
+  walletAddress?: string,
+  onResetShoppingCart: () => void,
+}
+
+type StateType = {
+  isExpanded: boolean,
+}
+
+export default class ShoppingCart extends React.PureComponent<
+  PropsType,
+  StateType
+> {
   state = {
     isExpanded: false,
   }
 
   render() {
     const { orderId } = this.props
+
+    console.log('Rendering ShoppingCart...')
 
     if (!orderId) {
       return null
@@ -33,8 +55,8 @@ export default class ShoppingCart extends React.PureComponent {
       >
         <Flex column css={style.base}>
           {this.renderHeader()}
-          {this.state.isExpanded && this.renderItemList()}
-          {this.state.isExpanded && this.renderQRCode()}
+          {this.renderItemList()}
+          {this.renderPayment()}
         </Flex>
       </Flex>
     )
@@ -56,32 +78,69 @@ export default class ShoppingCart extends React.PureComponent {
   }
 
   renderItemList = () => {
+    const { order } = this.props
     const itemIds = this.getItemIds()
+
+    if (!this.state.isExpanded || !order) {
+      return null
+    }
+
     return (
       <Flex column css={style.itemsList}>
         <p css={style.itemsListTitleText}>Items</p>
         {itemIds.map(itemId => (
-          <ItemRow {...{ itemId }} key={itemId} />
+          <ItemRow
+            {...{
+              itemId,
+              isEditable: orderUtil.isWaitingForTransaction(order),
+            }}
+            key={itemId}
+          />
         ))}
       </Flex>
     )
   }
 
-  renderQRCode = () => (
-    <Flex css={style.qrCode__maxHeightWrapper}>
-      <Flex css={style.qrCode__sqaureWrapper}>
-        <Flex css={style.qrCode__innerFillWrapper}>
-          <Flex css={style.qrCode}>
-            <QRCode {...this.props} />
+  renderPayment = () => {
+    const { order } = this.props
+
+    if (!this.state.isExpanded || !order) {
+      return null
+    }
+
+    return (
+      <Flex css={style.qrCode__maxHeightWrapper}>
+        <Flex css={style.qrCode__sqaureWrapper}>
+          <Flex css={style.qrCode__innerFillWrapper}>
+            <Flex css={style.qrCode}>
+              {orderUtil.isWaitingForTransaction(order) ? (
+                <QRCode {...this.props} />
+              ) : (
+                <Confirmation
+                  {...{ order }}
+                  onSellMoreItemsClick={this.handleSellMoreItemsClick}
+                />
+              )}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
-    </Flex>
-  )
+    )
+  }
 
-  // //////////////////
+  /////////////////////
+  // LIFECYCLE HOOKS //
+  /////////////////////
+
+  componentDidUpdate = (prevProps: PropsType) => {
+    if (this.getItemCount(prevProps) !== 0 && this.getItemCount() === 0) {
+      // this.setState({ isExpanded: false })
+    }
+  }
+
+  ////////////////////
   // EVENT HANDLERS //
-  // //////////////////
+  ////////////////////
 
   handleHeaderClick = () => {
     this.setState(prevState => ({
@@ -89,15 +148,24 @@ export default class ShoppingCart extends React.PureComponent {
     }))
   }
 
-  // ///////////
+  handleSellMoreItemsClick = () => {
+    this.setState({
+      isExpanded: false,
+    })
+    this.props.onResetShoppingCart()
+  }
+
+  /////////////
   // GETTERS //
-  // ///////////
+  /////////////
 
-  getItemIds = () => Object.keys(_.get(this.props, 'order.items', {}))
+  getItemIds = (): Array<IdType> =>
+    Object.keys(_.get(this.props, 'order.items', {}))
 
-  getItemCount = () =>
-    Object.values(_.get(this.props, 'order.items')).reduce(
-      (totalCount, item) => totalCount + item.quantity,
+  getItemCount = (props: PropsType = this.props): number =>
+    Object.values(_.get(props, 'order.items', {})).reduce(
+      // $FlowFixMe
+      (totalCount: number, item: OrderItemType) => totalCount + item.quantity,
       0
     )
 

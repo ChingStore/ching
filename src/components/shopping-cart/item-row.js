@@ -26,8 +26,9 @@ export default class ShoppingCartItemRow extends React.PureComponent {
         css={style.removeButton}
         onClick={this.handleRemoveButtonClick}
         type="button"
+        disabled={!this.props.isEditable}
       >
-        <Icon.Cross />
+        {this.props.isEditable && <Icon.Cross />}
       </button>
     </Flex>
   )
@@ -57,6 +58,7 @@ export default class ShoppingCartItemRow extends React.PureComponent {
         defaultValue={this.getQuantity()}
         type="number"
         onBlur={this.handleQuantityInputBlur}
+        disabled={!this.props.isEditable}
       />
     </Flex>
   )

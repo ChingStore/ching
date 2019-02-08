@@ -9,6 +9,7 @@ import * as React from 'react'
 import ReactList from 'react-list'
 import ReactResizeDetector from 'react-resize-detector'
 import ReactReduxFirebase from 'react-redux-firebase'
+import * as ReactRouter from 'react-router'
 
 import ShoppingCart from 'components/shopping-cart/container'
 import Flex from 'components/common/flex'
@@ -21,12 +22,13 @@ import AddItemCard from './add-item-card'
 
 import style from './index.style'
 
-type PropsType = {
+export type PropsType = {
   order: Object,
   store: Object,
   storeId: IdType,
   itemsOrdered: Object,
   onEditStoreName: ({ storeName: string, storeId: IdType }) => void,
+  ...ReactRouter.ContextRouter,
 }
 
 type StateType = {
@@ -64,7 +66,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
             {this.renderLoadingSpinner()}
           </Flex>
         </Flex>
-        <ShoppingCart />
+        <ShoppingCart location={this.props.location} />
       </Flex>
     )
   }
