@@ -3,6 +3,7 @@
 import type { DispatchType } from 'constants/redux'
 
 import * as ReactRedux from 'react-redux'
+import * as ReactRouter from 'react-router-dom'
 import * as Reselect from 'reselect'
 
 import selectors from 'redux/selectors'
@@ -10,11 +11,8 @@ import shoppingCartAction from 'redux/actions/shopping-cart'
 
 import * as ShoppingCart from '../index'
 
-type OwnPropsType = {||}
-
-type PropsType = {
-  ...OwnPropsType,
-  ...ShoppingCart.PropsType,
+type OwnPropsType = {
+  location: ReactRouter.Location,
 }
 
 const mapStateToProps = Reselect.createStructuredSelector({
@@ -29,8 +27,14 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
   },
 })
 
-export default ReactRedux.connect<PropsType, OwnPropsType, _, _, _, _>(
+export default ReactRedux.connect<
+  ShoppingCart.PropsType,
+  OwnPropsType,
+  _,
+  _,
+  _,
+  _
+>(
   mapStateToProps,
   mapDispatchToProps
-  // $FlowFixMe: onResetShoppingCart can't be optional
 )(ShoppingCart.default)

@@ -4,12 +4,15 @@ import type { IdType } from 'constants/firebase'
 import type { DispatchType } from 'constants/redux'
 
 import * as ReactRedux from 'react-redux'
+import * as ReactRouter from 'react-router'
 import * as Reselect from 'reselect'
 
 import shopAction from 'redux/actions/shop'
 import selectors from 'redux/selectors'
 
-import Store from '../index'
+import * as Store from '../index'
+
+type OwnPropsType = ReactRouter.ContextRouter
 
 const mapStateToProps = Reselect.createStructuredSelector({
   order: selectors.orders.shoppingCart,
@@ -31,8 +34,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
   },
 })
 
-// $FlowFixMe
-export default ReactRedux.connect(
+export default ReactRedux.connect<Store.PropsType, OwnPropsType, _, _, _, _>(
   mapStateToProps,
   mapDispatchToProps
-)(Store)
+)(Store.default)
