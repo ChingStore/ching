@@ -11,12 +11,12 @@ import Button from 'components/common/button'
 
 import style from './index.style.js'
 
-type PropsType = ButtonPropsType & {
+export type ActionButtonPropsType = {
   Icon?: React.Node,
   iconProps?: *,
-}
+} & ButtonPropsType
 
-class ActionButton extends React.PureComponent<PropsType> {
+class ActionButton extends React.PureComponent<ActionButtonPropsType> {
   render() {
     const { Icon, iconProps, children, ...restProps } = this.props
     return (

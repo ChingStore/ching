@@ -4,7 +4,7 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
-import ActionButton from 'components/common/action-button'
+import Button from 'components/common/button'
 import Icon from 'components/common/icon'
 import Flex from 'components/common/flex'
 import STYLE from 'constants/style'
@@ -20,15 +20,14 @@ class AddItemCard extends React.PureComponent<PropsType> {
   render = () => {
     const { isFirstInRow } = this.props
     return (
-      <ActionButton
-        css={[style.base, isFirstInRow && style.base__first]}
-        to={ROUTE.PATH.ADD_ITEM}
-      >
-        <Flex column center>
-          <Icon.Plus fill={STYLE.COLOR.BLUE} />
-          <Flex css={style.text}>Add another</Flex>
-        </Flex>
-      </ActionButton>
+      <Flex css={[style.base, isFirstInRow && style.base__first]}>
+        <Button css={style.button} to={ROUTE.PATH.ADD_ITEM}>
+          <Flex column center>
+            <Icon.Plus fill={STYLE.COLOR.BLUE} />
+            <Flex css={style.button_text}>Add another</Flex>
+          </Flex>
+        </Button>
+      </Flex>
     )
   }
 }

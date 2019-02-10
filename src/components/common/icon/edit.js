@@ -4,7 +4,7 @@ import type { BasicIconPropTypes } from 'constants/icon'
 
 import React from 'react'
 
-const EditIcon = ({ fill }: BasicIconPropTypes) => (
+const Edit = ({ fill }: BasicIconPropTypes) => (
   <svg
     width="16"
     height="16"
@@ -17,4 +17,4 @@ const EditIcon = ({ fill }: BasicIconPropTypes) => (
   </svg>
 )
 
-export default EditIcon
+export default Edit

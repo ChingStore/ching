@@ -7,15 +7,16 @@ const PATH = {
   ADD_ITEM: '/store/add-item',
   EDIT_ITEM: '/store/edit-item/:itemId',
   ORDERS: '/orders',
-  PROFILE: '/profile',
 
   // Full-screen
   HOME: '/home',
   GET_WALLET: '/get-wallet',
+  PROFILE: '/profile',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   SIGN_UP_STORE: '/sign-up-store',
   STORE_WELCOME: '/store-welcome',
+  ADD: '/add',
 }
 
 const PATH_TITLE = {

@@ -1,7 +1,15 @@
-import ACTIONS from 'redux/actionTypes'
-import { actionTypes } from 'redux-firestore'
+// @flow
 
-const signIn = ({ email, password }) => async (
+import ACTIONS from 'redux/actionTypes'
+
+import type { ThunkActionType } from 'constants/redux'
+
+import type { FirebaseAuthType } from 'constants/firebase'
+
+const signIn = ({
+  email,
+  password,
+}: $Shape<FirebaseAuthType>): ThunkActionType => async (
   dispatch,
   getState,
   { getFirebase }
@@ -17,18 +25,25 @@ const signIn = ({ email, password }) => async (
   }
 }
 
-const signOut = () => async (dispatch, getState, { getFirebase }) => {
+const signOut = (): ThunkActionType => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
   const firebase = getFirebase()
   try {
     await firebase.auth().signOut()
-    dispatch({ type: actionTypes.CLEAR_DATA })
+    dispatch({ type: ACTIONS.CLEAR_DATA })
   } catch (error) {
     console.log('cannot logout')
     console.log(error.message)
   }
 }
 
-const signUp = ({ email, password }) => async (
+const signUp = ({
+  email,
+  password,
+}: $Shape<FirebaseAuthType>): ThunkActionType => async (
   dispatch,
   getState,
   { getFirebase }

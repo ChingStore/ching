@@ -7,11 +7,17 @@ export type GetFirestoreType = Object
 
 export type IdType = string
 
+export type DateType = Object
+
+//////////
+// AUTH //
+//////////
+
 export type FirebaseAuthType = $ReadOnly<{
   uid: IdType,
+  email: string,
+  password: string,
 }>
-
-export type DateType = Object
 
 ///////////
 // ITEMS //

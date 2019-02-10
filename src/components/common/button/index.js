@@ -1,5 +1,7 @@
 // @flow
 
+import type { ActionButtonPropsType } from 'components/common/action-button'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import * as React from 'react'
@@ -11,9 +13,10 @@ export type ButtonPropsType = {
   css?: Object,
   to?: string,
   url?: string,
-  onClick?: () => void,
+  onClick?: (SyntheticEvent<HTMLButtonElement>) => void,
   children?: React.Node,
-} & ReactRouter.ContextRouter
+} & ReactRouter.ContextRouter &
+  ActionButtonPropsType
 
 class Button extends React.PureComponent<ButtonPropsType> {
   render() {
@@ -28,10 +31,10 @@ class Button extends React.PureComponent<ButtonPropsType> {
     )
   }
 
-  handleClick = () => {
+  handleClick = e => {
     const { history, onClick, to, url } = this.props
     if (onClick) {
-      onClick()
+      onClick(e)
     }
     if (url) {
       window.location = url

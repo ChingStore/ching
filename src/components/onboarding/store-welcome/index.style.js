@@ -12,14 +12,15 @@ export default {
   },
 
   title: {
-    flex: 0.2,
+    flex: 0.3,
 
+    display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'left',
     justifyContent: 'flex-end',
   },
   title__text: {
-    marginTop: 100,
+    // marginTop: 100,
     marginBottom: 0,
     fontWeight: 'bold',
     fontSize: 32,
@@ -33,7 +34,7 @@ export default {
 
   composition: {
     position: 'relative',
-    flex: 0.4,
+    flex: 0.45,
 
     display: 'block',
 
@@ -52,11 +53,11 @@ export default {
   },
 
   addFirstItem: {
-    flex: 0.2,
+    flex: 0.25,
 
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     marginTop: 61,
   },
 }

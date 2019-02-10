@@ -56,6 +56,7 @@ export default class SignIn extends React.Component {
           onChange={this.handleChange}
           id="email"
           placeholder="E-mail"
+          underline
         />
       </div>
     )
@@ -69,6 +70,7 @@ export default class SignIn extends React.Component {
           id="password"
           placeholder="Password"
           type="password"
+          underline
         />
       </div>
     )
