@@ -6,6 +6,7 @@ import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
 import InputFieldNumerical from 'components/common/input-field-numerical'
 import FooterButton from 'components/common/footer-button'
+import Spinner from 'components/common/button-spinner'
 import ROUTE from 'constants/route'
 
 import style from './index.style.js'
@@ -17,10 +18,13 @@ export default class Add extends React.Component {
     quantity: 1,
     photo: '',
     soldCount: '',
+    isApplying: false,
   }
 
   handleAddItemClick = async () => {
+    this.setState({ isApplying: true })
     await this.props.addItem(this.state)
+    this.setState({ isApplying: false })
     this.props.history.push(ROUTE.PATH.STORE)
   }
 
@@ -70,12 +74,6 @@ export default class Add extends React.Component {
     )
   }
 
-  onPressApplyButton = async () => {
-    this.setState({ isApplying: true })
-    await this.props.onPressApplyButton(this.state.code)
-    this.setState({ isApplying: false })
-  }
-
   renderForm = () => {
     return (
       <div css={style.inputForm}>
@@ -123,9 +121,6 @@ export default class Add extends React.Component {
             <Icon.UploadCloud />
           </div>
           <div>Upload Photo</div>
-          {/* <div css={style.DashedBox}>
-            <Icon.DashedBox />
-          </div> */}
         </button>
       </div>
     )
@@ -146,10 +141,14 @@ export default class Add extends React.Component {
     return (
       <div css={style.footer}>
         <FooterButton onClick={this.handleAddItemClick}>
-          Add a First Item
+          {this.state.isApplying ? <Spinner /> : 'Add a First Item'}
         </FooterButton>
       </div>
     )
+  }
+
+  renderSpinner = () => {
+    return <Spinner />
   }
 
   render() {
