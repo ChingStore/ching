@@ -70,6 +70,12 @@ export default class Add extends React.Component {
     )
   }
 
+  onPressApplyButton = async () => {
+    this.setState({ isApplying: true })
+    await this.props.onPressApplyButton(this.state.code)
+    this.setState({ isApplying: false })
+  }
+
   renderForm = () => {
     return (
       <div css={style.inputForm}>
