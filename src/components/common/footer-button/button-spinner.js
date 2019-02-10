@@ -3,17 +3,17 @@ import { jsx, css, keyframes } from '@emotion/core'
 import React from 'react'
 
 const bounce = keyframes`
-		0%, 80%, 100% {
-		           -webkit-transform: scale(0);
-		            transform: scale(0);
-		            }
+  0%, 80%, 100% {
+              -webkit-transform: scale(0);
+              transform: scale(0);
+              }
 
-				40% {
-				    -webkit-transform: scale(1);
-				    transform: scale(1);
-				   }
+      40% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          }
 
-         }
+        }
 `
 
 class ButtonSpinner extends React.Component<PropsType> {

@@ -6,7 +6,6 @@ import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
 import InputFieldNumerical from 'components/common/input-field-numerical'
 import FooterButton from 'components/common/footer-button'
-import Spinner from 'components/common/button-spinner'
 import ROUTE from 'constants/route'
 
 import style from './index.style.js'
@@ -140,15 +139,14 @@ export default class Add extends React.Component {
   renderFooter = () => {
     return (
       <div css={style.footer}>
-        <FooterButton onClick={this.handleAddItemClick}>
-          {this.state.isApplying ? <Spinner /> : 'Add a First Item'}
+        <FooterButton
+          onClick={this.handleAddItemClick}
+          isApplying={this.state.isApplying}
+        >
+          Add a First Item
         </FooterButton>
       </div>
     )
-  }
-
-  renderSpinner = () => {
-    return <Spinner />
   }
 
   render() {
