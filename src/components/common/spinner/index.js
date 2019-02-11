@@ -16,7 +16,7 @@ const bounce = keyframes`
         }
 `
 
-class ButtonSpinner extends React.Component {
+class Spinner extends React.Component {
   render() {
     return (
       <div
@@ -82,4 +82,4 @@ class ButtonSpinner extends React.Component {
   }
 }
 
-export default ButtonSpinner
+export default Spinner
