@@ -18,13 +18,13 @@ export default class Add extends React.Component {
     quantity: 1,
     photo: '',
     soldCount: '',
-    isApplying: false,
+    isAdding: false,
   }
 
   handleAddItemClick = async () => {
-    this.setState({ isApplying: true })
+    this.setState({ isAdding: true })
     await this.props.addItem(this.state)
-    this.setState({ isApplying: false })
+    this.setState({ isAdding: false })
     this.props.history.push(ROUTE.PATH.STORE)
   }
 
@@ -141,7 +141,7 @@ export default class Add extends React.Component {
     return (
       <div css={style.footer}>
         <FooterButton onClick={this.handleAddItemClick}>
-          {this.state.isApplying ? <Spinner /> : 'Add a First Item'}
+          {this.state.isAdding ? <Spinner /> : 'Add a First Item'}
         </FooterButton>
       </div>
     )
