@@ -42,10 +42,11 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
     }
 
     return (
-      <Flex column grow center>
+      <Flex column grow justifyEnd>
         <Flex>
           <SpinnerCircle />
         </Flex>
+        <Flex spaceArround>Waiting for transaction to confirm</Flex>
       </Flex>
     )
   }
@@ -57,10 +58,11 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
     }
 
     return (
-      <Flex column grow center>
+      <Flex column grow justifyEnd>
         <Flex>
           <Checkmark />
         </Flex>
+        <Flex spaceArround>Confirmed!</Flex>
       </Flex>
     )
   }
