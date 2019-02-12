@@ -36,9 +36,6 @@ class Profile extends React.Component<PropsType, StateType> {
 
   render = () => {
     console.log('Profile props', this.props)
-    console.log('TODO : {}')
-
-    console.log('Rendering...')
 
     const { authError } = this.props
     return (
