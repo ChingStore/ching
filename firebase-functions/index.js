@@ -22,14 +22,14 @@ const reportTransaction = (orderId, txHash, networkId) => {
 
 exports.transactionBuffer = functions.https.onRequest((request, response) => {
   // NOTE: Request should be in the following form:
-  // https://us-central1-daipos.cloudfunctions.net/transactionBuffer?orderId=0JFmycULnk9kAboK5ESg&txHash=0x8c831cd5cbc8786982817e43a0a77627ad0b12eaa92feff97fb3b7e91c263b1c&networkId=test
+  // https://us-central1-daipos.cloudfunctions.net/transactionBuffer?orderId=0JFmycULnk9kAboK5ESg&txHash=0x8c831cd5cbc8786982817e43a0a77627ad0b12eaa92feff97fb3b7e91c263b1c&networkId=100
 
   console.log('The query:', request.query)
   reportTransaction(
     request.query.orderId,
     request.query.txHash,
     request.query.networkId
-  ).then(resp => {
+  ).then(() => {
     response.end()
   })
 })
