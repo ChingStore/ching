@@ -9,6 +9,8 @@ import React from 'react'
 import Flex from 'components/common/flex'
 import orderUtil from 'utils/order'
 import FooterButton from 'components/common/footer-button'
+import SpinnerCircle from 'components/common/spinner-circle'
+import Checkmark from 'components/common/checkmark'
 
 import style from './confirmation.style'
 
@@ -40,9 +42,11 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
     }
 
     return (
-      <Flex column grow center>
-        <Flex>Spinner</Flex>
-        <Flex>Confirming...</Flex>
+      <Flex column grow justifyEnd>
+        <Flex>
+          <SpinnerCircle />
+        </Flex>
+        <Flex spaceArround>Waiting for transaction to confirm</Flex>
       </Flex>
     )
   }
@@ -54,9 +58,11 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
     }
 
     return (
-      <Flex column grow center>
-        <Flex>Check Mark</Flex>
-        <Flex>Confirmed!</Flex>
+      <Flex column grow justifyEnd>
+        <Flex>
+          <Checkmark />
+        </Flex>
+        <Flex spaceArround>Confirmed!</Flex>
       </Flex>
     )
   }

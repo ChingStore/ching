@@ -22,8 +22,10 @@ type PropsType = {
   column?: boolean,
   grow?: boolean,
   justifyCenter?: boolean,
+  justifyEnd?: boolean,
   innerRef?: React.Ref<'div'>,
   spaceBetween?: boolean,
+  spaceArround?: boolean,
   wrap?: boolean,
 }
 
@@ -40,8 +42,10 @@ class Flex extends React.PureComponent<PropsType> {
       grow,
       center,
       justifyCenter,
+      justifyEnd,
       innerRef,
       spaceBetween,
+      spaceArround,
       wrap,
       // Remove react-router props
       // $FlowFixMe: missing in Props
@@ -59,7 +63,9 @@ class Flex extends React.PureComponent<PropsType> {
       flexWrap: wrap && 'wrap',
       justifyContent:
         (spaceBetween && 'space-between') ||
-        ((justifyCenter || center) && 'center'),
+        (spaceArround && 'space-around') ||
+        ((justifyCenter || center) && 'center') ||
+        (justifyEnd && 'flex-end'),
       position: (absoluteFill && 'absolute') || (relative && 'relative'),
       width: absoluteFill && '100%',
       height: absoluteFill && '100%',
