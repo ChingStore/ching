@@ -25,6 +25,8 @@ function getImage({ order, orderId, walletAddress }) {
 
   const url = `${STATUS_UL}${SERVER_URL}/#/payment/${walletAddress}/${totalPrice}/${orderId}`
 
+  console.log('Generating QR for:', url)
+
   return generate(url)
 }
 
