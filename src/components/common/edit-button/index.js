@@ -17,7 +17,7 @@ class EditButton extends React.Component<PropsType> {
       <Flex>
         {/* $FlowFixMe */}
         <Button {...this.props}>
-          <Icon.Edit />
+          <Icon.ProfileEdit />
         </Button>
       </Flex>
     )
