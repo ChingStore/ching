@@ -24,6 +24,9 @@ export type PropsType = {
 } & ReactRouter.ContextRouter
 
 type StateType = {
+  isEditingUsername: boolean,
+  isEditingPassword: boolean,
+  isEditingAddress: boolean,
   email?: string,
   password?: string,
 }
@@ -32,6 +35,9 @@ class Profile extends React.Component<PropsType, StateType> {
   state = {
     email: 'test@test.com',
     password: 'password',
+    isEditingAddress: false,
+    isEditingPassword: false,
+    isEditingUsername: false,
   }
 
   render = () => {
@@ -69,47 +75,113 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   renderUsernameField = () => {
-    return (
+    const { isEditingUsername } = this.state
+
+    return isEditingUsername ? (
+      <Flex css={style.edit}>
+        <InputField
+          autoFocus
+          css={style.inputField}
+          onChange={this.handleChange}
+          id="email"
+          value="Edit Mode Activated"
+          labelText="E-mail"
+        />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingUsername: false })
+          }}
+        />
+      </Flex>
+    ) : (
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
           id="email"
-          placeholder="Enter your e-mail"
+          value="Firestore.email"
           labelText="E-mail"
         />
-        <EditButton />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingUsername: true })
+          }}
+        />
       </Flex>
     )
   }
 
   renderPasswordField = () => {
-    return (
+    const { isEditingPassword } = this.state
+
+    return isEditingPassword ? (
+      <Flex css={style.edit}>
+        <InputField
+          autoFocus
+          css={style.inputField}
+          onChange={this.handleChange}
+          id="password"
+          value="this.state.password"
+          labelText="Password"
+          type="password"
+        />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingPassword: false })
+          }}
+        />
+      </Flex>
+    ) : (
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
           id="password"
-          placeholder="Type in your password"
+          value="Firestore.password"
           labelText="Password"
           type="password"
         />
-        <EditButton />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingPassword: true })
+          }}
+        />
       </Flex>
     )
   }
 
   renderWalletAddressField = () => {
-    return (
+    const { isEditingAddress } = this.state
+    return isEditingAddress ? (
+      <Flex css={style.edit}>
+        <InputField
+          autoFocus
+          css={style.inputField}
+          onChange={this.handleChange}
+          id="walletAddress"
+          value="isEditing"
+          labelText="Ethereum address"
+        />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingAddress: false })
+          }}
+        />
+      </Flex>
+    ) : (
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
           onChange={this.handleChange}
           id="walletAddress"
-          placeholder="0x 1234 4444 4444 ... 4444"
+          value="0x 1234 4444 4444 ... 4444"
           labelText="Ethereum address"
         />
-        <EditButton />
+        <EditButton
+          onClick={() => {
+            this.setState({ isEditingAddress: true })
+          }}
+        />
       </Flex>
     )
   }
