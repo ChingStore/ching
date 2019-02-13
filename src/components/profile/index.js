@@ -65,6 +65,16 @@ class Profile extends React.Component<PropsType, StateType> {
     this.setState({ [e.currentTarget.id]: !e.currentTarget.value })
   }
 
+  /////////////
+  // GETTERS //
+  /////////////
+
+  getEmail = () => _.get(this.state, 'email')
+
+  getPassword = () => _.get(this.state, 'password')
+
+  getAddress = () => _.get(this.state, 'address')
+
   ////////////////////
   // RENDER METHODS //
   ////////////////////
@@ -203,16 +213,6 @@ class Profile extends React.Component<PropsType, StateType> {
       </ActionButton>
     )
   }
-
-  /////////////
-  // GETTERS //
-  /////////////
-
-  getEmail = () => _.get(this.state, 'email')
-
-  getPassword = () => _.get(this.state, 'password')
-
-  getAddress = () => _.get(this.state, 'address')
 }
 
 export default Profile
