@@ -38,6 +38,12 @@ export default {
     justifyContent: 'space-between',
   },
 
+  edit_button: {
+    alignSelf: 'flex-end',
+
+    margin: 5,
+  },
+
   logOut: {
     borderColor: STYLE.COLOR.RED,
     borderStyle: 'solid',

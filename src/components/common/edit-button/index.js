@@ -12,16 +12,18 @@ import Flex from 'components/common/flex'
 export type PropsType = {
   id?: string,
   onClick: (e: SyntheticEvent<HTMLButtonElement>) => void,
+  fill?: string,
   ...ReactRouter.ContextRouter,
 }
 
 class EditButton extends React.Component<PropsType> {
   render() {
+    const { fill } = this.props
     return (
       <Flex>
         {/* $FlowFixMe */}
         <Button {...this.props}>
-          <Icon.ProfileEdit />
+          <Icon.ProfileEdit fill={fill} />
         </Button>
       </Flex>
     )

@@ -11,6 +11,7 @@ import InputField from 'components/common/input-field'
 import ActionButton from 'components/common/action-button'
 import ROUTE from 'constants/route'
 import EditButton from 'components/common/edit-button'
+import STYLE from 'constants/style'
 
 import style from './index.style.js'
 
@@ -185,7 +186,12 @@ class Profile extends React.Component<PropsType, StateType> {
           value={this.state.address}
           labelText="Ethereum address"
         />
-        <EditButton id="isEditingAddress" onClick={e => this.onClick(e)} />
+        <EditButton
+          css={style.edit_button}
+          id="isEditingAddress"
+          fill={STYLE.COLOR.RED}
+          onClick={e => this.onClick(e)}
+        />
       </Flex>
     ) : (
       <Flex css={style.edit}>
@@ -196,7 +202,12 @@ class Profile extends React.Component<PropsType, StateType> {
           labelText="Ethereum address"
           readonly
         />
-        <EditButton id="isEditingAddress" onClick={e => this.onClick(e)} />
+        <EditButton
+          css={style.edit_button}
+          id="isEditingAddress"
+          fill={STYLE.COLOR.GREEN}
+          onClick={e => this.onClick(e)}
+        />
       </Flex>
     )
   }
