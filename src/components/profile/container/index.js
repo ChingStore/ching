@@ -8,6 +8,7 @@ import * as Reselect from 'reselect'
 
 import selectors from 'redux/selectors'
 import authActions from 'redux/actions/auth'
+import shopAction from 'redux/actions/shop'
 
 import * as Profile from '../index'
 
@@ -21,6 +22,7 @@ const mapStateToProp = Reselect.createStructuredSelector({
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
   signOut: () => dispatch(authActions.signOut()),
+  updateAddress: (storeId, data) => dispatch(shopAction.update(data)),
 })
 
 export default ReactRedux.connect<Profile.PropsType, OwnPropsType, _, _, _, _>(

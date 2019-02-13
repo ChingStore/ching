@@ -8,17 +8,17 @@ import style from './index.style.js'
 
 export type InputFieldPropsType = {
   css?: Object,
-  labelText?: string,
+  labeltext?: string,
   type?: string,
   underline?: boolean,
 }
 
 export default class InputField extends React.PureComponent<InputFieldPropsType> {
   render() {
-    const { labelText, underline, ...rest } = this.props
+    const { labeltext, underline, ...rest } = this.props
     return (
       <div css={style.base} {...this.props}>
-        <label css={style.label}>{labelText}</label>
+        <label css={style.label}>{labeltext}</label>
         <input
           css={this.props.type === 'password' ? style.password : style.input}
           {...rest}

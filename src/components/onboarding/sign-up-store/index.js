@@ -50,7 +50,7 @@ export default class SignUp extends React.Component {
           onChange={this.handleChange}
           id="storeName"
           placeholder="MyStore"
-          labelText="Name"
+          labeltext="Name"
           underline
         />
       </div>
@@ -64,7 +64,7 @@ export default class SignUp extends React.Component {
           onChange={this.handleChange}
           id="walletAddress"
           placeholder="0x 1234 4444 4444 ... 4444"
-          labelText="Ethereum address"
+          labeltext="Ethereum address"
           underline
         />
       </div>
