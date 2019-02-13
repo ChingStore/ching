@@ -43,5 +43,7 @@ export default {
     borderStyle: 'solid',
     borderWidth: 1,
     color: STYLE.COLOR.RED,
+
+    marginBottom: 40,
   },
 }
