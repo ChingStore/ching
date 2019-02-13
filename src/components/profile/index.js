@@ -47,6 +47,14 @@ class Profile extends React.Component<PropsType, StateType> {
     isEditingEmail: false,
   }
 
+  //////////////////////
+  // LIFECYCLE EVENTS //
+  //////////////////////
+
+  componentDidUpdate() {
+    console.log('state.isEditingAddress: ', this.state.isEditingAddress)
+  }
+
   ////////////////////
   // EVENT HANDLERS //
   ////////////////////
