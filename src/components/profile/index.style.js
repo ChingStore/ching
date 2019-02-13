@@ -7,6 +7,8 @@ export default {
     marginLeft: 40,
     marginRight: 40,
     marginTop: 40,
+
+    justifyContent: 'space-between',
   },
 
   title: {

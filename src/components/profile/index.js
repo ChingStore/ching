@@ -85,8 +85,8 @@ class Profile extends React.Component<PropsType, StateType> {
     const { authError } = this.props
     return (
       <Flex grow>
+        <Flex>{authError}</Flex>
         <Flex column grow relative css={style.base}>
-          <Flex>{authError}</Flex>
           {this.renderTitle()}
           {this.renderCollection()}
           {this.renderLogOut()}
