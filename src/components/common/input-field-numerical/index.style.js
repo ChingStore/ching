@@ -7,7 +7,7 @@ export default {
     flexDirection: 'column',
   },
   label: {
-    flex: 0.1,
+    flex: 0.4,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 14,
     color: STYLE.COLOR.BLUE,
@@ -27,6 +27,7 @@ export default {
   },
 
   form_input: {
+    borderWidth: 0,
     width: 40,
     textAlign: 'center',
     fontSize: 22,

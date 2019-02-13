@@ -74,7 +74,7 @@ export default class Add extends React.Component {
     )
   }
 
-  buttonText = () => {
+  getAddItemButtonText = () => {
     const { items } = this.props
     if (this.state.isAdding || items === undefined) {
       return <Spinner />
@@ -152,7 +152,7 @@ export default class Add extends React.Component {
     return (
       <div css={style.footer}>
         <FooterButton onClick={this.handleAddItemClick}>
-          {this.buttonText()}
+          {this.getAddItemButtonText()}
         </FooterButton>
       </div>
     )
