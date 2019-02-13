@@ -63,7 +63,11 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    this.setState({ [e.currentTarget.id]: !e.currentTarget.value })
+    // this.setState({ [e.currentTarget.id]: !this.state[e.currentTarget.id] })
+    const eventId = e.currentTarget.id
+    this.setState(prevState => {
+      return { [eventId]: !prevState[eventId] }
+    })
   }
 
   /////////////
