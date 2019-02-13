@@ -9,7 +9,11 @@ import Icon from 'components/common/icon'
 import Button from 'components/common/button'
 import Flex from 'components/common/flex'
 
-type PropsType = ReactRouter.ContextRouter
+export type PropsType = {
+  id?: string,
+  onClick: (e: SyntheticEvent<HTMLButtonElement>) => void,
+  ...ReactRouter.ContextRouter,
+}
 
 class EditButton extends React.Component<PropsType> {
   render() {

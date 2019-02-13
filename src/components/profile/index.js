@@ -20,16 +20,20 @@ export type PropsType = {
   children?: React.Node,
   email?: string,
   password?: string,
+  address?: string,
   signOut: () => Promise<any>,
   handleChange: {},
-} & ReactRouter.ContextRouter
+  onClick: () => void,
+  ...ReactRouter.ContextRouter,
+}
 
 type StateType = {
-  isEditingUsername: boolean,
+  isEditingEmail: boolean,
   isEditingPassword: boolean,
   isEditingAddress: boolean,
-  email?: string,
-  password?: string,
+  email: string,
+  password: string,
+  address?: string,
 }
 
 class Profile extends React.Component<PropsType, StateType> {
@@ -39,8 +43,31 @@ class Profile extends React.Component<PropsType, StateType> {
     address: '0x 1234 4444 4444 ... 4444',
     isEditingAddress: false,
     isEditingPassword: false,
-    isEditingUsername: false,
+    isEditingEmail: false,
   }
+
+  ////////////////////
+  // EVENT HANDLERS //
+  ////////////////////
+
+  handleLogOut = async () => {
+    await this.props.signOut()
+    this.props.history.push(ROUTE.PATH.HOME)
+  }
+
+  handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
+    this.setState({
+      [e.currentTarget.id]: e.currentTarget.value,
+    })
+  }
+
+  onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
+    this.setState({ [e.currentTarget.id]: !e.currentTarget.value })
+  }
+
+  ////////////////////
+  // RENDER METHODS //
+  ////////////////////
 
   render = () => {
     console.log('Profile props', this.props)
@@ -89,11 +116,7 @@ class Profile extends React.Component<PropsType, StateType> {
           value={this.state.email}
           labelText="E-mail"
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingEmail: false })
-          }}
-        />
+        <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
       </Flex>
     ) : (
       <Flex css={style.edit}>
@@ -104,11 +127,7 @@ class Profile extends React.Component<PropsType, StateType> {
           labelText="E-mail"
           readonly
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingEmail: true })
-          }}
-        />
+        <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
       </Flex>
     )
   }
@@ -127,11 +146,7 @@ class Profile extends React.Component<PropsType, StateType> {
           labelText="Password"
           type="password"
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingPassword: false })
-          }}
-        />
+        <EditButton id="isEditingPassword" onClick={e => this.onClick(e)} />
       </Flex>
     ) : (
       <Flex css={style.edit}>
@@ -143,11 +158,7 @@ class Profile extends React.Component<PropsType, StateType> {
           type="password"
           readonly
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingPassword: true })
-          }}
-        />
+        <EditButton id="isEditingPassword" onClick={e => this.onClick(e)} />
       </Flex>
     )
   }
@@ -164,11 +175,7 @@ class Profile extends React.Component<PropsType, StateType> {
           value={this.state.address}
           labelText="Ethereum address"
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingAddress: false })
-          }}
-        />
+        <EditButton id="isEditingAddress" onClick={e => this.onClick(e)} />
       </Flex>
     ) : (
       <Flex css={style.edit}>
@@ -179,11 +186,7 @@ class Profile extends React.Component<PropsType, StateType> {
           labelText="Ethereum address"
           readonly
         />
-        <EditButton
-          onClick={() => {
-            this.setState({ isEditingAddress: true })
-          }}
-        />
+        <EditButton id="isEditingAddress" onClick={e => this.onClick(e)} />
       </Flex>
     )
   }
@@ -199,21 +202,6 @@ class Profile extends React.Component<PropsType, StateType> {
         <Flex>Log out</Flex>
       </ActionButton>
     )
-  }
-
-  ////////////////////
-  // EVENT HANDLERS //
-  ////////////////////
-
-  handleLogOut = async () => {
-    await this.props.signOut()
-    this.props.history.push(ROUTE.PATH.HOME)
-  }
-
-  handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
-    this.setState({
-      [e.currentTarget.id]: e.currentTarget.value,
-    })
   }
 
   /////////////
