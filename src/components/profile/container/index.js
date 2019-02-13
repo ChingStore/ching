@@ -1,5 +1,6 @@
 // @flow
 
+import type { IdType } from 'constants/firebase'
 import type { DispatchType } from 'constants/redux'
 
 import * as ReactRedux from 'react-redux'
@@ -17,12 +18,22 @@ type OwnPropsType = ReactRouter.ContextRouter
 const mapStateToProp = Reselect.createStructuredSelector({
   authError: selectors.getAuthError,
   email: selectors.users.current,
-  address: selectors.wallet.address,
+  walletAddress: selectors.wallet.address,
+  storeId: selectors.users.currentStoreId,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
   signOut: () => dispatch(authActions.signOut()),
-  updateAddress: (storeId, data) => dispatch(shopAction.update(data)),
+  onUpdateAddress: async ({
+    walletAddress,
+    storeId,
+  }: {
+    walletAddress: string,
+    storeId: IdType,
+  }) => {
+    const data = { walletAddress }
+    dispatch(shopAction.update({ storeId, data }))
+  },
 })
 
 export default ReactRedux.connect<Profile.PropsType, OwnPropsType, _, _, _, _>(

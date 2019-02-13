@@ -1,5 +1,7 @@
 // @flow
 
+import type { IdType } from 'constants/firebase'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
@@ -19,12 +21,13 @@ export type PropsType = {
   authError: Object,
   css?: Object,
   children?: React.Node,
-  email?: string,
+  storeId: IdType,
   password?: string,
-  address?: string,
+  walletAddress?: string,
   signOut: () => Promise<any>,
   handleChange: {},
   onClick: () => void,
+  onUpdateAddress: ({ walletAddress: string, storeId: IdType }) => void,
   ...ReactRouter.ContextRouter,
 }
 
@@ -32,16 +35,10 @@ type StateType = {
   isEditingEmail: boolean,
   isEditingPassword: boolean,
   isEditingAddress: boolean,
-  email: string,
-  password: string,
-  address?: string,
 }
 
 class Profile extends React.Component<PropsType, StateType> {
   state = {
-    email: 'test@test.com',
-    password: 'password',
-    address: '0x 1234 4444 4444 ... 4444',
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingEmail: false,
@@ -78,16 +75,12 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleUpdateAddress = (e: SyntheticEvent<HTMLButtonElement>) => {
-    const { storeId, data } = this.props
+    const { storeId, walletAddress } = this.props
 
     this.onClick(e)
 
     console.log('storeId', storeId)
-    console.log('data', data)
-    // @dev data = {
-    //  storeName: string,
-    //  walletAddress: string,
-    // }
+    console.log('walletAddress', walletAddress)
   }
 
   /////////////
@@ -98,7 +91,10 @@ class Profile extends React.Component<PropsType, StateType> {
 
   getPassword = () => _.get(this.state, 'password')
 
-  getAddress = () => _.get(this.state, 'address')
+  getWalletAddress = () => {
+    _.get(this.props, 'walletAddress')
+    console.log('getWalletAddress Fired!', this.props)
+  }
 
   ////////////////////
   // RENDER METHODS //
@@ -148,13 +144,10 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={this.handleChange}
           id="email"
-          value={this.state.email}
+          value="?{this.state.email}"
           labeltext="E-mail"
         />
-        <EditButton
-          id="isEditingEmail"
-          onClick={e => this.handleUpdateAddress(e)}
-        />
+        <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
       </Flex>
     ) : (
       <Flex css={style.edit}>
@@ -180,7 +173,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={this.handleChange}
           id="password"
-          value={this.state.password}
+          value="?{this.state.password}"
           labeltext="Password"
           type="password"
         />
@@ -210,14 +203,14 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={this.handleChange}
           id="address"
-          value={this.state.address}
+          defaultValue={this.props.walletAddress}
           labeltext="Ethereum address"
         />
         <EditButton
           css={style.edit_button}
           id="isEditingAddress"
           fill={STYLE.COLOR.RED}
-          onClick={e => this.onClick(e)}
+          onClick={e => this.handleUpdateAddress(e)}
         />
       </Flex>
     ) : (
@@ -225,7 +218,7 @@ class Profile extends React.Component<PropsType, StateType> {
         <InputField
           css={style.inputField}
           id="address"
-          value={this.getAddress()}
+          value={this.getWalletAddress()}
           labeltext="Ethereum Address"
           readOnly
         />
