@@ -106,8 +106,8 @@ class Profile extends React.Component<PropsType, StateType> {
   renderCollection = () => {
     return (
       <Flex column spaceBetween css={style.collection} key="renderFlex">
-        {this.renderEmailField()}
-        {this.renderPasswordField()}
+        {/* {this.renderEmailField()}
+        {this.renderPasswordField()}*/}
         {this.renderWalletAddressField()}
       </Flex>
     )
