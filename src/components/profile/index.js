@@ -2,6 +2,7 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import _ from 'lodash'
 import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
@@ -35,6 +36,7 @@ class Profile extends React.Component<PropsType, StateType> {
   state = {
     email: 'test@test.com',
     password: 'password',
+    address: '0x 1234 4444 4444 ... 4444',
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingUsername: false,
@@ -67,29 +69,29 @@ class Profile extends React.Component<PropsType, StateType> {
   renderCollection = () => {
     return (
       <Flex column spaceBetween css={style.collection} key="renderFlex">
-        {this.renderUsernameField()}
+        {this.renderEmailField()}
         {this.renderPasswordField()}
         {this.renderWalletAddressField()}
       </Flex>
     )
   }
 
-  renderUsernameField = () => {
-    const { isEditingUsername } = this.state
+  renderEmailField = () => {
+    const { isEditingEmail } = this.state
 
-    return isEditingUsername ? (
+    return isEditingEmail ? (
       <Flex css={style.edit}>
         <InputField
           autoFocus
           css={style.inputField}
           onChange={this.handleChange}
           id="email"
-          value="Edit Mode Activated"
+          value={this.state.email}
           labelText="E-mail"
         />
         <EditButton
           onClick={() => {
-            this.setState({ isEditingUsername: false })
+            this.setState({ isEditingEmail: false })
           }}
         />
       </Flex>
@@ -97,14 +99,14 @@ class Profile extends React.Component<PropsType, StateType> {
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
-          onChange={this.handleChange}
           id="email"
-          value="Firestore.email"
+          value={this.getEmail()}
           labelText="E-mail"
+          readonly
         />
         <EditButton
           onClick={() => {
-            this.setState({ isEditingUsername: true })
+            this.setState({ isEditingEmail: true })
           }}
         />
       </Flex>
@@ -121,7 +123,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={this.handleChange}
           id="password"
-          value="this.state.password"
+          value={this.state.password}
           labelText="Password"
           type="password"
         />
@@ -135,11 +137,11 @@ class Profile extends React.Component<PropsType, StateType> {
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
-          onChange={this.handleChange}
           id="password"
-          value="Firestore.password"
+          value={this.getPassword()}
           labelText="Password"
           type="password"
+          readonly
         />
         <EditButton
           onClick={() => {
@@ -158,8 +160,8 @@ class Profile extends React.Component<PropsType, StateType> {
           autoFocus
           css={style.inputField}
           onChange={this.handleChange}
-          id="walletAddress"
-          value="isEditing"
+          id="address"
+          value={this.state.address}
           labelText="Ethereum address"
         />
         <EditButton
@@ -172,10 +174,10 @@ class Profile extends React.Component<PropsType, StateType> {
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
-          onChange={this.handleChange}
-          id="walletAddress"
-          value="0x 1234 4444 4444 ... 4444"
+          id="address"
+          value={this.getAddress()}
           labelText="Ethereum address"
+          readonly
         />
         <EditButton
           onClick={() => {
@@ -213,6 +215,16 @@ class Profile extends React.Component<PropsType, StateType> {
       [e.currentTarget.id]: e.currentTarget.value,
     })
   }
+
+  /////////////
+  // GETTERS //
+  /////////////
+
+  getEmail = () => _.get(this.state, 'email')
+
+  getPassword = () => _.get(this.state, 'password')
+
+  getAddress = () => _.get(this.state, 'address')
 }
 
 export default Profile
