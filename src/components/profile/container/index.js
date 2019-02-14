@@ -9,7 +9,7 @@ import * as Reselect from 'reselect'
 
 import selectors from 'redux/selectors'
 import authActions from 'redux/actions/auth'
-import shopAction from 'redux/actions/shop'
+import walletActions from 'redux/actions/wallet'
 
 import * as Profile from '../index'
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     storeId: IdType,
   }) => {
     const data = { walletAddress }
-    dispatch(shopAction.update({ storeId, data }))
+    dispatch(walletActions.updateWalletAddress({ storeId, data }))
   },
 })
 

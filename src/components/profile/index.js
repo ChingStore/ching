@@ -35,6 +35,7 @@ type StateType = {
   isEditingEmail: boolean,
   isEditingPassword: boolean,
   isEditingAddress: boolean,
+  addressField: string,
 }
 
 class Profile extends React.Component<PropsType, StateType> {
@@ -42,6 +43,7 @@ class Profile extends React.Component<PropsType, StateType> {
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingEmail: false,
+    addressField: '',
   }
 
   //////////////////////
@@ -74,9 +76,9 @@ class Profile extends React.Component<PropsType, StateType> {
     })
   }
 
-  handleUpdateAddress = async (e: SyntheticEvent<HTMLButtonElement>) => {
+  handleUpdateAddress = async () => {
     await this.props.onUpdateAddress({
-      walletAddress: e.currentTarget.value,
+      walletAddress: this.state.addressField,
       storeId: this.props.storeId,
     })
 
@@ -202,7 +204,7 @@ class Profile extends React.Component<PropsType, StateType> {
           autoFocus
           css={style.inputField}
           onChange={this.handleChange}
-          id="address"
+          id="addressField"
           defaultValue={this.props.walletAddress}
           labeltext="Ethereum address"
         />
@@ -210,14 +212,14 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.edit_button}
           id="isEditingAddress"
           fill={STYLE.COLOR.RED}
-          onClick={e => this.handleUpdateAddress(e)}
+          onClick={() => this.handleUpdateAddress()}
         />
       </Flex>
     ) : (
       <Flex css={style.edit}>
         <InputField
           css={style.inputField}
-          id="address"
+          id="addressField"
           value={this.props.walletAddress}
           labeltext="Ethereum Address"
           readOnly
