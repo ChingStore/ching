@@ -74,6 +74,17 @@ export default class Add extends React.Component {
     )
   }
 
+  getAddItemButtonText = () => {
+    const { items } = this.props
+    if (this.state.isAdding || items === undefined) {
+      return <Spinner />
+    }
+    if (items.length > 0) {
+      return 'Add an Item'
+    }
+    return 'Add a First Item'
+  }
+
   renderForm = () => {
     return (
       <div css={style.inputForm}>
@@ -141,7 +152,7 @@ export default class Add extends React.Component {
     return (
       <div css={style.footer}>
         <FooterButton onClick={this.handleAddItemClick}>
-          {this.state.isAdding ? <Spinner /> : 'Add a First Item'}
+          {this.getAddItemButtonText()}
         </FooterButton>
       </div>
     )

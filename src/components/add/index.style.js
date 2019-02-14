@@ -2,10 +2,11 @@ import STYLE from 'constants/style'
 
 export default {
   base: {
-    display: 'flex',
-    flexDirection: 'column',
+    position: 'absolute',
     height: '100%',
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
   },
 
