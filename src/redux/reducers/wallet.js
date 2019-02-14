@@ -2,9 +2,6 @@ import ACTIONS from 'redux/actionTypes'
 
 const initState = {
   walletError: null,
-  daiBalance: '',
-  xdaiBalance: '',
-  walletAddress: null,
 }
 
 const walletReducer = (state = initState, action) => {
