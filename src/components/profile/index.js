@@ -23,7 +23,7 @@ export type PropsType = {
   children?: React.Node,
   storeId: IdType,
   password?: string,
-  walletAddress?: string,
+  walletAddress: string,
   signOut: () => Promise<any>,
   handleChange: {},
   onClick: () => void,
@@ -74,13 +74,13 @@ class Profile extends React.Component<PropsType, StateType> {
     })
   }
 
-  handleUpdateAddress = (e: SyntheticEvent<HTMLButtonElement>) => {
-    const { storeId, walletAddress } = this.props
+  handleUpdateAddress = async (e: SyntheticEvent<HTMLButtonElement>) => {
+    await this.props.onUpdateAddress({
+      walletAddress: e.currentTarget.value,
+      storeId: this.props.storeId,
+    })
 
-    this.onClick(e)
-
-    console.log('storeId', storeId)
-    console.log('walletAddress', walletAddress)
+    this.setState({ isEditingAddress: false })
   }
 
   /////////////
@@ -218,7 +218,7 @@ class Profile extends React.Component<PropsType, StateType> {
         <InputField
           css={style.inputField}
           id="address"
-          value={this.getWalletAddress()}
+          value={this.props.walletAddress}
           labeltext="Ethereum Address"
           readOnly
         />

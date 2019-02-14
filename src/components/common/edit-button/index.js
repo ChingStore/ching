@@ -11,7 +11,7 @@ import Flex from 'components/common/flex'
 
 export type PropsType = {
   id?: string,
-  onClick: (e: SyntheticEvent<HTMLButtonElement>) => void,
+  onClick: (e: SyntheticEvent<HTMLButtonElement>) => mixed,
   fill?: string,
   ...ReactRouter.ContextRouter,
 }
