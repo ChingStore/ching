@@ -19,17 +19,20 @@ const mapStateToProps = Reselect.createStructuredSelector({
   itemsOrdered: selectors.items.allOrdered,
   store: selectors.shop.current,
   storeId: selectors.users.currentStoreId,
+  walletAddress: selectors.wallet.address,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
   onEditStoreName: async ({
+    walletAddress,
     storeName,
     storeId,
   }: {
+    walletAddress: string,
     storeName: string,
     storeId: IdType,
   }) => {
-    const data = { storeName }
+    const data = { storeName, walletAddress }
     await dispatch(shopAction.update({ storeId, data }))
   },
 })
