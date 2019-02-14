@@ -56,6 +56,12 @@ class Profile extends React.Component<PropsType, StateType> {
   // LIFECYCLE EVENTS //
   //////////////////////
 
+  componentWillMount() {
+    const addressField = this.getWalletAddress()
+    console.log('componentWillMount_addressField: ', addressField)
+    this.setState({ addressField })
+  }
+
   componentDidUpdate() {
     console.log('state.isEditingAddress: ', this.state.isEditingAddress)
   }
@@ -70,9 +76,15 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    console.log('e.currentTarget.id', e.currentTarget.id)
+    console.log('e.currentTarget.value', e.currentTarget.value)
+
     this.setState({
       [e.currentTarget.id]: e.currentTarget.value,
     })
+    console.log('this.state:', this.state)
   }
 
   onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
@@ -83,11 +95,12 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleUpdateAddress = async () => {
-    await this.props.onUpdateAddress({
-      walletAddress: this.state.addressField,
-      storeId: this.props.storeId,
-      storeName: this.props.store.storeName,
-    })
+    // console.log('this.state:', this.state)
+    // await this.props.onUpdateAddress({
+    //   walletAddress: this.state.addressField,
+    //   storeId: this.props.storeId,
+    //   storeName: this.props.store.storeName,
+    // })
 
     this.setState({ isEditingAddress: false })
   }
@@ -210,9 +223,10 @@ class Profile extends React.Component<PropsType, StateType> {
         <InputField
           autoFocus
           css={style.inputField}
-          onChange={this.handleChange}
+          onChange={e => this.handleChange(e)}
           id="addressField"
           defaultValue={this.props.walletAddress}
+          value={this.state.addressField}
           labeltext="Ethereum address"
         />
         <EditButton
@@ -227,7 +241,11 @@ class Profile extends React.Component<PropsType, StateType> {
         <InputField
           css={style.inputField}
           id="addressField"
-          value={this.props.walletAddress}
+          value={
+            !this.state.addressField
+              ? this.props.walletAddress
+              : this.state.addressField
+          }
           labeltext="Ethereum Address"
           readOnly
         />
