@@ -22,12 +22,18 @@ export type PropsType = {
   css?: Object,
   children?: React.Node,
   storeId: IdType,
+  store: Object,
+  storeName: string,
   password?: string,
   walletAddress: string,
   signOut: () => Promise<any>,
   handleChange: {},
   onClick: () => void,
-  onUpdateAddress: ({ walletAddress: string, storeId: IdType }) => void,
+  onUpdateAddress: ({
+    walletAddress: string,
+    storeName: string,
+    storeId: IdType,
+  }) => void,
   ...ReactRouter.ContextRouter,
 }
 
@@ -80,6 +86,7 @@ class Profile extends React.Component<PropsType, StateType> {
     await this.props.onUpdateAddress({
       walletAddress: this.state.addressField,
       storeId: this.props.storeId,
+      storeName: this.props.store.storeName,
     })
 
     this.setState({ isEditingAddress: false })
