@@ -77,10 +77,8 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
-    // e.persist()
     e.preventDefault()
 
-    // console.log('e.currentTarget.id', e.currentTarget.id)
     if (!e.currentTarget.value) {
       return
     }
@@ -95,15 +93,35 @@ class Profile extends React.Component<PropsType, StateType> {
     )
   }
 
+  onClickEditAddress = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const eventId = e.currentTarget.id
+    this.setState(prevState => {
+      return {
+        [eventId]: !prevState[eventId],
+        addressField: this.props.store.walletAddress,
+      }
+    })
+  }
+
   onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
     const eventId = e.currentTarget.id
     this.setState(prevState => {
-      return { [eventId]: !prevState[eventId] }
+      return {
+        [eventId]: !prevState[eventId],
+      }
     })
   }
 
   handleUpdateAddress = async () => {
     // console.log('this.state:', this.state)
+
+    if (!this.state.addressField) {
+      await this.props.onUpdateAddress({
+        walletAddress: this.props.store.walletAddress,
+        storeId: this.props.storeId,
+        storeName: this.props.store.storeName,
+      })
+    }
     await this.props.onUpdateAddress({
       walletAddress: this.state.addressField,
       storeId: this.props.storeId,
@@ -260,7 +278,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.edit_button}
           id="isEditingAddress"
           fill={STYLE.COLOR.GREEN}
-          onClick={e => this.onClick(e)}
+          onClick={e => this.onClickEditAddress(e)}
         />
       </Flex>
     )
