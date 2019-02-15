@@ -1,0 +1,24 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/mars/create-react-app-buildpack.git"
+    }
+  ],
+  "env": {
+    "CI": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "ching",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

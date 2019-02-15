@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Ching!",
+  "name": "Ching! - A crypto-first POS and inventory management app",
   "icons": [
     {
       "src": "favicon.ico",
