@@ -232,11 +232,9 @@ class Profile extends React.Component<PropsType, StateType> {
           autoFocus
           css={style.inputField}
           onChange={e => this.handleChange(e)}
-          // onChange={this.handleChange}
           id="addressField"
-          // defaultValue={this.props.walletAddress}
           value={this.state.addressField}
-          labeltext="Ethereum address"
+          labeltext="Ethereum Address"
         />
         <EditButton
           css={style.edit_button}
@@ -255,7 +253,6 @@ class Profile extends React.Component<PropsType, StateType> {
               ? this.props.walletAddress
               : this.state.addressField
           }
-          // value={this.state.addressField}
           labeltext="Ethereum Address"
           readOnly
         />
