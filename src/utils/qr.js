@@ -1,11 +1,12 @@
 import QRious from 'qrious'
 
+import CONFIG from 'constants/config'
 import STYLE from 'constants/style'
 import SHOPPING_CART from 'constants/shopping-cart'
 import orderUtil from 'utils/order'
 
 // const SERVER_URL = 'https://39143ec6.ngrok.io'
-const SERVER_URL = '34-pr-daipos.surge.sh'
+const SERVER_URL = CONFIG.PUBLIC_URL
 const STATUS_UL = 'https://get.status.im/browse/'
 
 function generate(url) {
