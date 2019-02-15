@@ -17,6 +17,8 @@ import STYLE from 'constants/style'
 
 import style from './index.style.js'
 
+const ethUtil = require('ethereumjs-util')
+
 export type PropsType = {
   authError: Object,
   css?: Object,
@@ -114,7 +116,6 @@ class Profile extends React.Component<PropsType, StateType> {
 
   handleUpdateAddress = async () => {
     // console.log('this.state:', this.state)
-
     if (!this.state.addressField) {
       await this.props.onUpdateAddress({
         walletAddress: this.props.store.walletAddress,
@@ -122,6 +123,11 @@ class Profile extends React.Component<PropsType, StateType> {
         storeName: this.props.store.storeName,
       })
     }
+    if (!ethUtil.isValidAddress(this.state.addressField)) {
+      alert('The address entered is invalid')
+      return
+    }
+
     await this.props.onUpdateAddress({
       walletAddress: this.state.addressField,
       storeId: this.props.storeId,
