@@ -58,9 +58,14 @@ class Profile extends React.Component<PropsType, StateType> {
   // LIFECYCLE EVENTS //
   //////////////////////
 
+  // @DEV check to see if wallet address is loaded with this block of code
+  // isLoaded = (): boolean => {
+  //   const { store } = this.props
+  //   return ReactReduxFirebase.isLoaded(store)
+  // }
+
   componentDidMount() {
     const addressField = this.getWalletAddress()
-    // debugger
     console.log('componentWillMount_addressField: ', addressField)
     this.setState({ addressField })
   }
@@ -115,7 +120,6 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleUpdateAddress = async () => {
-    // console.log('this.state:', this.state)
     if (!this.state.addressField) {
       await this.props.onUpdateAddress({
         walletAddress: this.props.store.walletAddress,
