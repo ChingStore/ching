@@ -47,7 +47,7 @@ const updateWalletAddress = ({
     await firestore
       .collection('stores')
       .doc(storeId)
-      .set(data)
+      .update(data)
   }
 }
 
