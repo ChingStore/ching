@@ -199,7 +199,7 @@ class Profile extends React.Component<PropsType, StateType> {
           onChange={this.handleChange}
           id="email"
           value="?{this.state.email}"
-          labeltext="E-mail"
+          labelText="E-mail"
         />
         <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
       </Flex>
@@ -209,7 +209,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           id="email"
           value={this.getEmail()}
-          labeltext="E-mail"
+          labelText="E-mail"
           readOnly
         />
         <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
@@ -228,7 +228,7 @@ class Profile extends React.Component<PropsType, StateType> {
           onChange={this.handleChange}
           id="password"
           value="?{this.state.password}"
-          labeltext="Password"
+          labelText="Password"
           type="password"
         />
         <EditButton id="isEditingPassword" onClick={e => this.onClick(e)} />
@@ -239,7 +239,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           id="password"
           value={this.getPassword()}
-          labeltext="Password"
+          labelText="Password"
           type="password"
           readOnly
         />
@@ -258,7 +258,7 @@ class Profile extends React.Component<PropsType, StateType> {
           onChange={e => this.handleChange(e)}
           id="addressField"
           value={this.state.addressField}
-          labeltext="Ethereum Address"
+          labelText="Ethereum Address"
         />
         <EditButton
           css={style.edit_button}
@@ -277,7 +277,7 @@ class Profile extends React.Component<PropsType, StateType> {
               ? this.props.walletAddress
               : this.state.addressField
           }
-          labeltext="Ethereum Address"
+          labelText="Ethereum Address"
           readOnly
         />
         <EditButton

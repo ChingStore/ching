@@ -93,19 +93,19 @@ export default class Add extends React.Component {
             onChange={this.handleChange}
             id="name"
             placeholder="Item name"
-            labeltext="Name"
+            labelText="Name"
           />
         </div>
         <div css={style.inputForm_secondRow}>
           <InputFieldNumerical
             onChange={this.changePrice}
-            labeltext="Price USD"
+            labelText="Price USD"
             defaultValue={this.state.price}
             step="1"
           />
           <InputFieldNumerical
             onChange={this.changeQuantity}
-            labeltext="Quantity"
+            labelText="Quantity"
             defaultValue={this.state.quantity}
             step="1"
           />

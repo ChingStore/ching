@@ -37,10 +37,10 @@ export default class InputFieldNumerical extends React.Component {
   }
 
   render() {
-    const { labeltext } = this.props
+    const { labelText } = this.props
     return (
       <div css={style.base}>
-        <label css={style.label}>{labeltext}</label>
+        <label css={style.label}>{labelText}</label>
         <div css={style.form}>
           <button css={style.form_minus} type="button" onClick={this.decrement}>
             -
