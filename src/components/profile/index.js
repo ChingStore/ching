@@ -49,15 +49,16 @@ class Profile extends React.Component<PropsType, StateType> {
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingEmail: false,
-    addressField: '',
+    addressField: this.props.walletAddress,
   }
 
   //////////////////////
   // LIFECYCLE EVENTS //
   //////////////////////
 
-  componentWillMount() {
+  componentDidMount() {
     const addressField = this.getWalletAddress()
+    // debugger
     console.log('componentWillMount_addressField: ', addressField)
     this.setState({ addressField })
   }
@@ -76,15 +77,22 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
+    // e.persist()
     e.preventDefault()
 
-    console.log('e.currentTarget.id', e.currentTarget.id)
-    console.log('e.currentTarget.value', e.currentTarget.value)
+    // console.log('e.currentTarget.id', e.currentTarget.id)
+    if (!e.currentTarget.value) {
+      return
+    }
 
-    this.setState({
-      [e.currentTarget.id]: e.currentTarget.value,
-    })
-    console.log('this.state:', this.state)
+    this.setState(
+      {
+        addressField: e.currentTarget.value,
+      },
+      () => {
+        console.log('this.state:', this.state)
+      }
+    )
   }
 
   onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
@@ -96,11 +104,11 @@ class Profile extends React.Component<PropsType, StateType> {
 
   handleUpdateAddress = async () => {
     // console.log('this.state:', this.state)
-    // await this.props.onUpdateAddress({
-    //   walletAddress: this.state.addressField,
-    //   storeId: this.props.storeId,
-    //   storeName: this.props.store.storeName,
-    // })
+    await this.props.onUpdateAddress({
+      walletAddress: this.state.addressField,
+      storeId: this.props.storeId,
+      storeName: this.props.store.storeName,
+    })
 
     this.setState({ isEditingAddress: false })
   }
@@ -224,8 +232,9 @@ class Profile extends React.Component<PropsType, StateType> {
           autoFocus
           css={style.inputField}
           onChange={e => this.handleChange(e)}
+          // onChange={this.handleChange}
           id="addressField"
-          defaultValue={this.props.walletAddress}
+          // defaultValue={this.props.walletAddress}
           value={this.state.addressField}
           labeltext="Ethereum address"
         />
@@ -246,6 +255,7 @@ class Profile extends React.Component<PropsType, StateType> {
               ? this.props.walletAddress
               : this.state.addressField
           }
+          // value={this.state.addressField}
           labeltext="Ethereum Address"
           readOnly
         />
