@@ -83,13 +83,7 @@ class Profile extends React.Component<PropsType, StateType> {
     this.props.history.push(ROUTE.PATH.HOME)
   }
 
-  handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-
-    if (!e.currentTarget.value) {
-      return
-    }
-
+  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
     this.setState(
       {
         addressField: e.currentTarget.value,
@@ -98,6 +92,10 @@ class Profile extends React.Component<PropsType, StateType> {
         console.log('this.state:', this.state)
       }
     )
+  }
+
+  handleFocus = (e: SyntheticEvent<HTMLInputElement>) => {
+    e.currentTarget.select()
   }
 
   onClickEditAddress = (e: SyntheticEvent<HTMLButtonElement>) => {
@@ -258,6 +256,7 @@ class Profile extends React.Component<PropsType, StateType> {
       <Flex css={style.edit}>
         <InputField
           autoFocus
+          onFocus={this.handleFocus}
           css={style.inputField}
           onChange={e => this.handleChange(e)}
           id="addressField"
@@ -273,17 +272,20 @@ class Profile extends React.Component<PropsType, StateType> {
       </Flex>
     ) : (
       <Flex css={style.edit}>
-        <InputField
-          css={style.inputField}
-          id="addressField"
-          value={
-            !this.state.addressField
-              ? this.props.walletAddress
-              : this.state.addressField
-          }
-          labelText="Ethereum Address"
-          readOnly
-        />
+        <Flex css={style.addressField}>
+          <div css={style.addressField_lableText}>Ethereum Address</div>
+          <input
+            css={style.inputField}
+            id="addressField"
+            value={
+              !this.state.addressField
+                ? this.props.walletAddress
+                : this.state.addressField
+            }
+            // labelText="Ethereum Address"
+            readOnly
+          />
+        </Flex>
         <EditButton
           css={style.edit_button}
           id="isEditingAddress"

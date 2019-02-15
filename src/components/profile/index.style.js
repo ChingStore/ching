@@ -33,6 +33,17 @@ export default {
     width: '100%',
   },
 
+  addressField: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  addressField_lableText: {
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    fontSize: 14,
+    color: STYLE.COLOR.BLUE,
+    marginBottom: 10,
+  },
+
   edit: {
     flexDirection: 'row',
     justifyContent: 'space-between',
