@@ -1,6 +1,5 @@
 // @flow
 
-import type { IdType, StoreType } from 'constants/firebase'
 import type { ThunkActionType } from 'constants/redux'
 
 import Web3DaiInfura from '../../singletons/web3/dai-infura'
@@ -35,20 +34,4 @@ const updateBalance = (): ThunkActionType => async (dispatch, getState) => {
   }
 }
 
-const updateWalletAddress = ({
-  storeId,
-  data,
-}: {
-  storeId: IdType,
-  data: $Shape<StoreType>,
-}): ThunkActionType => {
-  return async (dispatch, getState, { getFirestore }) => {
-    const firestore = getFirestore()
-    await firestore
-      .collection('stores')
-      .doc(storeId)
-      .update(data)
-  }
-}
-
-export default { initialize, updateBalance, updateWalletAddress }
+export default { initialize, updateBalance }
