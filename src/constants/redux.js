@@ -16,7 +16,6 @@ export type StateType = {
   +wallet: {
     +daiBalance: ?number,
     +xdaiBalance: ?number,
-    +walletAddress: ?string,
   },
   +shop: {
     +shopError: ?string,
