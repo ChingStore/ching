@@ -1,19 +1,27 @@
 const add = ({ name, photo, soldCount, quantity, price }) => async (
   dispatch,
   getState,
-  { getFirestore }
+  { getFirestore, getFirebase }
 ) => {
   const firestore = getFirestore()
-  const state = getState()
+  const firebase = getFirebase()
+  const storageRef = firebase.storage().ref()
+
   try {
-    await firestore.collection('items').add({
+    const state = getState()
+    const newItemRef = await firestore.collection('items').doc()
+    const ref = storageRef.child('images/'.concat(newItemRef.id, '.jpg'))
+    const uploadTask = await ref.putString(photo, 'data_url')
+    const url = await uploadTask.ref.getDownloadURL()
+    console.log('URL:', url)
+    newItemRef.set({
       name,
-      photo,
+      photo: url,
       soldCount,
       quantity,
       price,
       userId: state.firebase.auth.uid,
-      createdAt: new Date(),
+      createdAt: firestore.FieldValue.serverTimestamp(),
     })
   } catch (err) {
     console.log('Error in item/add action', err.message)
