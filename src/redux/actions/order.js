@@ -48,7 +48,11 @@ const upsertItem = ({
   orderId?: IdType,
   itemId: IdType,
   quantity?: number,
-}): ThunkActionType<> => async (dispatch, getState, { getFirestore }) => {
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
   const firestore = getFirestore()
   const state = getState()
   const price = selector.items.price(state, { itemId })
@@ -116,7 +120,7 @@ const incrementItemCount = ({
 }: {
   orderId?: IdType,
   itemId: IdType,
-}): ThunkActionType<> => async dispatch => {
+}): ThunkActionType<Promise<void>> => async dispatch => {
   await dispatch(upsertItem({ orderId, itemId }))
 }
 
@@ -126,7 +130,11 @@ const removeItem = ({
 }: {
   orderId: IdType,
   itemId: IdType,
-}): ThunkActionType<> => async (dispatch, getState, { getFirestore }) => {
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
   const firestore = getFirestore()
   const state = getState()
 
@@ -178,7 +186,11 @@ const decrementItemCount = ({
 }: {
   orderId?: IdType,
   itemId: IdType,
-}): ThunkActionType<> => async (dispatch, getState, { getFirestore }) => {
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
   const firestore = getFirestore()
   const { order, orderId } = dispatch(_getOrderAndOrderId(inputOrderId))
 
@@ -207,7 +219,9 @@ const decrementItemCount = ({
     })
 }
 
-const txStatusCheckAndUpdateOrder = (order): ThunkActionType<> => async (
+const txStatusCheckAndUpdateOrder = (
+  order
+): ThunkActionType<Promise<void>> => async (
   dispatch,
   getState,
   { getFirestore }
@@ -266,7 +280,7 @@ const txStatusCheckAndUpdateOrder = (order): ThunkActionType<> => async (
   }
 }
 
-const _processAllOrders = (): ThunkActionType<> => async (
+const _processAllOrders = (): ThunkActionType<Promise<void>> => async (
   dispatch,
   getState
 ) => {
@@ -277,7 +291,7 @@ const _processAllOrders = (): ThunkActionType<> => async (
   })
 }
 
-const initialize = (): ThunkActionType<> => async dispatch => {
+const initialize = (): ThunkActionType<Promise<void>> => async dispatch => {
   setInterval(() => {
     dispatch(_processAllOrders())
   }, 10000)

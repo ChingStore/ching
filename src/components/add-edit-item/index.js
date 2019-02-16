@@ -1,6 +1,12 @@
+// @flow
+
+import type { ItemsOrderedType, ItemDataType } from 'constants/firebase'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import _ from 'lodash'
 import React from 'react'
+import * as ReactRouter from 'react-router-dom'
 
 import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
@@ -12,14 +18,27 @@ import imageUtil from 'utils/image'
 
 import style from './index.style.js'
 
-export default class AddEditItem extends React.Component {
+export type PropsType = {
+  items: ItemsOrderedType,
+  addItem: ItemDataType => Promise<void>,
+  ...ReactRouter.ContextRouter,
+}
+
+type StateType = {
+  isAdding: boolean,
+  name: string,
+  photo: string,
+  price: number,
+  quantity: number,
+}
+
+class AddEditItem extends React.Component<PropsType, StateType> {
   state = {
+    isAdding: false,
     name: '',
+    photo: '',
     price: 1,
     quantity: 1,
-    photo: '',
-    soldCount: '',
-    isAdding: false,
   }
 
   ////////////////
@@ -122,7 +141,7 @@ export default class AddEditItem extends React.Component {
     if (this.state.isAdding || items === undefined) {
       return <Spinner />
     }
-    if (items.length > 0) {
+    if (_.size(items) > 0) {
       return 'Add an Item'
     }
     return 'Add a First Item'
@@ -133,25 +152,32 @@ export default class AddEditItem extends React.Component {
   ////////////////////
 
   handleAddItemClick = async () => {
+    const { name, photo, price, quantity } = this.state
     this.setState({ isAdding: true })
-    await this.props.addItem(this.state)
+    await this.props.addItem({ name, photo, price, quantity, soldCount: 0 })
     this.setState({ isAdding: false })
     this.props.history.push(ROUTE.PATH.STORE)
   }
 
-  handleChangeName = e => {
+  handleChangeName = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
       [e.target.id]: e.target.value,
     })
   }
 
-  handleNewImage = async event => {
+  handleNewImage = async (event: SyntheticInputEvent<HTMLInputElement>) => {
     const reader = new FileReader()
 
     reader.addEventListener(
       'load',
       () => {
         const base64 = reader.result
+        if (typeof base64 !== 'string') {
+          alert(
+            "The file doesn't seem to be an image.\nPlease select a different file."
+          )
+          return
+        }
         this.setState({
           photo: base64,
         })
@@ -167,19 +193,25 @@ export default class AddEditItem extends React.Component {
     }
   }
 
-  handleChangeQuantity = newQuantity => {
+  handleChangeQuantity = (newQuantity: number) => {
     this.setState({
       quantity: newQuantity,
     })
   }
 
-  handleChangePrice = newPrice => {
+  handleChangePrice = (newPrice: number) => {
     this.setState({
       price: newPrice,
     })
   }
 
   handleUploadPhotoClick = () => {
-    document.getElementById('photo').click()
+    const photoElement = document.getElementById('photo')
+    if (!photoElement) {
+      throw Error('Photo element not found')
+    }
+    photoElement.click()
   }
 }
+
+export default AddEditItem

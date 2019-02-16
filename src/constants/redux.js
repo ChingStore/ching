@@ -28,7 +28,7 @@ export type DispatchType = <T>(
   action: Action | ThunkActionType<T> | PromiseActionType
 ) => T
 export type GetStateType = () => StateType
-export type ThunkActionType<T = void | Promise<void>> = (
+export type ThunkActionType<T = void> = (
   dispatch: DispatchType,
   getState: GetStateType,
   { getFirebase: GetFirebaseType, getFirestore: GetFirestoreType }

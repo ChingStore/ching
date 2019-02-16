@@ -23,18 +23,31 @@ export type FirebaseAuthType = $ReadOnly<{
 // ITEMS //
 ///////////
 
-export type ItemType = $ReadOnly<{
-  createdAt: DateType,
+export type ItemDataType = $ReadOnly<{
   name: string,
   photo: string,
   price: number,
   quantity: number,
   soldCount: number,
-  userId: IdType,
 }>
+
+export type ItemType = ItemDataType &
+  $ReadOnly<{
+    createdAt: DateType,
+    userId: IdType,
+  }>
+
+export type ItemOrderedType = ItemType &
+  $ReadOnly<{
+    id: IdType,
+  }>
 
 export type ItemsType = $ReadOnly<{
   [IdType]: ItemType,
+}>
+
+export type ItemsOrderedType = $ReadOnly<{
+  [number]: ItemOrderedType,
 }>
 
 ////////////
