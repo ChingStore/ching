@@ -29,7 +29,6 @@ export type PropsType = {
   storeId: IdType,
   itemsOrdered: Object,
   onEditStoreName: ({
-    walletAddress: string,
     storeName: string,
     storeId: IdType,
   }) => void,
@@ -226,7 +225,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
     await this.props.onEditStoreName({
       storeName: e.currentTarget.value,
       storeId: this.props.storeId,
-      walletAddress: this.props.walletAddress,
     })
     this.setState({
       isEditingStoreName: false,
