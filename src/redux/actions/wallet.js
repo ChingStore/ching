@@ -34,4 +34,4 @@ const updateBalance = (): ThunkActionType => async (dispatch, getState) => {
   }
 }
 
-export default { initialize, updateBalance }
+export default { initialize }
