@@ -9,7 +9,7 @@ import type { FirebaseAuthType } from 'constants/firebase'
 const signIn = ({
   email,
   password,
-}: $Shape<FirebaseAuthType>): ThunkActionType => async (
+}: $Shape<FirebaseAuthType>): ThunkActionType<Promise<boolean>> => async (
   dispatch,
   getState,
   { getFirebase }
@@ -25,7 +25,7 @@ const signIn = ({
   }
 }
 
-const signOut = (): ThunkActionType => async (
+const signOut = (): ThunkActionType<> => async (
   dispatch,
   getState,
   { getFirebase }
@@ -43,7 +43,7 @@ const signOut = (): ThunkActionType => async (
 const signUp = ({
   email,
   password,
-}: $Shape<FirebaseAuthType>): ThunkActionType => async (
+}: $Shape<FirebaseAuthType>): ThunkActionType<Promise<boolean>> => async (
   dispatch,
   getState,
   { getFirebase }

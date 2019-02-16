@@ -4,7 +4,7 @@ import type { ThunkActionType } from 'constants/redux'
 
 import selectors from 'redux/selectors'
 
-const reset = (): ThunkActionType => async (
+const reset = (): ThunkActionType<> => async (
   dispatch,
   getState,
   { getFirestore }

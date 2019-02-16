@@ -28,9 +28,13 @@ const mapDispatchToProps = (
   dispatch: DispatchType,
   ownProps: OwnPropsType
 ) => ({
+  onBadgeClick: async () => {
+    const { itemId } = ownProps
+    await dispatch(orderAction.decrementItemCount({ itemId }))
+  },
   onPhotoClick: async () => {
     const { itemId } = ownProps
-    await dispatch(orderAction.upsertItem({ itemId }))
+    await dispatch(orderAction.incrementItemCount({ itemId }))
   },
 })
 
