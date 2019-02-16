@@ -16,6 +16,7 @@ import StoreArtBackground from './store-art-background'
 import StoreArtTag from './store-art-tag'
 import Trust from './trust'
 import UploadCloud from './upload-cloud'
+import ProfileEdit from './profile-edit'
 
 export default {
   Coinbase,
@@ -27,6 +28,7 @@ export default {
   NoPhoto,
   Plus,
   Profile,
+  ProfileEdit,
   Sales,
   Status,
   Store,

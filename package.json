@@ -21,6 +21,7 @@
     "ajv": "^6.5.4",
     "browser-image-resizer": "^2.0.1",
     "emotion-normalize": "^10.0.0",
+    "ethereumjs-util": "^6.1.0",
     "firebase": "^5.8.1",
     "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",

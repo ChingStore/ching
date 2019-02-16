@@ -9,15 +9,21 @@ import Icon from 'components/common/icon'
 import Button from 'components/common/button'
 import Flex from 'components/common/flex'
 
-type PropsType = ReactRouter.ContextRouter
+export type PropsType = {
+  id?: string,
+  onClick: (e: SyntheticEvent<HTMLButtonElement>) => mixed,
+  fill?: string,
+  ...ReactRouter.ContextRouter,
+}
 
 class EditButton extends React.Component<PropsType> {
   render() {
+    const { fill } = this.props
     return (
       <Flex>
         {/* $FlowFixMe */}
         <Button {...this.props}>
-          <Icon.Edit />
+          <Icon.ProfileEdit fill={fill} />
         </Button>
       </Flex>
     )

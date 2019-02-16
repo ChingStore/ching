@@ -25,9 +25,14 @@ import style from './index.style'
 export type PropsType = {
   order: Object,
   store: Object,
+  walletAddress: string,
   storeId: IdType,
   itemsOrdered: Object,
-  onEditStoreName: ({ storeName: string, storeId: IdType }) => void,
+  onEditStoreName: ({
+    walletAddress: string,
+    storeName: string,
+    storeId: IdType,
+  }) => void,
   ...ReactRouter.ContextRouter,
 }
 
@@ -231,6 +236,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     await this.props.onEditStoreName({
       storeName: e.currentTarget.value,
       storeId: this.props.storeId,
+      walletAddress: this.props.walletAddress,
     })
     this.setState({
       isEditingStoreName: false,
