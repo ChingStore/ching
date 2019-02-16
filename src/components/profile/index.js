@@ -84,14 +84,9 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    this.setState(
-      {
-        addressField: e.currentTarget.value,
-      },
-      () => {
-        console.log('this.state:', this.state)
-      }
-    )
+    this.setState({
+      addressField: e.currentTarget.value,
+    })
   }
 
   handleFocus = (e: SyntheticEvent<HTMLInputElement>) => {
@@ -278,11 +273,10 @@ class Profile extends React.Component<PropsType, StateType> {
             css={style.inputField}
             id="addressField"
             value={
-              !this.state.addressField
-                ? this.props.walletAddress
-                : this.state.addressField
+              this.state.addressField
+                ? this.state.addressField
+                : this.props.walletAddress
             }
-            // labelText="Ethereum Address"
             readOnly
           />
         </Flex>
