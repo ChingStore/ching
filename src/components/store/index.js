@@ -29,7 +29,6 @@ export type PropsType = {
   storeId: IdType,
   itemsOrdered: Object,
   onEditStoreName: ({
-    walletAddress: string,
     storeName: string,
     storeId: IdType,
   }) => void,
@@ -63,13 +62,9 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
     return (
       <Flex grow>
-        <Flex column grow relative css={style.base}>
-          <Flex column absoluteFill>
-            {this.renderEditControls()}
-            {this.renderStoreName()}
-            {this.renderItemsList()}
-            {this.renderLoadingSpinner()}
-          </Flex>
+        <Flex grow relative>
+          {this.renderScroller()}
+          {this.renderLoadingSpinner()}
         </Flex>
         <ShoppingCart location={this.props.location} />
       </Flex>
@@ -83,6 +78,27 @@ class StoreScene extends React.Component<PropsType, StateType> {
       </Flex>
     )
 
+  renderScroller = () => (
+    <Flex absoluteFill css={style.scroller}>
+      <Flex column grow css={{ paddingLeft: 40, paddingRight: 40 }}>
+        {this.renderEditControls()}
+        {this.renderStoreName()}
+        {/* Don't render if it's loaded but width is not detected yet */}
+        {!!this.state.listWidth && !this.isLoading() && (
+          <ReactList
+            itemRenderer={this.renderItemsRow}
+            length={this.getListRowsCount()}
+            type="uniform"
+            useTranslate3d
+            threshold={3000}
+          />
+        )}
+        <div css={{ paddingBottom: 30 }} />
+        {this.renderResizeDetector()}
+      </Flex>
+    </Flex>
+  )
+
   renderEditControls = () => {
     const { isEditing } = this.state
 
@@ -90,19 +106,23 @@ class StoreScene extends React.Component<PropsType, StateType> {
       return null
     }
 
-    return (
-      <Flex spaceBetween>
-        {isEditing && <div css={style.editControls}>Editing</div>}
+    return isEditing ? (
+      <Flex noShrink spaceBetween>
+        <div css={style.editControls}>Editing</div>
         <LinkButton
           onClick={this.handleEditToggle}
-          css={[
-            style.editControls,
-            isEditing
-              ? style.editControls__endButton
-              : style.editControls__startButton,
-          ]}
+          css={[style.editControls, style.editControls__endButton]}
         >
-          {isEditing ? 'Done' : 'Edit inventory'}
+          Done
+        </LinkButton>
+      </Flex>
+    ) : (
+      <Flex noShrink>
+        <LinkButton
+          onClick={this.handleEditToggle}
+          css={[style.editControls, style.editControls__startButton]}
+        >
+          Edit inventory
         </LinkButton>
       </Flex>
     )
@@ -135,27 +155,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
       </div>
     )
   }
-
-  renderItemsList = () => (
-    <Flex grow css={style.itemsList}>
-      {!!this.state.listWidth && !this.isLoading() && (
-        <ReactList
-          itemRenderer={this.renderItemsRow}
-          length={this.getListRowsCount()}
-          type="uniform"
-          useTranslate3d
-          threshold={3000}
-        />
-      )}
-      <ReactResizeDetector
-        handleWidth
-        refreshMode="debounce"
-        refreshRate={500}
-        refreshOptions={{ leading: true, trailing: true }}
-        onResize={this.handleResize}
-      />
-    </Flex>
-  )
 
   renderItemsRow = (rowIndex: number, key: *) => {
     const { itemsOrdered } = this.props
@@ -200,6 +199,16 @@ class StoreScene extends React.Component<PropsType, StateType> {
     </Flex>
   )
 
+  renderResizeDetector = () => (
+    <ReactResizeDetector
+      handleWidth
+      refreshMode="debounce"
+      refreshRate={500}
+      refreshOptions={{ leading: true, trailing: true }}
+      onResize={this.handleResize}
+    />
+  )
+
   ////////////////////
   // EVENT HANDLERS //
   ////////////////////
@@ -226,7 +235,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
     await this.props.onEditStoreName({
       storeName: e.currentTarget.value,
       storeId: this.props.storeId,
-      walletAddress: this.props.walletAddress,
     })
     this.setState({
       isEditingStoreName: false,

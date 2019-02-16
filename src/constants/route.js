@@ -5,7 +5,7 @@ const PATH = {
   SALES: '/sales-report',
   STORE: '/store',
   ADD_ITEM: '/store/add-item',
-  EDIT_ITEM: '/store/edit-item/:itemId',
+  EDIT_ITEM: '/store/edit-item',
   ORDERS: '/orders',
 
   // Full-screen
