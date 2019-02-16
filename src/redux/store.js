@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import * as Redux from 'redux'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
