@@ -19,6 +19,7 @@ type PropsType = {
   isEditing: boolean,
   shoppingCartOrderItem: OrderItemType,
 
+  onBadgeClick: () => void,
   onPhotoClick: () => void,
 }
 
@@ -35,7 +36,7 @@ class ItemCard extends React.PureComponent<PropsType> {
   }
 
   renderPhoto = () => {
-    const { isEditing, item, shoppingCartOrderItem } = this.props
+    const { isEditing, item } = this.props
     return (
       <Flex
         css={[
@@ -46,16 +47,20 @@ class ItemCard extends React.PureComponent<PropsType> {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           },
-          !!shoppingCartOrderItem && style.photo__selected,
+          this.isItemSelected() && style.photo__selected,
         ]}
         onClick={this.handlePhotoClick}
       >
         {isEditing && this.renderPhotoEditButton()}
-        {!!shoppingCartOrderItem && (
-          <Flex center css={style.photo_badge}>
-            {this.getShoppingCartQuantity()}
-          </Flex>
-        )}
+        {this.isItemSelected() && this.renderBadge()}
+      </Flex>
+    )
+  }
+
+  renderBadge = () => {
+    return (
+      <Flex center onClick={this.handleBadgeClick} css={style.photo_badge}>
+        {this.getShoppingCartQuantity()}
       </Flex>
     )
   }
@@ -73,6 +78,11 @@ class ItemCard extends React.PureComponent<PropsType> {
   ////////////////////
   // EVENT HANDLERS //
   ////////////////////
+
+  handleBadgeClick = (e: SyntheticEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    this.props.onBadgeClick()
+  }
 
   handlePhotoClick = () => {
     const { onPhotoClick, isEditing, itemId } = this.props
@@ -99,6 +109,12 @@ class ItemCard extends React.PureComponent<PropsType> {
     const { shoppingCartOrderItem } = this.props
     return _.get(shoppingCartOrderItem, 'quantity')
   }
+
+  //////////////
+  // CHECKERS //
+  //////////////
+
+  isItemSelected = () => !!this.props.shoppingCartOrderItem
 }
 
 export default ItemCard

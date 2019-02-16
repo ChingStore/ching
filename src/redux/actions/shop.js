@@ -9,7 +9,7 @@ import selectors from 'redux/selectors'
 const create = ({
   storeName,
   walletAddress,
-}: $Shape<StoreType>): ThunkActionType => async (
+}: $Shape<StoreType>): ThunkActionType<Promise<boolean>> => async (
   dispatch,
   getState,
   { getFirestore }
@@ -58,7 +58,7 @@ const update = ({
 }: {
   storeId: IdType,
   data: $Shape<StoreType>,
-}): ThunkActionType => {
+}): ThunkActionType<> => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     await firestore

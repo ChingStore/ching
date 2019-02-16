@@ -7,13 +7,13 @@ import Web3XdaiInfura from '../../singletons/web3/xdai-infura'
 import ACTIONS from '../actionTypes'
 import selector from '../selectors'
 
-const initialize = (): ThunkActionType => async dispatch => {
+const initialize = (): ThunkActionType<> => async dispatch => {
   setInterval(() => {
     dispatch(updateBalance())
   }, 1000)
 }
 
-const updateBalance = (): ThunkActionType => async (dispatch, getState) => {
+const updateBalance = (): ThunkActionType<> => async (dispatch, getState) => {
   const state = getState()
   const walletAddress = selector.wallet.address(state)
   const oldDaiBalance = selector.getDaiWalletBalance(state)

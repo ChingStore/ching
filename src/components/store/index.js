@@ -48,28 +48,15 @@ class StoreScene extends React.Component<PropsType, StateType> {
     listWidth: 0,
   }
 
-  render = () => {
-    console.log('Store props', this.props)
-    console.log({
-      listWidth: this.state.listWidth,
-      rowsCount: this.getListRowsCount(),
-      rowItemsCount: this.getListRowItemsCount(),
-      isLoadedStore: ReactReduxFirebase.isLoaded(this.props.store),
-      isLoadedItems: ReactReduxFirebase.isLoaded(this.props.itemsOrdered),
-    })
-
-    console.log('Rendering...')
-
-    return (
-      <Flex grow>
-        <Flex grow relative>
-          {this.renderScroller()}
-          {this.renderLoadingSpinner()}
-        </Flex>
-        <ShoppingCart location={this.props.location} />
+  render = () => (
+    <Flex grow>
+      <Flex grow relative>
+        {this.renderScroller()}
+        {this.renderLoadingSpinner()}
       </Flex>
-    )
-  }
+      <ShoppingCart location={this.props.location} />
+    </Flex>
+  )
 
   renderLoadingSpinner = () =>
     this.isLoading() && (

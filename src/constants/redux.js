@@ -24,13 +24,13 @@ export type StateType = {
 
 export type Action = { type: string }
 
-export type DispatchType = (
-  action: Action | ThunkActionType | PromiseActionType
-) => any
+export type DispatchType = <T>(
+  action: Action | ThunkActionType<T> | PromiseActionType
+) => T
 export type GetStateType = () => StateType
-export type ThunkActionType = (
+export type ThunkActionType<T = void | Promise<void>> = (
   dispatch: DispatchType,
   getState: GetStateType,
   { getFirebase: GetFirebaseType, getFirestore: GetFirestoreType }
-) => any
+) => T
 export type PromiseActionType = Promise<Action>

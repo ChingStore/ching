@@ -58,6 +58,7 @@ export default class ShoppingCartItemRow extends React.PureComponent {
         defaultValue={this.getQuantity()}
         type="number"
         onBlur={this.handleQuantityInputBlur}
+        onChange={this.handleQuantityInputBlur}
         disabled={!this.props.isEditable}
       />
     </Flex>

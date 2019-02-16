@@ -64,7 +64,9 @@ const mapStateToProps = (state: StateType) => ({
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
-  orderInitialize: () => dispatch(orderAction.initialize()),
+  orderInitialize: () => {
+    dispatch(orderAction.initialize())
+  },
 })
 
 export default Redux.compose(
