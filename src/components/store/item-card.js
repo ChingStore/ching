@@ -1,12 +1,17 @@
 // @flow
 
-import type { ItemType, OrderItemType, IdType } from 'constants/firebase'
+import type {
+  ItemType,
+  OrderItemType,
+  IdType,
+  RouterHistory,
+} from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
-
+import * as ReactRouter from 'react-router-dom'
 import Flex from 'components/common/flex'
 import ROUTE from 'constants/route'
 
@@ -18,6 +23,7 @@ type PropsType = {
   itemId: IdType,
   isEditing: boolean,
   shoppingCartOrderItem: OrderItemType,
+  history: RouterHistory,
 
   onBadgeClick: () => void,
   onPhotoClick: () => void,
@@ -85,11 +91,13 @@ class ItemCard extends React.PureComponent<PropsType> {
   }
 
   handlePhotoClick = () => {
-    const { onPhotoClick, isEditing, itemId } = this.props
+    const { onPhotoClick, isEditing, itemId, history } = this.props
 
     // Ignore photo clicks when editing
     if (isEditing) {
       // TODO: navigate to editing scene
+      history.push({ pathname: ROUTE.PATH.EDIT_ITEM, id: itemId })
+
       console.log('should navigate to ', `${ROUTE.PATH.EDIT_ITEM}/${itemId}`)
       return
     }
@@ -117,4 +125,4 @@ class ItemCard extends React.PureComponent<PropsType> {
   isItemSelected = () => !!this.props.shoppingCartOrderItem
 }
 
-export default ItemCard
+export default ReactRouter.withRouter(ItemCard)

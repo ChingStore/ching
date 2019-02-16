@@ -70,9 +70,13 @@ export default class Add extends React.Component {
   }
 
   renderTitle = () => {
+    const { id } = this.props.history.location
+
+    const title = id ? 'Edit an Item' : 'Add an Item'
+
     return (
       <div css={style.title}>
-        <p css={style.title__text}>Add an Item</p>
+        <p css={style.title__text}>{title}</p>
       </div>
     )
   }
