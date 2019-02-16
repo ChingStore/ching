@@ -5,14 +5,10 @@ import SHOPPING_CART from 'constants/shopping-cart'
 
 const style = {
   baseWrapper: {
-    ...STYLE.ABSOLUTE_FILL,
-
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    zIndex: 1,
     pointerEvents: 'none',
   },
   baseWrapper__expanded: {
+    zIndex: 1,
     backgroundColor: STYLE.COLOR.TRANSLUCENT_BLACK,
     pointerEvents: 'auto',
   },

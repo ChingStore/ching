@@ -37,6 +37,7 @@ export default class ShoppingCart extends React.PureComponent<
 
   render() {
     const { orderId } = this.props
+    const { isExpanded } = this.state
 
     console.log('Rendering ShoppingCart...')
 
@@ -46,14 +47,21 @@ export default class ShoppingCart extends React.PureComponent<
 
     return (
       <Flex
+        absoluteFill
+        justifyEnd
+        alignCenter
         column
-        css={[
-          style.baseWrapper,
-          this.state.isExpanded && style.baseWrapper__expanded,
-        ]}
-        // onClick={this.handleHeaderClick}
+        css={[style.baseWrapper, isExpanded && style.baseWrapper__expanded]}
+        onClick={isExpanded && this.handleHeaderClick}
       >
-        <Flex column css={style.base}>
+        <Flex
+          column
+          css={style.base}
+          onClick={e => {
+            e.stopPropagation()
+            return false
+          }}
+        >
           {this.renderHeader()}
           {this.renderItemList()}
           {this.renderPayment()}
@@ -142,7 +150,9 @@ export default class ShoppingCart extends React.PureComponent<
   // EVENT HANDLERS //
   ////////////////////
 
-  handleHeaderClick = () => {
+  handleHeaderClick = (e: SyntheticEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+
     this.setState(prevState => ({
       isExpanded: !prevState.isExpanded,
     }))
