@@ -25,9 +25,13 @@ import style from './index.style'
 export type PropsType = {
   order: Object,
   store: Object,
+  walletAddress: string,
   storeId: IdType,
   itemsOrdered: Object,
-  onEditStoreName: ({ storeName: string, storeId: IdType }) => void,
+  onEditStoreName: ({
+    storeName: string,
+    storeId: IdType,
+  }) => void,
   ...ReactRouter.ContextRouter,
 }
 

@@ -64,7 +64,7 @@ const update = ({
     await firestore
       .collection('stores')
       .doc(storeId)
-      .set(data)
+      .update(data)
   }
 }
 

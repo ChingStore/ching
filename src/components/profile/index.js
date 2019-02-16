@@ -1,7 +1,10 @@
 // @flow
 
+import type { IdType } from 'constants/firebase'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import _ from 'lodash'
 import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
@@ -10,41 +13,152 @@ import InputField from 'components/common/input-field'
 import ActionButton from 'components/common/action-button'
 import ROUTE from 'constants/route'
 import EditButton from 'components/common/edit-button'
+import STYLE from 'constants/style'
 
 import style from './index.style.js'
+
+const ethUtil = require('ethereumjs-util')
 
 export type PropsType = {
   authError: Object,
   css?: Object,
   children?: React.Node,
-  email?: string,
+  storeId: IdType,
+  store: Object,
+  storeName: string,
   password?: string,
+  walletAddress: string,
   signOut: () => Promise<any>,
   handleChange: {},
-} & ReactRouter.ContextRouter
+  onClick: () => void,
+  onUpdateAddress: ({
+    walletAddress: string,
+    storeName: string,
+    storeId: IdType,
+  }) => void,
+  ...ReactRouter.ContextRouter,
+}
 
 type StateType = {
-  email?: string,
-  password?: string,
+  isEditingEmail: boolean,
+  isEditingPassword: boolean,
+  isEditingAddress: boolean,
+  addressField: string,
 }
 
 class Profile extends React.Component<PropsType, StateType> {
   state = {
-    email: 'test@test.com',
-    password: 'password',
+    isEditingAddress: false,
+    isEditingPassword: false,
+    isEditingEmail: false,
+    addressField: this.props.walletAddress,
   }
+
+  //////////////////////
+  // LIFECYCLE EVENTS //
+  //////////////////////
+
+  // @DEV check to see if wallet address is loaded with this block of code
+  // isLoaded = (): boolean => {
+  //   const { store } = this.props
+  //   return ReactReduxFirebase.isLoaded(store)
+  // }
+
+  componentDidMount() {
+    const addressField = this.getWalletAddress()
+    console.log('componentWillMount_addressField: ', addressField)
+    this.setState({ addressField })
+  }
+
+  componentDidUpdate() {
+    console.log('state.isEditingAddress: ', this.state.isEditingAddress)
+  }
+
+  ////////////////////
+  // EVENT HANDLERS //
+  ////////////////////
+
+  handleLogOut = async () => {
+    await this.props.signOut()
+    this.props.history.push(ROUTE.PATH.HOME)
+  }
+
+  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.setState({
+      addressField: e.currentTarget.value,
+    })
+  }
+
+  handleFocus = (e: SyntheticEvent<HTMLInputElement>) => {
+    e.currentTarget.select()
+  }
+
+  onClickEditAddress = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const eventId = e.currentTarget.id
+    this.setState(prevState => {
+      return {
+        [eventId]: !prevState[eventId],
+        addressField: this.props.store.walletAddress,
+      }
+    })
+  }
+
+  onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const eventId = e.currentTarget.id
+    this.setState(prevState => {
+      return {
+        [eventId]: !prevState[eventId],
+      }
+    })
+  }
+
+  handleUpdateAddress = async () => {
+    if (!this.state.addressField) {
+      await this.props.onUpdateAddress({
+        walletAddress: this.props.store.walletAddress,
+        storeId: this.props.storeId,
+        storeName: this.props.store.storeName,
+      })
+    }
+    if (!ethUtil.isValidAddress(this.state.addressField)) {
+      alert('The address entered is invalid')
+      return
+    }
+
+    await this.props.onUpdateAddress({
+      walletAddress: this.state.addressField,
+      storeId: this.props.storeId,
+      storeName: this.props.store.storeName,
+    })
+
+    this.setState({ isEditingAddress: false })
+  }
+
+  /////////////
+  // GETTERS //
+  /////////////
+
+  getEmail = () => _.get(this.state, 'email')
+
+  getPassword = () => _.get(this.state, 'password')
+
+  getWalletAddress = () => {
+    _.get(this.props, 'walletAddress')
+    console.log('getWalletAddress Fired!', this.props)
+  }
+
+  ////////////////////
+  // RENDER METHODS //
+  ////////////////////
 
   render = () => {
     console.log('Profile props', this.props)
-    console.log('TODO : {}')
-
-    console.log('Rendering...')
 
     const { authError } = this.props
     return (
       <Flex grow>
+        <Flex>{authError}</Flex>
         <Flex column grow relative css={style.base}>
-          <Flex>{authError}</Flex>
           {this.renderTitle()}
           {this.renderCollection()}
           {this.renderLogOut()}
@@ -64,55 +178,114 @@ class Profile extends React.Component<PropsType, StateType> {
   renderCollection = () => {
     return (
       <Flex column spaceBetween css={style.collection} key="renderFlex">
-        {this.renderUsernameField()}
-        {this.renderPasswordField()}
+        {/* {this.renderEmailField()}
+        {this.renderPasswordField()}*/}
         {this.renderWalletAddressField()}
       </Flex>
     )
   }
 
-  renderUsernameField = () => {
-    return (
+  renderEmailField = () => {
+    const { isEditingEmail } = this.state
+
+    return isEditingEmail ? (
       <Flex css={style.edit}>
         <InputField
+          autoFocus
           css={style.inputField}
           onChange={this.handleChange}
           id="email"
-          placeholder="Enter your e-mail"
+          value="?{this.state.email}"
           labelText="E-mail"
         />
-        <EditButton />
+        <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
+      </Flex>
+    ) : (
+      <Flex css={style.edit}>
+        <InputField
+          css={style.inputField}
+          id="email"
+          value={this.getEmail()}
+          labelText="E-mail"
+          readOnly
+        />
+        <EditButton id="isEditingEmail" onClick={e => this.onClick(e)} />
       </Flex>
     )
   }
 
   renderPasswordField = () => {
-    return (
+    const { isEditingPassword } = this.state
+
+    return isEditingPassword ? (
       <Flex css={style.edit}>
         <InputField
+          autoFocus
           css={style.inputField}
           onChange={this.handleChange}
           id="password"
-          placeholder="Type in your password"
+          value="?{this.state.password}"
           labelText="Password"
           type="password"
         />
-        <EditButton />
+        <EditButton id="isEditingPassword" onClick={e => this.onClick(e)} />
+      </Flex>
+    ) : (
+      <Flex css={style.edit}>
+        <InputField
+          css={style.inputField}
+          id="password"
+          value={this.getPassword()}
+          labelText="Password"
+          type="password"
+          readOnly
+        />
+        <EditButton id="isEditingPassword" onClick={e => this.onClick(e)} />
       </Flex>
     )
   }
 
   renderWalletAddressField = () => {
-    return (
+    const { isEditingAddress } = this.state
+    return isEditingAddress ? (
       <Flex css={style.edit}>
         <InputField
+          autoFocus
+          onFocus={this.handleFocus}
           css={style.inputField}
-          onChange={this.handleChange}
-          id="walletAddress"
-          placeholder="0x 1234 4444 4444 ... 4444"
-          labelText="Ethereum address"
+          onChange={e => this.handleChange(e)}
+          id="addressField"
+          value={this.state.addressField}
+          labelText="Ethereum Address"
         />
-        <EditButton />
+        <EditButton
+          css={style.edit_button}
+          id="isEditingAddress"
+          fill={STYLE.COLOR.RED}
+          onClick={() => this.handleUpdateAddress()}
+        />
+      </Flex>
+    ) : (
+      <Flex css={style.edit}>
+        <Flex css={style.addressField}>
+          <div css={style.addressField_lableText}>Ethereum Address</div>
+          <input
+            css={style.inputField}
+            id="addressField"
+            value={
+              this.state.addressField
+                ? this.state.addressField
+                : this.props.walletAddress
+            }
+            readOnly
+          />
+        </Flex>
+        <EditButton
+          css={style.edit_button}
+          id="isEditingAddress"
+          fill={STYLE.COLOR.GREEN}
+          onClick={e => this.onClickEditAddress(e)}
+        />
       </Flex>
     )
   }
@@ -128,21 +301,6 @@ class Profile extends React.Component<PropsType, StateType> {
         <Flex>Log out</Flex>
       </ActionButton>
     )
-  }
-
-  ////////////////////
-  // EVENT HANDLERS //
-  ////////////////////
-
-  handleLogOut = async () => {
-    await this.props.signOut()
-    this.props.history.push(ROUTE.PATH.HOME)
-  }
-
-  handleChange = (e: SyntheticEvent<HTMLButtonElement>) => {
-    this.setState({
-      [e.currentTarget.id]: e.currentTarget.value,
-    })
   }
 }
 

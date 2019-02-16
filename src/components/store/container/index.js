@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     storeName,
     storeId,
   }: {
+    walletAddress: string,
     storeName: string,
     storeId: IdType,
   }) => {

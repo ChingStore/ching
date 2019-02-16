@@ -7,6 +7,8 @@ export default {
     marginLeft: 40,
     marginRight: 40,
     marginTop: 40,
+
+    justifyContent: 'space-between',
   },
 
   title: {
@@ -31,9 +33,26 @@ export default {
     width: '100%',
   },
 
+  addressField: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  addressField_lableText: {
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    fontSize: 14,
+    color: STYLE.COLOR.BLUE,
+    marginBottom: 10,
+  },
+
   edit: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+
+  edit_button: {
+    alignSelf: 'flex-end',
+
+    margin: 5,
   },
 
   logOut: {
@@ -41,5 +60,7 @@ export default {
     borderStyle: 'solid',
     borderWidth: 1,
     color: STYLE.COLOR.RED,
+
+    marginBottom: 40,
   },
 }
