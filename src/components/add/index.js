@@ -8,6 +8,7 @@ import InputFieldNumerical from 'components/common/input-field-numerical'
 import FooterButton from 'components/common/footer-button'
 import Spinner from 'components/common/spinner'
 import ROUTE from 'constants/route'
+import imageUtil from 'utils/image'
 
 import style from './index.style.js'
 
@@ -34,7 +35,7 @@ export default class Add extends React.Component {
     })
   }
 
-  handleNewImage = event => {
+  handleNewImage = async event => {
     const reader = new FileReader()
 
     reader.addEventListener(
@@ -49,8 +50,10 @@ export default class Add extends React.Component {
     )
 
     const file = event.target.files[0]
-    if (file) {
-      reader.readAsDataURL(file)
+    const resizedImage = await imageUtil.resize(file)
+
+    if (resizedImage) {
+      reader.readAsDataURL(resizedImage)
     }
   }
 
