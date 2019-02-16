@@ -12,7 +12,7 @@ import imageUtil from 'utils/image'
 
 import style from './index.style.js'
 
-export default class Add extends React.Component {
+export default class AddEditItem extends React.Component {
   state = {
     name: '',
     price: 1,
