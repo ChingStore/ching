@@ -1,6 +1,8 @@
 import ACTIONS from 'redux/actionTypes'
 
 const initState = {
+  daiBalance: '',
+  xdaiBalance: '',
   walletError: null,
 }
 
