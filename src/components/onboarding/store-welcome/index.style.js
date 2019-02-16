@@ -1,5 +1,9 @@
 import STYLE from 'constants/style'
 
+const breakpoints = [320]
+
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
+
 export default {
   base: {
     display: 'flex',
@@ -20,7 +24,6 @@ export default {
     justifyContent: 'flex-end',
   },
   title__text: {
-    // marginTop: 100,
     marginBottom: 0,
     fontWeight: 'bold',
     fontSize: 32,
@@ -39,6 +42,12 @@ export default {
     display: 'block',
 
     marginTop: 40,
+    left: 0,
+    top: 0,
+    [mq[0]]: {
+      left: -27,
+      top: -53,
+    },
   },
   background: {
     position: 'absolute',
@@ -59,5 +68,7 @@ export default {
     justifyContent: 'center',
     alignItems: 'flex-start',
     marginTop: 61,
+
+    zIndex: 2,
   },
 }
