@@ -10,7 +10,7 @@ import * as Reselect from 'reselect'
 import NavBar from 'components/nav-bar'
 import Store from 'components/store/container'
 import Sales from 'components/sales'
-import Add from 'components/add/container'
+import AddEditItem from 'components/add/container'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
 import GetWallet from 'components/onboarding/get-wallet'
@@ -59,8 +59,8 @@ class Routes extends React.Component<PropsType> {
           {!currentUserId && <Redirect to={ROUTE.PATH.HOME} />}
 
           {/* No NavBar */}
-          <Route exact path={ROUTE.PATH.ADD_ITEM} component={Add} />
-          <Route exact path={ROUTE.PATH.EDIT_ITEM} component={Add} />
+          <Route exact path={ROUTE.PATH.ADD_ITEM} component={AddEditItem} />
+          <Route path={ROUTE.PATH.EDIT_ITEM} component={AddEditItem} />
           <Flex grow column>
             <Route path="/" component={NavBar} />
             <Switch>

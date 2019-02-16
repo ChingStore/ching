@@ -22,51 +22,22 @@ export default class Add extends React.Component {
     isAdding: false,
   }
 
-  handleAddItemClick = async () => {
-    this.setState({ isAdding: true })
-    await this.props.addItem(this.state)
-    this.setState({ isAdding: false })
-    this.props.history.push(ROUTE.PATH.STORE)
-  }
+  ////////////////
+  // RENDERINGS //
+  ////////////////
 
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    })
-  }
-
-  handleNewImage = async event => {
-    const reader = new FileReader()
-
-    reader.addEventListener(
-      'load',
-      () => {
-        const base64 = reader.result
-        this.setState({
-          photo: base64,
-        })
-      },
-      false
+  render() {
+    console.log('AddItem render...', this.state)
+    return (
+      <div css={style.base}>
+        {this.renderTitle()}
+        {this.renderForm()}
+        {this.state.photo === ''
+          ? this.renderUploadPhoto()
+          : this.renderPhoto()}
+        {this.renderFooter()}
+      </div>
     )
-
-    const file = event.target.files[0]
-    const resizedImage = await imageUtil.resize(file)
-
-    if (resizedImage) {
-      reader.readAsDataURL(resizedImage)
-    }
-  }
-
-  changeQuantity = newQuantity => {
-    this.setState({
-      quantity: newQuantity,
-    })
-  }
-
-  changePrice = newPrice => {
-    this.setState({
-      price: newPrice,
-    })
   }
 
   renderTitle = () => {
@@ -77,23 +48,12 @@ export default class Add extends React.Component {
     )
   }
 
-  getAddItemButtonText = () => {
-    const { items } = this.props
-    if (this.state.isAdding || items === undefined) {
-      return <Spinner />
-    }
-    if (items.length > 0) {
-      return 'Add an Item'
-    }
-    return 'Add a First Item'
-  }
-
   renderForm = () => {
     return (
       <div css={style.inputForm}>
         <div css={style.inputForm_firstRow}>
           <InputField
-            onChange={this.handleChange}
+            onChange={this.handleChangeName}
             id="name"
             placeholder="Item name"
             labelText="Name"
@@ -101,13 +61,13 @@ export default class Add extends React.Component {
         </div>
         <div css={style.inputForm_secondRow}>
           <InputFieldNumerical
-            onChange={this.changePrice}
+            onChange={this.handleChangePrice}
             labelText="Price USD"
             defaultValue={this.state.price}
             step="1"
           />
           <InputFieldNumerical
-            onChange={this.changeQuantity}
+            onChange={this.handleChangeQuantity}
             labelText="Quantity"
             defaultValue={this.state.quantity}
             step="1"
@@ -117,17 +77,13 @@ export default class Add extends React.Component {
     )
   }
 
-  handleClick = () => {
-    document.getElementById('photo').click()
-  }
-
   renderUploadPhoto = () => {
     return (
       <div css={style.photo}>
         <div css={style.photo__text}>Picture</div>
         <button
           css={style.photo__button}
-          onClick={this.handleClick}
+          onClick={this.handleUploadPhotoClick}
           type="button"
         >
           <input id="photo" hidden type="file" onChange={this.handleNewImage} />
@@ -155,23 +111,75 @@ export default class Add extends React.Component {
     return (
       <div css={style.footer}>
         <FooterButton onClick={this.handleAddItemClick}>
-          {this.getAddItemButtonText()}
+          {this.renderAddItemButtonText()}
         </FooterButton>
       </div>
     )
   }
 
-  render() {
-    console.log('AddItem render...', this.state)
-    return (
-      <div css={style.base}>
-        {this.renderTitle()}
-        {this.renderForm()}
-        {this.state.photo === ''
-          ? this.renderUploadPhoto()
-          : this.renderPhoto()}
-        {this.renderFooter()}
-      </div>
+  renderAddItemButtonText = () => {
+    const { items } = this.props
+    if (this.state.isAdding || items === undefined) {
+      return <Spinner />
+    }
+    if (items.length > 0) {
+      return 'Add an Item'
+    }
+    return 'Add a First Item'
+  }
+
+  ////////////////////
+  // EVENT HANDLERS //
+  ////////////////////
+
+  handleAddItemClick = async () => {
+    this.setState({ isAdding: true })
+    await this.props.addItem(this.state)
+    this.setState({ isAdding: false })
+    this.props.history.push(ROUTE.PATH.STORE)
+  }
+
+  handleChangeName = e => {
+    this.setState({
+      [e.target.id]: e.target.value,
+    })
+  }
+
+  handleNewImage = async event => {
+    const reader = new FileReader()
+
+    reader.addEventListener(
+      'load',
+      () => {
+        const base64 = reader.result
+        this.setState({
+          photo: base64,
+        })
+      },
+      false
     )
+
+    const file = event.target.files[0]
+    const resizedImage = await imageUtil.resize(file)
+
+    if (resizedImage) {
+      reader.readAsDataURL(resizedImage)
+    }
+  }
+
+  handleChangeQuantity = newQuantity => {
+    this.setState({
+      quantity: newQuantity,
+    })
+  }
+
+  handleChangePrice = newPrice => {
+    this.setState({
+      price: newPrice,
+    })
+  }
+
+  handleUploadPhotoClick = () => {
+    document.getElementById('photo').click()
   }
 }
