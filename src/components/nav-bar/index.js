@@ -37,7 +37,7 @@ type PropsType = ReactRouter.ContextRouter
 class NavBar extends React.PureComponent<PropsType> {
   render() {
     return (
-      <Flex css={style.base}>
+      <Flex noShrink css={style.base}>
         {TABS.map(tab => (
           <Flex
             css={style.tab}

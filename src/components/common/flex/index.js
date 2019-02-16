@@ -24,8 +24,9 @@ type PropsType = {
   justifyCenter?: boolean,
   justifyEnd?: boolean,
   innerRef?: React.Ref<'div'>,
+  noShrink?: boolean,
   spaceBetween?: boolean,
-  spaceArround?: boolean,
+  spaceAround?: boolean,
   wrap?: boolean,
 }
 
@@ -44,8 +45,9 @@ class Flex extends React.PureComponent<PropsType> {
       justifyCenter,
       justifyEnd,
       innerRef,
+      noShrink,
       spaceBetween,
-      spaceArround,
+      spaceAround,
       wrap,
       // Remove react-router props
       // $FlowFixMe: missing in Props
@@ -54,16 +56,18 @@ class Flex extends React.PureComponent<PropsType> {
     } = this.props
 
     const flexStyle = {
+      display: 'flex',
+
       alignItems:
         (alignEnd && 'flex-end') || ((alignCenter || center) && 'center'),
-      display: 'flex',
       flex: auto && 'auto',
       flexGrow: grow && 1,
       flexDirection: column && 'column',
+      flexShrink: noShrink && 0,
       flexWrap: wrap && 'wrap',
       justifyContent:
         (spaceBetween && 'space-between') ||
-        (spaceArround && 'space-around') ||
+        (spaceAround && 'space-around') ||
         ((justifyCenter || center) && 'center') ||
         (justifyEnd && 'flex-end'),
       position: (absoluteFill && 'absolute') || (relative && 'relative'),

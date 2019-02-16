@@ -4,7 +4,7 @@ import SalesReport from '../sales-report'
 import Orders from '../orders'
 
 export default () => (
-  <div>
+  <div style={{ overflow: 'scroll' }}>
     <SalesReport />
     <Orders />
   </div>

@@ -46,7 +46,7 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
         <Flex>
           <SpinnerCircle />
         </Flex>
-        <Flex spaceArround>Waiting for transaction to confirm</Flex>
+        <Flex spaceAround>Waiting for transaction to confirm</Flex>
       </Flex>
     )
   }
@@ -62,7 +62,7 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
         <Flex>
           <Checkmark />
         </Flex>
-        <Flex spaceArround>Confirmed!</Flex>
+        <Flex spaceAround>Confirmed!</Flex>
       </Flex>
     )
   }

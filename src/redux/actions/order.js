@@ -53,7 +53,7 @@ const upsertItem = ({ orderId: inputOrderId, itemId, quantity }) => async (
           networkId: null,
           items: newOrderItems,
           userId: currentUserId,
-          createdAt: new Date(),
+          createdAt: firestore.FieldValue.serverTimestamp(),
         })
         orderId = newOrderRef.id
         const currentUserRef = await firestore
@@ -64,29 +64,6 @@ const upsertItem = ({ orderId: inputOrderId, itemId, quantity }) => async (
         })
       })
       console.timeEnd('transaction')
-
-      // console.time('add')
-      // order = await firestore.collection('orders').add({
-      //   txHash: null,
-      //   networkId: null,
-      //   items: newOrderItems,
-      //   userId: currentUserId,
-      //   createdAt: new Date(),
-      // })
-      // console.timeEnd('add')
-
-      // orderId = order.id
-      // // throw 123
-      // console.time('update')
-
-      // await firestore
-      //   .collection('users')
-      //   .doc(currentUserId)
-      //   .update({
-      //     shoppingCartOrderId: orderId,
-      //   })
-
-      // console.timeEnd('update')
     } catch (err) {
       console.error('Error creating new order', err)
     }
