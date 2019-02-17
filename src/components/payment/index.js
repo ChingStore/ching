@@ -14,7 +14,7 @@ import style from './index.style'
 
 export default class Add extends React.PureComponent {
   state = {
-    txHash: 'asdf',
+    txHash: null,
   }
 
   componentDidMount = () => {
