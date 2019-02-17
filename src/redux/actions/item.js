@@ -74,6 +74,10 @@ const update = ({
     )
 }
 
+/**
+ * Uploads image to Firebase storage and returns url.
+ * @private
+ */
 const _uploadImage = ({
   base64Image,
   itemId,
@@ -100,7 +104,23 @@ const _uploadImage = ({
   return url
 }
 
+const del = ({
+  itemId,
+}: {
+  itemId: IdType,
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  await getFirestore()
+    .collection('items')
+    .doc(itemId)
+    .delete()
+}
+
 export default {
   add,
+  del,
   update,
 }

@@ -21,6 +21,7 @@ import FooterButton from 'components/common/footer-button'
 import LinkButton from 'components/common/link-button'
 import Spinner from 'components/common/spinner'
 import ROUTE from 'constants/route'
+import STYLE from 'constants/style'
 import imageUtil from 'utils/image'
 
 import style from './index.style.js'
@@ -32,11 +33,13 @@ export type PropsType = {
 
   addItem: ItemDataType => Promise<void>,
   updateItem: ({ itemId: IdType, data: $Shape<ItemDataType> }) => Promise<void>,
+  onDeleteItem: ({ itemId: IdType }) => Promise<void>,
 
   ...ReactRouter.ContextRouter,
 }
 
 type StateType = {
+  isDeleting: boolean,
   isUploading: boolean,
   name: string,
   photo: ?string,
@@ -73,6 +76,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
   // }
   state = {
     isUploading: false,
+    isDeleting: false,
     name: this.getItemName(),
     photo: this.getItemPhoto(),
     price: this.getItemPrice(),
@@ -190,15 +194,6 @@ class AddEditItem extends React.Component<PropsType, StateType> {
     )
   }
 
-  renderFooter = () => {
-    return (
-      <Flex column css={style.footer}>
-        {this.renderSubmitButton()}
-        {this.isEditing() && this.renderDeleteLink()}
-      </Flex>
-    )
-  }
-
   renderSubmitButton = () => (
     <Flex column justifyEnd css={style.submitButtonWrapper}>
       <FooterButton onClick={this.handleAddItemClick}>
@@ -209,9 +204,13 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
   renderDeleteLink = () => (
     <Flex column justifyEnd alignCenter css={style.deleteLinkWrapper}>
-      <LinkButton css={style.deleteLink} onClick={this.handleDeleteItemClick}>
-        Delete this item
-      </LinkButton>
+      {this.state.isDeleting ? (
+        <Spinner fill={STYLE.COLOR.RED} />
+      ) : (
+        <LinkButton css={style.deleteLink} onClick={this.handleDeleteItemClick}>
+          Delete this item
+        </LinkButton>
+      )}
     </Flex>
   )
 
@@ -262,6 +261,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
       alert('Quqantity is missing, please type it in')
       return
     }
+
     this.setState({ isUploading: true })
     if (this.isEditing() && itemId) {
       await updateItem({ itemId, data: { name, photo, price, quantity } })
@@ -269,10 +269,23 @@ class AddEditItem extends React.Component<PropsType, StateType> {
       await addItem({ name, photo, price, quantity, soldCount: 0 })
     }
     this.setState({ isUploading: false })
+
     history.push(ROUTE.PATH.STORE)
   }
 
-  handleDeleteItemClick = async () => {}
+  handleDeleteItemClick = async () => {
+    const { onDeleteItem, itemId, history } = this.props
+
+    if (!itemId) {
+      throw Error('itemId is missing')
+    }
+
+    this.setState({ isDeleting: true })
+    await onDeleteItem({ itemId })
+    this.setState({ isDeleting: false })
+
+    history.push(ROUTE.PATH.STORE)
+  }
 
   handleChangeName = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({

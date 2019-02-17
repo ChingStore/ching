@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
 
   updateItem: ({ itemId, data }: { itemId: IdType, data: ItemDataType }) =>
     dispatch(itemAction.update({ itemId, data })),
+
+  onDeleteItem: ({ itemId }: { itemId: IdType }) =>
+    dispatch(itemAction.del({ itemId })),
 })
 
 export default ReactRedux.connect<
