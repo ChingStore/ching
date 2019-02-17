@@ -1,7 +1,13 @@
 // @flow
 
-import type { StateType, DispatchType } from 'constants/redux'
-import type { FirebaseAuthType } from 'constants/firebase'
+import type { DispatchType } from 'constants/redux'
+import type {
+  FirebaseAuthType,
+  ItemsType,
+  OrdersType,
+  UserType,
+  StoreType,
+} from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -10,6 +16,7 @@ import * as ReactRedux from 'react-redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as ReactRouter from 'react-router-dom'
 import * as Redux from 'redux'
+import * as Reselect from 'reselect'
 
 import Routes from 'components/routes'
 import Flex from 'components/common/flex'
@@ -25,6 +32,10 @@ type OwnPropsType = {|
 type PropsType = {|
   ...OwnPropsType,
   auth: FirebaseAuthType,
+  items: ItemsType,
+  orders: OrdersType,
+  currentUser: UserType,
+  currentStore: StoreType,
   orderInitialize: () => void,
 |}
 
@@ -35,7 +46,7 @@ class Root extends React.Component<PropsType> {
     }
 
     return (
-      <Flex column style={style.base}>
+      <Flex absoluteFill column style={style.base}>
         <Routes location={this.props.location} />
       </Flex>
     )
@@ -54,13 +65,23 @@ class Root extends React.Component<PropsType> {
   //////////////
 
   isLoaded = (): boolean => {
-    const { auth } = this.props
-    return ReactReduxFirebase.isLoaded(auth)
+    const { auth, items, orders, currentUser, currentStore } = this.props
+    return ReactReduxFirebase.isLoaded(
+      auth,
+      items,
+      orders,
+      currentUser,
+      currentStore
+    )
   }
 }
 
-const mapStateToProps = (state: StateType) => ({
-  auth: selectors.getAuthState(state),
+const mapStateToProps = Reselect.createStructuredSelector({
+  auth: selectors.getAuthState,
+  items: selectors.items.all,
+  orders: selectors.orders.all,
+  currentUser: selectors.users.current,
+  currentStore: selectors.shop.current,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({

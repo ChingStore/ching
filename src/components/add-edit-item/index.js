@@ -1,6 +1,11 @@
 // @flow
 
-import type { ItemsOrderedType, ItemDataType } from 'constants/firebase'
+import type {
+  IdType,
+  ItemType,
+  ItemsOrderedType,
+  ItemDataType,
+} from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -8,10 +13,12 @@ import _ from 'lodash'
 import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
+import Flex from 'components/common/flex'
 import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
 import InputFieldNumerical from 'components/common/input-field-numerical'
 import FooterButton from 'components/common/footer-button'
+import LinkButton from 'components/common/link-button'
 import Spinner from 'components/common/spinner'
 import ROUTE from 'constants/route'
 import imageUtil from 'utils/image'
@@ -19,26 +26,57 @@ import imageUtil from 'utils/image'
 import style from './index.style.js'
 
 export type PropsType = {
+  item?: ItemType,
+  itemId?: IdType,
   items: ItemsOrderedType,
+
   addItem: ItemDataType => Promise<void>,
+  updateItem: ({ itemId: IdType, data: $Shape<ItemDataType> }) => Promise<void>,
+
   ...ReactRouter.ContextRouter,
 }
 
 type StateType = {
-  isAdding: boolean,
+  isUploading: boolean,
   name: string,
-  photo: string,
+  photo: ?string,
   price: number,
   quantity: number,
 }
 
 class AddEditItem extends React.Component<PropsType, StateType> {
+  /////////////
+  // GETTERS //
+  /////////////
+
+  getTitleText = (): string =>
+    this.isEditing() ? 'Edit an Item' : 'Add an Item'
+
+  getItemName = (): string => _.get(this.props, 'item.name', '')
+
+  getItemPhoto = (): ?string => _.get(this.props, 'item.photo')
+
+  getItemPrice = (): number => _.get(this.props, 'item.price', 1)
+
+  getItemQuantity = (): number => _.get(this.props, 'item.quantity', 1)
+
+  ///////////
+  // STATE //
+  ///////////
+
+  // state = {
+  //   isUploading: false,
+  //   name: '',
+  //   photo: null,
+  //   price: 1,
+  //   quantity: 1,
+  // }
   state = {
-    isAdding: false,
-    name: '',
-    photo: '',
-    price: 1,
-    quantity: 1,
+    isUploading: false,
+    name: this.getItemName(),
+    photo: this.getItemPhoto(),
+    price: this.getItemPrice(),
+    quantity: this.getItemQuantity(),
   }
 
   ////////////////
@@ -46,105 +84,162 @@ class AddEditItem extends React.Component<PropsType, StateType> {
   ////////////////
 
   render() {
-    console.log('AddItem render...', this.state)
+    console.log('AddItem render...', this.state, this.props)
     return (
-      <div css={style.base}>
+      <Flex grow column css={style.base}>
         {this.renderTitle()}
         {this.renderForm()}
-        {this.state.photo === ''
-          ? this.renderUploadPhoto()
-          : this.renderPhoto()}
-        {this.renderFooter()}
-      </div>
+        {this.renderPhotoTitle()}
+        {this.state.photo ? this.renderPhoto() : this.renderUploadPhoto()}
+        {this.renderSubmitButton()}
+        {this.isEditing() && this.renderDeleteLink()}
+      </Flex>
     )
   }
 
   renderTitle = () => {
     return (
-      <div css={style.title}>
-        <p css={style.title__text}>Add an Item</p>
-      </div>
+      <Flex column justifyEnd css={style.title}>
+        <Flex justifyStart css={style.title__text}>
+          {this.getTitleText()}
+        </Flex>
+      </Flex>
     )
   }
 
   renderForm = () => {
-    return (
-      <div css={style.inputForm}>
-        <div css={style.inputForm_firstRow}>
-          <InputField
-            onChange={this.handleChangeName}
-            id="name"
-            placeholder="Item name"
-            labelText="Name"
-          />
-        </div>
-        <div css={style.inputForm_secondRow}>
+    return [
+      <Flex column justifyEnd css={style.inputItemName} key="inputItemName">
+        <InputField
+          defaultValue={this.getItemName()}
+          id="name"
+          labelText="Name"
+          onChange={this.handleChangeName}
+          placeholder="Type item name..."
+          underline
+        />
+      </Flex>,
+      <Flex
+        column
+        justifyEnd
+        css={style.inputItemPriceAndStock}
+        key="inputItemPriceAndStock"
+      >
+        <Flex spaceBetween>
           <InputFieldNumerical
-            onChange={this.handleChangePrice}
-            labelText="Price USD"
             defaultValue={this.state.price}
+            labelText="Price USD"
+            onChange={this.handleChangePrice}
             step="1"
           />
           <InputFieldNumerical
-            onChange={this.handleChangeQuantity}
-            labelText="Quantity"
             defaultValue={this.state.quantity}
+            labelText="Quantity"
+            onChange={this.handleChangeQuantity}
             step="1"
           />
-        </div>
-      </div>
+        </Flex>
+      </Flex>,
+    ]
+  }
+
+  renderPhotoTitle = () => (
+    <Flex column justifyEnd css={style.photo_title} key="photo_title">
+      <Flex>Picture</Flex>
+    </Flex>
+  )
+
+  renderPhoto = () => {
+    return (
+      <Flex
+        column
+        justifyEnd
+        css={style.photo_imageWrapper}
+        key="photo_imageWrapper"
+      >
+        <img
+          css={style.photo_image}
+          src={this.state.photo}
+          alt={this.getItemName()}
+        />
+      </Flex>
     )
   }
 
   renderUploadPhoto = () => {
     return (
-      <div css={style.photo}>
-        <div css={style.photo__text}>Picture</div>
+      <Flex
+        column
+        justifyEnd
+        css={style.photo_imageWrapper}
+        key="photo_imageWrapper__missing"
+      >
         <button
-          css={style.photo__button}
+          css={[style.photo_image, style.photo_image__missing]}
           onClick={this.handleUploadPhotoClick}
           type="button"
+          key="photo_image__missing"
         >
           <input id="photo" hidden type="file" onChange={this.handleNewImage} />
-          <div css={style.photo__icon}>
+          <Flex center>
             <Icon.UploadCloud />
-          </div>
+          </Flex>
           <div>Upload Photo</div>
         </button>
-      </div>
-    )
-  }
-
-  renderPhoto = () => {
-    return (
-      <div css={style.photo}>
-        <div css={style.photo__text}>Picture</div>
-        <div css={style.photo__button}>
-          <img css={style.photo__img} src={this.state.photo} alt="go" />
-        </div>
-      </div>
+      </Flex>
     )
   }
 
   renderFooter = () => {
     return (
-      <div css={style.footer}>
-        <FooterButton onClick={this.handleAddItemClick}>
-          {this.renderAddItemButtonText()}
-        </FooterButton>
-      </div>
+      <Flex column css={style.footer}>
+        {this.renderSubmitButton()}
+        {this.isEditing() && this.renderDeleteLink()}
+      </Flex>
     )
   }
 
+  renderSubmitButton = () => (
+    <Flex column justifyEnd css={style.submitButtonWrapper}>
+      <FooterButton onClick={this.handleAddItemClick}>
+        {this.renderAddItemButtonText()}
+      </FooterButton>
+    </Flex>
+  )
+
+  renderDeleteLink = () => (
+    <Flex column justifyEnd alignCenter css={style.deleteLinkWrapper}>
+      <LinkButton css={style.deleteLink} onClick={this.handleDeleteItemClick}>
+        Delete this item
+      </LinkButton>
+    </Flex>
+  )
+
   renderAddItemButtonText = () => {
     const { items } = this.props
-    if (this.state.isAdding || items === undefined) {
+    if (this.state.isUploading || items === undefined) {
       return <Spinner />
+    }
+    if (this.isEditing()) {
+      return 'Update Item'
     }
     if (_.size(items) > 0) {
       return 'Add an Item'
     }
     return 'Add a First Item'
+  }
+
+  /////////////////////
+  // LIFECYCLE HOOKS //
+  /////////////////////
+
+  componentDidMount() {
+    this.setState({
+      name: this.getItemName(),
+      photo: this.getItemPhoto(),
+      price: this.getItemPrice(),
+      quantity: this.getItemQuantity(),
+    })
   }
 
   ////////////////////
@@ -153,11 +248,31 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
   handleAddItemClick = async () => {
     const { name, photo, price, quantity } = this.state
-    this.setState({ isAdding: true })
-    await this.props.addItem({ name, photo, price, quantity, soldCount: 0 })
-    this.setState({ isAdding: false })
-    this.props.history.push(ROUTE.PATH.STORE)
+    const { itemId, updateItem, addItem, history } = this.props
+
+    if (!name) {
+      alert('Name is missing, please type it in')
+      return
+    }
+    if (!price) {
+      alert('Price is missing, please type it in')
+      return
+    }
+    if (!quantity) {
+      alert('Quqantity is missing, please type it in')
+      return
+    }
+    this.setState({ isUploading: true })
+    if (this.isEditing() && itemId) {
+      await updateItem({ itemId, data: { name, photo, price, quantity } })
+    } else {
+      await addItem({ name, photo, price, quantity, soldCount: 0 })
+    }
+    this.setState({ isUploading: false })
+    history.push(ROUTE.PATH.STORE)
   }
+
+  handleDeleteItemClick = async () => {}
 
   handleChangeName = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
@@ -212,6 +327,12 @@ class AddEditItem extends React.Component<PropsType, StateType> {
     }
     photoElement.click()
   }
+
+  //////////////
+  // CHECKERS //
+  //////////////
+
+  isEditing = (): boolean => !!this.props.itemId
 }
 
 export default AddEditItem

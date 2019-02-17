@@ -8,6 +8,7 @@ import * as React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Button from 'components/common/button'
+import Flex from 'components/common/flex'
 
 import style from './index.style.js'
 
@@ -22,10 +23,10 @@ class ActionButton extends React.PureComponent<ActionButtonPropsType> {
     return (
       <Button css={style.base} {...restProps}>
         {!!Icon && (
-          <div css={style.icon}>
+          <Flex center css={style.icon}>
             {/* $FlowFixMe */}
             <Icon {...iconProps} />
-          </div>
+          </Flex>
         )}
         <div css={style.button_text}>{children}</div>
       </Button>

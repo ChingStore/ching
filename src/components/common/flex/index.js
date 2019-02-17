@@ -23,6 +23,7 @@ type PropsType = {
   grow?: boolean,
   justifyCenter?: boolean,
   justifyEnd?: boolean,
+  justifyStart?: boolean,
   innerRef?: React.Ref<'div'>,
   noShrink?: boolean,
   spaceBetween?: boolean,
@@ -43,6 +44,7 @@ class Flex extends React.PureComponent<PropsType> {
       grow,
       center,
       justifyCenter,
+      justifyStart,
       justifyEnd,
       innerRef,
       noShrink,
@@ -69,10 +71,17 @@ class Flex extends React.PureComponent<PropsType> {
         (spaceBetween && 'space-between') ||
         (spaceAround && 'space-around') ||
         ((justifyCenter || center) && 'center') ||
-        (justifyEnd && 'flex-end'),
+        (justifyEnd && 'flex-end') ||
+        (justifyStart && 'flex-start'),
+
       position: (absoluteFill && 'absolute') || (relative && 'relative'),
-      width: absoluteFill && '100%',
-      height: absoluteFill && '100%',
+      top: absoluteFill && 0,
+      bottom: absoluteFill && 0,
+      left: absoluteFill && 0,
+      right: absoluteFill && 0,
+
+      // width: absoluteFill && '100%',
+      // height: absoluteFill && '100%',
     }
 
     return (

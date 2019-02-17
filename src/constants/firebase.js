@@ -20,12 +20,21 @@ export type FirebaseAuthType = $ReadOnly<{
 }>
 
 ///////////
+// USERS //
+///////////
+
+export type UserType = $ReadOnly<{
+  shoppingCartOrderId: IdType,
+  storeId: IdType,
+}>
+
+///////////
 // ITEMS //
 ///////////
 
 export type ItemDataType = $ReadOnly<{
   name: string,
-  photo: string,
+  photo?: ?string,
   price: number,
   quantity: number,
   soldCount: number,

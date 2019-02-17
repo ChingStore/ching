@@ -91,7 +91,8 @@ class ItemCard extends React.PureComponent<PropsType> {
     const { onPhotoClick, isEditing, itemId } = this.props
 
     if (isEditing) {
-      this.props.history.push(`${ROUTE.PATH.EDIT_ITEM}/${itemId}`)
+      const path = ReactRouter.generatePath(ROUTE.PATH.EDIT_ITEM, { itemId })
+      this.props.history.push(path)
       return
     }
 

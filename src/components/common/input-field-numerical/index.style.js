@@ -2,24 +2,15 @@ import STYLE from 'constants/style'
 
 export default {
   base: {
-    width: '100px',
-    display: 'flex',
-    flexDirection: 'column',
+    width: '120px',
   },
   label: {
-    flex: 0.4,
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 14,
     color: STYLE.COLOR.BLUE,
     marginBottom: 10,
   },
-  form: {
-    flex: 0.5,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
+  form: {},
 
   form_minus: {
     alignSelf: 'stretch',

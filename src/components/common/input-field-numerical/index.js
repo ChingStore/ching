@@ -2,6 +2,8 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 
+import Flex from 'components/common/flex'
+
 import style from './index.style.js'
 
 export default class InputFieldNumerical extends React.Component {
@@ -39,9 +41,9 @@ export default class InputFieldNumerical extends React.Component {
   render() {
     const { labelText } = this.props
     return (
-      <div css={style.base}>
+      <Flex column css={style.base}>
         <label css={style.label}>{labelText}</label>
-        <div css={style.form}>
+        <Flex spaceAround alignCenter css={style.form}>
           <button css={style.form_minus} type="button" onClick={this.decrement}>
             -
           </button>
@@ -53,9 +55,9 @@ export default class InputFieldNumerical extends React.Component {
           <button css={style.form_plus} type="button" onClick={this.increment}>
             +
           </button>
-        </div>
+        </Flex>
         <hr css={style.line} />
-      </div>
+      </Flex>
     )
   }
 }

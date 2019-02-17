@@ -4,43 +4,37 @@ import type { IdType, ItemType, ItemDataType } from 'constants/firebase'
 import type { ThunkActionType } from 'constants/redux'
 
 import selectors from 'redux/selectors'
+import jsUtil from 'utils/js'
 
-const add = ({
-  name,
-  photo,
-  soldCount,
-  quantity,
-  price,
-}: ItemDataType): ThunkActionType<Promise<void>> => async (
+const add = (data: ItemDataType): ThunkActionType<Promise<void>> => async (
   dispatch,
   getState,
   { getFirestore }
 ) => {
+  console.log('Adding item:', { data })
+
+  const { name, photo, soldCount, quantity, price } = data
   const state = getState()
   const firestore = getFirestore()
 
-  try {
-    const newItemRef = await firestore.collection('items').doc()
-    const url = dispatch(
-      _uploadImage({ base64Image: photo, itemId: newItemRef.id })
-    )
-    newItemRef.set({
-      name,
-      photo: url,
-      soldCount,
-      quantity,
-      price,
-      userId: state.firebase.auth.uid,
-      createdAt: firestore.FieldValue.serverTimestamp(),
-    })
-  } catch (err) {
-    console.log('Error in item/add action', err.message)
-  }
+  const newItemRef = await firestore.collection('items').doc()
+  const url = await dispatch(
+    _uploadImage({ base64Image: photo, itemId: newItemRef.id })
+  )
+  newItemRef.set({
+    name,
+    photo: url,
+    soldCount,
+    quantity,
+    price,
+    userId: state.firebase.auth.uid,
+    createdAt: firestore.FieldValue.serverTimestamp(),
+  })
 }
 
 const update = ({
   itemId,
-  data: { name, photo, soldCount, quantity, price, userId },
+  data,
 }: {
   itemId: IdType,
   data: $Shape<ItemType>,
@@ -49,6 +43,9 @@ const update = ({
   getState,
   { getFirestore }
 ) => {
+  console.log('Updating item:', { itemId, data })
+
+  const { name, photo, soldCount, quantity, price, userId } = data
   const state = getState()
   const firestore = getFirestore()
 
@@ -59,14 +56,14 @@ const update = ({
 
   let updatedUrl
   if (photo && photo !== oldItem.photo) {
-    updatedUrl = dispatch(_uploadImage({ base64Image: photo, itemId }))
+    updatedUrl = await dispatch(_uploadImage({ base64Image: photo, itemId }))
   }
 
-  try {
-    await firestore
-      .collection('items')
-      .doc(itemId)
-      .update({
+  await firestore
+    .collection('items')
+    .doc(itemId)
+    .update(
+      jsUtil.removeUndefined({
         name,
         photo: updatedUrl || photo,
         soldCount,
@@ -74,29 +71,31 @@ const update = ({
         price,
         userId,
       })
-  } catch (err) {
-    console.log('Error in item/add action', err.message)
-  }
+    )
 }
 
 const _uploadImage = ({
-  itemId,
   base64Image,
+  itemId,
 }: {
+  base64Image?: ?string,
   itemId: IdType,
-  base64Image: string,
-}): ThunkActionType<Promise<string>> => async (
+}): ThunkActionType<Promise<?string>> => async (
   dispatch,
   getState,
   { getFirebase }
 ) => {
+  if (!base64Image) {
+    return null
+  }
+
   const storageRef = getFirebase()
     .storage()
     .ref()
 
   const newImageStorageRef = storageRef.child('images/'.concat(itemId, '.jpg'))
   const uploadTask = await newImageStorageRef.putString(base64Image, 'data_url')
-  const url = uploadTask.ref.getDownloadURL()
+  const url = await uploadTask.ref.getDownloadURL()
   console.log('Image uploaded! URL:', url)
   return url
 }
