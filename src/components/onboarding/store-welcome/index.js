@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import _ from 'lodash'
 import React from 'react'
 
 import ROUTE from 'constants/route'
@@ -9,42 +10,35 @@ import Icon from 'components/common/icon'
 
 import style from './index.style.js'
 
-export default class HomeScene extends React.Component {
+export default class StoreWelcomeScene extends React.Component {
   render() {
     return (
-      <div css={style.base}>
+      <Flex column grow css={style.base}>
         {this.renderTitle()}
-        <div css={style.composition}>
-          {this.renderBackground()}
-          {this.renderTag()}
-        </div>
+        {this.renderArt()}
         {this.renderAddFirstItem()}
-      </div>
+      </Flex>
     )
   }
 
   renderTitle = () => (
-    <div css={style.title}>
-      <p css={style.title__text}>StoreName</p>
+    <Flex column justifyCenter alignLeft css={style.title}>
+      <p css={style.title__text}>{this.getStoreName()}</p>
       <p css={style.welcome__msg}>Welcome to your store!</p>
-    </div>
+    </Flex>
   )
 
-  renderBackground = () => (
-    <div css={style.background}>
-      <Icon.StoreArtBackground />
-    </div>
-  )
-
-  renderTag = () => (
-    <div css={style.tag}>
-      <Icon.StoreArtTag />
-    </div>
+  renderArt = () => (
+    <Flex column center css={style.art}>
+      <Icon.StoreWelcomeArt />
+    </Flex>
   )
 
   renderAddFirstItem = () => (
-    <Flex css={style.addFirstItem}>
+    <Flex column justifyCenter css={style.addFirstItem}>
       <FooterButton to={ROUTE.PATH.ADD_ITEM}>Add a first item</FooterButton>
     </Flex>
   )
+
+  getStoreName = () => _.get(this.props, 'store.storeName')
 }
