@@ -25,7 +25,7 @@ type PropsType = {
 }
 
 class Spinner extends React.Component<PropsType> {
-  defaultProps = {
+  static defaultProps = {
     fill: STYLE.COLOR.WHITE,
   }
 
