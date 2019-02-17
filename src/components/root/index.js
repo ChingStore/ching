@@ -1,13 +1,7 @@
 // @flow
 
 import type { DispatchType } from 'constants/redux'
-import type {
-  FirebaseAuthType,
-  ItemsType,
-  OrdersType,
-  UserType,
-  StoreType,
-} from 'constants/firebase'
+import type { FirebaseAuthType } from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -32,10 +26,6 @@ type OwnPropsType = {|
 type PropsType = {|
   ...OwnPropsType,
   auth: FirebaseAuthType,
-  items: ItemsType,
-  orders: OrdersType,
-  currentUser: UserType,
-  currentStore: StoreType,
   orderInitialize: () => void,
 |}
 
@@ -65,23 +55,13 @@ class Root extends React.Component<PropsType> {
   //////////////
 
   isLoaded = (): boolean => {
-    const { auth, items, orders, currentUser, currentStore } = this.props
-    return ReactReduxFirebase.isLoaded(
-      auth,
-      items,
-      orders,
-      currentUser,
-      currentStore
-    )
+    const { auth } = this.props
+    return ReactReduxFirebase.isLoaded(auth)
   }
 }
 
 const mapStateToProps = Reselect.createStructuredSelector({
   auth: selectors.getAuthState,
-  items: selectors.items.all,
-  orders: selectors.orders.all,
-  currentUser: selectors.users.current,
-  currentStore: selectors.shop.current,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
