@@ -104,7 +104,7 @@ class Web3Injected {
         value,
         {
           gasPrice: this.getGasPrice(),
-          gas: 40000,
+          gas: 80000,
         },
         (error, txHash) => {
           this.handleError({ error, orderId, txHash })
