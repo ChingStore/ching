@@ -101,7 +101,7 @@ export default class SignIn extends React.Component {
     return (
       <div css={style.base}>
         <p>{authError}</p>
-        <BackButton />
+        <BackButton css={style.backButton} />
         {this.renderTitle()}
         {this.renderForm()}
       </div>

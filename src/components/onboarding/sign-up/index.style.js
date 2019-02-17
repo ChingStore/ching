@@ -11,6 +11,12 @@ export default {
     right: 40,
   },
 
+  backButton: {
+    marginTop: 20,
+    padding: 20,
+    paddingLeft: 0,
+  },
+
   title: {
     flex: 0.3,
 

@@ -1,4 +1,4 @@
-// @flow
+// @noflow
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'

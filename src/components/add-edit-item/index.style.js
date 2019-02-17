@@ -7,8 +7,13 @@ export default {
     alignSelf: 'center',
   },
 
+  backButton: {
+    paddingTop: 40,
+    paddingRight: 20,
+  },
+
   title: {
-    flex: 0.164,
+    flex: 0.134,
   },
 
   title__text: {
