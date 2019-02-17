@@ -153,14 +153,22 @@ class StoreScene extends React.Component<PropsType, StateType> {
           const itemIndex = this.getItemIndex({ rowIndex, columnIndex })
           const item = itemsOrdered[itemIndex]
           const isFirstInRow = columnIndex === 0
-          const isLastItem = itemIndex === this.getItemsCount() - 1
+          const isLastItem = itemIndex === this.getScrollerItemsCount() - 1
 
           // Render add button instead of the last card if editing
           if (this.isEditing() && isLastItem) {
-            return <AddItemCard {...{ isFirstInRow, key: itemIndex }} />
+            return (
+              <AddItemCard
+                {...{
+                  isFirst: this.getItemsCount() === 0,
+                  isFirstInRow,
+                  key: itemIndex,
+                }}
+              />
+            )
           }
           // Skip extra card slots in the last row
-          if (itemIndex >= this.getItemsCount()) {
+          if (itemIndex >= this.getScrollerItemsCount()) {
             return null
           }
           const itemId = item.id
@@ -257,13 +265,14 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   getItemsCount = (): number => {
     const { itemsOrdered } = this.props
-
-    // Add one to make space for the add button
-    return _.size(itemsOrdered) + (this.isEditing() && 1)
+    return _.size(itemsOrdered)
   }
 
+  getScrollerItemsCount = (): number =>
+    this.getItemsCount() + (this.isEditing() && 1)
+
   getListRowsCount = (): number => {
-    return Math.ceil(this.getItemsCount() / this.getListRowItemsCount())
+    return Math.ceil(this.getScrollerItemsCount() / this.getListRowItemsCount())
   }
 
   getItemIndex = ({
