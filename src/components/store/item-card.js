@@ -9,6 +9,7 @@ import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
 import Flex from 'components/common/flex'
+import Icon from 'components/common/icon'
 import ROUTE from 'constants/route'
 
 import style from './item-card.style'
@@ -42,20 +43,27 @@ class ItemCard extends React.PureComponent<PropsType> {
     const { isEditing, item } = this.props
     return (
       <Flex
+        relative
+        center
         css={[
           style.photo,
-          {
-            background: `url("${item.photo}")`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-          },
+          item.photo
+            ? {
+                background: `url("${item.photo}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }
+            : style.photo__noPhoto,
           this.isItemSelected() && style.photo__selected,
         ]}
         onClick={this.handlePhotoClick}
       >
-        {isEditing && this.renderPhotoEditButton()}
-        {this.isItemSelected() && this.renderBadge()}
+        {!item.photo && <Icon.NoPhoto />}
+        <Flex absoluteFill css={style.photo}>
+          {isEditing && this.renderPhotoEditButton()}
+          {this.isItemSelected() && this.renderBadge()}
+        </Flex>
       </Flex>
     )
   }
