@@ -28,10 +28,13 @@ export type PropsType = {
   walletAddress: string,
   storeId: IdType,
   itemsOrdered: Object,
+
   onEditStoreName: ({
     storeName: string,
     storeId: IdType,
   }) => void,
+  onFinishOnboarding: () => Promise<void>,
+
   ...ReactRouter.ContextRouter,
 }
 
@@ -87,20 +90,18 @@ class StoreScene extends React.Component<PropsType, StateType> {
   )
 
   renderEditControls = () => {
-    const { isEditing } = this.state
-
     if (this.isLoading()) {
       return null
     }
 
-    return isEditing ? (
+    return this.isEditing() ? (
       <Flex noShrink spaceBetween>
         <div css={style.editControls}>Editing</div>
         <LinkButton
           onClick={this.handleEditToggle}
           css={[style.editControls, style.editControls__endButton]}
         >
-          Done
+          {this.isOnboarding() ? 'Start Selling' : 'Done'}
         </LinkButton>
       </Flex>
     ) : (
@@ -116,7 +117,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
   }
 
   renderStoreName = () => {
-    const { isEditing, isEditingStoreName } = this.state
+    const { isEditingStoreName } = this.state
 
     if (this.isLoading()) {
       return null
@@ -134,7 +135,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     ) : (
       <div css={style.storeName}>
         {this.getStoreName()}{' '}
-        {isEditing && (
+        {this.isEditing() && (
           <LinkButton onClick={this.handleEditStoreName}>
             <Icon.Edit />
           </LinkButton>
@@ -145,7 +146,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   renderItemsRow = (rowIndex: number, key: *) => {
     const { itemsOrdered } = this.props
-    const { isEditing } = this.state
 
     return (
       <Flex grow key={key}>
@@ -156,7 +156,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
           const isLastItem = itemIndex === this.getItemsCount() - 1
 
           // Render add button instead of the last card if editing
-          if (isEditing && isLastItem) {
+          if (this.isEditing() && isLastItem) {
             return <AddItemCard {...{ isFirstInRow, key: itemIndex }} />
           }
           // Skip extra card slots in the last row
@@ -169,7 +169,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
               {...{
                 isFirstInRow,
                 itemId,
-                isEditing,
+                isEditing: this.isEditing(),
                 key: itemIndex,
               }}
             />
@@ -205,6 +205,12 @@ class StoreScene extends React.Component<PropsType, StateType> {
   }
 
   handleEditToggle = () => {
+    const { storeId } = this.props
+
+    if (this.isOnboarding()) {
+      this.props.onFinishOnboarding({ storeId })
+      return
+    }
     this.setState((prevState: StateType) => ({
       isEditing: !prevState.isEditing,
     }))
@@ -251,10 +257,9 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   getItemsCount = (): number => {
     const { itemsOrdered } = this.props
-    const { isEditing } = this.state
 
     // Add one to make space for the add button
-    return _.size(itemsOrdered) + (isEditing && 1)
+    return _.size(itemsOrdered) + (this.isEditing() && 1)
   }
 
   getListRowsCount = (): number => {
@@ -272,6 +277,10 @@ class StoreScene extends React.Component<PropsType, StateType> {
   //////////////
   // CHECKERS //
   //////////////
+
+  isOnboarding = (): boolean => !_.get(this.props, 'store.isOnboardingDone')
+
+  isEditing = (): boolean => this.state.isEditing || this.isOnboarding()
 
   isLoading = (): boolean =>
     !ReactReduxFirebase.isLoaded(this.props.store) ||
