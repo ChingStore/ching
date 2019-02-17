@@ -29,14 +29,12 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
 
   onUpdateAddress: async ({
     walletAddress,
-    storeName,
     storeId,
   }: {
     walletAddress: string,
-    storeName: string,
     storeId: IdType,
   }) => {
-    const data = { storeName, walletAddress }
+    const data = { walletAddress }
     await dispatch(shopAction.update({ storeId, data }))
   },
 })

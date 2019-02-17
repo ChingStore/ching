@@ -1,6 +1,8 @@
 // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://kovan.infura.io/v3/3059c072371d4397b84e9577f896d91c
 
 import _ from 'lodash'
+import promisify from 'js-promisify'
+
 import NETWORK from 'constants/network'
 import DAIABI from 'constants/abi'
 
@@ -67,14 +69,6 @@ class Web3Injected {
     )
   }
 
-  handleError({ error, orderId, txHash }) {
-    if (error) {
-      console.log(error.message)
-    } else {
-      this.sendTxHashToVendor({ orderId, txHash })
-    }
-  }
-
   getGasPrice() {
     // making request to:
     // https://ethgasstation.info/json/ethgasAPI.json
@@ -88,42 +82,51 @@ class Web3Injected {
   }
 
   async sendDai({ address, amount, orderId }) {
+    console.log('sending:', { address, amount, orderId })
     await this._initialized
+    console.log('initialized')
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
     const value = this.web3
       .toBigNumber(amount)
       .times(this.web3.toBigNumber(10).pow(18))
 
-    if (this.netId === NETWORK.ID.MAINNET) {
-      // sending DAI
-      const contract = this.web3.eth
-        .contract(DAIABI)
-        .at(NETWORK.TOKEN_ADDRESS.MAINNET)
-      contract.transfer(
-        address,
-        value,
-        {
-          gasPrice: this.getGasPrice(),
-          gas: 40000,
-        },
-        (error, txHash) => {
-          this.handleError({ error, orderId, txHash })
-        }
-      )
-    } else if (this.netId === NETWORK.ID.XDAI) {
-      // sending XDAI
-      this.web3.eth.sendTransaction(
-        {
-          to: address,
+    let txHash = null
+    try {
+      if (this.netId === NETWORK.ID.MAINNET) {
+        console.log('sending DAI')
+        const contract = this.web3.eth
+          .contract(DAIABI)
+          .at(NETWORK.TOKEN_ADDRESS.MAINNET)
+        console.log({ contract })
+        txHash = await promisify(contract.transfer, [
+          address,
           value,
-          gasPrice: this.getGasPrice(),
-          gas: 40000,
-        },
-        (error, txHash) => {
-          this.handleError({ error, orderId, txHash })
-        }
-      )
+          {
+            gasPrice: this.getGasPrice(),
+            gas: 40000,
+          },
+        ])
+      } else if (this.netId === NETWORK.ID.XDAI) {
+        console.log('sending XDAI')
+        txHash = await promisify(this.web3.eth.sendTransaction, [
+          {
+            to: address,
+            value,
+            gasPrice: this.getGasPrice(),
+            gas: 40000,
+          },
+        ])
+      } else {
+        alert(`Network not supported. Please switch to Mainnet or xDai chain`)
+        return null
+      }
+
+      this.sendTxHashToVendor({ orderId, txHash })
+    } catch (error) {
+      console.error(error.message)
     }
+    console.log({ txHash })
+    return txHash
   }
 }
 
