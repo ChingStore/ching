@@ -1,10 +1,11 @@
-const { PUBLIC_URL, NODE_PUBLIC_URL } = process.env
+const { PUBLIC_URL, NODE_PUBLIC_URL, REACT_APP_API_URL } = process.env
 
 console.log({
   PUBLIC_URL,
   NODE_PUBLIC_URL,
+  REACT_APP_API_URL,
 })
 
 export default {
-  PUBLIC_URL: PUBLIC_URL || NODE_PUBLIC_URL,
+  PUBLIC_URL: NODE_PUBLIC_URL || REACT_APP_API_URL || PUBLIC_URL,
 }
