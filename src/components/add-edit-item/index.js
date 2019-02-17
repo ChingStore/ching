@@ -27,8 +27,8 @@ import imageUtil from 'utils/image'
 import style from './index.style.js'
 
 export type PropsType = {
-  item?: ItemType,
-  itemId?: IdType,
+  item: ?ItemType,
+  itemId: ?IdType,
   items: ItemsOrderedType,
 
   addItem: ItemDataType => Promise<void>,

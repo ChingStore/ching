@@ -16,9 +16,9 @@ type OwnPropsType = ReactRouter.ContextRouter
 const mapStateToProp = (state: StateType, ownProps: OwnPropsType) => ({
   items: selectors.items.allOrdered(state),
   itemId: ownProps.match.params.itemId,
-  item:
-    ownProps.match.params.itemId &&
-    selectors.items.item(state, { itemId: ownProps.match.params.itemId }),
+  item: ownProps.match.params.itemId
+    ? selectors.items.item(state, { itemId: ownProps.match.params.itemId })
+    : null,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({

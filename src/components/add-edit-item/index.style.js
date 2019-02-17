@@ -4,7 +4,6 @@ export default {
   base: {
     width: '80%',
     maxWidth: 1024,
-    // height: '90%',
     alignSelf: 'center',
   },
 
