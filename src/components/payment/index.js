@@ -33,6 +33,7 @@ export default class Add extends React.PureComponent {
   }
 
   renderWaitingForTransaction = () => {
+    const { address, amount, orderId } = this.props.match.params
     return (
       <Flex column grow>
         <Flex column justifyEnd css={style.title}>
@@ -41,6 +42,16 @@ export default class Add extends React.PureComponent {
         <Flex column justifyEnd css={{ flex: 0.08 }}>
           <Flex css={style.title_details}>
             Please use your wallet overlay to send the payment
+          </Flex>
+          <Flex column justifyEnd css={{ flex: 0.3 }}>
+            <Flex column css={style.title_details}>
+              <Flex style={{ marginBottom: 0 }}>Seller wallet address:</Flex>
+              <Flex style={{ marginBottom: 10 }}>
+                {SmartTruncate(address, 30, { position: 15 })}
+              </Flex>
+              <Flex style={{ marginBottom: 10 }}>Total Price: {amount}</Flex>
+              <Flex style={{ marginBottom: 10 }}>Order ID: {orderId}</Flex>
+            </Flex>
           </Flex>
         </Flex>
         <Flex column justifyEnd css={{ flex: 0.55 }}>
