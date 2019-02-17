@@ -34,7 +34,10 @@ export type PropsType = {
 
   addItem: ItemDataType => Promise<void>,
   updateItem: ({ itemId: IdType, data: $Shape<ItemDataType> }) => Promise<void>,
-  onDeleteItem: ({ itemId: IdType }) => Promise<void>,
+  onDeleteItem: ({
+    itemId: IdType,
+    data: $Shape<ItemDataType>,
+  }) => Promise<void>,
 
   ...ReactRouter.ContextRouter,
 }
@@ -266,9 +269,19 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
     this.setState({ isUploading: true })
     if (this.isEditing() && itemId) {
-      await updateItem({ itemId, data: { name, photo, price, quantity } })
+      await updateItem({
+        itemId,
+        data: { name, photo, price, quantity, deleted: false },
+      })
     } else {
-      await addItem({ name, photo, price, quantity, soldCount: 0 })
+      await addItem({
+        name,
+        photo,
+        price,
+        quantity,
+        soldCount: 0,
+        deleted: false,
+      })
     }
     this.setState({ isUploading: false })
 
@@ -283,7 +296,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
     }
 
     this.setState({ isDeleting: true })
-    await onDeleteItem({ itemId })
+    await onDeleteItem({ itemId, data: { deleted: true } })
     this.setState({ isDeleting: false })
 
     history.push(ROUTE.PATH.STORE)

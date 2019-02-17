@@ -38,6 +38,7 @@ export type ItemDataType = $ReadOnly<{
   price: number,
   quantity: number,
   soldCount: number,
+  deleted: boolean,
 }>
 
 export type ItemType = ItemDataType &
