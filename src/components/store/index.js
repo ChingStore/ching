@@ -33,7 +33,7 @@ export type PropsType = {
     storeName: string,
     storeId: IdType,
   }) => void,
-  onFinishOnboarding: () => Promise<void>,
+  onFinishOnboarding: ({ storeId: IdType }) => Promise<void>,
 
   ...ReactRouter.ContextRouter,
 }
