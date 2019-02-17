@@ -15,6 +15,8 @@ import ShoppingCart from 'components/shopping-cart/container'
 import Flex from 'components/common/flex'
 import LinkButton from 'components/common/link-button'
 import Icon from 'components/common/icon'
+import Spinner from 'components/common/spinner'
+import STYLE from 'constants/style'
 
 import STORE from './constants'
 import ItemCardContainer from './container/item-card'
@@ -28,16 +30,20 @@ export type PropsType = {
   walletAddress: string,
   storeId: IdType,
   itemsOrdered: Object,
+
   onEditStoreName: ({
     storeName: string,
     storeId: IdType,
   }) => void,
+  onFinishOnboarding: ({ storeId: IdType }) => Promise<void>,
+
   ...ReactRouter.ContextRouter,
 }
 
 type StateType = {
   isEditing: boolean,
   isEditingStoreName: boolean,
+  isSavingEdit: boolean,
   listWidth: number,
 }
 
@@ -45,6 +51,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
   state = {
     isEditing: false,
     isEditingStoreName: false,
+    isSavingEdit: false,
     listWidth: 0,
   }
 
@@ -87,21 +94,25 @@ class StoreScene extends React.Component<PropsType, StateType> {
   )
 
   renderEditControls = () => {
-    const { isEditing } = this.state
+    const { isSavingEdit } = this.state
 
     if (this.isLoading()) {
       return null
     }
 
-    return isEditing ? (
+    return this.isEditing() ? (
       <Flex noShrink spaceBetween>
+        {isSavingEdit ? (
+          <Spinner fill={STYLE.COLOR.RED} />
+        ) : (
+          <LinkButton
+            onClick={this.handleEditToggle}
+            css={[style.editControls, style.editControls__endButton]}
+          >
+            {this.isOnboarding() ? 'Start Selling' : 'Done'}
+          </LinkButton>
+        )}
         <div css={style.editControls}>Editing</div>
-        <LinkButton
-          onClick={this.handleEditToggle}
-          css={[style.editControls, style.editControls__endButton]}
-        >
-          Done
-        </LinkButton>
       </Flex>
     ) : (
       <Flex noShrink>
@@ -116,7 +127,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
   }
 
   renderStoreName = () => {
-    const { isEditing, isEditingStoreName } = this.state
+    const { isEditingStoreName } = this.state
 
     if (this.isLoading()) {
       return null
@@ -134,7 +145,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     ) : (
       <div css={style.storeName}>
         {this.getStoreName()}{' '}
-        {isEditing && (
+        {this.isEditing() && (
           <LinkButton onClick={this.handleEditStoreName}>
             <Icon.Edit />
           </LinkButton>
@@ -145,7 +156,6 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   renderItemsRow = (rowIndex: number, key: *) => {
     const { itemsOrdered } = this.props
-    const { isEditing } = this.state
 
     return (
       <Flex grow key={key}>
@@ -153,14 +163,22 @@ class StoreScene extends React.Component<PropsType, StateType> {
           const itemIndex = this.getItemIndex({ rowIndex, columnIndex })
           const item = itemsOrdered[itemIndex]
           const isFirstInRow = columnIndex === 0
-          const isLastItem = itemIndex === this.getItemsCount() - 1
+          const isLastItem = itemIndex === this.getScrollerItemsCount() - 1
 
           // Render add button instead of the last card if editing
-          if (isEditing && isLastItem) {
-            return <AddItemCard {...{ isFirstInRow, key: itemIndex }} />
+          if (this.isEditing() && isLastItem) {
+            return (
+              <AddItemCard
+                {...{
+                  isFirst: this.getItemsCount() === 0,
+                  isFirstInRow,
+                  key: itemIndex,
+                }}
+              />
+            )
           }
           // Skip extra card slots in the last row
-          if (itemIndex >= this.getItemsCount()) {
+          if (itemIndex >= this.getScrollerItemsCount()) {
             return null
           }
           const itemId = item.id
@@ -169,7 +187,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
               {...{
                 isFirstInRow,
                 itemId,
-                isEditing,
+                isEditing: this.isEditing(),
                 key: itemIndex,
               }}
             />
@@ -204,7 +222,15 @@ class StoreScene extends React.Component<PropsType, StateType> {
     this.setState({ listWidth })
   }
 
-  handleEditToggle = () => {
+  handleEditToggle = async () => {
+    const { storeId } = this.props
+
+    if (this.isOnboarding()) {
+      this.setState({ isSavingEdit: true })
+      await this.props.onFinishOnboarding({ storeId })
+      this.setState({ isSavingEdit: false })
+      return
+    }
     this.setState((prevState: StateType) => ({
       isEditing: !prevState.isEditing,
     }))
@@ -251,14 +277,14 @@ class StoreScene extends React.Component<PropsType, StateType> {
 
   getItemsCount = (): number => {
     const { itemsOrdered } = this.props
-    const { isEditing } = this.state
-
-    // Add one to make space for the add button
-    return _.size(itemsOrdered) + (isEditing && 1)
+    return _.size(itemsOrdered)
   }
 
+  getScrollerItemsCount = (): number =>
+    this.getItemsCount() + (this.isEditing() && 1)
+
   getListRowsCount = (): number => {
-    return Math.ceil(this.getItemsCount() / this.getListRowItemsCount())
+    return Math.ceil(this.getScrollerItemsCount() / this.getListRowItemsCount())
   }
 
   getItemIndex = ({
@@ -272,6 +298,10 @@ class StoreScene extends React.Component<PropsType, StateType> {
   //////////////
   // CHECKERS //
   //////////////
+
+  isOnboarding = (): boolean => !_.get(this.props, 'store.isOnboardingDone')
+
+  isEditing = (): boolean => this.state.isEditing || this.isOnboarding()
 
   isLoading = (): boolean =>
     !ReactReduxFirebase.isLoaded(this.props.store) ||

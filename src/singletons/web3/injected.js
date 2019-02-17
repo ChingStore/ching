@@ -103,7 +103,7 @@ class Web3Injected {
           value,
           {
             gasPrice: this.getGasPrice(),
-            gas: 40000,
+            gas: 80000,
           },
         ])
       } else if (this.netId === NETWORK.ID.XDAI) {
@@ -113,7 +113,7 @@ class Web3Injected {
             to: address,
             value,
             gasPrice: this.getGasPrice(),
-            gas: 40000,
+            gas: 80000,
           },
         ])
       } else {

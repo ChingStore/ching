@@ -14,17 +14,20 @@ import style from './add-item-card.style'
 
 type PropsType = {
   isFirstInRow: boolean,
+  isFirst: boolean,
 }
 
 class AddItemCard extends React.PureComponent<PropsType> {
   render = () => {
-    const { isFirstInRow } = this.props
+    const { isFirst, isFirstInRow } = this.props
     return (
       <Flex css={[style.base, isFirstInRow && style.base__first]}>
         <Button css={style.button} to={ROUTE.PATH.ADD_ITEM}>
           <Flex column center>
             <Icon.Plus fill={STYLE.COLOR.BLUE} />
-            <Flex css={style.button_text}>Add another</Flex>
+            <Flex css={style.button_text}>
+              {isFirst ? 'Add first item' : 'Add another'}
+            </Flex>
           </Flex>
         </Button>
       </Flex>

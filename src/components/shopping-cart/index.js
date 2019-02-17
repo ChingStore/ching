@@ -100,7 +100,7 @@ export default class ShoppingCart extends React.PureComponent<
           <ItemRow
             {...{
               itemId,
-              isEditable: orderUtil.isWaitingForTransaction(order),
+              isEditable: orderUtil.txStatus(order) === 'waiting tx hash',
             }}
             key={itemId}
           />
@@ -121,7 +121,7 @@ export default class ShoppingCart extends React.PureComponent<
         <Flex css={style.qrCode__sqaureWrapper}>
           <Flex css={style.qrCode__innerFillWrapper}>
             <Flex css={style.qrCode}>
-              {orderUtil.isWaitingForTransaction(order) ? (
+              {orderUtil.txStatus(order) === 'waiting tx hash' ? (
                 <QRCode {...this.props} />
               ) : (
                 <Confirmation

@@ -33,6 +33,15 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     const data = { storeName }
     await dispatch(shopAction.update({ storeId, data }))
   },
+
+  onFinishOnboarding: async ({
+    storeId,
+  }: {
+    storeId: IdType,
+  }): Promise<void> => {
+    const data = { isOnboardingDone: true }
+    await dispatch(shopAction.update({ storeId, data }))
+  },
 })
 
 export default ReactRedux.connect<Store.PropsType, OwnPropsType, _, _, _, _>(
