@@ -1,6 +1,6 @@
 // @flow
 
-import type { StateType, DispatchType } from 'constants/redux'
+import type { DispatchType } from 'constants/redux'
 import type { FirebaseAuthType } from 'constants/firebase'
 
 /** @jsx jsx */
@@ -10,6 +10,7 @@ import * as ReactRedux from 'react-redux'
 import * as ReactReduxFirebase from 'react-redux-firebase'
 import * as ReactRouter from 'react-router-dom'
 import * as Redux from 'redux'
+import * as Reselect from 'reselect'
 
 import Routes from 'components/routes'
 import Flex from 'components/common/flex'
@@ -35,7 +36,7 @@ class Root extends React.Component<PropsType> {
     }
 
     return (
-      <Flex column style={style.base}>
+      <Flex absoluteFill column style={style.base}>
         <Routes location={this.props.location} />
       </Flex>
     )
@@ -59,8 +60,8 @@ class Root extends React.Component<PropsType> {
   }
 }
 
-const mapStateToProps = (state: StateType) => ({
-  auth: selectors.getAuthState(state),
+const mapStateToProps = Reselect.createStructuredSelector({
+  auth: selectors.getAuthState,
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({

@@ -13,6 +13,12 @@ export default Emotion.css`
     width: 100%;
   }
 
+  // Prevent any scrolling except when explicitly allowed.
+  html, body {
+    position: fixed;
+    overflow: hidden;
+  }
+
   @supports (font-variation-settings: normal) {
     html {
       font-family: 'Inter UI var alt', sans-serif;
