@@ -2,6 +2,8 @@
 import { jsx, css } from '@emotion/core'
 import React from 'react'
 
+import STYLE from 'constants/style'
+
 class Checkmark extends React.Component {
   render() {
     return (
@@ -22,7 +24,7 @@ class Checkmark extends React.Component {
             id="checkmark"
             className="check"
             fill="none"
-            stroke="#009688"
+            stroke={STYLE.COLOR.WHITE}
             strokeWidth="6"
             d="M64.5,32.4L32.6,64.3L18.4,50"
           />

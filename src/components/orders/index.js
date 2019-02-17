@@ -12,7 +12,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import ImageIcon from '@material-ui/icons/Image'
-
+import orderUtil from 'utils/order'
 import selectors from '../../redux/selectors'
 
 const styles = theme => ({
@@ -38,14 +38,8 @@ class Orders extends React.PureComponent {
       details += `${order.txHash
         .toString()
         .slice(0, 5)}...${order.txHash.toString().slice(60)}, `
-    } else {
-      details += 'No txHash yet, '
     }
-    if (this.isConfirmed(order)) {
-      details += 'status: confirmed'
-    } else {
-      details += 'status: pending'
-    }
+    details += 'status: ' + orderUtil.txStatus(order)
     return details
   }
 
