@@ -15,6 +15,8 @@ import ShoppingCart from 'components/shopping-cart/container'
 import Flex from 'components/common/flex'
 import LinkButton from 'components/common/link-button'
 import Icon from 'components/common/icon'
+import Spinner from 'components/common/spinner'
+import STYLE from 'constants/style'
 
 import STORE from './constants'
 import ItemCardContainer from './container/item-card'
@@ -41,6 +43,7 @@ export type PropsType = {
 type StateType = {
   isEditing: boolean,
   isEditingStoreName: boolean,
+  isSavingEdit: boolean,
   listWidth: number,
 }
 
@@ -48,6 +51,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
   state = {
     isEditing: false,
     isEditingStoreName: false,
+    isSavingEdit: false,
     listWidth: 0,
   }
 
@@ -90,19 +94,25 @@ class StoreScene extends React.Component<PropsType, StateType> {
   )
 
   renderEditControls = () => {
+    const { isSavingEdit } = this.state
+
     if (this.isLoading()) {
       return null
     }
 
     return this.isEditing() ? (
       <Flex noShrink spaceBetween>
+        {isSavingEdit ? (
+          <Spinner fill={STYLE.COLOR.RED} />
+        ) : (
+          <LinkButton
+            onClick={this.handleEditToggle}
+            css={[style.editControls, style.editControls__endButton]}
+          >
+            {this.isOnboarding() ? 'Start Selling' : 'Done'}
+          </LinkButton>
+        )}
         <div css={style.editControls}>Editing</div>
-        <LinkButton
-          onClick={this.handleEditToggle}
-          css={[style.editControls, style.editControls__endButton]}
-        >
-          {this.isOnboarding() ? 'Start Selling' : 'Done'}
-        </LinkButton>
       </Flex>
     ) : (
       <Flex noShrink>
@@ -212,11 +222,13 @@ class StoreScene extends React.Component<PropsType, StateType> {
     this.setState({ listWidth })
   }
 
-  handleEditToggle = () => {
+  handleEditToggle = async () => {
     const { storeId } = this.props
 
     if (this.isOnboarding()) {
-      this.props.onFinishOnboarding({ storeId })
+      this.setState({ isSavingEdit: true })
+      await this.props.onFinishOnboarding({ storeId })
+      this.setState({ isSavingEdit: false })
       return
     }
     this.setState((prevState: StateType) => ({

@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     storeId: IdType,
   }): Promise<void> => {
     const data = { isOnboardingDone: true }
-    dispatch(shopAction.update({ storeId, data }))
+    await dispatch(shopAction.update({ storeId, data }))
   },
 })
 
