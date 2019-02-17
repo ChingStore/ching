@@ -18,7 +18,6 @@ import Profile from 'components/profile/container'
 import SignUp from 'components/onboarding/sign-up/container'
 import SignIn from 'components/onboarding/sign-in/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
-import StoreWelcome from 'components/onboarding/store-welcome/container'
 import Orders from 'components/orders'
 import ROUTE from 'constants/route'
 import Flex from 'components/common/flex'
@@ -48,7 +47,6 @@ class Routes extends React.Component<PropsType> {
           <Route path={ROUTE.PATH.SIGN_IN} component={SignIn} />
           <Route path={ROUTE.PATH.SIGN_UP} component={SignUp} />
           <Route path={ROUTE.PATH.SIGN_UP_STORE} component={SignUpStore} />
-          <Route path={ROUTE.PATH.STORE_WELCOME} component={StoreWelcome} />
           {/* Payment */}
           <Route
             path="/payment/:address/:amount/:orderId"

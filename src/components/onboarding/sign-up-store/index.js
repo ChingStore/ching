@@ -95,7 +95,7 @@ export default class SignUp extends React.Component {
 
     const isStoreCreated = await signUpStore({ storeName, walletAddress })
     if (isStoreCreated) {
-      history.push(ROUTE.PATH.STORE_WELCOME)
+      history.push(ROUTE.PATH.STORE)
     }
   }
 
