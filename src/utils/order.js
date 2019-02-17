@@ -16,11 +16,11 @@ function getTotalPrice(order?: OrderType): number {
 }
 
 function isWaitingForTransaction(order: OrderType): boolean {
-  return !isConfirming(order) && !isConfirmed(order)
+  return !isConfirming(order) && !isConfirmed(order) && !isFailed(order)
 }
 
 function isConfirming(order: OrderType): boolean {
-  return !!order.txHash && !isConfirmed(order)
+  return !!order.txHash && !isConfirmed(order) && !isFailed(order)
 }
 
 function isConfirmed(order: OrderType): boolean {
@@ -32,7 +32,7 @@ function isFailed(order: OrderType): boolean {
 }
 
 function txStatus(order: OrderType): string {
-  if (isWaitingForTransaction(order)) return 'waiting'
+  if (isWaitingForTransaction(order)) return 'waiting tx hash'
   if (isConfirming(order)) return 'confirming'
   if (isConfirmed(order)) return 'confirmed'
   if (isFailed(order)) return 'failed'
