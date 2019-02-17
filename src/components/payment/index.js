@@ -20,9 +20,10 @@ export default class Add extends React.PureComponent {
     const { address, amount, orderId } = this.props.match.params
     return (
       <div>
-        {address}, {amount}, {orderId}
+        <p>Seller wallet address: {address}</p>
+        <p>Total Price: {amount}</p>
+        <p>Order ID: {orderId}</p>
         <div />
-        <pre />
       </div>
     )
   }
