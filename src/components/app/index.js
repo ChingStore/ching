@@ -8,7 +8,6 @@ import * as ReactRouter from 'react-router-dom'
 
 import store from 'redux/store'
 import Root from 'components/root'
-import CONFIG from 'constants/config'
 
 import globalStyles from './global.style'
 
@@ -18,7 +17,7 @@ class App extends React.Component<{}> {
       <div>
         <Emotion.Global styles={[EmotionNormalize, globalStyles]} />
         <Provider store={store}>
-          <ReactRouter.HashRouter basename={CONFIG.PUBLIC_URL}>
+          <ReactRouter.HashRouter>
             <Root />
           </ReactRouter.HashRouter>
         </Provider>

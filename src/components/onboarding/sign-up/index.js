@@ -44,6 +44,7 @@ export default class SignUp extends React.Component {
     return (
       <div>
         <InputField
+          autoComplete="username"
           onChange={this.handleChange}
           id="email"
           placeholder="Enter your e-mail"
@@ -58,6 +59,7 @@ export default class SignUp extends React.Component {
     return (
       <div>
         <InputField
+          autoComplete="new-password"
           onChange={this.handleChange}
           id="password"
           placeholder="Type in your password"

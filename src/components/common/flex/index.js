@@ -16,6 +16,7 @@ type PropsType = {
   relative?: boolean,
   alignCenter?: boolean,
   alignEnd?: boolean,
+  alignStart?: boolean,
   auto?: boolean,
   center?: boolean,
   children: React.Node,
@@ -36,6 +37,7 @@ class Flex extends React.PureComponent<PropsType> {
     const {
       absoluteFill,
       relative,
+      alignStart,
       alignCenter,
       alignEnd,
       auto,
@@ -61,7 +63,9 @@ class Flex extends React.PureComponent<PropsType> {
       display: 'flex',
 
       alignItems:
-        (alignEnd && 'flex-end') || ((alignCenter || center) && 'center'),
+        (alignStart && 'flex-start') ||
+        (alignEnd && 'flex-end') ||
+        ((alignCenter || center) && 'center'),
       flex: auto && 'auto',
       flexGrow: grow && 1,
       flexDirection: column && 'column',

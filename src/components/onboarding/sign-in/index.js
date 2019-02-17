@@ -53,6 +53,7 @@ export default class SignIn extends React.Component {
     return (
       <div css={style.inputField}>
         <InputField
+          autoComplete="username"
           onChange={this.handleChange}
           id="email"
           placeholder="E-mail"
@@ -66,6 +67,7 @@ export default class SignIn extends React.Component {
     return (
       <div>
         <InputField
+          autoComplete="new-password"
           onChange={this.handleChange}
           id="password"
           placeholder="Password"
