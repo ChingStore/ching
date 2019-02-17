@@ -11,7 +11,7 @@ export default {
     right: 40,
   },
 
-  back_button: {
+  backButton: {
     paddingTop: 40,
     paddingBottom: 20,
     paddingRight: 20,

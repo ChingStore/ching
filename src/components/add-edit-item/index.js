@@ -17,6 +17,7 @@ import Flex from 'components/common/flex'
 import Icon from 'components/common/icon'
 import InputField from 'components/common/input-field'
 import InputFieldNumerical from 'components/common/input-field-numerical'
+import BackButton from 'components/common/back-button'
 import FooterButton from 'components/common/footer-button'
 import LinkButton from 'components/common/link-button'
 import Spinner from 'components/common/spinner'
@@ -91,6 +92,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
     console.log('AddItem render...', this.state, this.props)
     return (
       <Flex grow column css={style.base}>
+        <BackButton css={style.backButton} />
         {this.renderTitle()}
         {this.renderForm()}
         {this.renderPhotoTitle()}
