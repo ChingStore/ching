@@ -15,6 +15,7 @@ import ROUTE from 'constants/route'
 import style from './item-card.style'
 
 type PropsType = {
+  deleted: boolean,
   isFirstInRow: boolean,
   item: ItemType,
   itemId: IdType,
@@ -29,7 +30,11 @@ type PropsType = {
 
 class ItemCard extends React.PureComponent<PropsType> {
   render = () => {
-    const { isFirstInRow } = this.props
+    const { deleted, isFirstInRow } = this.props
+
+    if (deleted === true) {
+      return <div />
+    }
     return (
       <Flex column css={[style.base, isFirstInRow && style.base__first]}>
         {this.renderPhoto()}

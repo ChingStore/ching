@@ -45,7 +45,7 @@ const update = ({
 ) => {
   console.log('Updating item:', { itemId, data })
 
-  const { name, photo, soldCount, quantity, price, userId } = data
+  const { name, photo, soldCount, quantity, price, userId, deleted } = data
   const state = getState()
   const firestore = getFirestore()
 
@@ -70,6 +70,7 @@ const update = ({
         quantity,
         price,
         userId,
+        deleted,
       })
     )
 }

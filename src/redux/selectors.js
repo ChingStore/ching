@@ -68,6 +68,9 @@ const items = {
   allOrdered: (state: StateType): ItemsOrderedType =>
     _.get(state, 'firestore.ordered.items'),
 
+  deleted: (state: StateType, { itemId }: { itemId: IdType }): ItemType =>
+    _.get(state, `firestore.data.items[${itemId}].deleted`),
+
   item: (state: StateType, { itemId }: { itemId: IdType }): ItemType =>
     _.get(state, `firestore.data.items[${itemId}]`),
 
