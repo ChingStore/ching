@@ -1,10 +1,8 @@
 import STYLE from 'constants/style'
 
 export default {
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
+  base: {},
+
   label: {
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     fontSize: 14,

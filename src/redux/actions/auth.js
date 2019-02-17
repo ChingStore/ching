@@ -25,7 +25,7 @@ const signIn = ({
   }
 }
 
-const signOut = (): ThunkActionType<> => async (
+const signOut = (): ThunkActionType<Promise<void>> => async (
   dispatch,
   getState,
   { getFirebase }

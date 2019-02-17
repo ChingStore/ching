@@ -1,6 +1,10 @@
+// @flow
+
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core'
 import React from 'react'
+
+import STYLE from 'constants/style'
 
 const bounce = keyframes`
   0%, 80%, 100% {
@@ -16,8 +20,17 @@ const bounce = keyframes`
         }
 `
 
-class Spinner extends React.Component {
+type PropsType = {
+  fill?: string,
+}
+
+class Spinner extends React.Component<PropsType> {
+  defaultProps = {
+    fill: STYLE.COLOR.WHITE,
+  }
+
   render() {
+    const { fill } = this.props
     return (
       <div
         css={css`
@@ -41,7 +54,7 @@ class Spinner extends React.Component {
               display: 0.3;
               height: 13px;
               width: 13px;
-              background-color: #fff;
+              background-color: ${fill};
               border-radius: 50%;
               margin: 0px 2px;
               -webkit-animation: ${bounce} 1.5s infinite ease-in-out both;
@@ -55,7 +68,7 @@ class Spinner extends React.Component {
               display: 0.3;
               height: 13px;
               width: 13px;
-              background-color: #fff;
+              background-color: ${fill};
               border-radius: 50%;
               margin: 0px 2px;
               -webkit-animation: ${bounce} 1.5s infinite ease-in-out both;
@@ -67,7 +80,7 @@ class Spinner extends React.Component {
               display: 0.3;
               height: 13px;
               width: 13px;
-              background-color: #fff;
+              background-color: ${fill};
               border-radius: 50%;
               margin: 0px 2px;
               -webkit-animation: ${bounce} 1.5s infinite ease-in-out both;

@@ -24,6 +24,9 @@ export default {
     borderRadius: 12,
     boxSizing: 'border-box',
   },
+  photo__noPhoto: {
+    backgroundColor: STYLE.COLOR.LIGHT_BLUE,
+  },
   photo_badge: {
     position: 'absolute',
     top: -17,

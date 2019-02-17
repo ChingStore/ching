@@ -6,8 +6,10 @@ import type { ItemType, OrderItemType, IdType } from 'constants/firebase'
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
+import * as ReactRouter from 'react-router-dom'
 
 import Flex from 'components/common/flex'
+import Icon from 'components/common/icon'
 import ROUTE from 'constants/route'
 
 import style from './item-card.style'
@@ -21,6 +23,8 @@ type PropsType = {
 
   onBadgeClick: () => void,
   onPhotoClick: () => void,
+
+  ...ReactRouter.ContextRouter,
 }
 
 class ItemCard extends React.PureComponent<PropsType> {
@@ -39,20 +43,27 @@ class ItemCard extends React.PureComponent<PropsType> {
     const { isEditing, item } = this.props
     return (
       <Flex
+        relative
+        center
         css={[
           style.photo,
-          {
-            background: `url("${item.photo}")`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-          },
+          item.photo
+            ? {
+                background: `url("${item.photo}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }
+            : style.photo__noPhoto,
           this.isItemSelected() && style.photo__selected,
         ]}
         onClick={this.handlePhotoClick}
       >
-        {isEditing && this.renderPhotoEditButton()}
-        {this.isItemSelected() && this.renderBadge()}
+        {!item.photo && <Icon.NoPhoto />}
+        <Flex absoluteFill css={style.photo}>
+          {isEditing && this.renderPhotoEditButton()}
+          {this.isItemSelected() && this.renderBadge()}
+        </Flex>
       </Flex>
     )
   }
@@ -87,10 +98,9 @@ class ItemCard extends React.PureComponent<PropsType> {
   handlePhotoClick = () => {
     const { onPhotoClick, isEditing, itemId } = this.props
 
-    // Ignore photo clicks when editing
     if (isEditing) {
-      // TODO: navigate to editing scene
-      console.log('should navigate to ', `${ROUTE.PATH.EDIT_ITEM}/${itemId}`)
+      const path = ReactRouter.generatePath(ROUTE.PATH.EDIT_ITEM, { itemId })
+      this.props.history.push(path)
       return
     }
 
@@ -117,4 +127,4 @@ class ItemCard extends React.PureComponent<PropsType> {
   isItemSelected = () => !!this.props.shoppingCartOrderItem
 }
 
-export default ItemCard
+export default ReactRouter.withRouter(ItemCard)

@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 
 import ROUTE from 'constants/route'
+import Flex from 'components/common/flex'
 import FooterButton from 'components/common/footer-button'
 import LinkButton from 'components/common/link-button'
 import Icon from 'components/common/icon'
@@ -12,39 +13,39 @@ import style from './index.style.js'
 export default class HomeScene extends React.Component {
   render() {
     return (
-      <div css={style.base}>
+      <Flex grow column css={style.base}>
         {this.renderTitle()}
         {this.renderArt()}
         {this.renderBecomeVendor()}
         {this.renderLogIn()}
-      </div>
+      </Flex>
     )
   }
 
   renderTitle = () => (
-    <div css={style.title}>
+    <Flex column justifyEnd alignStart css={style.title}>
       <p css={style.title__text}>Start accepting payments in DAI.</p>
-    </div>
+    </Flex>
   )
 
   renderArt = () => (
-    <div css={style.art}>
+    <Flex column justifyEnd alignCenter css={style.art}>
       <Icon.HomeArt />
-    </div>
+    </Flex>
   )
 
   renderBecomeVendor = () => (
-    <div css={style.becomeVendor}>
+    <Flex column justifyEnd css={style.becomeVendor}>
       <FooterButton to={ROUTE.PATH.SIGN_UP}>Become a vendor</FooterButton>
-    </div>
+    </Flex>
   )
 
   renderLogIn = () => (
-    <div css={style.logIn}>
+    <Flex center css={style.logIn}>
       <LinkButton to={ROUTE.PATH.SIGN_IN}>
         <Icon.Login />
         <span css={style.logIn__text}>Log In</span>
       </LinkButton>
-    </div>
+    </Flex>
   )
 }

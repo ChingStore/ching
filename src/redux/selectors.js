@@ -4,6 +4,7 @@ import type { StateType } from 'constants/redux'
 import type {
   IdType,
   ItemsType,
+  ItemsOrderedType,
   ItemType,
   OrderItemType,
   OrderItemsType,
@@ -64,7 +65,7 @@ const orders = {
 const items = {
   all: (state: StateType): ItemsType => _.get(state, 'firestore.data.items'),
 
-  allOrdered: (state: StateType): ItemsType =>
+  allOrdered: (state: StateType): ItemsOrderedType =>
     _.get(state, 'firestore.ordered.items'),
 
   item: (state: StateType, { itemId }: { itemId: IdType }): ItemType =>

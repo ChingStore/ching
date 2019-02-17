@@ -52,7 +52,7 @@ export default class ShoppingCart extends React.PureComponent<
         alignCenter
         column
         css={[style.baseWrapper, isExpanded && style.baseWrapper__expanded]}
-        onClick={isExpanded && this.handleHeaderClick}
+        onClick={isExpanded ? this.handleHeaderClick : undefined}
       >
         <Flex
           column

@@ -3,7 +3,6 @@ import STYLE from 'constants/style'
 export default {
   base: {
     display: 'flex',
-    flexGrow: 1,
 
     backgroundColor: STYLE.COLOR.CYAN,
     borderRadius: 7,

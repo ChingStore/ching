@@ -58,7 +58,7 @@ const update = ({
 }: {
   storeId: IdType,
   data: $Shape<StoreType>,
-}): ThunkActionType<> => {
+}): ThunkActionType<Promise<void>> => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
     await firestore

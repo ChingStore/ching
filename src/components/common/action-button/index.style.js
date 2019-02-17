@@ -4,17 +4,16 @@ import STYLE from 'constants/style'
 
 export default {
   base: {
-    borderRadius: 12,
-
+    display: 'flex',
     height: 68,
     width: '100%',
 
-    fontWeight: STYLE.FONT.WEIGHT.BOLD,
-    fontSize: 18,
-
-    color: STYLE.COLOR.WHITE,
-    display: 'flex',
     alignItems: 'center',
+
+    borderRadius: 12,
+    fontSize: 18,
+    fontWeight: STYLE.FONT.WEIGHT.BOLD,
+    color: STYLE.COLOR.WHITE,
   },
   button_text: {
     marginLeft: 15,
