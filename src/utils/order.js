@@ -20,16 +20,26 @@ function isWaitingForTransaction(order: OrderType): boolean {
 }
 
 function isConfirming(order: OrderType): boolean {
-  return !!order.txHash && !order.txConfirmed
+  return !!order.txHash && !isConfirmed(order)
 }
 
 function isConfirmed(order: OrderType): boolean {
-  return order.txConfirmed
+  return order.txConfirmed === '0x1'
+}
+
+function isFailed(order: OrderType): boolean {
+  return order.txConfirmed === '0x0'
+}
+
+function txStatus(order: OrderType): string {
+  if (isWaitingForTransaction(order)) return 'waiting'
+  if (isConfirming(order)) return 'confirming'
+  if (isConfirmed(order)) return 'confirmed'
+  if (isFailed(order)) return 'failed'
+  return 'undefined'
 }
 
 export default {
   getTotalPrice,
-  isWaitingForTransaction,
-  isConfirming,
-  isConfirmed,
+  txStatus,
 }
