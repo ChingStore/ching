@@ -12,7 +12,7 @@ export default class GetWalletScene extends React.Component {
   render() {
     return (
       <div css={style.base}>
-        <BackButton css={style.back_button} />
+        <BackButton css={style.backButton} />
         {this.renderTitle()}
         {this.renderRecommendedWallets()}
         {this.renderWalletList()}

@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
+
 import ROUTE from 'constants/route'
 import InputField from 'components/common/input-field'
 import NextButton from 'components/common/next-button'
+import BackButton from 'components/common/back-button'
 
 import style from './index.style.js'
 
@@ -15,6 +17,7 @@ export default class SignUp extends React.Component {
     return (
       <div css={style.base}>
         <p>{authError}</p>
+        <BackButton css={style.backButton} />
         {this.renderTitle()}
         {this.renderForm()}
       </div>
