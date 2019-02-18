@@ -11,6 +11,7 @@ import orderUtil from 'utils/order'
 import FooterButton from 'components/common/footer-button'
 import SpinnerCircle from 'components/common/spinner-circle'
 import Checkmark from 'components/common/checkmark'
+import Cross from 'components/common/cross'
 
 import style from './confirmation.style'
 
@@ -22,25 +23,28 @@ type PropsType = {
 class ShoppingCartQRCode extends React.PureComponent<PropsType> {
   render() {
     const { order } = this.props
-    if (orderUtil.isWaitingForTransaction(order)) {
+    if (orderUtil.txStatus(order) === 'waiting tx hash') {
       return null
     }
 
     return (
-      <Flex column grow css={style.base}>
-        {this.renderConfirming()}
-        {this.renderConfirmed()}
+      <Flex column grow css={this.getStyle(order)}>
+        {orderUtil.txStatus(order) === 'confirming' && this.renderConfirming()}
+        {orderUtil.txStatus(order) === 'confirmed' && this.renderConfirmed()}
+        {orderUtil.txStatus(order) === 'failed' && this.renderFailed()}
         {this.renderSellMoreItemsButton()}
       </Flex>
     )
   }
 
-  renderConfirming = () => {
-    const { order } = this.props
-    if (!orderUtil.isConfirming(order)) {
-      return null
+  getStyle = (order: OrderType) => {
+    if (orderUtil.txStatus(order) === 'confirmed') {
+      return style.base_success
     }
+    return style.base_default
+  }
 
+  renderConfirming = () => {
     return (
       <Flex column grow justifyEnd>
         <Flex>
@@ -52,17 +56,25 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
   }
 
   renderConfirmed = () => {
-    const { order } = this.props
-    if (!orderUtil.isConfirmed(order)) {
-      return null
-    }
-
     return (
       <Flex column grow justifyEnd>
         <Flex>
           <Checkmark />
         </Flex>
-        <Flex spaceAround>Confirmed!</Flex>
+        <Flex spaceAround css={style.status_text}>
+          Confirmed!
+        </Flex>
+      </Flex>
+    )
+  }
+
+  renderFailed = () => {
+    return (
+      <Flex column grow justifyEnd>
+        <Flex>
+          <Cross />
+        </Flex>
+        <Flex spaceAround>Failed!</Flex>
       </Flex>
     )
   }
@@ -71,7 +83,7 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
     const { onSellMoreItemsClick } = this.props
 
     return (
-      <Flex>
+      <Flex column justifyEnd>
         <FooterButton
           onClick={onSellMoreItemsClick}
           css={style.sellMoreItemsButton}
@@ -80,22 +92,6 @@ class ShoppingCartQRCode extends React.PureComponent<PropsType> {
         </FooterButton>
       </Flex>
     )
-  }
-
-  //////////////
-  // CHECKERS //
-  //////////////
-
-  isWaitingForTransaction = () => !this.isConfirming() && !this.isConfirmed()
-
-  isConfirming = () => {
-    const { order } = this.props
-    return order.txHash && !order.txConfirmed
-  }
-
-  isConfirmed = () => {
-    const { order } = this.props
-    return order.txConfirmed
   }
 }
 

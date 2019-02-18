@@ -1,3 +1,5 @@
+// @flow
+
 import STYLE from 'constants/style'
 
 export default {
@@ -7,25 +9,20 @@ export default {
   },
 
   title: {
-    flex: 0.3,
+    flex: 0.2,
   },
-  title__text: {
-    marginBottom: 0,
+  title_text: {
     fontWeight: 'bold',
     fontSize: 32,
     color: STYLE.COLOR.BLUE,
   },
-  welcome__msg: {
-    marginTop: 0,
+
+  title_details: {
+    marginTop: 10,
     color: STYLE.COLOR.BLUE,
-    fontSize: 22,
-  },
-
-  art: {
-    flex: 0.4,
-  },
-
-  addFirstItem: {
-    flex: 0.25,
+    fontSize: 15,
+    width: '110%',
+    lineHeight: 1.5,
+    fontWeight: '500',
   },
 }

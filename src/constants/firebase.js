@@ -92,6 +92,7 @@ export type OrdersType = $ReadOnly<{
 export type StoreType = $ReadOnly<{
   storeName: string,
   walletAddress: string,
+  isOnboardingDone: boolean,
 }>
 
 /////////////////////

@@ -12,7 +12,6 @@ import Profile from './profile'
 import Sales from './sales'
 import Status from './status'
 import Store from './store'
-import StoreWelcomeArt from './store-welcome-art'
 import Trust from './trust'
 import UploadCloud from './upload-cloud'
 import ProfileEdit from './profile-edit'
@@ -31,7 +30,6 @@ export default {
   Sales,
   Status,
   Store,
-  StoreWelcomeArt,
   Trust,
   UploadCloud,
 }

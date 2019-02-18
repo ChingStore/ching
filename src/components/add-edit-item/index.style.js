@@ -42,11 +42,12 @@ export default {
     flex: 0.271,
   },
   photo_image: {
-    width: '100%',
-    height: '95%',
-
+    flex: 1,
+    // DO NOT CHANGE THAT: this is temporary fix for safari on IOS with small screen
+    maxHeight: '200px',
     objectFit: 'cover',
     objectPosition: 'center',
+    overflow: 'hidden',
   },
   photo_image__missing: {
     border: `1px dashed ${STYLE.COLOR.GREY}`,

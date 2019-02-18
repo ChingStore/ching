@@ -55,14 +55,15 @@ class ItemCard extends React.PureComponent<PropsType> {
                 backgroundSize: 'cover',
               }
             : style.photo__noPhoto,
-          this.isItemSelected() && style.photo__selected,
+          this.isItemSelected() && !isEditing && style.photo__selected,
         ]}
         onClick={this.handlePhotoClick}
       >
         {!item.photo && <Icon.NoPhoto />}
         <Flex absoluteFill css={style.photo}>
-          {isEditing && this.renderPhotoEditButton()}
-          {this.isItemSelected() && this.renderBadge()}
+          {isEditing
+            ? this.renderPhotoEditButton()
+            : this.isItemSelected() && this.renderBadge()}
         </Flex>
       </Flex>
     )
