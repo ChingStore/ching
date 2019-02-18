@@ -43,6 +43,7 @@ export default {
   },
   photo_image: {
     flex: 1,
+    // DO NOT CHANGE THAT: this is temporary fix for safari on IOS with small screen
     maxHeight: '200px',
     objectFit: 'cover',
     objectPosition: 'center',
