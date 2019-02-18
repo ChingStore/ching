@@ -122,7 +122,6 @@ class AddEditItem extends React.Component<PropsType, StateType> {
           labelText="Name"
           onChange={this.handleChangeName}
           placeholder="Type item name..."
-          underline
         />
       </Flex>,
       <Flex

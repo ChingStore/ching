@@ -39,7 +39,7 @@ export default class InputFieldNumerical extends React.Component {
   }
 
   render() {
-    const { labelText } = this.props
+    const { labelText, underline } = this.props
     return (
       <Flex column css={style.base}>
         <label css={style.label}>{labelText}</label>
@@ -56,7 +56,7 @@ export default class InputFieldNumerical extends React.Component {
             +
           </button>
         </Flex>
-        <hr css={style.line} />
+        {underline && <hr css={style.line} />}
       </Flex>
     )
   }
