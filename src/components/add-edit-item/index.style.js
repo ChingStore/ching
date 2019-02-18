@@ -43,7 +43,7 @@ export default {
   },
   photo_image: {
     flex: 1,
-    maxHeight: '100px',
+    maxHeight: '200px',
     objectFit: 'cover',
     objectPosition: 'center',
     overflow: 'hidden',
