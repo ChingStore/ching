@@ -1,5 +1,10 @@
 # Ching!
-Easy, web-based, crypto-first point-of-sale that supports DAI and xDAI and does inventory management.
+An integrated store management system that supports crypto
+- Focused on stable-coins
+- Simple transactions with amounts and order details encoded in QR-code
+- Web 2.0
+- No private keys stored
+- Open source
 
 [![Build Status](https://travis-ci.org/ChingStore/ching.svg?branch=master)](https://travis-ci.org/ChingStore/ching)
 
