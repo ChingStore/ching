@@ -1,5 +1,6 @@
 # Ching!
 [![Build Status](https://travis-ci.org/ChingStore/ching.svg?branch=master)](https://travis-ci.org/ChingStore/ching)
+
 An integrated store management system that supports crypto
 - Focused on stable-coins
 - Simple transactions with amounts and order details encoded in QR-code
