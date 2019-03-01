@@ -43,6 +43,7 @@
     "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
     "import/extensions": 0,
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",

@@ -19,7 +19,7 @@ type PropsType = {
   alignStart?: boolean,
   auto?: boolean,
   center?: boolean,
-  children: React.Node,
+  children?: React.Node,
   column?: boolean,
   grow?: boolean,
   justifyCenter?: boolean,

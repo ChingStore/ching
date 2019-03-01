@@ -6,17 +6,19 @@ import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import React from 'react'
+import * as ReactRouter from 'react-router-dom'
 
 import orderUtil from 'utils/order'
 import Flex from 'components/common/flex'
+import ORDER from 'constants/order'
+import PaymentQR from 'components/payment-qr/container'
 
 import ItemRow from './container/item-row'
-import QRCode from './qr-code'
-import Confirmation from './confirmation'
 
 import style from './index.style'
 
 export type PropsType = {
+  location: ReactRouter.Location,
   orderId?: IdType,
   order?: OrderType,
   walletAddress?: string,
@@ -86,7 +88,7 @@ export default class ShoppingCart extends React.PureComponent<
   }
 
   renderItemList = () => {
-    const { order } = this.props
+    const { order, orderId } = this.props
     const itemIds = this.getItemIds()
 
     if (!this.state.isExpanded || !order) {
@@ -99,8 +101,10 @@ export default class ShoppingCart extends React.PureComponent<
         {itemIds.map(itemId => (
           <ItemRow
             {...{
+              orderId,
               itemId,
-              isEditable: orderUtil.txStatus(order) === 'waiting tx hash',
+              isEditable:
+                orderUtil.txStatus(order) === ORDER.STATUS.WAITING_FOR_SCAN,
             }}
             key={itemId}
           />
@@ -110,7 +114,7 @@ export default class ShoppingCart extends React.PureComponent<
   }
 
   renderPayment = () => {
-    const { order } = this.props
+    const { location, order } = this.props
 
     if (!this.state.isExpanded || !order) {
       return null
@@ -121,14 +125,7 @@ export default class ShoppingCart extends React.PureComponent<
         <Flex css={style.qrCode__sqaureWrapper}>
           <Flex css={style.qrCode__innerFillWrapper}>
             <Flex css={style.qrCode}>
-              {orderUtil.txStatus(order) === 'waiting tx hash' ? (
-                <QRCode {...this.props} />
-              ) : (
-                <Confirmation
-                  {...{ order }}
-                  onSellMoreItemsClick={this.handleSellMoreItemsClick}
-                />
-              )}
+              <PaymentQR {...{ location }} />
             </Flex>
           </Flex>
         </Flex>

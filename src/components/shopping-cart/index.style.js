@@ -35,7 +35,7 @@ const style = {
     paddingRight: 30,
   },
   headerTitleText: {
-    fontSize: 18,
+    fontSize: 16,
     color: STYLE.COLOR.BLUE,
   },
   headerTotalPrice: {
