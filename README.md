@@ -11,4 +11,4 @@ An integrated store management system that supports crypto
 Read more:
 - [Problems we’re solving](https://medium.com/ching/every-day-crypto-with-xdai-a832b051a65)
 
-## [Give it a try!](http://app.ching.store)
+**[Give it a try!](http://app.ching.store)**
