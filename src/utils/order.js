@@ -1,6 +1,9 @@
 // @flow
 
 import type { OrderType, OrderItemType } from 'constants/firebase'
+import type { OrderStatusType } from 'constants/order'
+
+import ORDER from 'constants/order'
 
 function getTotalPrice(order?: OrderType): number {
   if (!order || !order.items) {
@@ -31,11 +34,11 @@ function isFailed(order: OrderType): boolean {
   return order.txConfirmed === '0x0'
 }
 
-function txStatus(order: OrderType): string {
-  if (isWaitingForTransaction(order)) return 'waiting tx hash'
-  if (isConfirming(order)) return 'confirming'
-  if (isConfirmed(order)) return 'confirmed'
-  if (isFailed(order)) return 'failed'
+function txStatus(order: OrderType): OrderStatusType {
+  if (isWaitingForTransaction(order)) return ORDER.STATUS.WAITING_FOR_SCAN
+  if (isConfirming(order)) return ORDER.STATUS.CONFIRMING
+  if (isConfirmed(order)) return ORDER.STATUS.CONFIRMED
+  if (isFailed(order)) return ORDER.STATUS.FAILED
   return 'undefined'
 }
 

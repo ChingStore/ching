@@ -1,3 +1,7 @@
+// @flow
+
+import type { IdType, OrderItemType } from 'constants/firebase'
+
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import _ from 'lodash'
@@ -8,7 +12,14 @@ import Flex from 'components/common/flex'
 import SHOPPING_CART from 'constants/shopping-cart'
 import style from './item-row.style'
 
-export default class ShoppingCartItemRow extends React.PureComponent {
+export type PropsType = {
+  isEditable: boolean,
+  itemId: IdType,
+  remove: ({ itemId: IdType }) => void,
+  updateQuantity: ({ itemId: IdType, quantity: number }) => void,
+}
+
+export default class ShoppingCartItemRow extends React.PureComponent<PropsType> {
   render() {
     return (
       <Flex css={style.base}>
@@ -33,21 +44,28 @@ export default class ShoppingCartItemRow extends React.PureComponent {
     </Flex>
   )
 
-  renderImage = () => (
-    <Flex>
-      <img
-        src={this.getPhoto()}
-        width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
-        height={SHOPPING_CART.ROW_HEIGHT}
-        alt={this.getName()}
-      />
-    </Flex>
-  )
+  renderImage = () => {
+    const photo = this.getPhoto()
+    return (
+      <Flex center css={style.photo}>
+        {photo ? (
+          <img
+            src={photo}
+            width={SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO}
+            height={SHOPPING_CART.ROW_HEIGHT}
+            alt={this.getName()}
+          />
+        ) : (
+          <Icon.NoPhoto size={16} />
+        )}
+      </Flex>
+    )
+  }
 
   renderDescription = () => (
     <Flex column auto css={style.description}>
-      <Flex css={style.descriptionText}>{this.getName()}</Flex>
-      <Flex css={style.descriptionText}>${this.getPrice()}</Flex>
+      <Flex css={style.description_text}>{this.getName()}</Flex>
+      <Flex css={style.description_text}>${this.getPrice()}</Flex>
     </Flex>
   )
 
@@ -68,21 +86,22 @@ export default class ShoppingCartItemRow extends React.PureComponent {
   // GETTERS //
   // ///////////
 
-  getName = () => _.get(this.props, 'item.name', '...')
+  getName = (): string => _.get(this.props, 'item.name', '...')
 
-  getOrderItem = () => _.get(this.props, `order.items[${this.props.itemId}`)
+  getOrderItem = (): ?OrderItemType =>
+    _.get(this.props, `order.items[${this.props.itemId}`)
 
-  getPrice = () => _.get(this.getOrderItem(), 'price', 0).toFixed(2)
+  getPrice = (): number => _.get(this.getOrderItem(), 'price', 0).toFixed(2)
 
-  getQuantity = () => _.get(this.getOrderItem(this.props), 'quantity', 0)
+  getQuantity = (): number => _.get(this.getOrderItem(), 'quantity', 0)
 
-  getPhoto = () => _.get(this.props, 'item.photo')
+  getPhoto = (): ?string => _.get(this.props, 'item.photo')
 
   // //////////////////
   // EVENT HANDLERS //
   // //////////////////
 
-  handleQuantityInputBlur = e => {
+  handleQuantityInputBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.props.updateQuantity({
       ...this.props,
       quantity: parseInt(e.target.value, 10),

@@ -20,6 +20,14 @@ const style = {
     height: '100%',
   },
 
+  photo: {
+    width: SHOPPING_CART.ROW_HEIGHT * SHOPPING_CART.IMAGE_ASPECT_RATIO,
+    height: SHOPPING_CART.ROW_HEIGHT,
+    borderRadius: 4,
+    overflow: 'hidden',
+    backgroundColor: STYLE.COLOR.LIGHT_BLUE,
+  },
+
   description: {
     justifyContent: 'space-between',
     marginLeft: 20,

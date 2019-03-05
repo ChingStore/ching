@@ -19,6 +19,7 @@ const COLOR = {
   STATUS: '#5B6DEE',
   TRUST: '#3375BB',
 }
+export type ColorType = $Values<typeof COLOR>
 
 const FONT_WEIGHT = {
   HAIRLINE: 100,

@@ -1,20 +1,17 @@
 // @flow
 
-import type { BasicIconPropTypes } from 'constants/icon'
-
 import React from 'react'
 
-const NoPhotoIcon = ({ fill }: BasicIconPropTypes) => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill={fill}
-    xmlns="http://www.w3.org/2000/svg"
-  >
+import STYLE from 'constants/style'
+
+import type { BasicIconPropTypes } from './svg'
+import Svg from './svg'
+
+const NoPhotoIcon = (props: BasicIconPropTypes) => (
+  <Svg defaultSize={32} fill={STYLE.COLOR.GREY} {...props}>
     <path d="M20.1994 20.1998L14.3994 25.9998H29.9994C31.1994 25.9998 31.9994 25.1998 31.9994 23.9998V9.9998C31.9994 9.5998 31.7994 9.1998 31.5994 8.7998L20.1994 20.1998Z" />
     <path d="M31.3996 0.6C30.5996 -0.2 29.3996 -0.2 28.5996 0.6L23.5996 5.6L21.7996 2.8C21.1996 2.4 20.5996 2 19.9996 2H11.9996C11.3996 2 10.7996 2.4 10.3996 2.8L6.9996 8H1.9996C0.7996 8 -0.000399981 8.8 -0.000399981 10V24C-0.000399981 25.2 0.7996 26 1.9996 26H3.1996L0.5996 28.6C-1.4004 30.6 1.5996 33.2 3.3996 31.4L31.3996 3.4C32.1996 2.6 32.1996 1.4 31.3996 0.6ZM9.9996 16C9.9996 12.6 12.5996 10 15.9996 10C16.9996 10 17.7996 10.2 18.5996 10.6L10.5996 18.6C10.1996 17.8 9.9996 17 9.9996 16Z" />
-  </svg>
+  </Svg>
 )
 
 export default NoPhotoIcon

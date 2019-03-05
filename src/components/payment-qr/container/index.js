@@ -8,7 +8,7 @@ import * as Reselect from 'reselect'
 import selectors from 'redux/selectors'
 import shoppingCartAction from 'redux/actions/shopping-cart'
 
-import * as ShoppingCart from '../index'
+import * as PaymentQR from '../index'
 
 const mapStateToProps = Reselect.createStructuredSelector({
   order: selectors.orders.shoppingCart,
@@ -17,12 +17,15 @@ const mapStateToProps = Reselect.createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
-  onResetShoppingCart: () => {
+  onSellMoreItems: () => {
     dispatch(shoppingCartAction.reset())
+  },
+  onRetry: () => {
+    dispatch(shoppingCartAction.resetTransaction())
   },
 })
 
-export default ReactRedux.connect<ShoppingCart.PropsType, {}, _, _, _, _>(
+export default ReactRedux.connect<PaymentQR.PropsType, {}, _, _, _, _>(
   mapStateToProps,
   mapDispatchToProps
-)(ShoppingCart.default)
+)(PaymentQR.default)
