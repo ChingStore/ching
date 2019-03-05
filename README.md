@@ -1,7 +1,9 @@
 # Ching!
 [![Build Status](https://travis-ci.org/ChingStore/ching.svg?branch=master)](https://travis-ci.org/ChingStore/ching)
 
-An integrated store management system that supports crypto
+A POS that supports stablecoins and encodes price in QR code!
+
+Features:
 - Focused on stable-coins
 - Simple transactions with amounts and order details encoded in QR-code
 - Web 2.0
