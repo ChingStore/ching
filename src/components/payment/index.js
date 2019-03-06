@@ -96,6 +96,8 @@ export default class Add extends React.PureComponent {
   sendTransaction = async () => {
     const { address, amount, orderId } = this.props.match.params
 
+    await Web3Injected.initialize()
+
     const txHash = await Web3Injected.sendDai({
       address,
       amount,
