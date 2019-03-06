@@ -31,8 +31,11 @@ class Web3Injected {
    */
   _initialized = null
 
-  constructor() {
-    this._initialized = this._initialize()
+  async initialize() {
+    if (!this._initialized) {
+      this._initialized = this._initialize()
+    }
+    await this._initialized
   }
 
   async _initialize() {
