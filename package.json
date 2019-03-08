@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "preinstall": "./scripts/pre-install.sh",
     "postinstall": "./scripts/post-install.sh",
     "start": "react-scripts start",
@@ -68,6 +69,7 @@
     "jest": "23.6.0",
     "lint-staged": "^8.1.0",
     "prettier": "1.15.3",
+    "source-map-explorer": "^1.7.0",
     "surge": "^0.20.1"
   },
   "browserslist": [
