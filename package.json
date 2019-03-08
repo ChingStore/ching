@@ -12,7 +12,11 @@
     "deploy": "gh-pages -d build",
     "flow": "flow",
     "lint": "eslint \"src/**/*.js?(x)\"",
-    "flint": "yarn flow && yarn lint"
+    "flint": "yarn flow && yarn lint",
+    "stage": "git push -f . head:staging && git push -f origin staging"
+  },
+  "engines": {
+    "node": "10.15.1"
   },
   "dependencies": {
     "@emotion/core": "^10.0.6",
