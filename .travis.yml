@@ -10,7 +10,7 @@ cache:
   yarn: true
 language: node_js
 node_js:
-  - 8.10.0
+  - 10.15.1
 jobs:
   include:
     - stage: Test
