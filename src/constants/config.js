@@ -1,12 +1,29 @@
+// @flow
+
+const {
+  NODE_ENV,
+  REACT_APP_ENV,
+  NODE_PUBLIC_URL,
+  REACT_APP_PUBLIC_URL,
+} = process.env
+
+const IS_PRODUCTION = REACT_APP_ENV === 'production'
+const PUBLIC_URL =
+  NODE_PUBLIC_URL || REACT_APP_PUBLIC_URL || 'https://app.ching.store'
+
 console.log({
-  PUBLIC_URL: process.env.PUBLIC_URL,
-  NODE_PUBLIC_URL: process.env.NODE_PUBLIC_URL,
-  REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+  NODE_ENV,
+  REACT_APP_ENV,
+  NODE_PUBLIC_URL,
+  REACT_APP_PUBLIC_URL,
+
+  IS_PRODUCTION,
+  PUBLIC_URL,
 })
 
+console.log('process.env', JSON.stringify(process.env))
+
 export default {
-  PUBLIC_URL:
-    process.env.NODE_PUBLIC_URL ||
-    process.env.REACT_APP_API_URL ||
-    'https://app.ching.store',
+  IS_PRODUCTION,
+  PUBLIC_URL,
 }

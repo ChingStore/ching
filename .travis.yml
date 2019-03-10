@@ -10,7 +10,7 @@ cache:
   yarn: true
 language: node_js
 node_js:
-  - 8.10.0
+  - 10.15.1
 jobs:
   include:
     - stage: Test
@@ -20,9 +20,3 @@ jobs:
       script: yarn flow
     - name: 'unit tests'
       script: yarn test
-    - stage: Deploy
-      name: surge
-      script:
-        - yarn build
-        - chmod ugo+x ./scripts/travis-deploy.sh
-        - ./scripts/travis-deploy.sh
