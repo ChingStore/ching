@@ -17,6 +17,7 @@ import GetWallet from 'components/onboarding/get-wallet'
 import Profile from 'components/profile/container'
 import SignUp from 'components/onboarding/sign-up/container'
 import SignIn from 'components/onboarding/sign-in/container'
+import SignInOAuth from 'components/onboarding/sign-in-oauth/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
 import Orders from 'components/orders'
 import ROUTE from 'constants/route'
@@ -45,6 +46,7 @@ class Routes extends React.Component<PropsType> {
           <Route path={ROUTE.PATH.HOME} component={Home} />
           <Route path={ROUTE.PATH.GET_WALLET} component={GetWallet} />
           <Route path={ROUTE.PATH.SIGN_IN} component={SignIn} />
+          <Route path={ROUTE.PATH.SIGN_IN_OAUTH} component={SignInOAuth} />
           <Route path={ROUTE.PATH.SIGN_UP} component={SignUp} />
           <Route path={ROUTE.PATH.SIGN_UP_STORE} component={SignUpStore} />
           {/* Payment */}

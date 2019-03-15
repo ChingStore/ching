@@ -6,6 +6,9 @@ import Cross from './cross'
 import CrossBold from './cross-bold'
 import DashedBox from './dashed-box'
 import Edit from './edit'
+import Facebook from './facebook'
+import Github from './github'
+import Google from './google'
 import HomeArt from './home-art'
 import Login from './login'
 import NoPhoto from './no-photo'
@@ -25,6 +28,9 @@ export default {
   CrossBold,
   DashedBox,
   Edit,
+  Facebook,
+  Github,
+  Google,
   HomeArt,
   Login,
   NoPhoto,
