@@ -63,7 +63,8 @@ const updateItem = ({
   }
 
   if (quantity < 1) {
-    await dispatch(removeItem({ orderId, itemId }))
+    await dispatch(removeAllItemsOfAKind({ orderId, itemId }))
+    return
   }
 
   const updatedOrderItems = [...order.items]
@@ -182,7 +183,7 @@ const removeAllItemsOfAKind = ({
   orderId: inputOrderId,
   itemId,
 }: {
-  orderId: IdType,
+  orderId?: IdType,
   itemId: IdType,
 }): ThunkActionType<Promise<void>> => async (
   dispatch,
@@ -202,8 +203,9 @@ const removeAllItemsOfAKind = ({
 
   // If removing last item
   if (order.items.length === 1) {
-    // Delete the order
+    console.log('Deleting the order', { orderId })
     const currentUserId = selector.users.currentId(getState())
+    console.log({ currentUserId })
     await Promise.all([
       getFirestore()
         .collection('users')
@@ -217,7 +219,10 @@ const removeAllItemsOfAKind = ({
         .delete(),
     ])
   } else {
-    // Otherwise, update the order
+    console.log('Removing last item of a kind from the order', {
+      orderId,
+      itemId,
+    })
     await getFirestore()
       .collection('orders')
       .doc(orderId)

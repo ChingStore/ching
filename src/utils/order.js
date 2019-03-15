@@ -3,6 +3,8 @@
 import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
 import type { OrderStatusType } from 'constants/order'
 
+import _ from 'lodash'
+
 import ORDER from 'constants/order'
 
 function getTotalPrice(order?: OrderType): number {
@@ -17,7 +19,21 @@ function getTotalPrice(order?: OrderType): number {
   )
 }
 
-function getItemCount(order?: OrderType): number {
+function getItem({
+  order,
+  itemId,
+}: {
+  order: ?OrderType,
+  itemId: IdType,
+}): ?OrderItemType {
+  if (!order || !order.items) {
+    return null
+  }
+
+  return _.find(order.items, { id: itemId })
+}
+
+function getItemsCount(order?: OrderType): number {
   if (!order || !order.items) {
     return 0
   }
@@ -62,8 +78,9 @@ function txStatus(order: OrderType): OrderStatusType {
 
 export default {
   getTotalPrice,
-  getItemCount,
+  getItem,
   getItemIds,
+  getItemsCount,
 
   txStatus,
 }

@@ -1,6 +1,11 @@
 // @flow
 
-import type { IdType, OrderItemType } from 'constants/firebase'
+import type {
+  IdType,
+  OrderType,
+  ItemType,
+  OrderItemType,
+} from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -10,14 +15,18 @@ import React from 'react'
 import Icon from 'components/common/icon'
 import Flex from 'components/common/flex'
 import SHOPPING_CART from 'constants/shopping-cart'
+import orderUtil from 'utils/order'
+
 import style from './item-row.style'
 
-export type PropsType = {
+export type PropsType = {|
   isEditable: boolean,
   itemId: IdType,
-  remove: ({ itemId: IdType }) => void,
-  updateQuantity: ({ itemId: IdType, quantity: number }) => void,
-}
+  onRemove: () => void,
+  onChangeQuantity: number => void,
+  order: ?OrderType,
+  item: ItemType,
+|}
 
 export default class ShoppingCartItemRow extends React.PureComponent<PropsType> {
   render() {
@@ -76,7 +85,6 @@ export default class ShoppingCartItemRow extends React.PureComponent<PropsType> 
         defaultValue={this.getQuantity()}
         type="number"
         onBlur={this.handleQuantityInputBlur}
-        onChange={this.handleQuantityInputBlur}
         disabled={!this.props.isEditable}
       />
     </Flex>
@@ -88,8 +96,7 @@ export default class ShoppingCartItemRow extends React.PureComponent<PropsType> 
 
   getName = (): string => _.get(this.props, 'item.name', '...')
 
-  getOrderItem = (): ?OrderItemType =>
-    _.get(this.props, `order.items[${this.props.itemId}`)
+  getOrderItem = (): ?OrderItemType => orderUtil.getItem(this.props)
 
   getPrice = (): number => _.get(this.getOrderItem(), 'price', 0).toFixed(2)
 
@@ -102,13 +109,10 @@ export default class ShoppingCartItemRow extends React.PureComponent<PropsType> 
   // //////////////////
 
   handleQuantityInputBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.props.updateQuantity({
-      ...this.props,
-      quantity: parseInt(e.target.value, 10),
-    })
+    this.props.onChangeQuantity(parseInt(e.target.value, 10))
   }
 
   handleRemoveButtonClick = () => {
-    this.props.remove(this.props)
+    this.props.onRemove()
   }
 }

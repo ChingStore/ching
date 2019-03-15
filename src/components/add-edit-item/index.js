@@ -45,7 +45,7 @@ type StateType = {
   name: string,
   photo: ?string,
   price: number,
-  quantity: number,
+  stockCount: number,
 }
 
 class AddEditItem extends React.Component<PropsType, StateType> {
@@ -62,26 +62,19 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
   getItemPrice = (): number => _.get(this.props, 'item.price', 1)
 
-  getItemQuantity = (): number => _.get(this.props, 'item.quantity', 1)
+  getItemStockCount = (): number => _.get(this.props, 'item.stockCount', 1)
 
   ///////////
   // STATE //
   ///////////
 
-  // state = {
-  //   isUploading: false,
-  //   name: '',
-  //   photo: null,
-  //   price: 1,
-  //   quantity: 1,
-  // }
   state = {
     isUploading: false,
     isDeleting: false,
     name: this.getItemName(),
     photo: this.getItemPhoto(),
     price: this.getItemPrice(),
-    quantity: this.getItemQuantity(),
+    stockCount: this.getItemStockCount(),
   }
 
   ////////////////
@@ -138,8 +131,8 @@ class AddEditItem extends React.Component<PropsType, StateType> {
             step="1"
           />
           <InputFieldNumerical
-            defaultValue={this.state.quantity}
-            labelText="Quantity"
+            defaultValue={this.state.stockCount}
+            labelText="Stock"
             onChange={this.handleChangeQuantity}
             step="1"
           />
@@ -238,7 +231,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
       name: this.getItemName(),
       photo: this.getItemPhoto(),
       price: this.getItemPrice(),
-      quantity: this.getItemQuantity(),
+      stockCount: this.getItemStockCount(),
     })
   }
 
@@ -247,27 +240,27 @@ class AddEditItem extends React.Component<PropsType, StateType> {
   ////////////////////
 
   handleAddItemClick = async () => {
-    const { name, photo, price, quantity } = this.state
+    const { name, photo, price, stockCount } = this.state
     const { itemId, updateItem, addItem, history } = this.props
 
     if (!name) {
       alert('Name is missing, please type it in')
       return
     }
-    if (!price) {
+    if (!price && price !== 0) {
       alert('Price is missing, please type it in')
       return
     }
-    if (!quantity) {
-      alert('Quqantity is missing, please type it in')
+    if (!stockCount && stockCount !== 0) {
+      alert('Stock count is missing, please type it in')
       return
     }
 
     this.setState({ isUploading: true })
     if (this.isEditing() && itemId) {
-      await updateItem({ itemId, data: { name, photo, price, quantity } })
+      await updateItem({ itemId, data: { name, photo, price, stockCount } })
     } else {
-      await addItem({ name, photo, price, quantity, soldCount: 0 })
+      await addItem({ name, photo, price, stockCount, soldCount: 0 })
     }
     this.setState({ isUploading: false })
 
@@ -322,15 +315,15 @@ class AddEditItem extends React.Component<PropsType, StateType> {
     }
   }
 
-  handleChangeQuantity = (newQuantity: number) => {
+  handleChangeQuantity = (stockCount: number) => {
     this.setState({
-      quantity: newQuantity,
+      stockCount,
     })
   }
 
-  handleChangePrice = (newPrice: number) => {
+  handleChangePrice = (price: number) => {
     this.setState({
-      price: newPrice,
+      price,
     })
   }
 
