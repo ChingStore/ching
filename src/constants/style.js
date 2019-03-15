@@ -18,6 +18,9 @@ const COLOR = {
   COINBASE: '#0B36F0',
   STATUS: '#5B6DEE',
   TRUST: '#3375BB',
+  GOOGLE: '#D94F3D',
+  GITHUB: '#191717',
+  FAKEBOOK: '#39579A',
 }
 export type ColorType = $Values<typeof COLOR>
 
