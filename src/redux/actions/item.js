@@ -13,7 +13,7 @@ const add = (data: ItemDataType): ThunkActionType<Promise<void>> => async (
 ) => {
   console.log('Adding item:', { data })
 
-  const { name, photo, soldCount, quantity, price } = data
+  const { name, photo, soldCount, stockCount, price } = data
   const state = getState()
   const firestore = getFirestore()
 
@@ -25,7 +25,7 @@ const add = (data: ItemDataType): ThunkActionType<Promise<void>> => async (
     name,
     photo: url,
     soldCount,
-    quantity,
+    stockCount,
     price,
     userId: state.firebase.auth.uid,
     createdAt: firestore.FieldValue.serverTimestamp(),
@@ -45,7 +45,7 @@ const update = ({
 ) => {
   console.log('Updating item:', { itemId, data })
 
-  const { name, photo, soldCount, quantity, price, userId } = data
+  const { name, photo, soldCount, stockCount, price, userId } = data
   const state = getState()
   const firestore = getFirestore()
 
@@ -67,7 +67,7 @@ const update = ({
         name,
         photo: updatedUrl || photo,
         soldCount,
-        quantity,
+        stockCount,
         price,
         userId,
       })

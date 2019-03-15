@@ -1,15 +1,16 @@
 // @flow
 
-import type { IdType, OrderType } from 'constants/firebase'
+import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
 import type { ThunkActionType } from 'constants/redux'
 
 import _ from 'lodash'
+
 import NETWORK from 'constants/network'
+import selector from 'redux/selectors'
 import web3DaiInfura from 'singletons/web3/dai-infura'
 import web3XdaiInfura from 'singletons/web3/xdai-infura'
-import selector from 'redux/selectors'
 
-const _getOrderAndOrderId = (
+const _getOrderOrShoppingCart = (
   inputOrderId?: IdType
 ): ThunkActionType<{ order: ?OrderType, orderId: ?IdType }> => (
   dispatch,
@@ -34,97 +35,150 @@ const _getOrderAndOrderId = (
 }
 
 /**
- * Updates or inserts an item in the order.
- * NOTE: When orderId is not specified current users shopping cart order id is used.
- * Otherwise, a new order is created and user is updated with the new shopping cart order id.
- *
- * TODO: Move increment item count logic to `incrementItemCount`
+ * Updates an item in the order.
+ * NOTE: If order is not specified, shopping cart order will be used.
  */
-const upsertItem = ({
+const updateItem = ({
   orderId: inputOrderId,
   itemId,
   quantity,
 }: {
   orderId?: IdType,
   itemId: IdType,
-  quantity?: number,
+  quantity: number,
 }): ThunkActionType<Promise<void>> => async (
   dispatch,
   getState,
   { getFirestore }
 ) => {
-  const firestore = getFirestore()
-  const state = getState()
-  const price = selector.items.price(state, { itemId })
-  const currentUserId = selector.users.currentId(state)
+  const { order, orderId } = dispatch(_getOrderOrShoppingCart(inputOrderId))
 
-  const { order, orderId } = dispatch(_getOrderAndOrderId(inputOrderId))
-
-  // If quantity is not specified, just increment the current one
-  const orderItem = { quantity, price }
-  if (!orderItem.quantity) {
-    const currentQuantity = _.get(order, `items[${itemId}].quantity`, 0)
-    orderItem.quantity = currentQuantity + 1
+  if (!order || !orderId) {
+    throw Error('No order specified and to shopping cart order found')
   }
-  const newOrderItems = { [itemId]: orderItem }
 
-  if (!order) {
-    console.log('Creating new order')
-    try {
-      // Use transaction to make sure
-      console.time('transaction')
-      await firestore.runTransaction(async transaction => {
-        // Create new order
-        const newOrderRef = await firestore.collection('orders').doc()
-        await transaction.set(newOrderRef, {
-          txHash: null,
-          networkId: null,
-          items: newOrderItems,
-          userId: currentUserId,
-          createdAt: firestore.FieldValue.serverTimestamp(),
-        })
-        // Update current user
-        const currentUserRef = await firestore
-          .collection('users')
-          .doc(currentUserId)
-        await transaction.update(currentUserRef, {
-          shoppingCartOrderId: newOrderRef.id,
-        })
-      })
-      console.timeEnd('transaction')
-    } catch (err) {
-      console.error('Error creating new order', err)
-    }
-  } else {
-    console.log('Upserting into existing order')
-    try {
-      await firestore
-        .collection('orders')
-        .doc(orderId)
-        .update({
-          ...order,
-          items: {
-            ...order.items,
-            ...newOrderItems,
-          },
-        })
-    } catch (err) {
-      console.error('Error updating an order', err)
-    }
+  const orderItemIndex = _.findIndex(order.items, { id: itemId })
+  if (orderItemIndex === -1) {
+    throw Error('The item is not in the order specified nor in shopping cart')
   }
+
+  if (quantity < 1) {
+    await dispatch(removeItem({ orderId, itemId }))
+  }
+
+  const updatedOrderItems = [...order.items]
+  updatedOrderItems[orderItemIndex] = {
+    ...order.items[orderItemIndex],
+    quantity,
+  }
+
+  await getFirestore()
+    .collection('orders')
+    .doc(orderId)
+    .update({
+      items: updatedOrderItems,
+    })
 }
 
-const incrementItemCount = ({
-  orderId,
+/**
+ * Adds adds an item to an order.
+ * NOTE: If order is not specified, shopping cart order will be used. If there is
+ * no shopping cart order present, a new one will be created.
+ */
+const addItem = ({
+  orderId: inputOrderId,
   itemId,
 }: {
   orderId?: IdType,
   itemId: IdType,
 }): ThunkActionType<Promise<void>> => async dispatch => {
-  await dispatch(upsertItem({ orderId, itemId }))
+  const { orderId } = dispatch(_getOrderOrShoppingCart(inputOrderId))
+
+  if (orderId) {
+    await dispatch(_addItemToExistingOrder({ orderId, itemId }))
+  } else {
+    await dispatch(_createOrderWithItem({ itemId }))
+  }
 }
 
-const removeItem = ({
+const _addItemToExistingOrder = ({
+  orderId,
+  itemId,
+}: {
+  orderId: IdType,
+  itemId: IdType,
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const order = selector.orders.order(getState(), { orderId })
+  const orderItemIndex = _.findIndex(order.items, { id: itemId })
+
+  if (orderItemIndex === -1) {
+    console.log('Adding new item')
+    const price = selector.items.price(getState(), { itemId })
+    const orderItem = { quantity: 1, price, id: itemId }
+    await getFirestore()
+      .collection('orders')
+      .doc(orderId)
+      .update({
+        items: [...order.items, orderItem],
+      })
+  } else {
+    console.log('Incrementing item quantity')
+    await dispatch(
+      updateItem({
+        orderId,
+        itemId,
+        quantity: order.items[orderItemIndex].quantity + 1,
+      })
+    )
+  }
+}
+
+const _createOrderWithItem = ({
+  itemId,
+}: {
+  itemId: IdType,
+}): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const currentUserId = selector.users.currentId(getState())
+  const price = selector.items.price(getState(), { itemId })
+  const orderItem = { quantity: 1, price, id: itemId }
+
+  console.time('transaction')
+  await getFirestore().runTransaction(async transaction => {
+    // Create new order
+    const newOrderRef = await getFirestore()
+      .collection('orders')
+      .doc()
+    await transaction.set(newOrderRef, {
+      txHash: null,
+      networkId: null,
+      items: [orderItem],
+      userId: currentUserId,
+      createdAt: getFirestore().FieldValue.serverTimestamp(),
+    })
+    // Update current user
+    const currentUserRef = await getFirestore()
+      .collection('users')
+      .doc(currentUserId)
+    await transaction.update(currentUserRef, {
+      shoppingCartOrderId: newOrderRef.id,
+    })
+  })
+  console.timeEnd('transaction')
+}
+
+/**
+ * Removes all items of the same kind as a specified item.
+ * NOTE: If order is not specified, shopping cart order will be used.
+ */
+const removeAllItemsOfAKind = ({
   orderId: inputOrderId,
   itemId,
 }: {
@@ -135,91 +189,73 @@ const removeItem = ({
   getState,
   { getFirestore }
 ) => {
-  const firestore = getFirestore()
-  const state = getState()
-
-  const { order, orderId } = dispatch(_getOrderAndOrderId(inputOrderId))
+  const { order, orderId } = dispatch(_getOrderOrShoppingCart(inputOrderId))
 
   if (!order || !orderId) {
-    throw Error('There is order passed and no shopping cart order currently')
+    throw Error('No order found')
   }
 
-  if (!order.items[itemId]) {
-    throw Error('The item doesn’t belong to the order')
+  const orderItem = _.find(order.items, { id: itemId })
+  if (!orderItem) {
+    throw Error('The item is not in the order specified nor in shopping cart')
   }
 
-  const updatedOrderItems = _.omit(order.items, itemId)
-  console.log({ itemId, order, updatedOrderItems })
-
-  if (_.isEmpty(updatedOrderItems)) {
-    const currentUserId = selector.users.currentId(state)
-
+  // If removing last item
+  if (order.items.length === 1) {
+    // Delete the order
+    const currentUserId = selector.users.currentId(getState())
     await Promise.all([
-      firestore
+      getFirestore()
         .collection('users')
         .doc(currentUserId)
         .update({
           shoppingCartOrderId: null,
         }),
-      firestore
+      getFirestore()
         .collection('orders')
         .doc(orderId)
         .delete(),
     ])
   } else {
-    await firestore.update(
-      {
-        collection: 'orders',
-        doc: orderId,
-      },
-      {
+    // Otherwise, update the order
+    await getFirestore()
+      .collection('orders')
+      .doc(orderId)
+      .update({
         ...order,
-        items: updatedOrderItems,
-      }
-    )
+        items: _.without(order.items, orderItem),
+      })
   }
 }
 
-const decrementItemCount = ({
+/**
+ * Removes an item from an order.
+ * NOTE: If order is not specified, shopping cart order will be used.
+ */
+const removeItem = ({
   orderId: inputOrderId,
   itemId,
 }: {
   orderId?: IdType,
   itemId: IdType,
-}): ThunkActionType<Promise<void>> => async (
-  dispatch,
-  getState,
-  { getFirestore }
-) => {
-  const firestore = getFirestore()
-  const { order, orderId } = dispatch(_getOrderAndOrderId(inputOrderId))
+}): ThunkActionType<Promise<void>> => async dispatch => {
+  const { order, orderId } = dispatch(_getOrderOrShoppingCart(inputOrderId))
 
   if (!order || !orderId) {
-    throw Error('There is order passed and no shopping cart order currently')
+    throw Error('No order found')
   }
 
-  if (!order.items[itemId]) {
-    throw Error('The item doesn’t belong to the order')
+  const orderItem = _.find(order.items, { id: itemId })
+  if (!orderItem) {
+    throw Error('The item is not in the order specified nor in shopping cart')
   }
 
-  // Deep copy order items
-  const updatedOrderItems = JSON.parse(JSON.stringify(order.items))
-  updatedOrderItems[itemId].quantity -= 1
-
-  if (updatedOrderItems[itemId].quantity === 0) {
-    await dispatch(removeItem({ orderId, itemId }))
-    return
-  }
-
-  await firestore
-    .collection('orders')
-    .doc(orderId)
-    .update({
-      items: updatedOrderItems,
-    })
+  await dispatch(
+    updateItem({ orderId, itemId, quantity: orderItem.quantity - 1 })
+  )
 }
 
-const txStatusCheckAndUpdateOrder = (
+const _txStatusCheckAndUpdateOrder = (
   order
 ): ThunkActionType<Promise<void>> => async (
   dispatch,
@@ -260,14 +296,14 @@ const txStatusCheckAndUpdateOrder = (
         const confirmedOrderItems = selector.orders.items(state, {
           orderId: order.id,
         })
-        _.map(confirmedOrderItems, async (soldItem, soldItemId) => {
-          const fbItem = selector.items.item(state, { itemId: soldItemId })
+        confirmedOrderItems.map(async (soldItem: OrderItemType) => {
+          const fbItem = selector.items.item(state, { itemId: soldItem.id })
 
           await firestore
             .collection('items')
-            .doc(soldItemId)
+            .doc(soldItem.id)
             .update({
-              quantity: fbItem.quantity - soldItem.quantity,
+              stockCount: fbItem.stockCount - soldItem.quantity,
               soldCount: fbItem.soldCount + soldItem.quantity,
             })
           console.log('Order updated. ID:', order.id)
@@ -287,7 +323,7 @@ const _processAllOrders = (): ThunkActionType<Promise<void>> => async (
   const state = getState()
   const orders = selector.orders.all(state)
   _.map(orders, order => {
-    dispatch(txStatusCheckAndUpdateOrder(order))
+    dispatch(_txStatusCheckAndUpdateOrder(order))
   })
 }
 
@@ -300,8 +336,8 @@ const initialize = (): ThunkActionType<Promise<void>> => async dispatch => {
 export default {
   initialize,
 
-  upsertItem,
+  addItem,
+  removeAllItemsOfAKind,
   removeItem,
-  decrementItemCount,
-  incrementItemCount,
+  updateItem,
 }
