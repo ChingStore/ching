@@ -2,11 +2,17 @@
 import { jsx } from '@emotion/core'
 import React from 'react'
 import FooterButton from 'components/common/footer-button'
+import ROUTE from 'constants/route'
 import BackButton from 'components/common/back-button'
 import Icon from 'components/common/icon'
 import style from './index.style.js'
 
 export default class SignIn extends React.Component {
+  handleSignInWithEmail = async () => {
+    const { history } = this.props
+    history.push(ROUTE.PATH.SIGN_IN)
+  }
+
   renderTitle = () => {
     return (
       <div css={style.title}>
@@ -15,6 +21,8 @@ export default class SignIn extends React.Component {
     )
   }
 
+  signInWithGoogle = async () => {}
+
   renderButtons() {
     return <div css={style.buttons}>{this.renderContinueButton()}</div>
   }
@@ -22,26 +30,29 @@ export default class SignIn extends React.Component {
   renderContinueButton = () => {
     return (
       <div css={style.buttons}>
-        <FooterButton onClick={this.handleSignIn}>
+        <FooterButton onClick={this.handleSignInWithEmail}>
           Continue with e-mail
         </FooterButton>
         <div>or</div>
 
-        <FooterButton onClick={this.handleSignIn} css={style.googleButton}>
+        <FooterButton onClick={this.signInWithGoogle} css={style.googleButton}>
           <div css={style.googleButton_icon}>
             <Icon.Google />
           </div>
           <div css={style.googleButton_text}>Log in with Google</div>
         </FooterButton>
 
-        <FooterButton onClick={this.handleSignIn} css={style.githubButton}>
+        <FooterButton onClick={this.signInWithGoogle} css={style.githubButton}>
           <div css={style.githubButton_icon}>
             <Icon.Github />
           </div>
           <div css={style.githubButton_text}>Log in with Github</div>
         </FooterButton>
 
-        <FooterButton onClick={this.handleSignIn} css={style.facebookButton}>
+        <FooterButton
+          onClick={this.signInWithGoogle}
+          css={style.facebookButton}
+        >
           <div css={style.facebookButton_icon}>
             <Icon.Facebook />
           </div>
