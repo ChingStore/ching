@@ -42,7 +42,7 @@ export default class HomeScene extends React.Component {
 
   renderLogIn = () => (
     <Flex center css={style.logIn}>
-      <LinkButton to={ROUTE.PATH.SIGN_IN}>
+      <LinkButton to={ROUTE.PATH.SIGN_IN_OAUTH}>
         <Icon.Login />
         <span css={style.logIn__text}>Log In</span>
       </LinkButton>
