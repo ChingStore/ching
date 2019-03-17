@@ -3,11 +3,13 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 import ReactReduxFirebase from 'react-redux-firebase'
 import FooterButton from 'components/common/footer-button'
+import FacebookButton from 'components/common/facebook-button'
 import ROUTE from 'constants/route'
 import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
 import Icon from 'components/common/icon'
 import style from './index.style.js'
+
 
 export default class SignInOauth extends React.Component {
   state = {
@@ -96,17 +98,13 @@ export default class SignInOauth extends React.Component {
           <div css={style.githubButton_text}>Log in with Github</div>
         </FooterButton>
 
-        <FooterButton
+        <FacebookButton
           onClick={() => {
             this.handleSignInOauth(PROVIDER.FACEBOOK)
           }}
-          css={style.facebookButton}
         >
-          <div css={style.facebookButton_icon}>
-            <Icon.Facebook />
-          </div>
-          <div css={style.facebookButton_text}>Log in with Facebook</div>
-        </FooterButton>
+          <div>Log in with Facebook</div>
+        </FacebookButton>
       </div>
     )
   }

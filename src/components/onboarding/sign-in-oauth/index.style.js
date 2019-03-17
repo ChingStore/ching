@@ -85,22 +85,4 @@ export default {
     padding: '0em',
     textAlign: 'left',
   },
-
-  facebookButton: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: STYLE.COLOR.FAKEBOOK,
-  },
-
-  facebookButton_icon: {
-    flex: 0.2,
-  },
-
-  facebookButton_text: {
-    flex: 0.7,
-    padding: '0em',
-    textAlign: 'left',
-  },
 }
