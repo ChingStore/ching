@@ -1,12 +1,42 @@
 // @flow
 
 import ACTIONS from 'redux/actionTypes'
+import PROVIDER from 'constants/auth-provider'
 
 import type { ThunkActionType } from 'constants/redux'
 
 import type { FirebaseAuthType } from 'constants/firebase'
 
-const signIn = ({
+const signInWithOauth = (provider): ThunkActionType<Promise<boolean>> => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const firebase = getFirebase()
+  try {
+    let _provider
+    if (provider === PROVIDER.FACEBOOK) {
+      _provider = new firebase.auth.FacebookAuthProvider()
+    }
+
+    if (provider === PROVIDER.GITHUB) {
+      _provider = new firebase.auth.GithubAuthProvider()
+    }
+
+    if (provider === PROVIDER.GOOGLE) {
+      _provider = new firebase.auth.GoogleAuthProvider()
+    }
+
+    await firebase.auth().signInWithRedirect(_provider)
+    dispatch({ type: ACTIONS.LOGIN_SUCCESS })
+    return true
+  } catch (error) {
+    dispatch({ type: ACTIONS.LOGIN_ERROR, error })
+    return false
+  }
+}
+
+const signInWithEmail = ({
   email,
   password,
 }: $Shape<FirebaseAuthType>): ThunkActionType<Promise<boolean>> => async (
@@ -40,7 +70,7 @@ const signOut = (): ThunkActionType<Promise<void>> => async (
   }
 }
 
-const signUp = ({
+const signUpWithEmail = ({
   email,
   password,
 }: $Shape<FirebaseAuthType>): ThunkActionType<Promise<boolean>> => async (
@@ -59,4 +89,9 @@ const signUp = ({
   }
 }
 
-export default { signIn, signOut, signUp }
+export default {
+  signInWithOauth,
+  signInWithEmail,
+  signOut,
+  signUpWithEmail,
+}
