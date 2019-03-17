@@ -14,7 +14,7 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  signUp: credentials => dispatch(authActions.signUp(credentials)),
+  signUp: credentials => dispatch(authActions.signUpWithEmail(credentials)),
 })
 
 export default ReactRedux.connect(
