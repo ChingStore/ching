@@ -4,12 +4,12 @@ import React from 'react'
 import ReactReduxFirebase from 'react-redux-firebase'
 import FooterButton from 'components/common/footer-button'
 import FacebookButton from 'components/common/facebook-button'
+import GoogleButton from 'components/common/google-button'
 import ROUTE from 'constants/route'
 import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
 import Icon from 'components/common/icon'
 import style from './index.style.js'
-
 
 export default class SignInOauth extends React.Component {
   state = {
@@ -74,17 +74,13 @@ export default class SignInOauth extends React.Component {
         </FooterButton>
         <div>or</div>
 
-        <FooterButton
+        <GoogleButton
           onClick={() => {
             this.handleSignInOauth(PROVIDER.GOOGLE)
           }}
-          css={style.googleButton}
         >
-          <div css={style.googleButton_icon}>
-            <Icon.Google />
-          </div>
-          <div css={style.googleButton_text}>Log in with Google</div>
-        </FooterButton>
+          <div>Log in with Google</div>
+        </GoogleButton>
 
         <FooterButton
           onClick={() => {

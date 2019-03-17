@@ -41,33 +41,6 @@ export default {
     paddingBottom: 20,
   },
 
-  googleButton_wrapper: {
-    display: 'flex',
-    borderRadius: 7,
-    alignItems: 'center',
-    // justifyContent: 'flex-end',
-    flexDirection: 'row',
-    backgroundColor: STYLE.COLOR.GOOGLE,
-  },
-
-  googleButton: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: STYLE.COLOR.GOOGLE,
-  },
-
-  googleButton_icon: {
-    flex: 0.2,
-  },
-
-  googleButton_text: {
-    flex: 0.7,
-    padding: '0em',
-    textAlign: 'left',
-  },
-
   githubButton: {
     display: 'flex',
     alignItems: 'center',
