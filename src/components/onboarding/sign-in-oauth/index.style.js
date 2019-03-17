@@ -40,22 +40,4 @@ export default {
     justifyContent: 'space-around',
     paddingBottom: 20,
   },
-
-  githubButton: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: STYLE.COLOR.GITHUB,
-  },
-
-  githubButton_icon: {
-    flex: 0.2,
-  },
-
-  githubButton_text: {
-    flex: 0.7,
-    padding: '0em',
-    textAlign: 'left',
-  },
 }

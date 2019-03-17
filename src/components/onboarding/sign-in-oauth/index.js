@@ -5,6 +5,7 @@ import ReactReduxFirebase from 'react-redux-firebase'
 import FooterButton from 'components/common/footer-button'
 import FacebookButton from 'components/common/facebook-button'
 import GoogleButton from 'components/common/google-button'
+import GithubButton from 'components/common/github-button'
 import ROUTE from 'constants/route'
 import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
@@ -82,17 +83,13 @@ export default class SignInOauth extends React.Component {
           <div>Log in with Google</div>
         </GoogleButton>
 
-        <FooterButton
+        <GithubButton
           onClick={() => {
             this.handleSignInOauth(PROVIDER.GITHUB)
           }}
-          css={style.githubButton}
         >
-          <div css={style.githubButton_icon}>
-            <Icon.Github />
-          </div>
-          <div css={style.githubButton_text}>Log in with Github</div>
-        </FooterButton>
+          <div>Log in with Github</div>
+        </GithubButton>
 
         <FacebookButton
           onClick={() => {
