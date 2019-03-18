@@ -7,7 +7,9 @@ import type { ThunkActionType } from 'constants/redux'
 
 import type { FirebaseAuthType } from 'constants/firebase'
 
-const signInWithOauth = (provider): ThunkActionType<Promise<boolean>> => async (
+const signInWithOauth = (
+  provider: string
+): ThunkActionType<Promise<boolean>> => async (
   dispatch,
   getState,
   { getFirebase }
