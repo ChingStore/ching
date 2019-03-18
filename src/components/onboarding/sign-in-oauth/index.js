@@ -9,7 +9,6 @@ import GithubButton from 'components/common/github-button'
 import ROUTE from 'constants/route'
 import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
-import Icon from 'components/common/icon'
 import style from './index.style.js'
 
 export default class SignInOauth extends React.Component {
