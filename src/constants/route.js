@@ -14,6 +14,7 @@ const PATH = {
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
   SIGN_IN_OAUTH: '/sign-in-oauth',
+  SIGN_UP_OAUTH: '/sign-up-oauth',
   SIGN_UP: '/sign-up',
   SIGN_UP_STORE: '/sign-up-store',
   ADD: '/add',

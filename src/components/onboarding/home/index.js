@@ -36,7 +36,7 @@ export default class HomeScene extends React.Component {
 
   renderBecomeVendor = () => (
     <Flex column justifyEnd css={style.becomeVendor}>
-      <FooterButton to={ROUTE.PATH.SIGN_UP}>Become a vendor</FooterButton>
+      <FooterButton to={ROUTE.PATH.SIGN_UP_OAUTH}>Become a vendor</FooterButton>
     </Flex>
   )
 
