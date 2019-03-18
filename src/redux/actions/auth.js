@@ -7,7 +7,7 @@ import type { ThunkActionType } from 'constants/redux'
 
 import type { FirebaseAuthType } from 'constants/firebase'
 
-const signInWithOauth = (
+const signInWithOAuth = (
   provider: string
 ): ThunkActionType<Promise<boolean>> => async (
   dispatch,
@@ -92,7 +92,7 @@ const signUpWithEmail = ({
 }
 
 export default {
-  signInWithOauth,
+  signInWithOAuth,
   signInWithEmail,
   signOut,
   signUpWithEmail,

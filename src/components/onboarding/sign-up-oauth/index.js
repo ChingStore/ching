@@ -11,7 +11,7 @@ import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
 import style from './index.style.js'
 
-export default class SignInOauth extends React.Component {
+export default class SignInOAuth extends React.Component {
   state = {
     refreshIntervalId: null,
   }
@@ -21,10 +21,10 @@ export default class SignInOauth extends React.Component {
     history.push(ROUTE.PATH.SIGN_UP)
   }
 
-  handleSignInOauth = async service => {
-    const { signInWithOauth } = this.props
+  handleSignInOAuth = async service => {
+    const { signInWithOAuth } = this.props
     try {
-      signInWithOauth(service)
+      signInWithOAuth(service)
     } catch (error) {
       console.log(error)
     }
@@ -74,7 +74,7 @@ export default class SignInOauth extends React.Component {
 
         <GoogleButton
           onClick={() => {
-            this.handleSignInOauth(PROVIDER.GOOGLE)
+            this.handleSignInOAuth(PROVIDER.GOOGLE)
           }}
         >
           <div>Sign up with Google</div>
@@ -82,7 +82,7 @@ export default class SignInOauth extends React.Component {
 
         <GithubButton
           onClick={() => {
-            this.handleSignInOauth(PROVIDER.GITHUB)
+            this.handleSignInOAuth(PROVIDER.GITHUB)
           }}
         >
           <div>Sign up with Github</div>
@@ -90,7 +90,7 @@ export default class SignInOauth extends React.Component {
 
         <FacebookButton
           onClick={() => {
-            this.handleSignInOauth(PROVIDER.FACEBOOK)
+            this.handleSignInOAuth(PROVIDER.FACEBOOK)
           }}
         >
           <div>Sign up with Facebook</div>
