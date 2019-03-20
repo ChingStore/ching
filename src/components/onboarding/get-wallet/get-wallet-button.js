@@ -17,11 +17,13 @@ class GetWalletButton extends React.PureComponent<PropsType> {
     const { type, children, ...restProps } = this.props
 
     return (
-      // $FlowFixMe
       <ActionButton
         Icon={GET_WALLET_BUTTON.ICON[type]}
         url={GET_WALLET_BUTTON.LINK[type]}
-        css={{ backgroundColor: GET_WALLET_BUTTON.COLOR[type] }}
+        css={{
+          backgroundColor: GET_WALLET_BUTTON.COLOR[type],
+          justifyContent: 'flex-start',
+        }}
         {...restProps}
       >
         {children}
