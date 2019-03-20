@@ -37,18 +37,13 @@ const signInWithOAuth = (
 ) => {
   const firebase = getFirebase()
   try {
-    let _provider
-    if (provider === PROVIDER.FACEBOOK) {
-      _provider = new firebase.auth.FacebookAuthProvider()
+    const providerConstructorsMap = {
+      [PROVIDER.FACEBOOK]: firebase.auth.FacebookAuthProvider,
+      [PROVIDER.GITHUB]: firebase.auth.GithubAuthProvider,
+      [PROVIDER.GOOGLE]: firebase.auth.GoogleAuthProvider,
     }
 
-    if (provider === PROVIDER.GITHUB) {
-      _provider = new firebase.auth.GithubAuthProvider()
-    }
-
-    if (provider === PROVIDER.GOOGLE) {
-      _provider = new firebase.auth.GoogleAuthProvider()
-    }
+    const _provider = new providerConstructorsMap[provider]()
 
     await firebase.auth().signInWithRedirect(_provider)
     dispatch({ type: ACTIONS.LOGIN_SUCCESS })
