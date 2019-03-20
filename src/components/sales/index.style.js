@@ -39,6 +39,7 @@ export default {
     marginTop: 15,
     marginBottom: 15,
     height: 47,
+    minHeight: 47,
   },
 
   salesStats_metric: {
@@ -55,5 +56,11 @@ export default {
     fontSize: 14,
     fontWeight: STYLE.FONT.WEIGHT.MEDIUM,
     color: STYLE.COLOR.GREY,
+  },
+
+  emptyOrdersText: {
+    color: STYLE.COLOR.BLUE,
+    marginTop: 50,
+    textAlign: 'center',
   },
 }

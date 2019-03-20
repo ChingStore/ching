@@ -7,12 +7,14 @@ import { jsx } from '@emotion/core'
 import _ from 'lodash'
 import * as React from 'react'
 import ReactList from 'react-list'
+import * as ReactReduxFirebase from 'react-redux-firebase'
 
 import Flex from 'components/common/flex'
 import Button from 'components/common/button'
 import Spinner from 'components/common/spinner'
 import orderUtil from 'utils/order'
 import ORDER from 'constants/order'
+import STYLE from 'constants/style'
 
 import OrderRow from './container/order-row'
 import style from './index.style.js'
@@ -25,10 +27,10 @@ class Sales extends React.PureComponent<PropsType> {
   render() {
     const { ordersOrdered } = this.props
 
-    if (_.isEmpty(ordersOrdered)) {
+    if (!ReactReduxFirebase.isLoaded(ordersOrdered)) {
       return (
         <Flex column grow center>
-          <Spinner />
+          <Spinner fill={STYLE.COLOR.BLUE} />
         </Flex>
       )
     }
@@ -112,8 +114,9 @@ class Sales extends React.PureComponent<PropsType> {
 
     if (_.isEmpty(ordersOrdered)) {
       return (
-        <Flex column grow center>
-          Selling something in order to see completed orders!
+        <Flex column grow css={style.emptyOrdersText}>
+          No orders yet <br />
+          Sell something to see the stats
         </Flex>
       )
     }
