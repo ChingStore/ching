@@ -20,7 +20,7 @@ export default {
   title: {
     flex: 0.5,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
 
   title__text: {

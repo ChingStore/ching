@@ -1,8 +1,8 @@
 import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
-import currentUserAction from 'redux/actions/current-user'
 import selectors from 'redux/selectors'
 import SignIn from '..'
+import currentUser from '../../../../redux/actions/current-user'
 
 SignIn.propTypes = {
   signIn: PropTypes.func,
@@ -14,7 +14,7 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  signIn: credentials => dispatch(currentUserAction.signIn(credentials)),
+  signIn: credentials => dispatch(currentUser.signInWithEmail(credentials)),
 })
 
 export default ReactRedux.connect(

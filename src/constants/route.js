@@ -12,6 +12,7 @@ const PATH = {
   GET_WALLET: '/get-wallet',
   HOME: '/home',
   SIGN_IN_OAUTH: '/sign-in-oauth',
+  SIGN_UP_OAUTH: '/sign-up-oauth',
   SIGN_IN: '/sign-in',
   SIGN_UP_STORE: '/sign-up-store',
   SIGN_UP: '/sign-up',

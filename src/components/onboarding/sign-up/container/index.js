@@ -1,7 +1,7 @@
 import * as ReactRedux from 'react-redux'
 import PropTypes from 'prop-types'
 import selectors from 'redux/selectors'
-import currentUserAction from 'redux/actions/current-user'
+import currentUser from 'redux/actions/current-user'
 import SignUp from '..'
 
 SignUp.propTypes = {
@@ -14,7 +14,7 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  signUp: credentials => dispatch(currentUserAction.signUp(credentials)),
+  signUp: credentials => dispatch(currentUser.signUpWithEmail(credentials)),
 })
 
 export default ReactRedux.connect(

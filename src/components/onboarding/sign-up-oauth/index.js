@@ -22,7 +22,7 @@ export default class SignInOAuth extends React.Component {
 
   handleSignInWithEmail = async () => {
     const { history } = this.props
-    history.push(ROUTE.PATH.SIGN_IN)
+    history.push(ROUTE.PATH.SIGN_UP)
   }
 
   handleSignInOAuth = async service => {
@@ -37,7 +37,7 @@ export default class SignInOAuth extends React.Component {
   renderTitle = () => {
     return (
       <div css={style.title}>
-        <p css={style.title__text}>It’s nice to have you back!</p>
+        <p css={style.title__text}>Create your account</p>
       </div>
     )
   }
@@ -82,7 +82,7 @@ export default class SignInOAuth extends React.Component {
             this.handleSignInOAuth(PROVIDER.GOOGLE)
           }}
         >
-          <div>Log in with Google</div>
+          <div>Sign up with Google</div>
         </GoogleButton>
 
         <GithubButton
@@ -90,7 +90,7 @@ export default class SignInOAuth extends React.Component {
             this.handleSignInOAuth(PROVIDER.GITHUB)
           }}
         >
-          <div>Log in with Github</div>
+          <div>Sign up with Github</div>
         </GithubButton>
 
         <FacebookButton
@@ -98,7 +98,7 @@ export default class SignInOAuth extends React.Component {
             this.handleSignInOAuth(PROVIDER.FACEBOOK)
           }}
         >
-          <div>Log in with Facebook</div>
+          <div>Sign up with Facebook</div>
         </FacebookButton>
       </div>
     )
