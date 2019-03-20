@@ -9,7 +9,7 @@ import * as Reselect from 'reselect'
 
 import NavBar from 'components/nav-bar'
 import Store from 'components/store/container'
-import Sales from 'components/sales'
+import Sales from 'components/sales/container'
 import AddEditItem from 'components/add-edit-item/container'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'

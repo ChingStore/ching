@@ -4,6 +4,7 @@ import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
 import type { OrderStatusType } from 'constants/order'
 
 import _ from 'lodash'
+import moment from 'moment'
 
 import ORDER from 'constants/order'
 
@@ -76,6 +77,17 @@ function txStatus(order: OrderType): OrderStatusType {
   return 'undefined'
 }
 
+function txStatusText(order: OrderType): string {
+  const statusTextMap = {
+    [ORDER.STATUS.WAITING_FOR_SCAN]: 'Not scanned',
+    [ORDER.STATUS.CONFIRMING]: 'Processing...',
+    [ORDER.STATUS.CONFIRMED]: moment(order.createdAt.toDate()).fromNow(),
+    [ORDER.STATUS.FAILED]: 'Transaction failed',
+  }
+
+  return statusTextMap[txStatus(order)]
+}
+
 export default {
   getTotalPrice,
   getItem,
@@ -83,4 +95,5 @@ export default {
   getItemsCount,
 
   txStatus,
+  txStatusText,
 }
