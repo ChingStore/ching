@@ -1,7 +1,7 @@
 import * as ReactRedux from 'react-redux'
 import * as Reselect from 'reselect'
 import PropTypes from 'prop-types'
-import authActions from 'redux/actions/auth'
+import currentUser from 'redux/actions/current-user'
 import selectors from 'redux/selectors'
 import SignInOAuth from '..'
 
@@ -16,7 +16,7 @@ const mapStateToProps = Reselect.createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  signInWithOAuth: service => dispatch(authActions.signInWithOAuth(service)),
+  signInWithOAuth: service => dispatch(currentUser.signInWithOAuth(service)),
 })
 
 export default ReactRedux.connect(

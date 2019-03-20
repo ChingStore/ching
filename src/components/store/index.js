@@ -136,19 +136,24 @@ class StoreScene extends React.Component<PropsType, StateType> {
     return isEditingStoreName ? (
       <input
         autoFocus
-        type="text"
-        placeholder="Enter store name..."
+        css={[style.storeName, style.storeName__input]}
         defaultValue={this.getStoreName()}
         onBlur={this.handleStoreNameInputBlur}
-        css={style.storeName}
+        maxLength={15}
+        size={15}
+        placeholder="Store name..."
+        type="text"
       />
     ) : (
       <div css={style.storeName}>
-        {this.getStoreName()}{' '}
+        {this.getStoreName()}
         {this.isEditing() && (
-          <LinkButton onClick={this.handleEditStoreName}>
-            <Icon.Edit />
-          </LinkButton>
+          <>
+            {' '}
+            <LinkButton onClick={this.handleEditStoreName}>
+              <Icon.Edit />
+            </LinkButton>
+          </>
         )}
       </div>
     )

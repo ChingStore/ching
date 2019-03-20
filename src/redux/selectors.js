@@ -8,6 +8,7 @@ import type {
   ItemType,
   OrderItemType,
   OrderItemsType,
+  OrderFullItemsType,
   OrdersType,
   OrderType,
   StoreType,
@@ -42,12 +43,12 @@ const users = {
 }
 
 const orders = {
-  shoppingCart: (state: StateType) => {
+  shoppingCart: (state: StateType): ?OrderType => {
     const orderId = users.shoppingCartOrderId(state)
     return orders.order(state, { orderId })
   },
 
-  shoppingCartItems: (state: StateType) => {
+  shoppingCartItems: (state: StateType): ?OrderItemsType => {
     const orderId = users.shoppingCartOrderId(state)
     return orders.items(state, { orderId })
   },
@@ -55,11 +56,26 @@ const orders = {
   all: (state: StateType): OrdersType =>
     _.get(state, 'firestore.ordered.orders'),
 
+  allOrdered: (state: StateType): OrdersType =>
+    _.get(state, 'firestore.ordered.orders'),
+
   order: (state: StateType, { orderId }: { orderId: IdType }): OrderType =>
     _.get(state, `firestore.data.orders[${orderId}]`),
 
   items: (state: StateType, { orderId }: { orderId: IdType }): OrderItemsType =>
     _.get(state, `firestore.data.orders[${orderId}].items`),
+
+  fullItems: (
+    state: StateType,
+    { orderId }: { orderId: IdType }
+  ): OrderFullItemsType => {
+    const orderItems = orders.items(state, { orderId })
+    // $FlowFixMe
+    return orderItems.map(orderItem => {
+      const item = items.item(state, { itemId: orderItem.id })
+      return { ...item, ...orderItem }
+    })
+  },
 }
 
 const items = {
@@ -77,9 +93,9 @@ const items = {
   shoppingCartOrderItem: (
     state: StateType,
     { itemId }: { itemId: IdType }
-  ): OrderItemType => {
+  ): ?OrderItemType => {
     const shoppingCartItems = orders.shoppingCartItems(state)
-    return shoppingCartItems && shoppingCartItems[itemId]
+    return shoppingCartItems && _.find(shoppingCartItems, { id: itemId })
   },
 }
 

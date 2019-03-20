@@ -6,6 +6,7 @@ const COLOR = {
   LIGHTER_BLUE: '#EBECF5',
   LIGHT_BLUE: '#EDEFF6',
   BLUE: '#333963',
+  YELLOW: '#FDC134',
   YELLOWISH_GREY: '#E7E4DE',
   GREY: '#C3C4CB',
   RED: '#FB525C',
@@ -14,6 +15,7 @@ const COLOR = {
   TRANSPARENT: 'transparent',
 
   TRANSLUCENT_BLACK: 'rgba(0, 0, 0, 0.25)',
+  TRANSLUCENT_CYAN: 'rgba(94, 186, 160, 0.2)',
 
   COINBASE: '#0B36F0',
   STATUS: '#5B6DEE',

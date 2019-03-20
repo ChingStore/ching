@@ -36,7 +36,7 @@ export type ItemDataType = $ReadOnly<{
   name: string,
   photo?: ?string,
   price: number,
-  quantity: number,
+  stockCount: number,
   soldCount: number,
 }>
 
@@ -63,27 +63,37 @@ export type ItemsOrderedType = $ReadOnly<{
 // ORDERS //
 ////////////
 
-export type OrderItemType = $ReadOnly<{
+export type OrderItemType = $ReadOnly<{|
+  id: IdType,
   price: number,
   quantity: number,
-}>
+|}>
 
-export type OrderItemsType = $ReadOnly<{
-  [IdType]: OrderItemType,
-}>
+export type OrderItemsType = $ReadOnlyArray<OrderItemType>
 
-export type OrderType = $ReadOnly<{
+export type OrderFullItemType = OrderItemType & ItemType
+
+export type OrderFullItemsType = $ReadOnlyArray<OrderFullItemType>
+
+export type OrderType = $ReadOnly<{|
   createdAt: DateType,
   txConfirmed: boolean,
   items: OrderItemsType,
   networkId: NetworkIdType,
   txHash: string,
   userId: IdType,
-}>
+|}>
 
-export type OrdersType = $ReadOnly<{
-  [IdType]: ItemType,
-}>
+export type OrderOrderedType = OrderType &
+  $ReadOnly<{|
+    id: IdType,
+  |}>
+
+export type OrdersType = $ReadOnly<{|
+  [IdType]: OrderType,
+|}>
+
+export type OrdersOrderedType = $ReadOnlyArray<OrderOrderedType>
 
 ////////////
 // STORES //

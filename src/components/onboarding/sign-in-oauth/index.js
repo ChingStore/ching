@@ -6,6 +6,9 @@ import FooterButton from 'components/common/footer-button'
 import FacebookButton from 'components/common/facebook-button'
 import GoogleButton from 'components/common/google-button'
 import GithubButton from 'components/common/github-button'
+import Spinner from 'components/common/spinner'
+import Flex from 'components/common/flex'
+import STYLE from 'constants/style'
 import ROUTE from 'constants/route'
 import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
@@ -14,6 +17,7 @@ import style from './index.style.js'
 export default class SignInOAuth extends React.Component {
   state = {
     refreshIntervalId: null,
+    loading: true,
   }
 
   handleSignInWithEmail = async () => {
@@ -38,15 +42,14 @@ export default class SignInOAuth extends React.Component {
     )
   }
 
-  renderButtons() {
-    return <div css={style.buttons}>{this.renderContinueButton()}</div>
-  }
-
   checkAuthStatusAndStage = () => {
     const { userId, storeId, history } = this.props
+    const { refreshIntervalId } = this.state
 
     if (ReactReduxFirebase.isLoaded()) {
-      clearInterval(this.refreshIntervalId)
+      clearInterval(refreshIntervalId)
+
+      this.setState({ loading: false })
 
       if (userId && storeId) {
         history.push(ROUTE.PATH.STORE)
@@ -59,12 +62,14 @@ export default class SignInOAuth extends React.Component {
   }
 
   componentDidMount = () => {
-    this.refreshIntervalId = setInterval(() => {
-      this.checkAuthStatusAndStage()
-    }, 1000)
+    this.setState({
+      refreshIntervalId: setInterval(() => {
+        this.checkAuthStatusAndStage()
+      }, 1000),
+    })
   }
 
-  renderContinueButton = () => {
+  renderButtons = () => {
     return (
       <div css={style.buttons}>
         <FooterButton onClick={this.handleSignInWithEmail}>
@@ -101,6 +106,16 @@ export default class SignInOAuth extends React.Component {
 
   render() {
     const { authError } = this.props
+    const { loading } = this.state
+
+    if (loading) {
+      return (
+        <Flex column grow center>
+          <Spinner fill={STYLE.COLOR.BLUE} />
+        </Flex>
+      )
+    }
+
     return (
       <div css={style.base}>
         <p>{authError}</p>

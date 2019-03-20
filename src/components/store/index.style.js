@@ -28,11 +28,10 @@ export default {
     fontWeight: STYLE.FONT.WEIGHT.BOLD,
     letterSpacing: STYLE.FONT.LETTER_SPACING.TINY,
   },
-  storeName_input: {
-    marginTop: 5,
-
-    fontSize: 32,
-    fontWeight: STYLE.FONT.WEIGHT.BOLD,
-    letterSpacing: STYLE.FONT.LETTER_SPACING.TINY,
+  storeName__input: {
+    padding: 0,
+    // Compensate input border added by user agen   t
+    margin: -2,
+    marginTop: 3,
   },
 }

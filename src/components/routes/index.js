@@ -9,7 +9,7 @@ import * as Reselect from 'reselect'
 
 import NavBar from 'components/nav-bar'
 import Store from 'components/store/container'
-import Sales from 'components/sales'
+import Sales from 'components/sales/container'
 import AddEditItem from 'components/add-edit-item/container'
 import Payment from 'components/payment'
 import Home from 'components/onboarding/home'
@@ -20,7 +20,6 @@ import SignIn from 'components/onboarding/sign-in/container'
 import SignInOAuth from 'components/onboarding/sign-in-oauth/container'
 import SignUpOAuth from 'components/onboarding/sign-up-oauth/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
-import Orders from 'components/orders'
 import ROUTE from 'constants/route'
 import Flex from 'components/common/flex'
 import selectors from 'redux/selectors'
@@ -69,7 +68,6 @@ class Routes extends React.Component<PropsType> {
               {/* With NavBar */}
               <Route exact path={ROUTE.PATH.STORE} component={Store} />
               <Route exact path={ROUTE.PATH.SALES} component={Sales} />
-              <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
               <Route exact path={ROUTE.PATH.PROFILE} component={Profile} />
               {/* Redirect if no match */}
               <Redirect to={ROUTE.PATH.STORE} />

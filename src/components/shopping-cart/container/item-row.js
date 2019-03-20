@@ -1,5 +1,4 @@
 // @flow
-
 import type { IdType } from 'constants/firebase'
 import type { DispatchType } from 'constants/redux'
 
@@ -11,11 +10,10 @@ import orderAction from 'redux/actions/order'
 
 import * as ItemRow from '../item-row'
 
-type OwnPropsType = {
+type OwnPropsType = {|
   isEditable: boolean,
   itemId: IdType,
-  orderId: IdType,
-}
+|}
 
 const mapStateToProps = Reselect.createStructuredSelector({
   item: selectors.items.item,
@@ -26,12 +24,15 @@ const mapDispatchToProps = (
   dispatch: DispatchType,
   ownProps: OwnPropsType
 ) => ({
-  remove: ({ itemId }) => {
-    dispatch(orderAction.removeItem({ orderId: ownProps.orderId, itemId }))
+  onRemove: () => {
+    dispatch(orderAction.removeAllItemsOfAKind({ itemId: ownProps.itemId }))
   },
-  updateQuantity: ({ itemId, quantity }) => {
+  onChangeQuantity: (quantity: number) => {
     dispatch(
-      orderAction.upsertItem({ orderId: ownProps.orderId, itemId, quantity })
+      orderAction.updateItem({
+        itemId: ownProps.itemId,
+        quantity,
+      })
     )
   },
 })
