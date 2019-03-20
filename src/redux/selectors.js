@@ -8,6 +8,7 @@ import type {
   ItemType,
   OrderItemType,
   OrderItemsType,
+  OrderFullItemsType,
   OrdersType,
   OrderType,
   StoreType,
@@ -55,11 +56,26 @@ const orders = {
   all: (state: StateType): OrdersType =>
     _.get(state, 'firestore.ordered.orders'),
 
+  allOrdered: (state: StateType): OrdersType =>
+    _.get(state, 'firestore.ordered.orders'),
+
   order: (state: StateType, { orderId }: { orderId: IdType }): OrderType =>
     _.get(state, `firestore.data.orders[${orderId}]`),
 
   items: (state: StateType, { orderId }: { orderId: IdType }): OrderItemsType =>
     _.get(state, `firestore.data.orders[${orderId}].items`),
+
+  fullItems: (
+    state: StateType,
+    { orderId }: { orderId: IdType }
+  ): OrderFullItemsType => {
+    const orderItems = orders.items(state, { orderId })
+    // $FlowFixMe
+    return orderItems.map(orderItem => {
+      const item = items.item(state, { itemId: orderItem.id })
+      return { ...item, ...orderItem }
+    })
+  },
 }
 
 const items = {

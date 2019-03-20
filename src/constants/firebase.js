@@ -71,6 +71,10 @@ export type OrderItemType = $ReadOnly<{|
 
 export type OrderItemsType = $ReadOnlyArray<OrderItemType>
 
+export type OrderFullItemType = OrderItemType & ItemType
+
+export type OrderFullItemsType = $ReadOnlyArray<OrderFullItemType>
+
 export type OrderType = $ReadOnly<{|
   createdAt: DateType,
   txConfirmed: boolean,
@@ -80,9 +84,16 @@ export type OrderType = $ReadOnly<{|
   userId: IdType,
 |}>
 
+export type OrderOrderedType = OrderType &
+  $ReadOnly<{|
+    id: IdType,
+  |}>
+
 export type OrdersType = $ReadOnly<{|
-  [IdType]: ItemType,
+  [IdType]: OrderType,
 |}>
+
+export type OrdersOrderedType = $ReadOnlyArray<OrderOrderedType>
 
 ////////////
 // STORES //
