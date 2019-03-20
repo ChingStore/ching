@@ -51,6 +51,7 @@ export default class SignUp extends React.Component {
           onChange={this.handleChange}
           id="email"
           placeholder="Enter your e-mail"
+          type="text"
           labelText="E-mail"
           underline
         />
