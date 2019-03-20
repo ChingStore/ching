@@ -29,6 +29,7 @@ export default Emotion.css`
     margin: 0;
     padding: 0;
     height: 100%;
+    min-height: 568px;
     width: 100%;
   }
 

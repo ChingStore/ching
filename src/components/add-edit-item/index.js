@@ -129,12 +129,14 @@ class AddEditItem extends React.Component<PropsType, StateType> {
             labelText="Price USD"
             onChange={this.handleChangePrice}
             step="1"
+            underline
           />
           <InputFieldNumerical
             defaultValue={this.state.stockCount}
             labelText="Stock"
             onChange={this.handleChangeQuantity}
             step="1"
+            underline
           />
         </Flex>
       </Flex>,
