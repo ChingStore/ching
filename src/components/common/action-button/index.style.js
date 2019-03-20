@@ -19,8 +19,6 @@ export default {
     marginLeft: 15,
   },
   icon: {
-    display: 'flex',
-    alignItems: 'center',
     marginLeft: 11,
   },
 }

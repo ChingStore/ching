@@ -23,7 +23,7 @@ class ActionButton extends React.PureComponent<ActionButtonPropsType> {
     return (
       <Button css={style.base} {...restProps}>
         {!!Icon && (
-          <Flex center css={style.icon}>
+          <Flex css={style.icon}>
             {/* $FlowFixMe */}
             <Icon {...iconProps} />
           </Flex>
