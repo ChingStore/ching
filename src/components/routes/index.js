@@ -19,7 +19,6 @@ import SignUp from 'components/onboarding/sign-up/container'
 import SignIn from 'components/onboarding/sign-in/container'
 import SignInOAuth from 'components/onboarding/sign-in-oauth/container'
 import SignUpStore from 'components/onboarding/sign-up-store/container'
-import Orders from 'components/orders'
 import ROUTE from 'constants/route'
 import Flex from 'components/common/flex'
 import selectors from 'redux/selectors'
@@ -67,7 +66,6 @@ class Routes extends React.Component<PropsType> {
               {/* With NavBar */}
               <Route exact path={ROUTE.PATH.STORE} component={Store} />
               <Route exact path={ROUTE.PATH.SALES} component={Sales} />
-              <Route exact path={ROUTE.PATH.ORDERS} component={Orders} />
               <Route exact path={ROUTE.PATH.PROFILE} component={Profile} />
               {/* Redirect if no match */}
               <Redirect to={ROUTE.PATH.STORE} />
