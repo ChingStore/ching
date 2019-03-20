@@ -69,7 +69,7 @@ export default class SignInOAuth extends React.Component {
     })
   }
 
-  renderButtons = () => {
+  renderSignUpProviderButtons = () => {
     return (
       <div css={style.buttons}>
         <FooterButton onClick={this.handleSignInWithEmail}>
@@ -121,7 +121,7 @@ export default class SignInOAuth extends React.Component {
         <p>{authError}</p>
         <BackButton css={style.backButton} />
         {this.renderTitle()}
-        {this.renderButtons()}
+        {this.renderSignUpProviderButtons()}
       </div>
     )
   }
