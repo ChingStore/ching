@@ -1,10 +1,31 @@
 // @flow
 
-import ACTIONS from 'redux/actionTypes'
-
 import type { ThunkActionType } from 'constants/redux'
+import type { FirebaseAuthType, IdType } from 'constants/firebase'
 
-import type { FirebaseAuthType } from 'constants/firebase'
+import ACTIONS from 'redux/actionTypes'
+import selectors from 'redux/selectors'
+
+const setShoppingCartOrder = (
+  orderId: ?IdType
+): ThunkActionType<Promise<void>> => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const state = getState()
+  const currentUserId = selectors.users.currentId(state)
+  await getFirebase()
+    .collection('users')
+    .doc(currentUserId)
+    .update({
+      shoppingCartOrderId: orderId,
+    })
+}
+
+////////////////////
+// AUTHENTICATION //
+////////////////////
 
 const signIn = ({
   email,
@@ -59,4 +80,4 @@ const signUp = ({
   }
 }
 
-export default { signIn, signOut, signUp }
+export default { setShoppingCartOrder, signIn, signOut, signUp }

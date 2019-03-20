@@ -42,12 +42,12 @@ const users = {
 }
 
 const orders = {
-  shoppingCart: (state: StateType) => {
+  shoppingCart: (state: StateType): ?OrderType => {
     const orderId = users.shoppingCartOrderId(state)
     return orders.order(state, { orderId })
   },
 
-  shoppingCartItems: (state: StateType) => {
+  shoppingCartItems: (state: StateType): ?OrderItemsType => {
     const orderId = users.shoppingCartOrderId(state)
     return orders.items(state, { orderId })
   },
@@ -77,9 +77,9 @@ const items = {
   shoppingCartOrderItem: (
     state: StateType,
     { itemId }: { itemId: IdType }
-  ): OrderItemType => {
+  ): ?OrderItemType => {
     const shoppingCartItems = orders.shoppingCartItems(state)
-    return shoppingCartItems && shoppingCartItems[itemId]
+    return shoppingCartItems && _.find(shoppingCartItems, { id: itemId })
   },
 }
 

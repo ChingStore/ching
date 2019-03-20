@@ -1,7 +1,9 @@
 // @flow
 
-import type { OrderType, OrderItemType } from 'constants/firebase'
+import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
 import type { OrderStatusType } from 'constants/order'
+
+import _ from 'lodash'
 
 import ORDER from 'constants/order'
 
@@ -10,12 +12,44 @@ function getTotalPrice(order?: OrderType): number {
     return 0
   }
 
-  return Object.values(order.items).reduce(
-    // $FlowFixMe: OrderItemType is incompatible with mixed
+  return order.items.reduce(
     (totalPrice: number, item: OrderItemType) =>
       totalPrice + item.quantity * item.price,
     0
   )
+}
+
+function getItem({
+  order,
+  itemId,
+}: {
+  order: ?OrderType,
+  itemId: IdType,
+}): ?OrderItemType {
+  if (!order || !order.items) {
+    return null
+  }
+
+  return _.find(order.items, { id: itemId })
+}
+
+function getItemsCount(order?: OrderType): number {
+  if (!order || !order.items) {
+    return 0
+  }
+
+  return order.items.reduce(
+    (totalCount: number, item: OrderItemType) => totalCount + item.quantity,
+    0
+  )
+}
+
+function getItemIds(order?: OrderType): Array<IdType> {
+  if (!order || !order.items) {
+    return []
+  }
+
+  return order.items.map(item => item.id)
 }
 
 function isWaitingForTransaction(order: OrderType): boolean {
@@ -44,5 +78,9 @@ function txStatus(order: OrderType): OrderStatusType {
 
 export default {
   getTotalPrice,
+  getItem,
+  getItemIds,
+  getItemsCount,
+
   txStatus,
 }

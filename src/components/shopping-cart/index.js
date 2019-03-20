@@ -1,10 +1,9 @@
 // @flow
 
-import type { IdType, OrderType, OrderItemType } from 'constants/firebase'
+import type { IdType, OrderType } from 'constants/firebase'
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import _ from 'lodash'
 import React from 'react'
 import * as ReactRouter from 'react-router-dom'
 
@@ -73,7 +72,7 @@ export default class ShoppingCart extends React.PureComponent<
   }
 
   renderHeader = () => {
-    const itemCount = this.getItemCount()
+    const itemCount = this.getItemsCount()
     const totalPrice = this.getTotalPrice()
     return (
       <Flex css={style.header} onClick={this.handleHeaderClick}>
@@ -88,7 +87,7 @@ export default class ShoppingCart extends React.PureComponent<
   }
 
   renderItemList = () => {
-    const { order, orderId } = this.props
+    const { order } = this.props
     const itemIds = this.getItemIds()
 
     if (!this.state.isExpanded || !order) {
@@ -101,7 +100,6 @@ export default class ShoppingCart extends React.PureComponent<
         {itemIds.map(itemId => (
           <ItemRow
             {...{
-              orderId,
               itemId,
               isEditable:
                 orderUtil.txStatus(order) === ORDER.STATUS.WAITING_FOR_SCAN,
@@ -138,8 +136,8 @@ export default class ShoppingCart extends React.PureComponent<
   /////////////////////
 
   componentDidUpdate = (prevProps: PropsType) => {
-    if (this.getItemCount(prevProps) !== 0 && this.getItemCount() === 0) {
-      // this.setState({ isExpanded: false })
+    if (this.getItemsCount() === 0 && this.getItemsCount(prevProps) !== 0) {
+      this.setState({ isExpanded: false })
     }
   }
 
@@ -166,15 +164,11 @@ export default class ShoppingCart extends React.PureComponent<
   // GETTERS //
   /////////////
 
-  getItemIds = (): Array<IdType> =>
-    Object.keys(_.get(this.props, 'order.items', {}))
+  getItemIds = (): Array<IdType> => orderUtil.getItemIds(this.props.order)
 
-  getItemCount = (props: PropsType = this.props): number =>
-    Object.values(_.get(props, 'order.items', {})).reduce(
-      // $FlowFixMe
-      (totalCount: number, item: OrderItemType) => totalCount + item.quantity,
-      0
-    )
+  getItemsCount = (props: PropsType = this.props): number =>
+    orderUtil.getItemsCount(props.order)
 
-  getTotalPrice = () => orderUtil.getTotalPrice(this.props.order).toFixed(2)
+  getTotalPrice = (): string =>
+    orderUtil.getTotalPrice(this.props.order).toFixed(2)
 }
