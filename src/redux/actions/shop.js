@@ -1,5 +1,7 @@
 // @flow
 
+import * as EthereumjsUtil from 'ethereumjs-util'
+
 import type { IdType, StoreType } from 'constants/firebase'
 import type { ThunkActionType } from 'constants/redux'
 
@@ -24,10 +26,26 @@ const create = ({
     return false
   }
 
-  if (!storeName || !walletAddress) {
+  if (!storeName) {
     dispatch({
       type: ACTIONS.SHOP_SIGNUP_ERROR,
-      payload: 'Store Name or wallet address is empty',
+      payload: 'Store name is empty. Please type it in.',
+    })
+    return false
+  }
+
+  if (!walletAddress) {
+    dispatch({
+      type: ACTIONS.SHOP_SIGNUP_ERROR,
+      payload: 'Wallet address is empty. Please type it in.',
+    })
+    return false
+  }
+
+  if (!EthereumjsUtil.isValidAddress(walletAddress)) {
+    dispatch({
+      type: ACTIONS.SHOP_SIGNUP_ERROR,
+      payload: 'Wallet address is invalid. Double check and try again.',
     })
     return false
   }
