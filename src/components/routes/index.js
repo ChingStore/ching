@@ -57,10 +57,8 @@ class Routes extends React.Component<PropsType> {
             component={Payment}
           />
 
-          {/* Redirect if logged out and not paying*/}
-          {!window.location.href.includes('/payment/') && !currentUserId && (
-            <Redirect to={ROUTE.PATH.HOME} />
-          )}
+          {/* Redirect if logged out */}
+          {!currentUserId && <Redirect to={ROUTE.PATH.HOME} />}
 
           {/* No NavBar */}
           <Route exact path={ROUTE.PATH.ADD_ITEM} component={AddEditItem} />
