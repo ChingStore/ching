@@ -17,9 +17,9 @@ class App extends React.Component<{}> {
       <div>
         <Emotion.Global styles={[EmotionNormalize, globalStyles]} />
         <Provider store={store}>
-          <ReactRouter.HashRouter>
+          <ReactRouter.BrowserRouter>
             <Root />
-          </ReactRouter.HashRouter>
+          </ReactRouter.BrowserRouter>
         </Provider>
       </div>
     )
