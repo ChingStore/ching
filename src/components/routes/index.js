@@ -50,6 +50,7 @@ class Routes extends React.Component<PropsType> {
           <Route path={ROUTE.PATH.SIGN_UP_OAUTH} component={SignUpOAuth} />
           <Route path={ROUTE.PATH.SIGN_UP} component={SignUp} />
           <Route path={ROUTE.PATH.SIGN_UP_STORE} component={SignUpStore} />
+
           {/* Payment */}
           <Route
             path="/payment/:address/:amount/:orderId"
