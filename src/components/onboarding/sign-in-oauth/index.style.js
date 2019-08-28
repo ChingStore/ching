@@ -38,6 +38,6 @@ export default {
     fontWeight: STYLE.FONT.WEIGHT.BOLDEST,
     flexDirection: 'column',
     justifyContent: 'space-around',
-    paddingBottom: 20,
+    paddingBottom: '20vh',
   },
 }
