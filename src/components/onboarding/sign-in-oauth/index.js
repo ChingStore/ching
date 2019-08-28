@@ -3,12 +3,10 @@ import { jsx } from '@emotion/core'
 import React from 'react'
 import ReactReduxFirebase from 'react-redux-firebase'
 import FooterButton from 'components/common/footer-button'
-import GoogleButton from 'components/common/google-button'
 import Spinner from 'components/common/spinner'
 import Flex from 'components/common/flex'
 import STYLE from 'constants/style'
 import ROUTE from 'constants/route'
-import PROVIDER from 'constants/auth-provider'
 import BackButton from 'components/common/back-button'
 import style from './index.style.js'
 
@@ -73,15 +71,6 @@ export default class SignInOAuth extends React.Component {
         <FooterButton onClick={this.handleSignInWithEmail}>
           Continue with e-mail
         </FooterButton>
-        <div>or</div>
-
-        <GoogleButton
-          onClick={() => {
-            this.handleSignInOAuth(PROVIDER.GOOGLE)
-          }}
-        >
-          <div>Log in with Google</div>
-        </GoogleButton>
       </div>
     )
   }
