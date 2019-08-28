@@ -87,7 +87,18 @@ class StoreScene extends React.Component<PropsType, StateType> {
             threshold={3000}
           />
         )}
-        <div css={{ paddingBottom: 30 }} />
+        <div
+          css={{
+            marginTop: 'auto',
+            padding: 30,
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
+          <div>
+            Disclaimer: This application is for educational purposes only.
+          </div>
+        </div>
         {this.renderResizeDetector()}
       </Flex>
     </Flex>
