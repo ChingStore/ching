@@ -135,7 +135,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
             defaultValue={this.state.stockCount}
             labelText="Stock"
             onChange={this.handleChangeQuantity}
-            step="1"
+            step="999"
             underline
           />
         </Flex>
