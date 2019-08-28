@@ -62,7 +62,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
   getItemPrice = (): number => _.get(this.props, 'item.price', 1)
 
-  getItemStockCount = (): number => _.get(this.props, 'item.stockCount', 1)
+  getItemStockCount = (): number => _.get(this.props, 'item.stockCount', 999)
 
   ///////////
   // STATE //
@@ -135,7 +135,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
             defaultValue={this.state.stockCount}
             labelText="Stock"
             onChange={this.handleChangeQuantity}
-            step="999"
+            step="1"
             underline
           />
         </Flex>
