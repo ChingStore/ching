@@ -111,6 +111,10 @@ const wallet = {
     const currentStore = shop.current(state)
     return _.get(currentStore, 'walletAddress')
   },
+  asset: (state: StateType): string => {
+    const currentStore = shop.current(state)
+    return _.get(currentStore, 'asset')
+  },
 }
 
 export default {
