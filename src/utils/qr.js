@@ -21,10 +21,10 @@ function generate(url) {
   return qr.toDataURL('image/jpeg')
 }
 
-function getImage({ order, orderId, walletAddress }) {
+function getImage({ asset, order, orderId, walletAddress }) {
   const totalPrice = orderUtil.getTotalPrice(order)
 
-  const url = `${STATUS_UL}${SERVER_URL}/payment/${walletAddress}/${totalPrice}/${orderId}`
+  const url = `${STATUS_UL}${SERVER_URL}/payment/${walletAddress}/${asset}/${totalPrice}/${orderId}`
 
   console.log('Generating QR for:', url)
 
