@@ -21,9 +21,9 @@ export default class ShoppingCartQRCode extends React.PureComponent {
   // ///////////
 
   getQRImage = () => {
-    const { asset, order, orderId, walletAddress } = this.props
+    const { erc20Asset, order, orderId, walletAddress } = this.props
     return qrUtil.getImage({
-      asset,
+      erc20Asset,
       order,
       orderId,
       walletAddress,

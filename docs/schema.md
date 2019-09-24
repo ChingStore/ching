@@ -15,6 +15,7 @@
 - stores
   - id
   - name
+  - erc20Asset
   - walletAddress
 - orders
   - txHash

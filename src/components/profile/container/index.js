@@ -18,6 +18,7 @@ type OwnPropsType = ReactRouter.ContextRouter
 const mapStateToProp = Reselect.createStructuredSelector({
   authError: selectors.getAuthError,
   email: selectors.users.current,
+  erc20Asset: selectors.wallet.erc20Asset,
   walletAddress: selectors.wallet.address,
   store: selectors.shop.current,
   storeId: selectors.users.currentStoreId,
@@ -27,13 +28,15 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
   signOut: () => dispatch(currentUserAction.signOut()),
 
   onUpdateAddress: async ({
+    erc20Asset,
     walletAddress,
     storeId,
   }: {
+    erc20Asset: string,
     walletAddress: string,
     storeId: IdType,
   }) => {
-    const data = { walletAddress }
+    const data = { erc20Asset, walletAddress }
     await dispatch(shopAction.update({ storeId, data }))
   },
 })

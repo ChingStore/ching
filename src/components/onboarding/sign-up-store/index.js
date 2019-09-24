@@ -37,6 +37,7 @@ export default class SignUp extends React.Component {
         {this.renderUsernameField()}
         <div css={style.spacer} />
         {this.renderWalletAddressField()}
+        {this.renderErc20AssetField()}
         {this.renderHelpLink()}
         {this.renderContinueButton()}
       </form>
@@ -71,6 +72,20 @@ export default class SignUp extends React.Component {
     )
   }
 
+  renderErc20AssetField = () => {
+    return (
+      <div>
+        <InputField
+          onChange={this.handleChange}
+          id="erc20Asset"
+          placeholder="exch"
+          labelText="ERC20 Asset"
+          underline
+        />
+      </div>
+    )
+  }
+
   renderHelpLink = () => {
     return (
       <div css={style.helpLink_wrapper}>
@@ -91,9 +106,13 @@ export default class SignUp extends React.Component {
 
   handleSignUp = async () => {
     const { signUpStore, history } = this.props
-    const { storeName, walletAddress } = this.state
+    const { storeName, walletAddress, erc20Asset } = this.state
 
-    const isStoreCreated = await signUpStore({ storeName, walletAddress })
+    const isStoreCreated = await signUpStore({
+      storeName,
+      walletAddress,
+      erc20Asset,
+    })
     if (isStoreCreated) {
       history.push(ROUTE.PATH.STORE)
     }

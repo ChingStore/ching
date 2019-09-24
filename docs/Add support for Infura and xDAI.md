@@ -94,6 +94,8 @@ monitorTransaction({ txHash, networkId }) {
 
 ### redux/selectors.js
 
+_TODO_ Add information about erc20Asset identifier
+
 ```js
 const eth = {
   transaction: (state, { networkId, walletAddress, txHash }) =>

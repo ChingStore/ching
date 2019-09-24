@@ -111,9 +111,9 @@ const wallet = {
     const currentStore = shop.current(state)
     return _.get(currentStore, 'walletAddress')
   },
-  asset: (state: StateType): string => {
+  erc20Asset: (state: StateType): string => {
     const currentStore = shop.current(state)
-    return _.get(currentStore, 'asset')
+    return _.get(currentStore, 'erc20Asset')
   },
 }
 
