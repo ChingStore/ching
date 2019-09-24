@@ -11,6 +11,7 @@ import shoppingCartAction from 'redux/actions/shopping-cart'
 import * as PaymentQR from '../index'
 
 const mapStateToProps = Reselect.createStructuredSelector({
+  asset: selectors.wallet.asset,
   order: selectors.orders.shoppingCart,
   orderId: selectors.users.shoppingCartOrderId,
   walletAddress: selectors.wallet.address,
