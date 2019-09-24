@@ -33,8 +33,12 @@ export type PropsType = {
   handleChange: {},
   onClick: () => void,
   onUpdateAddress: ({
-    erc20Asset: string,
     walletAddress: string,
+    storeName: string,
+    storeId: IdType,
+  }) => void,
+  onUpdateErc20Asset: ({
+    erc20Asset: string,
     storeName: string,
     storeId: IdType,
   }) => void,
@@ -53,7 +57,8 @@ class Profile extends React.Component<PropsType, StateType> {
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingEmail: false,
-    erc20Asset: this.props.erc20Asset,
+    isEditingErc20Asset: false,
+    erc20AssetField: this.props.erc20Asset,
     addressField: this.props.walletAddress,
   }
 
@@ -71,10 +76,15 @@ class Profile extends React.Component<PropsType, StateType> {
     const addressField = this.getWalletAddress()
     console.log('componentWillMount_addressField: ', addressField)
     this.setState({ addressField })
+
+    const erc20AssetField = this.getErc20Asset()
+    console.log('componentWillMount_erc20AssetField: ', erc20AssetField)
+    this.setState({ erc20AssetField })
   }
 
   componentDidUpdate() {
     console.log('state.isEditingAddress: ', this.state.isEditingAddress)
+    console.log('state.isEditingErc20Asset: ', this.state.isEditingErc20Asset)
   }
 
   ////////////////////
@@ -87,8 +97,9 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const eventId = e.currentTarget.id
     this.setState({
-      addressField: e.currentTarget.value,
+      [eventId]: e.currentTarget.value,
     })
   }
 
@@ -221,6 +232,7 @@ class Profile extends React.Component<PropsType, StateType> {
         {/* {this.renderEmailField()}
         {this.renderPasswordField()}*/}
         {this.renderWalletAddressField()}
+        {this.renderErc20AssetField()}
       </Flex>
     )
   }
@@ -295,7 +307,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={e => this.handleChange(e)}
           id="addressField"
-          value={this.state.addressField}
+          value={this.state.addressField || ''}
           labelText="Ethereum Address"
         />
         <EditButton
@@ -341,7 +353,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={e => this.handleChange(e)}
           id="erc20AssetField"
-          value={this.state.erc20AssetField}
+          value={this.state.erc20AssetField || ''}
           labelText="ERC20 Asset"
         />
         <EditButton

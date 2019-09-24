@@ -28,15 +28,24 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
   signOut: () => dispatch(currentUserAction.signOut()),
 
   onUpdateAddress: async ({
-    erc20Asset,
     walletAddress,
     storeId,
   }: {
-    erc20Asset: string,
     walletAddress: string,
     storeId: IdType,
   }) => {
-    const data = { erc20Asset, walletAddress }
+    const data = { walletAddress }
+    await dispatch(shopAction.update({ storeId, data }))
+  },
+
+  onUpdateErc20Asset: async ({
+    erc20Asset,
+    storeId,
+  }: {
+    erc20Asset: string,
+    storeId: IdType,
+  }) => {
+    const data = { erc20Asset }
     await dispatch(shopAction.update({ storeId, data }))
   },
 })
