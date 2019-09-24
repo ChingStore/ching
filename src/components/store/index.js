@@ -25,6 +25,7 @@ import AddItemCard from './add-item-card'
 import style from './index.style'
 
 export type PropsType = {
+  erc20Asset: string,
   order: Object,
   store: Object,
   walletAddress: string,

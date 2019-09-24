@@ -17,6 +17,7 @@ import ItemRow from './container/item-row'
 import style from './index.style'
 
 export type PropsType = {
+  erc20Asset?: string,
   location: ReactRouter.Location,
   orderId?: IdType,
   order?: OrderType,
