@@ -2,7 +2,7 @@
   "name": "ching",
   "version": "0.1.0",
   "private": true,
-  "homepage": "link-to-your-repository",
+  "homepage": "https://andersonmmi.github.io/ching-exchange-implimentation/",
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "preinstall": "./scripts/pre-install.sh",
@@ -11,6 +11,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "flow": "flow",
     "lint": "eslint \"src/**/*.js?(x)\"",
