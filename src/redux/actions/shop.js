@@ -11,6 +11,7 @@ import selectors from 'redux/selectors'
 const create = ({
   storeName,
   walletAddress,
+  erc20Asset,
 }: $Shape<StoreType>): ThunkActionType<Promise<boolean>> => async (
   dispatch,
   getState,
@@ -42,6 +43,14 @@ const create = ({
     return false
   }
 
+  if (!erc20Asset) {
+    dispatch({
+      type: ACTIONS.SHOP_SIGNUP_ERROR,
+      payload: 'ERC20 Asset address is empty. Please type it in.',
+    })
+    return false
+  }
+
   if (!EthereumjsUtil.isValidAddress(walletAddress)) {
     dispatch({
       type: ACTIONS.SHOP_SIGNUP_ERROR,
@@ -55,6 +64,7 @@ const create = ({
     const newStore = await firestore.collection('stores').add({
       storeName,
       walletAddress,
+      erc20Asset,
     })
     await firestore
       .collection('users')

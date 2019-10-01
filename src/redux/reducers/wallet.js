@@ -26,11 +26,23 @@ const walletReducer = (state = initState, action) => {
         ...state,
         walletAddress: action.payload,
       }
+    case ACTIONS.UPDATE_ERC20_ASSET_SUCCESS:
+      console.log(action.type)
+      return {
+        ...state,
+        erc20Asset: action.payload,
+      }
     case ACTIONS.UPDATE_WALLET_ADDRESS_ERROR:
       console.log('Error during address updating')
       return {
         ...state,
         walletAddress: action.payload,
+      }
+    case ACTIONS.UPDATE_ERC20_ASSET_ERROR:
+      console.log('Error during ERC20 Asset updating')
+      return {
+        ...state,
+        erc20Asset: action.payload,
       }
     default:
       return state

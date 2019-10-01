@@ -35,6 +35,15 @@ const updateBalance = (): ThunkActionType<Promise<void>> => async (
       payload: newXdaiBalance,
     })
   }
+  // TODO: impliment erc20Asset balance checking
+  // const oldErc20AssetBalance = selector.getErc20AssetWalletBalance(state)
+  // const newErc20AssetBalance = await Web3XdaiInfura.getErc20AssetBalance(walletAddress)
+  // if (oldErc20AssetBalance !== newErc20AssetBalance) {
+  //   dispatch({
+  //     type: ACTIONS.UPDATE_ERC20_ASSET_WALLET_BALANCE,
+  //     payload: newErc20AssetBalance,
+  //   })
+  // }
 }
 
 export default { initialize }

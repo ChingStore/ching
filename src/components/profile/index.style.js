@@ -7,7 +7,7 @@ export default {
     marginLeft: 40,
     marginRight: 40,
     marginTop: 40,
-
+    marginBottom: '10vh',
     justifyContent: 'space-between',
   },
 

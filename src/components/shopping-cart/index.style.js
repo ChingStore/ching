@@ -15,6 +15,7 @@ const style = {
   base: {
     marginLeft: 10,
     marginRight: 10,
+    paddingBottom: 60,
     width: 'calc(100% - 20px)',
 
     borderRadius: '20px 20px 0 0',

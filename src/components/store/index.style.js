@@ -21,6 +21,10 @@ export default {
     color: STYLE.COLOR.RED,
   },
 
+  itemsRow: {
+    justifyContent: 'space-around',
+  },
+
   storeName: {
     marginTop: 5,
 
