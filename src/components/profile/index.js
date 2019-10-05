@@ -255,7 +255,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={e => this.handleChange(e)}
           id="addressField"
-          value={this.state.addressField}
+          value={this.state.addressField || ''}
           labelText="Ethereum Address"
         />
         <EditButton

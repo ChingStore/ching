@@ -163,7 +163,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     const { itemsOrdered } = this.props
 
     return (
-      <Flex grow key={key}>
+      <Flex grow key={key} css={style.itemsRow}>
         {_.times(this.getListRowItemsCount(), columnIndex => {
           const itemIndex = this.getItemIndex({ rowIndex, columnIndex })
           const item = itemsOrdered[itemIndex]
