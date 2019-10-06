@@ -1,4 +1,4 @@
-// flow-typed signature: b860fc1c943eb72be39825f3ea66dfbe
+// flow-typed signature: 2a15d71f41df2e308bb55554e7cba1e5
 // flow-typed version: <<STUB>>/eslint-plugin-import_v^2.16.0/flow_v0.92.0
 
 /**
@@ -74,7 +74,7 @@ declare module 'eslint-plugin-import/lib/importDeclaration' {
   declare module.exports: any;
 }
 
-declare module 'eslint-plugin-import/lib/index' {
+declare module 'eslint-plugin-import/lib' {
   declare module.exports: any;
 }
 
@@ -218,6 +218,10 @@ declare module 'eslint-plugin-import/lib/rules/no-unresolved' {
   declare module.exports: any;
 }
 
+declare module 'eslint-plugin-import/lib/rules/no-unused-modules' {
+  declare module.exports: any;
+}
+
 declare module 'eslint-plugin-import/lib/rules/no-useless-path-segments' {
   declare module.exports: any;
 }
@@ -238,7 +242,7 @@ declare module 'eslint-plugin-import/lib/rules/unambiguous' {
   declare module.exports: any;
 }
 
-declare module 'eslint-plugin-import/memo-parser/index' {
+declare module 'eslint-plugin-import/memo-parser' {
   declare module.exports: any;
 }
 
@@ -282,8 +286,11 @@ declare module 'eslint-plugin-import/lib/ExportMap.js' {
 declare module 'eslint-plugin-import/lib/importDeclaration.js' {
   declare module.exports: $Exports<'eslint-plugin-import/lib/importDeclaration'>;
 }
+declare module 'eslint-plugin-import/lib/index' {
+  declare module.exports: $Exports<'eslint-plugin-import/lib'>;
+}
 declare module 'eslint-plugin-import/lib/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-import/lib/index'>;
+  declare module.exports: $Exports<'eslint-plugin-import/lib'>;
 }
 declare module 'eslint-plugin-import/lib/rules/default.js' {
   declare module.exports: $Exports<'eslint-plugin-import/lib/rules/default'>;
@@ -390,6 +397,9 @@ declare module 'eslint-plugin-import/lib/rules/no-unassigned-import.js' {
 declare module 'eslint-plugin-import/lib/rules/no-unresolved.js' {
   declare module.exports: $Exports<'eslint-plugin-import/lib/rules/no-unresolved'>;
 }
+declare module 'eslint-plugin-import/lib/rules/no-unused-modules.js' {
+  declare module.exports: $Exports<'eslint-plugin-import/lib/rules/no-unused-modules'>;
+}
 declare module 'eslint-plugin-import/lib/rules/no-useless-path-segments.js' {
   declare module.exports: $Exports<'eslint-plugin-import/lib/rules/no-useless-path-segments'>;
 }
@@ -405,6 +415,9 @@ declare module 'eslint-plugin-import/lib/rules/prefer-default-export.js' {
 declare module 'eslint-plugin-import/lib/rules/unambiguous.js' {
   declare module.exports: $Exports<'eslint-plugin-import/lib/rules/unambiguous'>;
 }
+declare module 'eslint-plugin-import/memo-parser/index' {
+  declare module.exports: $Exports<'eslint-plugin-import/memo-parser'>;
+}
 declare module 'eslint-plugin-import/memo-parser/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-import/memo-parser/index'>;
+  declare module.exports: $Exports<'eslint-plugin-import/memo-parser'>;
 }

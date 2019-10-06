@@ -1,4 +1,4 @@
-// flow-typed signature: 3001c518dd920f94aaa99489389afab1
+// flow-typed signature: b65c228dc2ed2bc4df207a7bb5bc4aa0
 // flow-typed version: <<STUB>>/redux-firestore_v^0.6.3/flow_v0.92.0
 
 /**
@@ -34,7 +34,7 @@ declare module 'redux-firestore/es/actions/firestore' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/es/actions/index' {
+declare module 'redux-firestore/es/actions' {
   declare module.exports: any;
 }
 
@@ -50,7 +50,7 @@ declare module 'redux-firestore/es/enhancer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/es/index' {
+declare module 'redux-firestore/es' {
   declare module.exports: any;
 }
 
@@ -74,7 +74,7 @@ declare module 'redux-firestore/es/reducers/errorsReducer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/es/reducers/index' {
+declare module 'redux-firestore/es/reducers' {
   declare module.exports: any;
 }
 
@@ -110,7 +110,7 @@ declare module 'redux-firestore/lib/actions/firestore' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/lib/actions/index' {
+declare module 'redux-firestore/lib/actions' {
   declare module.exports: any;
 }
 
@@ -126,7 +126,7 @@ declare module 'redux-firestore/lib/enhancer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/lib/index' {
+declare module 'redux-firestore/lib' {
   declare module.exports: any;
 }
 
@@ -150,7 +150,7 @@ declare module 'redux-firestore/lib/reducers/errorsReducer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/lib/reducers/index' {
+declare module 'redux-firestore/lib/reducers' {
   declare module.exports: any;
 }
 
@@ -186,7 +186,7 @@ declare module 'redux-firestore/src/actions/firestore' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/src/actions/index' {
+declare module 'redux-firestore/src/actions' {
   declare module.exports: any;
 }
 
@@ -202,7 +202,7 @@ declare module 'redux-firestore/src/enhancer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/src/index' {
+declare module 'redux-firestore/src' {
   declare module.exports: any;
 }
 
@@ -226,7 +226,7 @@ declare module 'redux-firestore/src/reducers/errorsReducer' {
   declare module.exports: any;
 }
 
-declare module 'redux-firestore/src/reducers/index' {
+declare module 'redux-firestore/src/reducers' {
   declare module.exports: any;
 }
 
@@ -268,8 +268,11 @@ declare module 'redux-firestore/dist/redux-firestore.min.js' {
 declare module 'redux-firestore/es/actions/firestore.js' {
   declare module.exports: $Exports<'redux-firestore/es/actions/firestore'>;
 }
+declare module 'redux-firestore/es/actions/index' {
+  declare module.exports: $Exports<'redux-firestore/es/actions'>;
+}
 declare module 'redux-firestore/es/actions/index.js' {
-  declare module.exports: $Exports<'redux-firestore/es/actions/index'>;
+  declare module.exports: $Exports<'redux-firestore/es/actions'>;
 }
 declare module 'redux-firestore/es/constants.js' {
   declare module.exports: $Exports<'redux-firestore/es/constants'>;
@@ -280,8 +283,11 @@ declare module 'redux-firestore/es/createFirestoreInstance.js' {
 declare module 'redux-firestore/es/enhancer.js' {
   declare module.exports: $Exports<'redux-firestore/es/enhancer'>;
 }
+declare module 'redux-firestore/es/index' {
+  declare module.exports: $Exports<'redux-firestore/es'>;
+}
 declare module 'redux-firestore/es/index.js' {
-  declare module.exports: $Exports<'redux-firestore/es/index'>;
+  declare module.exports: $Exports<'redux-firestore/es'>;
 }
 declare module 'redux-firestore/es/middleware.js' {
   declare module.exports: $Exports<'redux-firestore/es/middleware'>;
@@ -298,8 +304,11 @@ declare module 'redux-firestore/es/reducers/dataReducer.js' {
 declare module 'redux-firestore/es/reducers/errorsReducer.js' {
   declare module.exports: $Exports<'redux-firestore/es/reducers/errorsReducer'>;
 }
+declare module 'redux-firestore/es/reducers/index' {
+  declare module.exports: $Exports<'redux-firestore/es/reducers'>;
+}
 declare module 'redux-firestore/es/reducers/index.js' {
-  declare module.exports: $Exports<'redux-firestore/es/reducers/index'>;
+  declare module.exports: $Exports<'redux-firestore/es/reducers'>;
 }
 declare module 'redux-firestore/es/reducers/listenersReducer.js' {
   declare module.exports: $Exports<'redux-firestore/es/reducers/listenersReducer'>;
@@ -325,8 +334,11 @@ declare module 'redux-firestore/es/utils/reducers.js' {
 declare module 'redux-firestore/lib/actions/firestore.js' {
   declare module.exports: $Exports<'redux-firestore/lib/actions/firestore'>;
 }
+declare module 'redux-firestore/lib/actions/index' {
+  declare module.exports: $Exports<'redux-firestore/lib/actions'>;
+}
 declare module 'redux-firestore/lib/actions/index.js' {
-  declare module.exports: $Exports<'redux-firestore/lib/actions/index'>;
+  declare module.exports: $Exports<'redux-firestore/lib/actions'>;
 }
 declare module 'redux-firestore/lib/constants.js' {
   declare module.exports: $Exports<'redux-firestore/lib/constants'>;
@@ -337,8 +349,11 @@ declare module 'redux-firestore/lib/createFirestoreInstance.js' {
 declare module 'redux-firestore/lib/enhancer.js' {
   declare module.exports: $Exports<'redux-firestore/lib/enhancer'>;
 }
+declare module 'redux-firestore/lib/index' {
+  declare module.exports: $Exports<'redux-firestore/lib'>;
+}
 declare module 'redux-firestore/lib/index.js' {
-  declare module.exports: $Exports<'redux-firestore/lib/index'>;
+  declare module.exports: $Exports<'redux-firestore/lib'>;
 }
 declare module 'redux-firestore/lib/middleware.js' {
   declare module.exports: $Exports<'redux-firestore/lib/middleware'>;
@@ -355,8 +370,11 @@ declare module 'redux-firestore/lib/reducers/dataReducer.js' {
 declare module 'redux-firestore/lib/reducers/errorsReducer.js' {
   declare module.exports: $Exports<'redux-firestore/lib/reducers/errorsReducer'>;
 }
+declare module 'redux-firestore/lib/reducers/index' {
+  declare module.exports: $Exports<'redux-firestore/lib/reducers'>;
+}
 declare module 'redux-firestore/lib/reducers/index.js' {
-  declare module.exports: $Exports<'redux-firestore/lib/reducers/index'>;
+  declare module.exports: $Exports<'redux-firestore/lib/reducers'>;
 }
 declare module 'redux-firestore/lib/reducers/listenersReducer.js' {
   declare module.exports: $Exports<'redux-firestore/lib/reducers/listenersReducer'>;
@@ -382,8 +400,11 @@ declare module 'redux-firestore/lib/utils/reducers.js' {
 declare module 'redux-firestore/src/actions/firestore.js' {
   declare module.exports: $Exports<'redux-firestore/src/actions/firestore'>;
 }
+declare module 'redux-firestore/src/actions/index' {
+  declare module.exports: $Exports<'redux-firestore/src/actions'>;
+}
 declare module 'redux-firestore/src/actions/index.js' {
-  declare module.exports: $Exports<'redux-firestore/src/actions/index'>;
+  declare module.exports: $Exports<'redux-firestore/src/actions'>;
 }
 declare module 'redux-firestore/src/constants.js' {
   declare module.exports: $Exports<'redux-firestore/src/constants'>;
@@ -394,8 +415,11 @@ declare module 'redux-firestore/src/createFirestoreInstance.js' {
 declare module 'redux-firestore/src/enhancer.js' {
   declare module.exports: $Exports<'redux-firestore/src/enhancer'>;
 }
+declare module 'redux-firestore/src/index' {
+  declare module.exports: $Exports<'redux-firestore/src'>;
+}
 declare module 'redux-firestore/src/index.js' {
-  declare module.exports: $Exports<'redux-firestore/src/index'>;
+  declare module.exports: $Exports<'redux-firestore/src'>;
 }
 declare module 'redux-firestore/src/middleware.js' {
   declare module.exports: $Exports<'redux-firestore/src/middleware'>;
@@ -412,8 +436,11 @@ declare module 'redux-firestore/src/reducers/dataReducer.js' {
 declare module 'redux-firestore/src/reducers/errorsReducer.js' {
   declare module.exports: $Exports<'redux-firestore/src/reducers/errorsReducer'>;
 }
+declare module 'redux-firestore/src/reducers/index' {
+  declare module.exports: $Exports<'redux-firestore/src/reducers'>;
+}
 declare module 'redux-firestore/src/reducers/index.js' {
-  declare module.exports: $Exports<'redux-firestore/src/reducers/index'>;
+  declare module.exports: $Exports<'redux-firestore/src/reducers'>;
 }
 declare module 'redux-firestore/src/reducers/listenersReducer.js' {
   declare module.exports: $Exports<'redux-firestore/src/reducers/listenersReducer'>;

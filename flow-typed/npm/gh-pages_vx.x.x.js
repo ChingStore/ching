@@ -1,4 +1,4 @@
-// flow-typed signature: 5ab1c18cd4edbfd704cdd891770d2cc4
+// flow-typed signature: 913e5b89db65f55d0aaf30b32c97f685
 // flow-typed version: <<STUB>>/gh-pages_v^2.1.1/flow_v0.92.0
 
 /**
@@ -34,7 +34,7 @@ declare module 'gh-pages/lib/git' {
   declare module.exports: any;
 }
 
-declare module 'gh-pages/lib/index' {
+declare module 'gh-pages/lib' {
   declare module.exports: any;
 }
 
@@ -56,8 +56,11 @@ declare module 'gh-pages/bin/gh-pages.js' {
 declare module 'gh-pages/lib/git.js' {
   declare module.exports: $Exports<'gh-pages/lib/git'>;
 }
+declare module 'gh-pages/lib/index' {
+  declare module.exports: $Exports<'gh-pages/lib'>;
+}
 declare module 'gh-pages/lib/index.js' {
-  declare module.exports: $Exports<'gh-pages/lib/index'>;
+  declare module.exports: $Exports<'gh-pages/lib'>;
 }
 declare module 'gh-pages/lib/util.js' {
   declare module.exports: $Exports<'gh-pages/lib/util'>;
