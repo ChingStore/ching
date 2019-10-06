@@ -1,4 +1,4 @@
-// flow-typed signature: 2b6bf888afdeab4a11a92878c711de42
+// flow-typed signature: a8bda0f711ae4fc8e0adb9410520e076
 // flow-typed version: <<STUB>>/ethereumjs-util_v^6.1.0/flow_v0.92.0
 
 /**
@@ -22,11 +22,14 @@ declare module 'ethereumjs-util' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'ethereumjs-util/dist/index' {
+declare module 'ethereumjs-util/dist' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module 'ethereumjs-util/dist/index' {
+  declare module.exports: $Exports<'ethereumjs-util/dist'>;
+}
 declare module 'ethereumjs-util/dist/index.js' {
-  declare module.exports: $Exports<'ethereumjs-util/dist/index'>;
+  declare module.exports: $Exports<'ethereumjs-util/dist'>;
 }

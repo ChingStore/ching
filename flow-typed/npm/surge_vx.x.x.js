@@ -1,4 +1,4 @@
-// flow-typed signature: aa0fa8784bb380bf3229b1fec03fa863
+// flow-typed signature: 924d139578167c5ab46e1d5a0cfdc7bf
 // flow-typed version: <<STUB>>/surge_v^0.20.1/flow_v0.92.0
 
 /**
@@ -66,7 +66,7 @@ declare module 'surge/lib/middleware/help' {
   declare module.exports: any;
 }
 
-declare module 'surge/lib/middleware/index' {
+declare module 'surge/lib/middleware' {
   declare module.exports: any;
 }
 
@@ -232,8 +232,11 @@ declare module 'surge/lib/middleware/endpoint.js' {
 declare module 'surge/lib/middleware/help.js' {
   declare module.exports: $Exports<'surge/lib/middleware/help'>;
 }
+declare module 'surge/lib/middleware/index' {
+  declare module.exports: $Exports<'surge/lib/middleware'>;
+}
 declare module 'surge/lib/middleware/index.js' {
-  declare module.exports: $Exports<'surge/lib/middleware/index'>;
+  declare module.exports: $Exports<'surge/lib/middleware'>;
 }
 declare module 'surge/lib/middleware/ipaddress.js' {
   declare module.exports: $Exports<'surge/lib/middleware/ipaddress'>;
