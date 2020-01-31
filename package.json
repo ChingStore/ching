@@ -28,6 +28,7 @@
     "emotion-normalize": "^10.0.0",
     "ethereumjs-util": "^6.1.0",
     "firebase": "^5.8.1",
+    "firebase-admin": "^8.9.2",
     "gh-pages": "^2.0.1",
     "js-promisify": "^1.3.1",
     "lodash": "^4.17.11",
