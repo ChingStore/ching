@@ -1,4 +1,4 @@
-// flow-typed signature: a8bda0f711ae4fc8e0adb9410520e076
+// flow-typed signature: 126844535740cc8236740ef97926ebbe
 // flow-typed version: <<STUB>>/ethereumjs-util_v^6.1.0/flow_v0.92.0
 
 /**
@@ -22,14 +22,56 @@ declare module 'ethereumjs-util' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module 'ethereumjs-util/dist/account' {
+  declare module.exports: any;
+}
+
+declare module 'ethereumjs-util/dist/bytes' {
+  declare module.exports: any;
+}
+
+declare module 'ethereumjs-util/dist/constants' {
+  declare module.exports: any;
+}
+
+declare module 'ethereumjs-util/dist/hash' {
+  declare module.exports: any;
+}
+
 declare module 'ethereumjs-util/dist' {
   declare module.exports: any;
 }
 
+declare module 'ethereumjs-util/dist/object' {
+  declare module.exports: any;
+}
+
+declare module 'ethereumjs-util/dist/signature' {
+  declare module.exports: any;
+}
+
 // Filename aliases
+declare module 'ethereumjs-util/dist/account.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/account'>;
+}
+declare module 'ethereumjs-util/dist/bytes.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/bytes'>;
+}
+declare module 'ethereumjs-util/dist/constants.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/constants'>;
+}
+declare module 'ethereumjs-util/dist/hash.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/hash'>;
+}
 declare module 'ethereumjs-util/dist/index' {
   declare module.exports: $Exports<'ethereumjs-util/dist'>;
 }
 declare module 'ethereumjs-util/dist/index.js' {
   declare module.exports: $Exports<'ethereumjs-util/dist'>;
+}
+declare module 'ethereumjs-util/dist/object.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/object'>;
+}
+declare module 'ethereumjs-util/dist/signature.js' {
+  declare module.exports: $Exports<'ethereumjs-util/dist/signature'>;
 }

@@ -1,4 +1,4 @@
-// flow-typed signature: aea2280ae0c80320e81e1126c736cd6f
+// flow-typed signature: 56d5f35f797b25c3dc32508624ae96e2
 // flow-typed version: <<STUB>>/browser-image-resizer_v^2.0.1/flow_v0.92.0
 
 /**
@@ -26,10 +26,6 @@ declare module 'browser-image-resizer/dist' {
   declare module.exports: any;
 }
 
-declare module 'browser-image-resizer/src/exif' {
-  declare module.exports: any;
-}
-
 declare module 'browser-image-resizer/src' {
   declare module.exports: any;
 }
@@ -44,9 +40,6 @@ declare module 'browser-image-resizer/dist/index' {
 }
 declare module 'browser-image-resizer/dist/index.js' {
   declare module.exports: $Exports<'browser-image-resizer/dist'>;
-}
-declare module 'browser-image-resizer/src/exif.js' {
-  declare module.exports: $Exports<'browser-image-resizer/src/exif'>;
 }
 declare module 'browser-image-resizer/src/index' {
   declare module.exports: $Exports<'browser-image-resizer/src'>;

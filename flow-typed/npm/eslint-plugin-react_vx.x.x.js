@@ -1,4 +1,4 @@
-// flow-typed signature: ea1253ed924c118e90b21b203b9c29d4
+// flow-typed signature: 9f62fc57cd3b55ab93773f7e62c4e4c2
 // flow-typed version: <<STUB>>/eslint-plugin-react_v^7.12.4/flow_v0.92.0
 
 /**
@@ -59,6 +59,10 @@ declare module 'eslint-plugin-react/lib/rules/forbid-foreign-prop-types' {
 }
 
 declare module 'eslint-plugin-react/lib/rules/forbid-prop-types' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-react/lib/rules/function-component-definition' {
   declare module.exports: any;
 }
 
@@ -146,6 +150,10 @@ declare module 'eslint-plugin-react/lib/rules/jsx-no-literals' {
   declare module.exports: any;
 }
 
+declare module 'eslint-plugin-react/lib/rules/jsx-no-script-url' {
+  declare module.exports: any;
+}
+
 declare module 'eslint-plugin-react/lib/rules/jsx-no-target-blank' {
   declare module.exports: any;
 }
@@ -203,6 +211,10 @@ declare module 'eslint-plugin-react/lib/rules/jsx-wrap-multilines' {
 }
 
 declare module 'eslint-plugin-react/lib/rules/no-access-state-in-setstate' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-react/lib/rules/no-adjacent-inline-elements' {
   declare module.exports: any;
 }
 
@@ -471,6 +483,9 @@ declare module 'eslint-plugin-react/lib/rules/forbid-foreign-prop-types.js' {
 declare module 'eslint-plugin-react/lib/rules/forbid-prop-types.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/forbid-prop-types'>;
 }
+declare module 'eslint-plugin-react/lib/rules/function-component-definition.js' {
+  declare module.exports: $Exports<'eslint-plugin-react/lib/rules/function-component-definition'>;
+}
 declare module 'eslint-plugin-react/lib/rules/jsx-boolean-value.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-boolean-value'>;
 }
@@ -534,6 +549,9 @@ declare module 'eslint-plugin-react/lib/rules/jsx-no-duplicate-props.js' {
 declare module 'eslint-plugin-react/lib/rules/jsx-no-literals.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-no-literals'>;
 }
+declare module 'eslint-plugin-react/lib/rules/jsx-no-script-url.js' {
+  declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-no-script-url'>;
+}
 declare module 'eslint-plugin-react/lib/rules/jsx-no-target-blank.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-no-target-blank'>;
 }
@@ -578,6 +596,9 @@ declare module 'eslint-plugin-react/lib/rules/jsx-wrap-multilines.js' {
 }
 declare module 'eslint-plugin-react/lib/rules/no-access-state-in-setstate.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/no-access-state-in-setstate'>;
+}
+declare module 'eslint-plugin-react/lib/rules/no-adjacent-inline-elements.js' {
+  declare module.exports: $Exports<'eslint-plugin-react/lib/rules/no-adjacent-inline-elements'>;
 }
 declare module 'eslint-plugin-react/lib/rules/no-array-index-key.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/no-array-index-key'>;

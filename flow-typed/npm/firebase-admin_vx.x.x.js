@@ -1,4 +1,4 @@
-// flow-typed signature: 134ac1d809533467c6883f948be4b3a5
+// flow-typed signature: 278a27f3a61e5a33b4352651b5bdf414
 // flow-typed version: <<STUB>>/firebase-admin_v^8.9.2/flow_v0.92.0
 
 /**
@@ -90,7 +90,7 @@ declare module 'firebase-admin/lib/firestore/firestore' {
   declare module.exports: any;
 }
 
-declare module 'firebase-admin/lib/index' {
+declare module 'firebase-admin/lib' {
   declare module.exports: any;
 }
 
@@ -170,7 +170,7 @@ declare module 'firebase-admin/lib/utils/error' {
   declare module.exports: any;
 }
 
-declare module 'firebase-admin/lib/utils/index' {
+declare module 'firebase-admin/lib/utils' {
   declare module.exports: any;
 }
 
@@ -230,8 +230,11 @@ declare module 'firebase-admin/lib/firebase-service.js' {
 declare module 'firebase-admin/lib/firestore/firestore.js' {
   declare module.exports: $Exports<'firebase-admin/lib/firestore/firestore'>;
 }
+declare module 'firebase-admin/lib/index' {
+  declare module.exports: $Exports<'firebase-admin/lib'>;
+}
 declare module 'firebase-admin/lib/index.js' {
-  declare module.exports: $Exports<'firebase-admin/lib/index'>;
+  declare module.exports: $Exports<'firebase-admin/lib'>;
 }
 declare module 'firebase-admin/lib/instance-id/instance-id-request.js' {
   declare module.exports: $Exports<'firebase-admin/lib/instance-id/instance-id-request'>;
@@ -290,8 +293,11 @@ declare module 'firebase-admin/lib/utils/deep-copy.js' {
 declare module 'firebase-admin/lib/utils/error.js' {
   declare module.exports: $Exports<'firebase-admin/lib/utils/error'>;
 }
+declare module 'firebase-admin/lib/utils/index' {
+  declare module.exports: $Exports<'firebase-admin/lib/utils'>;
+}
 declare module 'firebase-admin/lib/utils/index.js' {
-  declare module.exports: $Exports<'firebase-admin/lib/utils/index'>;
+  declare module.exports: $Exports<'firebase-admin/lib/utils'>;
 }
 declare module 'firebase-admin/lib/utils/validator.js' {
   declare module.exports: $Exports<'firebase-admin/lib/utils/validator'>;
