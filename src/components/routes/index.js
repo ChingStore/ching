@@ -27,7 +27,6 @@ import selectors from 'redux/selectors'
 const { Redirect, Route, Switch } = ReactRouter
 
 type OwnPropsType = {|
-  //$FlowFixMe
   location: ReactRouter.Location,
 |}
 
