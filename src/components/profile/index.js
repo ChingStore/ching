@@ -79,11 +79,13 @@ class Profile extends React.Component<PropsType, StateType> {
 
     const erc20AssetField = this.getErc20Asset()
     console.log('componentWillMount_erc20AssetField: ', erc20AssetField)
+    // $FlowFixMe
     this.setState({ erc20AssetField })
   }
 
   componentDidUpdate() {
     console.log('state.isEditingAddress: ', this.state.isEditingAddress)
+    // $FlowFixMe
     console.log('state.isEditingErc20Asset: ', this.state.isEditingErc20Asset)
   }
 
@@ -119,6 +121,7 @@ class Profile extends React.Component<PropsType, StateType> {
 
   onClickEditErc20Asset = (e: SyntheticEvent<HTMLButtonElement>) => {
     const eventId = e.currentTarget.id
+    // $FlowFixMe
     this.setState(prevState => {
       return {
         [eventId]: !prevState[eventId],
@@ -172,11 +175,13 @@ class Profile extends React.Component<PropsType, StateType> {
     // }
 
     await this.props.onUpdateErc20Asset({
+      // $FlowFixMe
       erc20Asset: this.state.erc20AssetField,
       storeId: this.props.storeId,
       storeName: this.props.store.storeName,
     })
 
+    // $FlowFixMe
     this.setState({ isEditingErc20Asset: false })
   }
 
@@ -344,6 +349,7 @@ class Profile extends React.Component<PropsType, StateType> {
 
   // renderErc20AssetField vvv
   renderErc20AssetField = () => {
+    // $FlowFixMe
     const { isEditingErc20Asset } = this.state
     return isEditingErc20Asset ? (
       <Flex css={style.edit}>
@@ -365,7 +371,11 @@ class Profile extends React.Component<PropsType, StateType> {
       </Flex>
     ) : (
       <Flex css={style.edit}>
+        {/*
+        //$FlowFixMe */}
         <Flex css={style.erc20AssetField}>
+          {/*
+          //$FlowFixMe */}
           <div css={style.erc20AssetField_lableText}>ERC20 Asset</div>
           <input
             css={style.inputField}
