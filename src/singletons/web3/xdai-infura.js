@@ -45,6 +45,8 @@ class Web3XdaiInfura {
     balance = this.web3.fromWei(`${balance}`, 'ether')
     return parseFloat(balance).toFixed(2)
   }
+
+  // TODO: Check erc20Asset balance here instead?
 }
 
 export default new Web3XdaiInfura()

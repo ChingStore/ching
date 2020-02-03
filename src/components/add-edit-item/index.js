@@ -62,7 +62,7 @@ class AddEditItem extends React.Component<PropsType, StateType> {
 
   getItemPrice = (): number => _.get(this.props, 'item.price', 1)
 
-  getItemStockCount = (): number => _.get(this.props, 'item.stockCount', 1)
+  getItemStockCount = (): number => _.get(this.props, 'item.stockCount', 999)
 
   ///////////
   // STATE //

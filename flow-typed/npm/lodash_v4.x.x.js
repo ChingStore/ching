@@ -1,7 +1,6 @@
 // flow-typed signature: 4d0c9ba43b5b639df7e1f9c70d835f29
 // flow-typed version: 48347c4ce3/lodash_v4.x.x/flow_>=v0.63.x <=v0.103.x
 
-
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
   declare type __CurriedFunction1<A, R, AA: A> = (...r: [AA]) => R;

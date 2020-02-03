@@ -1,4 +1,4 @@
-// flow-typed signature: 9e7622274bde8d152bbb07d69b0b51bf
+// flow-typed signature: 981da9643a7ce04b521b6e4c4314ec00
 // flow-typed version: <<STUB>>/react-scripts_v2.1.3/flow_v0.92.0
 
 /**
@@ -94,7 +94,7 @@ declare module 'react-scripts/template/src/App.test' {
   declare module.exports: any;
 }
 
-declare module 'react-scripts/template/src/index' {
+declare module 'react-scripts/template/src' {
   declare module.exports: any;
 }
 
@@ -157,8 +157,11 @@ declare module 'react-scripts/template/src/App.js' {
 declare module 'react-scripts/template/src/App.test.js' {
   declare module.exports: $Exports<'react-scripts/template/src/App.test'>;
 }
+declare module 'react-scripts/template/src/index' {
+  declare module.exports: $Exports<'react-scripts/template/src'>;
+}
 declare module 'react-scripts/template/src/index.js' {
-  declare module.exports: $Exports<'react-scripts/template/src/index'>;
+  declare module.exports: $Exports<'react-scripts/template/src'>;
 }
 declare module 'react-scripts/template/src/serviceWorker.js' {
   declare module.exports: $Exports<'react-scripts/template/src/serviceWorker'>;

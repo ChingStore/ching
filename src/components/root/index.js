@@ -37,6 +37,8 @@ class Root extends React.Component<PropsType> {
 
     return (
       <Flex absoluteFill column style={style.base}>
+        {/*
+      //$FlowFixMe */}
         <Routes location={this.props.location} />
       </Flex>
     )

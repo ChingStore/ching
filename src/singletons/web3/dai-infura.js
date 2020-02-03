@@ -43,6 +43,21 @@ class Web3DaiInfura {
     balance = balance.div(10 ** contract.decimals())
     return parseFloat(balance).toFixed(2)
   }
+
+  // TODO: Check erc20Asset balance on xdai network, expect same ABI as DAIABI
+  // getErc20AssetBalance = async walletAddress => {
+  //   await this._initialized
+  //   if (!this.web3.isAddress(walletAddress)) {
+  //     return 'ETH_ADR_ERR'
+  //   }
+  //   const contract = this.web3.eth
+  //     .contract(DAIABI)
+  //     // TODO: .at(NETWORK.TOKEN_ADDRESS.MAINNET) should point to xdai.poa network
+  //     .at(NETWORK.TOKEN_ADDRESS.MAINNET)
+  //   let balance = await contract.balanceOf(walletAddress)
+  //   balance = balance.div(10 ** contract.decimals())
+  //   return parseFloat(balance).toFixed(2)
+  // }
 }
 
 export default new Web3DaiInfura()

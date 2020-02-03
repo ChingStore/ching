@@ -1,4 +1,4 @@
-// flow-typed signature: bbccdf33755e90bf064f63188d4c07a3
+// flow-typed signature: 40dba8bec0dc68cb48eef508d1fef207
 // flow-typed version: <<STUB>>/web3_v0.20.6/flow_v0.92.0
 
 /**
@@ -142,7 +142,7 @@ declare module 'web3/bower/crypto-js/hmac' {
   declare module.exports: any;
 }
 
-declare module 'web3/bower/crypto-js/index' {
+declare module 'web3/bower/crypto-js' {
   declare module.exports: any;
 }
 
@@ -581,8 +581,11 @@ declare module 'web3/bower/crypto-js/hmac-sha512.js' {
 declare module 'web3/bower/crypto-js/hmac.js' {
   declare module.exports: $Exports<'web3/bower/crypto-js/hmac'>;
 }
+declare module 'web3/bower/crypto-js/index' {
+  declare module.exports: $Exports<'web3/bower/crypto-js'>;
+}
 declare module 'web3/bower/crypto-js/index.js' {
-  declare module.exports: $Exports<'web3/bower/crypto-js/index'>;
+  declare module.exports: $Exports<'web3/bower/crypto-js'>;
 }
 declare module 'web3/bower/crypto-js/lib-typedarrays.js' {
   declare module.exports: $Exports<'web3/bower/crypto-js/lib-typedarrays'>;

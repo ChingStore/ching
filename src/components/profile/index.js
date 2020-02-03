@@ -27,12 +27,18 @@ export type PropsType = {
   store: Object,
   storeName: string,
   password?: string,
+  erc20Asset: string,
   walletAddress: string,
   signOut: () => Promise<any>,
   handleChange: {},
   onClick: () => void,
   onUpdateAddress: ({
     walletAddress: string,
+    storeName: string,
+    storeId: IdType,
+  }) => void,
+  onUpdateErc20Asset: ({
+    erc20Asset: string,
     storeName: string,
     storeId: IdType,
   }) => void,
@@ -51,6 +57,8 @@ class Profile extends React.Component<PropsType, StateType> {
     isEditingAddress: false,
     isEditingPassword: false,
     isEditingEmail: false,
+    isEditingErc20Asset: false,
+    erc20AssetField: this.props.erc20Asset,
     addressField: this.props.walletAddress,
   }
 
@@ -68,10 +76,17 @@ class Profile extends React.Component<PropsType, StateType> {
     const addressField = this.getWalletAddress()
     console.log('componentWillMount_addressField: ', addressField)
     this.setState({ addressField })
+
+    const erc20AssetField = this.getErc20Asset()
+    console.log('componentWillMount_erc20AssetField: ', erc20AssetField)
+    // $FlowFixMe
+    this.setState({ erc20AssetField })
   }
 
   componentDidUpdate() {
     console.log('state.isEditingAddress: ', this.state.isEditingAddress)
+    // $FlowFixMe
+    console.log('state.isEditingErc20Asset: ', this.state.isEditingErc20Asset)
   }
 
   ////////////////////
@@ -84,8 +99,9 @@ class Profile extends React.Component<PropsType, StateType> {
   }
 
   handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const eventId = e.currentTarget.id
     this.setState({
-      addressField: e.currentTarget.value,
+      [eventId]: e.currentTarget.value,
     })
   }
 
@@ -99,6 +115,17 @@ class Profile extends React.Component<PropsType, StateType> {
       return {
         [eventId]: !prevState[eventId],
         addressField: this.props.store.walletAddress,
+      }
+    })
+  }
+
+  onClickEditErc20Asset = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const eventId = e.currentTarget.id
+    // $FlowFixMe
+    this.setState(prevState => {
+      return {
+        [eventId]: !prevState[eventId],
+        erc20AssetField: this.props.store.erc20AssetField,
       }
     })
   }
@@ -134,6 +161,30 @@ class Profile extends React.Component<PropsType, StateType> {
     this.setState({ isEditingAddress: false })
   }
 
+  handleUpdateErc20Asset = async () => {
+    if (!this.state.erc20AssetField) {
+      await this.props.onUpdateErc20Asset({
+        erc20Asset: this.props.store.erc20Asset,
+        storeId: this.props.storeId,
+        storeName: this.props.store.storeName,
+      })
+    }
+    // if (!ethUtil.isValidAddress(this.state.addressField)) {
+    //   alert('The address entered is invalid')
+    //   return
+    // }
+
+    await this.props.onUpdateErc20Asset({
+      // $FlowFixMe
+      erc20Asset: this.state.erc20AssetField,
+      storeId: this.props.storeId,
+      storeName: this.props.store.storeName,
+    })
+
+    // $FlowFixMe
+    this.setState({ isEditingErc20Asset: false })
+  }
+
   /////////////
   // GETTERS //
   /////////////
@@ -145,6 +196,11 @@ class Profile extends React.Component<PropsType, StateType> {
   getWalletAddress = () => {
     _.get(this.props, 'walletAddress')
     console.log('getWalletAddress Fired!', this.props)
+  }
+
+  getErc20Asset = () => {
+    _.get(this.props, 'erc20Asset')
+    console.log('getErc20Asset Fired!', this.props)
   }
 
   ////////////////////
@@ -181,6 +237,7 @@ class Profile extends React.Component<PropsType, StateType> {
         {/* {this.renderEmailField()}
         {this.renderPasswordField()}*/}
         {this.renderWalletAddressField()}
+        {this.renderErc20AssetField()}
       </Flex>
     )
   }
@@ -255,7 +312,7 @@ class Profile extends React.Component<PropsType, StateType> {
           css={style.inputField}
           onChange={e => this.handleChange(e)}
           id="addressField"
-          value={this.state.addressField}
+          value={this.state.addressField || ''}
           labelText="Ethereum Address"
         />
         <EditButton
@@ -289,6 +346,58 @@ class Profile extends React.Component<PropsType, StateType> {
       </Flex>
     )
   }
+
+  // renderErc20AssetField vvv
+  renderErc20AssetField = () => {
+    // $FlowFixMe
+    const { isEditingErc20Asset } = this.state
+    return isEditingErc20Asset ? (
+      <Flex css={style.edit}>
+        <InputField
+          autoFocus
+          onFocus={this.handleFocus}
+          css={style.inputField}
+          onChange={e => this.handleChange(e)}
+          id="erc20AssetField"
+          value={this.state.erc20AssetField || ''}
+          labelText="ERC20 Asset"
+        />
+        <EditButton
+          css={style.edit_button}
+          id="isEditingErc20Asset"
+          fill={STYLE.COLOR.RED}
+          onClick={() => this.handleUpdateErc20Asset()}
+        />
+      </Flex>
+    ) : (
+      <Flex css={style.edit}>
+        {/*
+        //$FlowFixMe */}
+        <Flex css={style.erc20AssetField}>
+          {/*
+          //$FlowFixMe */}
+          <div css={style.erc20AssetField_lableText}>ERC20 Asset</div>
+          <input
+            css={style.inputField}
+            id="erc20AssetField"
+            value={
+              this.state.erc20AssetField
+                ? this.state.erc20AssetField
+                : this.props.erc20Asset
+            }
+            readOnly
+          />
+        </Flex>
+        <EditButton
+          css={style.edit_button}
+          id="isEditingErc20Asset"
+          fill={STYLE.COLOR.GREEN}
+          onClick={e => this.onClickEditErc20Asset(e)}
+        />
+      </Flex>
+    )
+  }
+  // renderErc20AssetField ^^^
 
   renderLogOut = () => {
     return (

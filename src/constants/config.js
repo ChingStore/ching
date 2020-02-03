@@ -9,7 +9,9 @@ const {
 
 const IS_PRODUCTION = REACT_APP_ENV === 'production'
 const PUBLIC_URL =
-  NODE_PUBLIC_URL || REACT_APP_PUBLIC_URL || 'https://app.ching.store'
+  NODE_PUBLIC_URL ||
+  REACT_APP_PUBLIC_URL ||
+  'https://andersonmmi.github.io/ching-exchange-implimentation'
 
 console.log({
   NODE_ENV,

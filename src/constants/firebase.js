@@ -100,6 +100,7 @@ export type OrdersOrderedType = $ReadOnlyArray<OrderOrderedType>
 ////////////
 
 export type StoreType = $ReadOnly<{
+  erc20Asset: string,
   storeName: string,
   walletAddress: string,
   isOnboardingDone: boolean,

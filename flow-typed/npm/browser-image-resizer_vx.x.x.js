@@ -1,4 +1,4 @@
-// flow-typed signature: dfa56caf328fc2854acf42a95a0719e8
+// flow-typed signature: 56d5f35f797b25c3dc32508624ae96e2
 // flow-typed version: <<STUB>>/browser-image-resizer_v^2.0.1/flow_v0.92.0
 
 /**
@@ -22,15 +22,11 @@ declare module 'browser-image-resizer' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'browser-image-resizer/dist/index' {
+declare module 'browser-image-resizer/dist' {
   declare module.exports: any;
 }
 
-declare module 'browser-image-resizer/src/exif' {
-  declare module.exports: any;
-}
-
-declare module 'browser-image-resizer/src/index' {
+declare module 'browser-image-resizer/src' {
   declare module.exports: any;
 }
 
@@ -39,14 +35,17 @@ declare module 'browser-image-resizer/webpack.config' {
 }
 
 // Filename aliases
-declare module 'browser-image-resizer/dist/index.js' {
-  declare module.exports: $Exports<'browser-image-resizer/dist/index'>;
+declare module 'browser-image-resizer/dist/index' {
+  declare module.exports: $Exports<'browser-image-resizer/dist'>;
 }
-declare module 'browser-image-resizer/src/exif.js' {
-  declare module.exports: $Exports<'browser-image-resizer/src/exif'>;
+declare module 'browser-image-resizer/dist/index.js' {
+  declare module.exports: $Exports<'browser-image-resizer/dist'>;
+}
+declare module 'browser-image-resizer/src/index' {
+  declare module.exports: $Exports<'browser-image-resizer/src'>;
 }
 declare module 'browser-image-resizer/src/index.js' {
-  declare module.exports: $Exports<'browser-image-resizer/src/index'>;
+  declare module.exports: $Exports<'browser-image-resizer/src'>;
 }
 declare module 'browser-image-resizer/webpack.config.js' {
   declare module.exports: $Exports<'browser-image-resizer/webpack.config'>;

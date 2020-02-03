@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     storeName,
     storeId,
   }: {
+    erc20Asset: string,
     walletAddress: string,
     storeName: string,
     storeId: IdType,

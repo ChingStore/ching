@@ -1,4 +1,4 @@
-// flow-typed signature: 5950fc16a789a147dce6ab3bc30bf409
+// flow-typed signature: 2cb1ed2c8af49b63d85457971a40a440
 // flow-typed version: <<STUB>>/emotion-normalize_v^10.0.0/flow_v0.92.0
 
 /**
@@ -22,18 +22,24 @@ declare module 'emotion-normalize' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'emotion-normalize/dist/index' {
+declare module 'emotion-normalize/dist' {
   declare module.exports: any;
 }
 
-declare module 'emotion-normalize/src/index' {
+declare module 'emotion-normalize/src' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module 'emotion-normalize/dist/index' {
+  declare module.exports: $Exports<'emotion-normalize/dist'>;
+}
 declare module 'emotion-normalize/dist/index.js' {
-  declare module.exports: $Exports<'emotion-normalize/dist/index'>;
+  declare module.exports: $Exports<'emotion-normalize/dist'>;
+}
+declare module 'emotion-normalize/src/index' {
+  declare module.exports: $Exports<'emotion-normalize/src'>;
 }
 declare module 'emotion-normalize/src/index.js' {
-  declare module.exports: $Exports<'emotion-normalize/src/index'>;
+  declare module.exports: $Exports<'emotion-normalize/src'>;
 }
