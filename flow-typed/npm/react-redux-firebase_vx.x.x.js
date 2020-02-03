@@ -1,4 +1,4 @@
-// flow-typed signature: 5ffabef33686654d4d9b238926fa636f
+// flow-typed signature: d6032ab177209554501e82f3c5a836ca
 // flow-typed version: <<STUB>>/react-redux-firebase_v^2.2.6/flow_v0.92.0
 
 /**
@@ -34,7 +34,7 @@ declare module 'react-redux-firebase/es/actions/auth' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/es/actions/index' {
+declare module 'react-redux-firebase/es/actions' {
   declare module.exports: any;
 }
 
@@ -70,7 +70,7 @@ declare module 'react-redux-firebase/es/helpers' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/es/index' {
+declare module 'react-redux-firebase/es' {
   declare module.exports: any;
 }
 
@@ -94,7 +94,7 @@ declare module 'react-redux-firebase/es/utils/events' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/es/utils/index' {
+declare module 'react-redux-firebase/es/utils' {
   declare module.exports: any;
 }
 
@@ -126,7 +126,7 @@ declare module 'react-redux-firebase/lib/actions/auth' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/lib/actions/index' {
+declare module 'react-redux-firebase/lib/actions' {
   declare module.exports: any;
 }
 
@@ -162,7 +162,7 @@ declare module 'react-redux-firebase/lib/helpers' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/lib/index' {
+declare module 'react-redux-firebase/lib' {
   declare module.exports: any;
 }
 
@@ -186,7 +186,7 @@ declare module 'react-redux-firebase/lib/utils/events' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/lib/utils/index' {
+declare module 'react-redux-firebase/lib/utils' {
   declare module.exports: any;
 }
 
@@ -218,7 +218,7 @@ declare module 'react-redux-firebase/src/actions/auth' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/src/actions/index' {
+declare module 'react-redux-firebase/src/actions' {
   declare module.exports: any;
 }
 
@@ -254,7 +254,7 @@ declare module 'react-redux-firebase/src/helpers' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/src/index' {
+declare module 'react-redux-firebase/src' {
   declare module.exports: any;
 }
 
@@ -278,7 +278,7 @@ declare module 'react-redux-firebase/src/utils/events' {
   declare module.exports: any;
 }
 
-declare module 'react-redux-firebase/src/utils/index' {
+declare module 'react-redux-firebase/src/utils' {
   declare module.exports: any;
 }
 
@@ -400,8 +400,11 @@ declare module 'react-redux-firebase/dist/react-redux-firebase.min.js' {
 declare module 'react-redux-firebase/es/actions/auth.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/actions/auth'>;
 }
+declare module 'react-redux-firebase/es/actions/index' {
+  declare module.exports: $Exports<'react-redux-firebase/es/actions'>;
+}
 declare module 'react-redux-firebase/es/actions/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/es/actions/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/es/actions'>;
 }
 declare module 'react-redux-firebase/es/actions/query.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/actions/query'>;
@@ -427,8 +430,11 @@ declare module 'react-redux-firebase/es/firestoreConnect.js' {
 declare module 'react-redux-firebase/es/helpers.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/helpers'>;
 }
+declare module 'react-redux-firebase/es/index' {
+  declare module.exports: $Exports<'react-redux-firebase/es'>;
+}
 declare module 'react-redux-firebase/es/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/es/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/es'>;
 }
 declare module 'react-redux-firebase/es/reducer.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/reducer'>;
@@ -445,8 +451,11 @@ declare module 'react-redux-firebase/es/utils/auth.js' {
 declare module 'react-redux-firebase/es/utils/events.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/utils/events'>;
 }
+declare module 'react-redux-firebase/es/utils/index' {
+  declare module.exports: $Exports<'react-redux-firebase/es/utils'>;
+}
 declare module 'react-redux-firebase/es/utils/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/es/utils/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/es/utils'>;
 }
 declare module 'react-redux-firebase/es/utils/populate.js' {
   declare module.exports: $Exports<'react-redux-firebase/es/utils/populate'>;
@@ -469,8 +478,11 @@ declare module 'react-redux-firebase/es/withFirestore.js' {
 declare module 'react-redux-firebase/lib/actions/auth.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/actions/auth'>;
 }
+declare module 'react-redux-firebase/lib/actions/index' {
+  declare module.exports: $Exports<'react-redux-firebase/lib/actions'>;
+}
 declare module 'react-redux-firebase/lib/actions/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/lib/actions/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/lib/actions'>;
 }
 declare module 'react-redux-firebase/lib/actions/query.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/actions/query'>;
@@ -496,8 +508,11 @@ declare module 'react-redux-firebase/lib/firestoreConnect.js' {
 declare module 'react-redux-firebase/lib/helpers.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/helpers'>;
 }
+declare module 'react-redux-firebase/lib/index' {
+  declare module.exports: $Exports<'react-redux-firebase/lib'>;
+}
 declare module 'react-redux-firebase/lib/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/lib/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/lib'>;
 }
 declare module 'react-redux-firebase/lib/reducer.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/reducer'>;
@@ -514,8 +529,11 @@ declare module 'react-redux-firebase/lib/utils/auth.js' {
 declare module 'react-redux-firebase/lib/utils/events.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/utils/events'>;
 }
+declare module 'react-redux-firebase/lib/utils/index' {
+  declare module.exports: $Exports<'react-redux-firebase/lib/utils'>;
+}
 declare module 'react-redux-firebase/lib/utils/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/lib/utils/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/lib/utils'>;
 }
 declare module 'react-redux-firebase/lib/utils/populate.js' {
   declare module.exports: $Exports<'react-redux-firebase/lib/utils/populate'>;
@@ -538,8 +556,11 @@ declare module 'react-redux-firebase/lib/withFirestore.js' {
 declare module 'react-redux-firebase/src/actions/auth.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/actions/auth'>;
 }
+declare module 'react-redux-firebase/src/actions/index' {
+  declare module.exports: $Exports<'react-redux-firebase/src/actions'>;
+}
 declare module 'react-redux-firebase/src/actions/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/src/actions/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/src/actions'>;
 }
 declare module 'react-redux-firebase/src/actions/query.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/actions/query'>;
@@ -565,8 +586,11 @@ declare module 'react-redux-firebase/src/firestoreConnect.js' {
 declare module 'react-redux-firebase/src/helpers.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/helpers'>;
 }
+declare module 'react-redux-firebase/src/index' {
+  declare module.exports: $Exports<'react-redux-firebase/src'>;
+}
 declare module 'react-redux-firebase/src/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/src/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/src'>;
 }
 declare module 'react-redux-firebase/src/reducer.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/reducer'>;
@@ -583,8 +607,11 @@ declare module 'react-redux-firebase/src/utils/auth.js' {
 declare module 'react-redux-firebase/src/utils/events.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/utils/events'>;
 }
+declare module 'react-redux-firebase/src/utils/index' {
+  declare module.exports: $Exports<'react-redux-firebase/src/utils'>;
+}
 declare module 'react-redux-firebase/src/utils/index.js' {
-  declare module.exports: $Exports<'react-redux-firebase/src/utils/index'>;
+  declare module.exports: $Exports<'react-redux-firebase/src/utils'>;
 }
 declare module 'react-redux-firebase/src/utils/populate.js' {
   declare module.exports: $Exports<'react-redux-firebase/src/utils/populate'>;

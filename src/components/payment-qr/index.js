@@ -19,6 +19,7 @@ import style from './index.style'
 
 export type PropsType = {
   location: ReactRouter.Location,
+  erc20Asset: string,
   order: OrderType,
   orderId: IdType,
   walletAddress: string,
@@ -40,11 +41,11 @@ const STATUS_TEXT = {
 
 class PaymentQR extends React.PureComponent<PropsType> {
   render() {
-    const { order, orderId, walletAddress } = this.props
+    const { erc20Asset, order, orderId, walletAddress } = this.props
     const status = orderUtil.txStatus(order)
 
     if (status === ORDER.STATUS.WAITING_FOR_SCAN) {
-      return <QRCode {...{ order, orderId, walletAddress }} />
+      return <QRCode {...{ erc20Asset, order, orderId, walletAddress }} />
     }
 
     // $FlowFixMe: waiting for scan is missing

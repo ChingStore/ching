@@ -1,4 +1,4 @@
-// flow-typed signature: 800e6558ebf43bd2e35d8d2ea6125094
+// flow-typed signature: c39a571a092353eb3f49ca12bc1783cf
 // flow-typed version: <<STUB>>/source-map-explorer_v^1.7.0/flow_v0.92.0
 
 /**
@@ -22,26 +22,6 @@ declare module 'source-map-explorer' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'source-map-explorer/test-helpers' {
-  declare module.exports: any;
-}
-
-declare module 'source-map-explorer/test' {
-  declare module.exports: any;
-}
-
-declare module 'source-map-explorer/testdata/foo.min.inline-map' {
-  declare module.exports: any;
-}
-
-declare module 'source-map-explorer/testdata/foo.min' {
-  declare module.exports: any;
-}
-
-declare module 'source-map-explorer/testdata/foo.min.no-map' {
-  declare module.exports: any;
-}
-
 declare module 'source-map-explorer/vendor/webtreemap' {
   declare module.exports: any;
 }
@@ -52,21 +32,6 @@ declare module 'source-map-explorer/index' {
 }
 declare module 'source-map-explorer/index.js' {
   declare module.exports: $Exports<'source-map-explorer'>;
-}
-declare module 'source-map-explorer/test-helpers.js' {
-  declare module.exports: $Exports<'source-map-explorer/test-helpers'>;
-}
-declare module 'source-map-explorer/test.js' {
-  declare module.exports: $Exports<'source-map-explorer/test'>;
-}
-declare module 'source-map-explorer/testdata/foo.min.inline-map.js' {
-  declare module.exports: $Exports<'source-map-explorer/testdata/foo.min.inline-map'>;
-}
-declare module 'source-map-explorer/testdata/foo.min.js' {
-  declare module.exports: $Exports<'source-map-explorer/testdata/foo.min'>;
-}
-declare module 'source-map-explorer/testdata/foo.min.no-map.js' {
-  declare module.exports: $Exports<'source-map-explorer/testdata/foo.min.no-map'>;
 }
 declare module 'source-map-explorer/vendor/webtreemap.js' {
   declare module.exports: $Exports<'source-map-explorer/vendor/webtreemap'>;

@@ -4,6 +4,7 @@ export default {
   base: {
     width: '80%',
     alignSelf: 'center',
+    marginBottom: '10vh',
   },
 
   title: {

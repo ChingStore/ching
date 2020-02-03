@@ -1,4 +1,4 @@
-// flow-typed signature: b8311d76e9b0b31cf4f8951793091c64
+// flow-typed signature: 0aff997c6e2744b9ecdfcc7a0876b58d
 // flow-typed version: <<STUB>>/react-html5-camera-photo_v^1.2.9/flow_v0.92.0
 
 /**
@@ -22,11 +22,14 @@ declare module 'react-html5-camera-photo' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'react-html5-camera-photo/build/index' {
+declare module 'react-html5-camera-photo/build' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module 'react-html5-camera-photo/build/index' {
+  declare module.exports: $Exports<'react-html5-camera-photo/build'>;
+}
 declare module 'react-html5-camera-photo/build/index.js' {
-  declare module.exports: $Exports<'react-html5-camera-photo/build/index'>;
+  declare module.exports: $Exports<'react-html5-camera-photo/build'>;
 }

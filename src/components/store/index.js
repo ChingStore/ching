@@ -25,6 +25,7 @@ import AddItemCard from './add-item-card'
 import style from './index.style'
 
 export type PropsType = {
+  erc20Asset: string,
   order: Object,
   store: Object,
   walletAddress: string,
@@ -87,7 +88,18 @@ class StoreScene extends React.Component<PropsType, StateType> {
             threshold={3000}
           />
         )}
-        <div css={{ paddingBottom: 30 }} />
+        <div
+          css={{
+            marginTop: 'auto',
+            padding: 30,
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
+          <div>
+            Disclaimer: This application is for educational purposes only.
+          </div>
+        </div>
         {this.renderResizeDetector()}
       </Flex>
     </Flex>
@@ -163,7 +175,7 @@ class StoreScene extends React.Component<PropsType, StateType> {
     const { itemsOrdered } = this.props
 
     return (
-      <Flex grow key={key}>
+      <Flex grow key={key} css={style.itemsRow}>
         {_.times(this.getListRowItemsCount(), columnIndex => {
           const itemIndex = this.getItemIndex({ rowIndex, columnIndex })
           const item = itemsOrdered[itemIndex]

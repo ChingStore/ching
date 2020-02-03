@@ -19,7 +19,7 @@ export default {
 
   form_input: {
     borderWidth: 0,
-    width: 40,
+    width: 80,
     textAlign: 'center',
     fontSize: 22,
   },
