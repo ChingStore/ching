@@ -44,50 +44,52 @@ exports.transactionBuffer = functions.https.onRequest((request, response) => {
 exports.orderDetails = functions.https.onRequest(async (request, response) => {
   // NOTE: Request should be in the following form:
   // https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=13VwSGhmVuwjpLKFmqd7
-
-  try {
-    const order = await admin
-      .firestore()
-      .collection('orders')
-      .doc(request.query.orderId)
-      .get({ source: 'server' })
-    const orderData = order.data()
-    // const items = _.map(orderData.items, async it => {
-    //   const item = await admin
-    //     .firestore()
-    //     .collection('items')
-    //     .doc(it.id)
-    //     .get({ source: 'server' })
-    //   const itemData = item.data()
-    //   return {
-    //     id: it.id,
-    //     quantity: it.quantity,
-    //     price: it.price,
-    //     name: itemData.name,
-    //   }
-    // })
-    // console.log('items :', items)
-    response.json({ items: orderData.items })
-  } catch (error) {
-    console.log('Error getting cached document:', error)
-    response.status(500).send(error)
-  }
+  cors(request, response, async () => {
+    try {
+      const order = await admin
+        .firestore()
+        .collection('orders')
+        .doc(request.query.orderId)
+        .get({ source: 'server' })
+      const orderData = order.data()
+      const mergedItems = await Promise.all(
+        orderData.items.map(async orderItem => {
+          const item = await admin
+            .firestore()
+            .collection('items')
+            .doc(orderItem.id)
+            .get({ source: 'server' })
+          const itemData = item.data()
+          return {
+            ...itemData,
+            ...orderItem,
+          }
+        })
+      )
+      console.log('mergedItems :', mergedItems)
+      response.json({ items: mergedItems })
+    } catch (error) {
+      console.log('Error getting cached document:', error)
+      response.status(500).send(error)
+    }
+  })
 })
 
 exports.itemDetails = functions.https.onRequest(async (request, response) => {
   // NOTE: Request should be in the following form:
   // https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA
-
-  try {
-    const item = await admin
-      .firestore()
-      .collection('items')
-      .doc(request.query.itemId)
-      .get({ source: 'server' })
-    const itemData = item.data()
-    response.json({ items: itemData })
-  } catch (error) {
-    console.log('Error getting cached document:', error)
-    response.status(500).send(error)
-  }
+  cors(request, response, async () => {
+    try {
+      const item = await admin
+        .firestore()
+        .collection('items')
+        .doc(request.query.itemId)
+        .get({ source: 'server' })
+      const itemData = item.data()
+      response.json({ items: itemData })
+    } catch (error) {
+      console.log('Error getting cached document:', error)
+      response.status(500).send(error)
+    }
+  })
 })
