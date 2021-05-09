@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "firebase-admin": "^8.9.2",
     "firebase-functions": "^3.3.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "eslint": "^4.12.0",
